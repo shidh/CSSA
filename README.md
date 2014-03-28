@@ -3,7 +3,13 @@ CSSA
 
 The website for Chinese students in Muenchen 
 
-
+ - 用户注册/登录
+ - 用户前段界面
+ - Admin后台管理界面
+ - Admin发布活动
+ - User报名活动
+ - MultiMedia（image，video，map）支持
+ - MultiLang（CN，EN，DE）支持
 
 
 
