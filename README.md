@@ -3,11 +3,9 @@ CSSA
 
 The website for Chinese students in Muenchen 
 
- - 用户注册/登录
- - 用户前段界面
- - Admin后台管理界面
- - Admin发布活动
- - User报名活动
+ - User注册/登录
+ - User前端交互页面 （用户浏览内容，报名活动，用户间SNS交互）
+ - Admin后台管理页面（发布活动，报名管理，邮件通知）
  - MultiMedia（image，video，map）支持
  - MultiLang（CN，EN，DE）支持
 
