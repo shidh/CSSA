@@ -19,8 +19,8 @@ I. System Requirements
   - Java 7
 
 II. Installation
-  1. Follow the installation guide: http://www.playframework.com/documentation/1.2.7/install
-  2. Clone the repo
+  1. Follow the Play installation guide: http://www.playframework.com/documentation/1.2.7/install
+  2. Clone this cssa repo to local
   3. If you use Eclipse: run 'play eclipsify cssa' and import the local git repo
 
 III. Relevant Docs
