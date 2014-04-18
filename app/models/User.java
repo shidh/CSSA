@@ -8,10 +8,7 @@ import javax.persistence.Entity;
 import play.db.jpa.Model;
 
 @Entity(name = "user_table")
-/**
- * @author allen
- *
- */
+
 public class User extends Model {
 	public String email;
 	public String password;
