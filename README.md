@@ -27,3 +27,12 @@ III. Relevant Docs
   - Main Doc page: http://www.playframework.com/documentation/1.2.7/home
   - Java API: http://www.playframework.com/documentation/api/1.2.7/index.html
   - JPA: http://www.playframework.com/documentation/1.2.7/jpa
+
+
+一些建模的想法：
+Admin能增删改查Post
+User能看Post，能报名，能评论
+Post包含Postcontent和Comments
+Postcontent包含Image，Map，Video
+可以报名的Post是Activity
+Activity有confirmedList和WaitingList
