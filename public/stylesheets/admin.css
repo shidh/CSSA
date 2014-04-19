@@ -1,0 +1,18 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+#adminloginbackground{
+	width:100%;
+	height:1000px;
+	background-image: url(/public/images/adminloginbg.png);
+	background-repeat:  repeat-x;
+}
+
+#adminloginbox{
+	background-color: rgba(198, 211, 205, 0.5);
+	box-shadow:0px 0px 20px rgba(0,0,0,0.2);
+	width:400px;
+	height:300px;
+}
