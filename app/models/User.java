@@ -27,6 +27,7 @@ public class User extends Model {
 	public String major;
 	public String gender;
 	public Date birthday;
+	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
 
@@ -41,7 +42,7 @@ public class User extends Model {
 
 	public User(String email, String password, String fullname, String major,
 			String city, String gender, Date birthday,
-			Image image) {
+			Image image, boolean isAdmin) {
 		super();
 		this.email = email;
 		this.password = password;
@@ -51,6 +52,7 @@ public class User extends Model {
 		this.gender = gender;
 		this.birthday = birthday;
 		this.image = image;
+		this.isAdmin = isAdmin;
 	}
 
 }
