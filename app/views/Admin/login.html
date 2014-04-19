@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>CSSA admin login</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/admin.css'}">
+#{get 'moreStyles' /}
+<script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
+	type="text/javascript" charset="${_response_encoding}"></script>
+#{get 'moreScripts' /}
+</head>
+<body>
+	<div id="adminloginbackground">
+		<div id="adminloginbox">login</div>
+	</div>
+</body>
+
+<script type="text/javascript">
+$(window).resize(function(){ 
+	$('#adminloginbox').css({ 
+	position:'absolute', 
+	left: ($(window).width() - $('#adminloginbox').outerWidth())/2, 
+	top: ($(window).height() - $('#adminloginbox').outerHeight())/2 + $(document).scrollTop() 
+	}); 
+}); 
+$(window).resize();
+</script>
+</html>
