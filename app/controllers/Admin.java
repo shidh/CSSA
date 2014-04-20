@@ -6,8 +6,5 @@ public class Admin extends Controller {
 	public static void login(){
 		render();
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> origin/master
+
