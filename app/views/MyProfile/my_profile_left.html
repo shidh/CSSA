@@ -1,0 +1,36 @@
+<div id="my_profile_left_div">
+
+	#{if mode == "viewProfile"}
+	<h3>${user.fullname}</h3>
+	<input type="image" id="userimage"
+		src="http://asset0.cbsistatic.com/cnwk.1d/i/tim/2011/03/16/Chrome-logo-2011-03-16.jpg"
+		alt="Edit Pic" /> <input type="file" id="photo" name="photoData"
+		style="display: none;" /> </br> </br>
+	<div class="follow">
+		<input id="followed" value="Followed ${user.fullname}" readonly>
+		<button id="follow">Follow ${user.fullname}</button>
+	</div>
+
+	#{/if} #{form @MyProfile.submit() , enctype:"multipart/form-data"} #{if
+	mode == "myProfile"}
+	<h3>${user.fullname}</h3>
+	</br> <input type="image" id="userimage"
+		src="http://asset0.cbsistatic.com/cnwk.1d/i/tim/2011/03/16/Chrome-logo-2011-03-16.jpg"
+		alt="Edit Pic" /> <input type="file" id="photo" name="photoData"
+		style="display: none;" /> </br>
+
+
+	<h3>Followed</h3>
+	#{list items:user.followed, as:'followed'}
+	<div class="followed">
+		<h2 class="myfollowed-fullname">
+			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
+		</h2>
+		<div class="myfllowed-image">
+			<img
+				src="http://asset0.cbsistatic.com/cnwk.1d/i/tim/2011/03/16/Chrome-logo-2011-03-16.jpg">
+		</div>
+		<a href="@{ViewProfile.page(followed.id)}">more</a>
+	</div>
+	#{/list} #{/if}
+</div>

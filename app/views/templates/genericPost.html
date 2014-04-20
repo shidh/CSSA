@@ -1,0 +1,269 @@
+#{extends 'templates/main.html'/}
+#{if mode == "view"}
+#{set title:'View Post'/}
+#{/if}
+#{elseif mode == "edit"}
+#{set title:'Edit Post'/}
+#{/elseif}
+#{else}
+#{set title:'New Post'/}
+#{/else}
+
+<script>
+
+	var newPostAddTagCounter = 0;
+
+	var newPostScope = {};
+	newPostScope.tags = {};
+	
+	$(function() {
+		$("#add_tag_button").click(function(){
+			var newTagText = $("#add_tag_input").val();
+			newTagText = $.trim(newTagText);
+			$("#add_tag_input").val("");
+			
+			if(newTagText != ""){
+				addTag(newTagText);
+			}
+		});
+		
+	      #{if mode != 'new'}
+	      	#{list items: post.tags, as: 't'}
+	      		addTag("${t}");
+	      	#{/list}
+	      #{/if}
+	      
+	   initialize();
+	});
+	
+	function addTag(newTagText){
+		var newElementID = "tag_span_id" + newPostAddTagCounter;
+		var newRemoveButtonID = "tag_remove_button_id" + newPostAddTagCounter; 
+		var newElementHTML = "<span id='" + newElementID + "'>" +newTagText #{if mode != 'view'}+ "<button id='" + newRemoveButtonID + "'>Remove</button>"#{/if} + "</span><br>";
+		
+		$("#added_tags_div").append(newElementHTML);
+		
+		newPostScope.tags[newElementID] = newTagText;
+		
+		refreshTags();
+		
+		$("#" + newRemoveButtonID).click(function(){
+			$("#" + newElementID).remove();
+			delete newPostScope.tags[newElementID];
+			
+			refreshTags();
+		});
+		
+		newPostAddTagCounter = newPostAddTagCounter + 1;
+	}
+
+	function refreshTags(){
+		tagString = "";
+		for(var key in newPostScope.tags){
+			tagString += ";" + newPostScope.tags[key];
+		}
+		$("#tags_hidden_input").val(tagString);
+	}
+	
+	function deleteImage(elementId, idx){
+		$("#" + elementId).remove();
+		$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
+	}
+	
+	//initlaize map
+    function initialize() {
+    	  newPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        newPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+        		newPostScope.mapOptions);
+        
+        newPostScope.geocoder = new google.maps.Geocoder();
+        
+        newPostScope.address = "";
+        
+        #{if post}
+        newPostScope.address = "${post.mapLocation.address.raw()}";
+	        #{if post.mapLocation.latitude}
+	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+        	#{/if}
+       	#{/if}
+        
+        //map click callback
+        google.maps.event.addListener(newPostScope.map, 'click', function(event) {
+        	
+        	newPostScope.map.panTo(event.latLng);
+        	setMarkerAt(event.latLng);
+        });
+        
+        function setMarkerAt(location){
+   	    	newPostScope.map.setCenter(location);
+   	    	if(newPostScope.marker){
+   	    		newPostScope.marker.setPosition(location);
+   	    	}
+   	    	else{
+	   	        newPostScope.marker = new google.maps.Marker({
+	   	            map: newPostScope.map,
+	   	            position: location
+	   	        });
+   	    	}
+
+   	     	newPostScope.map.setZoom(16);
+   	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
+   	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
+        }
+        
+        //updaing address every 1.5 seconds
+		setInterval(function(){
+				var address = $("#address_input").val();
+				
+				//if(address){
+					address = $.trim(address);
+					if(address != newPostScope.address){
+						newPostScope.address = address;
+					
+						newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+					   	      if (status == google.maps.GeocoderStatus.OK) {
+					   	    		setMarkerAt(results[0].geometry.location);
+					   	      } else {
+					   	      }
+					   	    });
+					}
+				//}
+		}, 1500);
+      }
+    </script>
+    
+<style type="text/css">
+	#new_post_left_div {width:50%; float:left;}
+	#new_post_right_div {width:50%; float: right;}
+	.postImage{height:50px;}
+	.hidden_input{display: none;}
+</style>
+
+#{if showEditButton}
+<a href="@{EditPost.page(post.id)}"><button>Edit Post</button></a> <br><br>
+#{/if}
+
+<div id="new_post_div">
+<div id="new_post_left_div">
+
+#{form mode == 'new'? @NewPost.submit(): @EditPost.submit() , enctype:"multipart/form-data"}
+	    <p>
+	        <label for="title_input">Title: </label>
+	        <input type="text" name="title" id="title_input" value="${post?.title}" #{if mode == 'view'}readonly#{/if}/>
+	    </p>
+	    <p>
+	        <label for="address_input">Address: </label>
+	        <input type="text" name="address" id="address_input" value="${post?.mapLocation?.address}" #{if mode == 'view'}readonly#{/if}/>
+	    </p>
+	     <p>
+	        <label for="description_input">Description: </label>
+	        <textarea name="description" id="description_input" #{if mode == 'view'}readonly#{/if}>${post?.description}</textarea>
+	    </p>
+	     <p>
+	        <label>Photos</label><br>
+	        #{if mode == 'new'}
+	        <input type="file" draggable="true" name="photoData1" id="photo_data_1"/> 
+	        <input type="file" draggable="true" name="photoData2" id="photo_data_2"/> 
+	        <input type="file" draggable="true" name="photoData3" id="photo_data_3"/> 
+	        <input type="file" draggable="true" name="photoData4" id="photo_data_4"/>
+	        #{/if}	        
+	        
+	        #{else}
+	        #{list items:post.content.pictures, as:'pic'}
+		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
+		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
+	        	  </a>
+	        #{/list}
+	        #{/else}
+	    </p>
+        <p>
+	        #{if mode != 'view'}
+	        	<label for="video_input">Video: </label>
+				<input type="text" name="video" id="video_input" value="${post?.content?.video}"/>
+	        #{/if}
+        </p>
+	    #{if post}
+	    #{if post.content.video}
+	    	${post.content.video.raw()}
+		#{/if}
+	    #{/if}
+	    <p>
+	    #{if mode != 'view'}
+	        <label>Share with others:</label><br>
+	        <label for="share_yes_input">Yes </label>
+	        <input type="radio" name="shareRadio" id="share_yes_input" value="yes" #{if mode == 'new'} checked #{/if} #{else}#{if post.sharedWithOthers}checked #{/if} #{/else}/><br>
+	        <label for="share_no_input">No </label>
+	        <input type="radio" name="shareRadio" id="share_no_input" value="no" #{if post} #{if ! post.sharedWithOthers} checked #{/if} #{/if}/>
+	    #{/if}
+	    </p>
+	    
+	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input"/>
+	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"/>
+	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"/>
+     	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}"/>
+     	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input"/>	
+	     <p>
+	     #{if mode =='new'}
+	        <button id="post_button" name="submitAction" value="post"> Post </button>
+	        <button id="cancel_button" name="submitAction" value="cancel"> Cancel </button>
+	     #{/if}
+	     #{elseif mode =='edit'}
+	        <button id="save_button" name="submitAction" value="save"> Save </button>
+	        <button id="cancel_button" name="submitAction" value="cancel"> Cancel </button>
+	        <button id="delete_button" name="submitAction" value="delete"> Delete </button>
+	     #{/elseif}
+	       
+	    </p>
+
+	
+     #{/form}
+     #{if mode != 'new'}
+     <div id="comments_div">
+        <br>
+	    <br>
+		<b>Comments:</b> <br>
+			#{list items:post.comments, as:'comment'}
+			
+				Comment sent by: #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+				Comment: ${comment.text.raw()}<br>
+				Rating: ${comment.rating.raw()}<br>
+			<br>	
+			#{/list}
+			
+			#{form @ViewPost.postComment(post.id)}
+				<label for="comment_text_input">Add Comment</label>
+				<input type="text" id="comment_text_input" name="commentText"/><br>
+				<label for="rating_select">Rating</label>
+				<select name="commentRating" id="rating_select">
+					<option value="5">5</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
+				<input type="submit" id="comment_button_input" name="postComment" value="Post Comment"/>
+			#{/form}
+		</div>
+		#{/if}
+    </div>
+
+    <div id="new_post_right_div">
+    	<div id="newpost-map-canvas" style="height:300px;width:400px"></div>
+		<p>
+	        #{if mode != 'view'}
+	        <br>
+	        <label for="add_tag_input">Tags: </label>
+	        <input type="text" id="add_tag_input"/>
+	        
+	        <button id="add_tag_button">Add</button>
+	        #{/if}
+	    </p>
+	    Added Tags:
+        <div id="added_tags_div"></div>
+	</div>
+	
+</div>
