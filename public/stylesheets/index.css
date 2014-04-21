@@ -28,6 +28,7 @@ body {
 	border: solid 1px #cccccc;
 	border-radius: 5px;
 	font-weight: bold;
+	min-width:900px;
 }
 
 ul,li {
@@ -44,8 +45,16 @@ img {
 	padding-bottom: 50px;
 }
 
-.leftnail {
-	margin-left: 181px;
+.block_container {
+	width: 1058px;
+	margin: 0 auto;
+	padding-bottom: 50px;
+	position: relative;
+}
+
+.nail {
+	width:352px;
+	float:left;
 }
 
 #focus {
@@ -143,13 +152,20 @@ img {
 #reference {
 	width: 1000px;
 	height: 150px;
-	margin-left: 212px;
+	margin: 0 auto;
 	padding-top: 20px;
+	padding-left: 20px;
 }
 
 #row {
 	float: left;
-	margin-right: 150px;
+	width: 250px;
+	margin-right: 50px;
+	padding-top: 15px;
+}
+
+#row p {
+	font-size: 30px;
 }
 
 .footer li {
@@ -170,14 +186,16 @@ img {
 	color: #428bca;
 }
 
+
 #loginForm {
 	opacity:0.9;
 	border: solid 1px #cccccc;
 	border-radius: 5px;
 	display: none;
 	padding: 15px 15px 15px 5px;
+	margin: 0 auto;
 	position: absolute;
-	left: 1050px;
+	right: 0.2%;
 	top: 73px;
 	width: 360px;
 	height: 205px;
@@ -195,7 +213,7 @@ img {
 	display: none;
 	padding: 15px 15px 15px 5px;
 	position: absolute;
-	left: 1050px;
+	right: 0.2%;
 	top: 73px;
 	width: 375px;
 	height: 210px;

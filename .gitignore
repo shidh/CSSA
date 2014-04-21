@@ -4,7 +4,7 @@
 /test-result
 /logs
 .settings
-
+server.pid
 .classpath
 
 *.class
