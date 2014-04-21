@@ -30,7 +30,10 @@ public class Post extends Model {
 	@OneToOne
 	public MapLocation mapLocation;
 
+	@OneToOne
+	public PostContent content;
 
+	@ManyToOne
 	public User sender;
 
 	@ElementCollection
@@ -77,3 +80,4 @@ public class Post extends Model {
 
 		return null;
 	}
+}
