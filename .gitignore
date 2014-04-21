@@ -1,5 +1,9 @@
-#temporary file
 /tmp
+/modules
+/lib
+/test-result
+/logs
+
 
 *.class
 

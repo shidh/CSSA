@@ -51,5 +51,9 @@ public class User extends Model {
 		this.image = image;
 		this.isAdmin = isAdmin;
 	}
+	
+	public static User connect(String email, String password) {
+	    return find("byEmailAndPassword", email, password).first();
+	}
 
 }
