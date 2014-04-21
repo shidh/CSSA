@@ -3,7 +3,9 @@
 /lib
 /test-result
 /logs
+.settings
 
+.classpath
 
 *.class
 
