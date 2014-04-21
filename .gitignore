@@ -5,6 +5,8 @@
 /logs
 .settings
 
+server.pid
+
 .classpath
 
 *.class
