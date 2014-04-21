@@ -4,6 +4,8 @@
 /test-result
 /logs
 
+.settings
+.classpath
 
 *.class
 
