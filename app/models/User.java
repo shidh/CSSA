@@ -15,10 +15,7 @@ import javax.persistence.OneToOne;
 import play.db.jpa.Model;
 
 @Entity(name = "user_table")
-/**
- * @author allen
- *
- */
+
 public class User extends Model {
 	public String email;
 	public String password;
@@ -53,6 +50,10 @@ public class User extends Model {
 		this.birthday = birthday;
 		this.image = image;
 		this.isAdmin = isAdmin;
+	}
+	
+	public static User connect(String email, String password) {
+	    return find("byEmailAndPassword", email, password).first();
 	}
 
 }
