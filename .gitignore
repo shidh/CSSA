@@ -17,3 +17,5 @@ server.pid
 *.jar
 *.war
 *.ear
+/bin
+/bin
