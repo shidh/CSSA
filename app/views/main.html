@@ -46,10 +46,18 @@
         				</div>
         				<button type="submit" class="btn btn-primary">搜索</button>
       				</form>
+							#{if flag_login}
+							<ul class="nav navbar-nav navbar-right">
+								<li ><a href="#">欢迎, ${email}</a></li>
+        				<li ><a href="@{Application.index()}">登出</a></li>
+      				</ul>
+							#{/if}
+							#{else}
       				<ul class="nav navbar-nav navbar-right">
        					<li id="registerButton"><a href="#">注册</a></li>
         				<li id="loginButton"><a href="#">登录</a></li>
       				</ul>
+							#{/else}
     			</div><!-- /.navbar-collapse -->
   			</div><!-- /.container-fluid -->
  		</nav>

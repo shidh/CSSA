@@ -2,6 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+
 # Administration
 GET     /admin/?                                Admin.index
 *       /admin                                  module:crud
@@ -20,5 +21,4 @@ GET     /public/                                staticDir:public
 *       /{controller}/{action}                  {controller}.{action}
 
 
-# Import Secure routes
-*       /                                       module:secure
+

@@ -96,5 +96,10 @@ $(function() {
 	$(".returnRegister").click(function() {
 		$("#registerForm").css("display", "none");
 	});
+	
+	// alert
+	$(".returnAlert").click(function() {
+		$(".Alert").css("display", "none");
+	});
 
 });

@@ -8,6 +8,7 @@ body {
 	color: #222;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	background: #f0f0f0;
+	min-width:900px;
 }
 
 .clearfix:after {
@@ -28,7 +29,7 @@ body {
 	border: solid 1px #cccccc;
 	border-radius: 5px;
 	font-weight: bold;
-	min-width:900px;
+	min-width:1024px;
 }
 
 ul,li {
@@ -46,15 +47,27 @@ img {
 }
 
 .block_container {
-	width: 1058px;
-	margin: 0 auto;
+	width: 1024px;
 	padding-bottom: 50px;
+	margin: 0 auto;
 	position: relative;
 }
 
 .nail {
-	width:352px;
+	width:340px;
 	float:left;
+}
+
+.nailleft {
+	width:340px;
+	float:left;
+	padding-left:0;
+}
+
+.nailright {
+	width:340px;
+	float:left;
+	padding-right:0;
 }
 
 #focus {
@@ -143,7 +156,7 @@ img {
 }
 
 .footer {
-	width: auto;
+	min-width:1024px;
 	height: 200px;
 	background-color: #428bca;
 	margin: 0 auto;
@@ -226,4 +239,31 @@ img {
 
 .dis {
 	margin-left: 90px;
+}
+
+
+.Alert {
+	opacity:0.9;
+	border: solid 1px #cccccc;
+	border-radius: 5px;
+	position: absolute;
+	right: 40%;
+	top: 153px;
+	width: 250px;
+	height: 120px;
+	background: white;
+}
+
+.alertMessage {
+	width: 250px;
+	height: 60px;
+	padding: 25px 30px 15px 80px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #428bca;	
+}
+
+.returnAlert {
+	margin-top: 10px;
+	margin-left: 102px;
 }

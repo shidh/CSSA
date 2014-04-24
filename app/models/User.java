@@ -52,6 +52,12 @@ public class User extends Model {
 		this.isAdmin = isAdmin;
 	}
 	
+	public User(String email, String password){
+		super();
+		this.email = email;
+		this.password = password;
+	}
+	
 	public static User connect(String email, String password) {
 	    return find("byEmailAndPassword", email, password).first();
 	}

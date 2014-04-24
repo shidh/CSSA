@@ -18,7 +18,7 @@
 </div>
 
 <div class="row block_container">
-	<div class="col-sm-6 col-md-3 nail">
+	<div class="col-sm-6 col-md-3 nailleft">
 		<div class="thumbnail">
 			<h3>活动</h3>
 			<img src="/public/images/Events.jpeg">
@@ -42,7 +42,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-6 col-md-3 nail">
+	<div class="col-sm-6 col-md-3 nailright">
 		<div class="thumbnail">
 			<h3>视频</h3>
 			<img src="/public/images/Videos.jpeg">
@@ -81,18 +81,18 @@
 </div>
 
 <div id="loginForm">
-	<form class="form-horizontal" role="form">
+	<form action="@{Login.authenticate()}" class="form-horizontal" method="post" role="form">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
-				<input type="email" class="form-control" id="inputEmail3"
+				<input name="email" type="email" class="form-control" id="inputEmail3"
 					placeholder="Email">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 			<div class="col-sm-9">
-				<input type="password" class="form-control" id="inputPassword3"
+				<input name="password" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password">
 			</div>
 		</div>
@@ -104,36 +104,68 @@
 				</div>
 			</div>
 		</div>
-		<button type="button" class="btn btn-primary dis submitLogin">登录</button>
+		<button type="submit" class="btn btn-primary dis submitLogin">登录</button>
 		<button type="button" class="btn btn-primary dis returnLogin">返回</button>
 	</form>
 </div>
 
 <div id="registerForm">
-	<form class="form-horizontal" role="form">
+	<form action="@{Application.register()}" class="form-horizontal" method="post" role="form">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
-				<input type="email" class="form-control" id="inputEmail3"
+				<input name="email" type="email" class="form-control" id="inputEmail3"
 					placeholder="Email">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 			<div class="col-sm-9">
-				<input type="password" class="form-control" id="inputPassword3"
+				<input name="password1" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword3" class="col-sm-3 control-label">确认密码</label>
 			<div class="col-sm-9">
-				<input type="password" class="form-control" id="inputPassword3"
+				<input name="password2" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password Twice">
 			</div>
 		</div>
-		<button type="button" class="btn btn-primary dis submitRegister">注册</button>
+		<button type="submit" class="btn btn-primary dis submitRegister">注册</button>
 		<button type="button" class="btn btn-primary dis returnRegister">返回</button>
 	</form>
 </div>
 
+#{if register}
+	#{if flag_register}
+	<div class="Alert">
+		<div class="alertMessage">&nbsp;&nbsp;注册成功！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+	#{/if}
+	#{else}
+	<div class="Alert">
+		<div class="alertMessage">邮箱已存在！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+	#{/else}
+#{/if}
+
+#{if flag_twice}
+	<div class="Alert">
+		<div class="alertMessage">密码不一致！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+#{/if}
+
+#{if login}
+	#{if flag_login}
+	#{/if}
+	#{else}
+	<div class="Alert">
+		<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+	#{/else}
+#{/if}
