@@ -1,0 +1,8 @@
+CompilerOracle: exclude jregex/Pretokenizer.next
+Listening for transport dt_socket at address: 8000
+10:03:20,508 INFO  ~ Starting /Users/uniquehuang/git/CSSA
+10:03:21,003 WARN  ~ You're running Play! in DEV mode
+10:03:21,082 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+~ Server is up and running
+10:04:56,407 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
+10:04:57,127 INFO  ~ Application 'cssa' is now started !
