@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -81,4 +82,3 @@ public class Post extends Model {
 		return null;
 	}
 }
-

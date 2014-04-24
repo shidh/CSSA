@@ -1,17 +1,24 @@
-/tmp
-/modules
-/lib
-/test-result
-/logs
-/bin
-*.launch
-.settings
-server.pid
-.classpath
-.project
-*.class
+# Extracted from https://github.com/ulrich/macaron-factory/blob/master/.gitignore
+# Ignore all dotfiles...
+.*
+# except for .gitignore
+!.gitignore
 
-# Package Files #
-*.jar
-*.war
-*.ear.launch
+# Ignore Play! working directory #
+db
+eclipse
+lib
+log
+logs
+modules
+precompiled
+project/project
+project/target
+target
+tmp
+bin
+test-result
+server.pid
+*.iml
+*.eml
+data
