@@ -1,64 +1,35 @@
 CompilerOracle: exclude jregex/Pretokenizer.next
 Listening for transport dt_socket at address: 8000
-14:44:27,333 INFO  ~ Starting /Users/uniquehuang/git/CSSA
-14:44:27,760 WARN  ~ You're running Play! in DEV mode
-14:44:27,830 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
+11:19:16,325 INFO  ~ Starting /Users/uniquehuang/git/CSSA
+11:19:16,328 INFO  ~ Module secure is available (/Applications/play-1.2.7/modules/secure)
+11:19:16,870 WARN  ~ You're running Play! in DEV mode
+11:19:16,953 INFO  ~ Listening for HTTP on port 9000 (Waiting a first request to start) ...
 ~ Server is up and running
-14:44:35,040 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
-14:44:35,821 INFO  ~ Application 'cssa' is now started !
-16:11:45,704 ERROR ~ 
+11:19:20,205 ERROR ~ Cannot include routes for module crud (not found)
+11:19:21,504 INFO  ~ Connected to jdbc:h2:mem:play;MODE=MYSQL
+11:19:22,583 INFO  ~ Application 'cssa' is now started !
+11:31:28,541 ERROR ~ Cannot include routes for module crud (not found)
+11:33:03,454 ERROR ~ 
 
-@6i1khci48
-secure.login action not found
+@6i20dp1h7
+Internal Server Error (500) for request GET /
 
-Action not found
-Action secure.login could not be found. Error raised is Controller controllers.secure not found
+No route found (In /app/views/Application/index.html around line 84)
+No route able to invoke action Application.authenticate was found.
 
-play.exceptions.ActionNotFoundException: Action secure.login not found
-	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:599)
-	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
+play.exceptions.NoRouteFoundException: No route found
+	at play.templates.BaseTemplate.throwException(BaseTemplate.java:82)
+	at play.templates.GroovyTemplate.internalRender(GroovyTemplate.java:257)
+	at play.templates.Template.render(Template.java:26)
+	at play.templates.GroovyTemplate.render(GroovyTemplate.java:202)
+	at play.mvc.results.RenderTemplate.<init>(RenderTemplate.java:24)
+	at play.mvc.Controller.renderTemplate(Controller.java:662)
+	at play.mvc.Controller.renderTemplate(Controller.java:642)
+	at play.mvc.Controller.render(Controller.java:699)
+	at controllers.Application.index(Application.java:13)
+	at play.mvc.ActionInvoker.invokeWithContinuation(ActionInvoker.java:557)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:508)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:484)
+	at play.mvc.ActionInvoker.invokeControllerMethod(ActionInvoker.java:479)
+	at play.mvc.ActionInvoker.invoke(ActionInvoker.java:161)
 	at Invocation.HTTP Request(Play!)
-Caused by: java.lang.Exception: Controller controllers.secure not found
-	... 3 more
-16:16:29,275 ERROR ~ 
-
-@6i1khci49
-error/404.html action not found
-
-Action not found
-Action error/404.html could not be found. Error raised is Controller controllers.error/404 not found
-
-play.exceptions.ActionNotFoundException: Action error/404.html not found
-	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:599)
-	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
-	at Invocation.HTTP Request(Play!)
-Caused by: java.lang.Exception: Controller controllers.error/404 not found
-	... 3 more
-16:16:47,564 ERROR ~ 
-
-@6i1khci4a
-error.404 action not found
-
-Action not found
-Action error.404 could not be found. Error raised is Controller controllers.error not found
-
-play.exceptions.ActionNotFoundException: Action error.404 not found
-	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:599)
-	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
-	at Invocation.HTTP Request(Play!)
-Caused by: java.lang.Exception: Controller controllers.error not found
-	... 3 more
-16:16:51,829 ERROR ~ 
-
-@6i1khci4b
-error.404 action not found
-
-Action not found
-Action error.404 could not be found. Error raised is Controller controllers.error not found
-
-play.exceptions.ActionNotFoundException: Action error.404 not found
-	at play.mvc.ActionInvoker.getActionMethod(ActionInvoker.java:599)
-	at play.mvc.ActionInvoker.resolve(ActionInvoker.java:85)
-	at Invocation.HTTP Request(Play!)
-Caused by: java.lang.Exception: Controller controllers.error not found
-	... 3 more
