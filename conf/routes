@@ -7,6 +7,9 @@
 GET     /admin/?                                Admin.index
 *       /admin                                  module:crud
 
+# Import Secure routes
+*      /                module:secure
+
 # Home page
 GET     /                                       Application.index
 
