@@ -23,6 +23,7 @@ public class Application extends Controller {
 				new User(email, password1).save();
 				render("Application/index.html", flag_register, register);
 			} else {
+				
 				render("Application/index.html", flag_register, register);
 			}
 		} else {
