@@ -25,8 +25,20 @@ GET     /editPost                            	EditPost.page
 # View Post page
 GET     /viewPost                            	ViewPost.page
 
-# My Posts page
-GET     /myPosts                            	MyPosts.page
+# All Posts page
+GET     /postStream                            	PostStream.page
+
+# Download Page
+GET     /downloads                            	MyPosts.page
+
+
+# Freshman welcome page
+GET     /freshman                            	MyPosts.page
+
+
+# About page
+GET     /about                            	    MyPosts.page
+
 
 
 

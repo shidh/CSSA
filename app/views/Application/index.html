@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'templates/main.html' /} #{set title:'Home' /}
 
 <div class="slides_container">
 	<div id="focus">
@@ -78,10 +78,9 @@
 		</div>
 	</div>
 </div>
-</div>
 
 <div id="loginForm">
-	<form action="@{Login.authenticate()}" class="form-horizontal" method="post" role="form">
+    #{form @Application.login(), id:'navigation_bar_login_form', class:'form-horizontal'}
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
@@ -106,11 +105,12 @@
 		</div>
 		<button type="submit" class="btn btn-primary dis submitLogin">登录</button>
 		<button type="button" class="btn btn-primary dis returnLogin">返回</button>
-	</form>
+    #{/form}
 </div>
 
+
 <div id="registerForm">
-	<form action="@{Application.register()}" class="form-horizontal" method="post" role="form">
+    #{form @Application.register(), id:'navigation_bar_register_form', class:'form-horizontal'}
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
@@ -121,20 +121,20 @@
 		<div class="form-group">
 			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
 			<div class="col-sm-9">
-				<input name="password1" type="password" class="form-control" id="inputPassword3"
+				<input name="password" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword3" class="col-sm-3 control-label">确认密码</label>
 			<div class="col-sm-9">
-				<input name="password2" type="password" class="form-control" id="inputPassword3"
+				<input name="password_retyped" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password Twice">
 			</div>
 		</div>
 		<button type="submit" class="btn btn-primary dis submitRegister">注册</button>
 		<button type="button" class="btn btn-primary dis returnRegister">返回</button>
-	</form>
+    #{/form}
 </div>
 
 #{if register}
