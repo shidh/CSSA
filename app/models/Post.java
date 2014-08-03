@@ -10,6 +10,7 @@ import java.util.List;
 import play.db.jpa.Model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,8 @@ import javax.persistence.OneToOne;
 @Entity
 public class Post extends Model {
 	public String title;
+	
+	@Column( length = 1000000 )
 	public String description;
 	public Date postingDate;
 

@@ -1,0 +1,70 @@
+// Import default values
+@import "template.less";
+
+#my_post_middle_div {
+	border: @default_border_width @default_border_style @default_border_color;
+	float: left;
+	margin-left: 10px;
+	width: 386px;
+	padding: 5px;
+	
+	.myposts {
+		button {
+			background-color: #EDEDED;
+		    border: 2px solid #A8A8A8;
+		    border-radius: 10px 10px 10px 10px;
+		    color: #777777;
+		    font-weight: bold;
+		    height: 34px;
+		    margin: 8px 0 0 0;
+		    vertical-align: top;
+		    width: 120px;
+		}
+		
+		h3 {
+			text-decoration:underline;
+		}
+		
+		.empty {
+			margin-top: 5px;
+		}
+		
+		.post {
+			margin-top: 10px;
+			
+			a {
+				color: @default_font_color;
+				
+				&:hover {
+					color: @default_font_color_blue;
+				}
+			}
+		}
+		
+		.post-metadata {
+			padding-top: 10px;
+			.post-desc {
+				word-wrap: break-word;
+			}
+		}
+		
+		.postimage {
+			float: left;
+			max-width: 92px;
+			overflow: hidden;
+		}
+		
+		.post-image-1, .post-image-2, .post-image-3 {
+			input {	
+				margin-right: 5px;
+			}
+		}
+	}
+}
+
+#my_post_right_div {
+	border: @default_border_width @default_border_style @default_border_color;
+	float: right;
+	height: 386px;
+	width: 386x;
+}

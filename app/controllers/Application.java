@@ -54,25 +54,19 @@ public class Application extends Controller {
 		if (user == null) {
 
 			if (password.equals(password_retyped) == false) {
-
+				
 				flag_twice = true;
 				flash.error("Password mismatch. Please try to register again.");
 				// index();
 				render("Application/index.html", flag_twice, register);
 
 			} else {
-				if (password.length() < 5) {
-					flash.error("Your password is too short. Please check if your password has the minimum size of 5 characters.");
-					index();
-				} else {
-
 					flag_register = true;
 					User newUser = new User(email, password);
 					newUser.save();
 					session.put("userId", newUser.id);
 					// index();
 					render("Application/index.html", flag_register, register);
-				}
 			}
 		}
 	}

@@ -1,0 +1,123 @@
+#{extends 'templates/main.html'/}
+#{set title:'Post Stream'/}
+
+#{set userToShow: user /}
+
+#{set 'moreStyles'}
+	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/postStream.less'}">
+#{/set}
+
+<script>
+var myPostScope = {};
+var newPostAddTagCounter = 0;
+
+$(function() {      
+   initialize();
+});
+
+
+function initialize() {
+	myPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+	myPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+			myPostScope.mapOptions);
+}
+
+function setMarkerPosition(lat, lng){
+	var location = new google.maps.LatLng(lat, lng);
+	
+   	myPostScope.map.panTo(location);
+   	myPostScope.map.setZoom(16);
+   	
+   	if(myPostScope.marker){
+   		myPostScope.marker.setPosition(location);
+   	}
+   	else{
+   		myPostScope.marker = new google.maps.Marker({
+	            map: myPostScope.map,
+	            position: location
+	        });
+   	}
+}
+
+
+function addTag(newTagText){
+	var newElementID = "tag_span_id" + newPostAddTagCounter;
+	var newRemoveButtonID = "tag_remove_button_id" + newPostAddTagCounter; 
+	var newElementHTML = "<span id='" + newElementID + "'>" +newTagText #{if mode != 'view'}+ "<button id='" + newRemoveButtonID + "'>Remove</button>"#{/if} + "</span><br>";
+	
+	$("#added_tags_div").append(newElementHTML);
+	
+	myPostScope.tags[newElementID] = newTagText;
+	
+	refreshTags();
+	
+	$("#" + newRemoveButtonID).click(function(){
+		$("#" + newElementID).remove();
+		delete newPostScope.tags[newElementID];
+		
+		refreshTags();
+	});
+	
+	newPostAddTagCounter = newPostAddTagCounter + 1;
+}
+
+function refreshTags(){
+		tagString = "";
+		for(var key in myPostScope.tags){
+			tagString += ";" + myPostScope.tags[key];
+		}
+}
+        
+</script>
+
+<div id="my_post_middle_div">
+	<div class="myposts">
+	        <h3>Post Stream</h3>
+        	
+
+            #{list items:posts, as:'myPost'}
+                <div class="post" >                
+                    <h2 class="post-title" #{if myPost.mapLocation.latitude} onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})" #{/if}>
+                        <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+                    </h2>                    
+                    <div>
+						<span class="post-date"> Posted at: ${myPost.postingDate} </span>
+					</div>
+
+					#{list items:myPost.content.picturesTitles, as:'picture'}
+					<div class="post-image">
+						<span type="text" class="postimage">
+							${picture}
+						</span>
+					</div>
+					#{/list}
+                    
+                    <div class="post-metadata">
+                        <span class="post-desc">
+                            ${myPost.description}
+                        </span>
+                   
+                        <span class="post-date">
+
+                        </span>
+                    </div>
+                </div>
+            #{/list}
+            #{else}
+			    <div class="empty">
+			        No posts were published .
+			    </div>
+			#{/else}
+        </div>
+</div>
+
+
+
+<div id="my_post_right_div">
+    <div id="newpost-map-canvas" style="height:386px;width:386px">  </div>
+</div>
+
