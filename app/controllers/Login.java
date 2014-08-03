@@ -1,20 +1,15 @@
 package controllers;
 
-import java.util.Date;
-
-import play.Play;
-import play.data.validation.Required;
-import play.libs.Crypto;
-import play.libs.Time;
-import play.mvc.Before;
-import play.mvc.Http;
 import models.User;
+import play.data.validation.Required;
 import controllers.Secure.Security;
 
 public class Login extends Security {
-	public static boolean authenticate(String email, String password) {
+	public static boolean authenticate(@Required String username, String password, boolean remember) {
+		System.out.println("authenticate again");
 		boolean flag_login = false;
 		boolean login = true;
+		String email = username;
     	if (User.connect(email, password) != null)
     	{
     		flag_login = true;
