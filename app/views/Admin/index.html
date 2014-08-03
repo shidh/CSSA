@@ -5,19 +5,98 @@
 <title>CSSA admin login</title>
 <meta charset="${_response_encoding}">
 <link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/admin.css'}">
+	href="@{'/public/stylesheets/admin-main.css'}">
 #{get 'moreStyles' /}
 <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
 	type="text/javascript" charset="${_response_encoding}"></script>
+
+<script src="@{'/public/javascripts/ckeditor/ckeditor.js'}"
+	type="text/javascript" charset="${_response_encoding}"></script>
+
 #{get 'moreScripts' /}
 
 <!-- Bootstrap -->
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/bootstrap.min.css'}">
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/bootstrap-theme.min.css'}">
 </head>
 <body>
-	Welcome to admin
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">CSSA 后台管理</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Dashboard</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Settings</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Profile</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Help</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li class="active"><a href="#" onclick="newPostOnclick()">新建帖子</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Reports</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item</a></li>
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+					<li><a href="">More navigation</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+				</ul>
+			</div>
+			
+			<div class="col-md-8 main">
+				<h1 class="page-header">新建帖子</h1>
+
+				#{form @savePost()}
+					<h2 class="sub-header">标题</h2>
+					<input type="text" style="width:300px" name="title"/>
+					<input type="hidden" name="username" value="${username}" />
+					<h2 class="sub-header">内容</h2>
+					<textarea name="editor" id="editor" rows="10" cols="80">
+	                This is my textarea to be replaced with CKEditor.
+	            	</textarea>
+					<script>
+						// Replace the <textarea id="editor1"> with a CKEditor
+						// instance, using default configuration.
+						CKEDITOR.replace( 'editor', {
+						    filebrowserBrowseUrl: '/browser/browse',
+						    filebrowserUploadUrl: '/uploader/upload',
+						    filebrowserImageWindowWidth: '640',
+						    filebrowserImageWindowHeight: '480'
+						});
+					</script>
+					<div style="margin-top:10px">
+						<button type="submit" class="btn btn-sm btn-info">保存</button>
+					</div>
+				#{/form}
+			</div>
+		</div>
+	</div>
+
+
 </body>
 </html>
