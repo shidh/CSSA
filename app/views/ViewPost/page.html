@@ -1,0 +1,73 @@
+#{extends 'templates/main.html'/}
+#{set title:'View Post'/}
+#{set mode:'view'/}
+
+
+<div id="view_post_div">
+<div id="view_post_left_div">
+
+	    <p>
+	        <label for="title_input">Title: </label>
+	        <input type="text" name="title" id="title_input" value="${post?.title}" #{if mode == 'view'}readonly#{/if}/>
+	    </p>
+	    
+	    <p>
+	        <label for="address_input">Address: </label>
+	        <input type="text" name="address" id="address_input" value="${post?.mapLocation?.address}" #{if mode == 'view'}readonly#{/if}/>
+	    </p>
+	    
+	    <p>
+	        <label for="description_input">Description: </label>
+	        <textarea name="description" id="description_input" #{if mode == 'view'}readonly#{/if}>${post?.description}</textarea>
+	    </p>
+	    
+	    <p>
+	        #{list items:post.content.pictures, as:'pic'}
+		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
+		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
+	        	</a>
+	        #{/list}
+	    </p>
+
+	    #{if post}
+	    #{if post.content.video}
+	    	${post.content.video.raw()}
+		#{/if}
+	    #{/if}
+	    
+	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input"/>
+	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"/>
+	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"/>
+     	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}"/>
+     	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input"/>	
+     
+     
+     <div id="comments_div">
+        <br>
+	    <br>
+		<b>Comments:</b> <br>
+			#{list items:post.comments, as:'comment'}
+			
+				Comment sent by: #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+				Comment: ${comment.text.raw()}<br>
+				Rating: ${comment.rating.raw()}<br>
+			<br>	
+			#{/list}
+			
+			#{form @ViewPost.postComment(post.id)}
+				<label for="comment_text_input">Add Comment</label>
+				<input type="text" id="comment_text_input" name="commentText"/><br>
+				<label for="rating_select">Rating</label>
+				<select name="commentRating" id="rating_select">
+					<option value="5">5</option>
+					<option value="4">4</option>
+					<option value="3">3</option>
+					<option value="2">2</option>
+					<option value="1">1</option>
+				</select>
+				<input type="submit" id="comment_button_input" name="postComment" value="Post Comment"/>
+			#{/form}
+		</div>
+    </div>
+
+</div>
