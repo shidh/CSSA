@@ -18,7 +18,7 @@
 	    
 	    <p>
 	        <label for="description_input">Description: </label>
-	        <textarea name="description" id="description_input" #{if mode == 'view'}readonly#{/if}>${post?.description}</textarea>
+	        <textarea name="description" id="description_input" readonly>${post?.description}</textarea>
 	    </p>
 	    
 	    <p>
@@ -35,12 +35,13 @@
 		#{/if}
 	    #{/if}
 	    
-	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input"/>
+	    <!--  
+	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input" hidden/>
 	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"/>
 	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"/>
      	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}"/>
      	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input"/>	
-     
+        -->
      
      <div id="comments_div">
         <br>
