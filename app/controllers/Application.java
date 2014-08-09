@@ -9,8 +9,28 @@ import models.*;
 
 public class Application extends Controller {
 
+	/**
+	 * index
+	 */
 	public static void index() {
-		render();
+		// see if login
+		String email = session.get("username");
+		if(email != null){
+			// has login
+			// redirect to home
+			// set flags and emails
+			boolean flag_login = true;
+			boolean login = true;
+			render(flag_login, login, email);
+		}else{
+			// not login
+			render();
+		}
+	}
+	
+	public static void logout(){
+		// clean up
+		
 	}
 
 	public static void register(String email, String password1, String password2) {
