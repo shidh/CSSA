@@ -48,11 +48,11 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2 sidebar">
-				<ul class="nav nav-sidebar">
-					<li class="active"><a href="/admin/newPost">新建帖子</a></li>
-					<li><a href="/admin/allPosts">所有帖子</a></li>
-					<li><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
-					<li><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
+				<ul id ="adminMenuNavi" class="nav nav-sidebar">
+					<li ><a href="/admin/newPost">新建帖子</a></li>
+					<li ><a href="/admin/allPosts">所有帖子</a></li>
+					<li ><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
+					<li ><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
 				</ul>
 				<ul class="nav nav-sidebar">
 					<li><a href="">Nav item</a></li>
@@ -71,7 +71,11 @@
 			
 		</div>
 	</div>
-
-
+<script type="text/javascript">
+var navi = $("#adminMenuNavi")[0];
+// set selected navi
+console.log(navi);
+navi.children[${selectedIndex}].className = "active";
+</script>
 </body>
 </html>

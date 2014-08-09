@@ -14,18 +14,20 @@ import play.mvc.With;
 public class Admin extends Controller {
 	
 	public static void index() {
-		// get username
-		String username = session.get("username");
-		
-		render("Admin/newPost.html", username);
+		newPost();
 	} 
 	
 	public static void newPost(){
-		render();
+		// get username
+		String username = session.get("username");
+		
+		int selectedIndex = 0;// selected index
+		render(username,selectedIndex);
 	}
 	
 	public static void allPosts(){
-		render();
+		int selectedIndex = 1;// selected index
+		render(selectedIndex);
 	}
 	
 	public static void savePost(String title, String editor, String username){
