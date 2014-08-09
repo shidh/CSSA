@@ -7,6 +7,7 @@ import controllers.Secure.Security;
 public class Login extends Security {
 	public static boolean authenticate(@Required String username, String password, boolean remember) {
 		System.out.println("authenticate again");
+		System.out.println(session.get("username"));
 		boolean flag_login = false;
 		boolean login = true;
 		String email = username;

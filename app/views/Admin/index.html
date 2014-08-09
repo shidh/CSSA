@@ -10,7 +10,7 @@
 <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
 	type="text/javascript" charset="${_response_encoding}"></script>
 
-<script src="@{'/public/javascripts/ckeditor/ckeditor.js'}"
+<script src="@{'/public/javascripts/ckeditorStandard/ckeditor.js'}"
 	type="text/javascript" charset="${_response_encoding}"></script>
 
 #{get 'moreScripts' /}
@@ -36,7 +36,7 @@
 					<li><a href="http://getbootstrap.com/examples/dashboard/#">Dashboard</a></li>
 					<li><a href="http://getbootstrap.com/examples/dashboard/#">Settings</a></li>
 					<li><a href="http://getbootstrap.com/examples/dashboard/#">Profile</a></li>
-					<li><a href="http://getbootstrap.com/examples/dashboard/#">Help</a></li>
+					<li><a href="/secure/logout">退出登录</a></li>
 				</ul>
 				<form class="navbar-form navbar-right">
 					<input type="text" class="form-control" placeholder="Search...">
@@ -49,8 +49,8 @@
 		<div class="row">
 			<div class="col-md-2 sidebar">
 				<ul class="nav nav-sidebar">
-					<li class="active"><a href="#" onclick="newPostOnclick()">新建帖子</a></li>
-					<li><a href="http://getbootstrap.com/examples/dashboard/#">Reports</a></li>
+					<li class="active"><a href="/admin/newPost">新建帖子</a></li>
+					<li><a href="/admin/allPosts">所有帖子</a></li>
 					<li><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
 					<li><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
 				</ul>
@@ -67,33 +67,8 @@
 					<li><a href="">Another nav item</a></li>
 				</ul>
 			</div>
+			#{doLayout /}
 			
-			<div class="col-md-8 main">
-				<h1 class="page-header">新建帖子</h1>
-
-				#{form @savePost()}
-					<h2 class="sub-header">标题</h2>
-					<input type="text" style="width:300px" name="title"/>
-					<input type="hidden" name="username" value="${username}" />
-					<h2 class="sub-header">内容</h2>
-					<textarea name="editor" id="editor" rows="10" cols="80">
-	                This is my textarea to be replaced with CKEditor.
-	            	</textarea>
-					<script>
-						// Replace the <textarea id="editor1"> with a CKEditor
-						// instance, using default configuration.
-						CKEDITOR.replace( 'editor', {
-						    filebrowserBrowseUrl: '/browser/browse',
-						    filebrowserUploadUrl: '/uploader/upload',
-						    filebrowserImageWindowWidth: '640',
-						    filebrowserImageWindowHeight: '480'
-						});
-					</script>
-					<div style="margin-top:10px">
-						<button type="submit" class="btn btn-sm btn-info">保存</button>
-					</div>
-				#{/form}
-			</div>
 		</div>
 	</div>
 

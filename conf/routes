@@ -6,7 +6,7 @@
 *      /                                        module:secure
 
 # Administration
-GET     /admin                                  Admin.index
+GET     /admin/                                  Admin.index
 
 # Home page
 GET     /                                       Application.index

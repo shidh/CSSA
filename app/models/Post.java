@@ -7,14 +7,15 @@ package models;
 import java.util.Date;
 import java.util.List;
 
-import play.db.jpa.Model;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import play.db.jpa.Model;
 
 
 /**
@@ -27,6 +28,7 @@ public class Post extends Model {
 	public String description;
 	public Date postingDate;
 	
+	@Column(length=5000)
 	public String postContent;
 
 	public Double rating;
