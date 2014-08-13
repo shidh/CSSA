@@ -1,31 +1,31 @@
 package controllers;
 
-import play.*;
-import play.data.validation.Email;
-import play.mvc.*;
-
-import java.io.PrintWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.List;
-import java.util.Random;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Random;
-
-import models.Image;
-import models.Post;
-import models.User;
-import play.data.validation.Email;
-import play.db.jpa.Blob;
 import play.mvc.Controller;
 
 public class Application extends Controller {
 
+	/**
+	 * index
+	 */
 	public static void index() {
-		render();
+		// see if login
+		String email = session.get("username");
+		if(email != null){
+			// has login
+			// redirect to home
+			// set flags and emails
+			boolean flag_login = true;
+			boolean login = true;
+			render(flag_login, login, email);
+		}else{
+			// not login
+			render();
+		}
+	}
+	
+	public static void logout(){
+		// clean up
+		
 	}
 	
 //	public static void register(@Email String email, String password,

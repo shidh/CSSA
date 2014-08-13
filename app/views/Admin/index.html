@@ -5,19 +5,77 @@
 <title>CSSA admin login</title>
 <meta charset="${_response_encoding}">
 <link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/admin.css'}">
+	href="@{'/public/stylesheets/admin-main.css'}">
 #{get 'moreStyles' /}
 <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
 	type="text/javascript" charset="${_response_encoding}"></script>
+
+<script src="@{'/public/javascripts/ckeditorStandard/ckeditor.js'}"
+	type="text/javascript" charset="${_response_encoding}"></script>
+
 #{get 'moreScripts' /}
 
 <!-- Bootstrap -->
 <link rel="stylesheet" media="screen"
 	href="@{'/public/stylesheets/bootstrap.min.css'}">
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/bootstrap-theme.min.css'}">
 </head>
 <body>
-	Welcome to admin
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand">CSSA 后台管理</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Dashboard</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Settings</a></li>
+					<li><a href="http://getbootstrap.com/examples/dashboard/#">Profile</a></li>
+					<li><a href="/secure/logout">退出登录</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-2 sidebar">
+				<ul id ="adminMenuNavi" class="nav nav-sidebar">
+					<li ><a href="/admin/newPost">新建帖子</a></li>
+					<li ><a href="/admin/allPosts">所有帖子</a></li>
+					<li ><a href="http://getbootstrap.com/examples/dashboard/#">Analytics</a></li>
+					<li ><a href="http://getbootstrap.com/examples/dashboard/#">Export</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item</a></li>
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+					<li><a href="">More navigation</a></li>
+				</ul>
+				<ul class="nav nav-sidebar">
+					<li><a href="">Nav item again</a></li>
+					<li><a href="">One more nav</a></li>
+					<li><a href="">Another nav item</a></li>
+				</ul>
+			</div>
+			#{doLayout /}
+			
+		</div>
+	</div>
+<script type="text/javascript">
+var navi = $("#adminMenuNavi")[0];
+// set selected navi
+console.log(navi);
+navi.children[${selectedIndex}].className = "active";
+</script>
 </body>
 </html>

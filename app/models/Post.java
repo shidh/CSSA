@@ -6,8 +6,8 @@ package models;
 
 import java.util.Date;
 import java.util.List;
-
 import play.db.jpa.Model;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,6 +29,9 @@ public class Post extends Model {
 	@Column( length = 1000000 )
 	public String description;
 	public Date postingDate;
+	
+	@Column(length=5000)
+	public String postContent;
 
 	public Double rating;
 
@@ -46,8 +49,27 @@ public class Post extends Model {
 
 	@OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
 	public List<Comment> comments;
+	
 
-	public Post(String title, String description, MapLocation mapLocation,
+	/**
+	 * 
+	 * @param title
+	 * @param postingDate
+	 * @param postContent
+	 * @param content
+	 * @param sender
+	 */
+	public Post(String title, Date postingDate, String postContent,
+			PostContent content, User sender) {
+		super();
+		this.title = title;
+		this.postingDate = postingDate;
+		this.postContent = postContent;
+		this.content = content;
+		this.sender = sender;
+	}
+
+	public Post(String title, String description, String postContent, MapLocation mapLocation,
 			Date postingDate, User sender,
 			PostContent content, List<String> tags) {
 		super();
@@ -59,6 +81,7 @@ public class Post extends Model {
 		this.content = content;
 		this.tags = tags;
 		this.rating = 0.0;
+		this.postContent =postContent;
 	}
 
 	public static Post getMostRecent()

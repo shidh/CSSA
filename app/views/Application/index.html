@@ -73,7 +73,7 @@
 				<li><h3>相关链接:</h3></li>
 				<li><a href="#">Wenbo.com</a></li>
 				<li><a href="#">Lin.com</a></li>
-				<li><a href="/secure/login">管理员</a></li>
+				<li><a href="/admin">管理员</a></li>
 			</ul>
 		</div>
 	</div>
@@ -85,11 +85,11 @@
 
 <div id="loginForm">
 
-	<form action="@{Login.authenticate()}" class="form-horizontal" method="post" role="form">
+	<form action="@{Secure.authenticate()}" class="form-horizontal" method="post" role="form">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
-				<input name="email" type="email" class="form-control" id="inputEmail3"
+				<input name="username" type="email" class="form-control" id="inputEmail3"
 					placeholder="Email">
 			</div>
 		</div>
