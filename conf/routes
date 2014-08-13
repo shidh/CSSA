@@ -27,15 +27,15 @@ GET     /viewPost                            	ViewPost.page
 GET     /postStream                            	PostStream.page
 
 # Download Page
-GET     /downloads                            	MyPosts.page
+GET     /downloads                            	Application.index
 
 
 # Freshman welcome page
-GET     /freshman                            	MyPosts.page
+GET     /freshman                            	Application.index
 
 
 # About page
-GET     /about                            	    MyPosts.page
+GET     /about                            	    Application.index
 
 
 # Admin homepage
