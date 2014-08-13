@@ -2,7 +2,6 @@ package controllers;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.LinkedList;
 import java.util.List;
 
 import models.Post;
@@ -12,14 +11,17 @@ import play.mvc.Controller;
 public class PostStream extends Controller{
 	public static void page()
 	{
-		String userId = session.get("userId");
-		
-		if (userId != null)
-		{
-			User user = User.findById(Long.parseLong(userId));
-			
-			if (user != null)
-			{
+//		String username = session.get("username");
+//		
+//		System.out.println("From PostStream#current username: "+username);
+//		if (username != null)
+//		{
+//			//User user = User.findById(Long.parseLong(userId));
+//			User user = User.find("byEmail", username).first();
+//
+//			
+//			if (user != null)
+//			{
 				//get all posts of all users
 				//LinkedList<Post> posts = new LinkedList<Post>();
 				List posts = Post.findAll();
@@ -35,10 +37,13 @@ public class PostStream extends Controller{
 					}
 				});
 				
-				render(user, posts);
-			}
-		}
+				//render(user, posts);
+				render(posts);
+			//}
+
+	
+		//}
 		
-		Application.index();
+		//Application.index();
 	}
 }

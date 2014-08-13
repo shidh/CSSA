@@ -13,10 +13,13 @@ public class ViewPost extends Controller {
 			
 			if (post != null) {
 				User user = null;
-				String userId = session.get("userId");
-			
-				if (userId != null) {
-					user = User.findById(Long.parseLong(userId));
+				String username = session.get("username");
+				System.out.println("From ViewPost#current username: "+username);
+
+				if (username != null) {
+					//user = User.findById(Long.parseLong(userId));
+				    user = User.find("byEmail", username).first();
+
 				}
 
 				render(post, user);
@@ -32,9 +35,11 @@ public class ViewPost extends Controller {
 			Post post = Post.findById(postId);
 
 			if (post != null) {
-				String userId = session.get("userId");
-				if (userId != null) {
-					User sender = User.findById(Long.parseLong(userId));
+				String username = session.get("username");
+				User user = User.find("byEmail", username).first();
+
+				if (username != null) {
+					User sender = User.find("byEmail", username).first();
 
 					if (sender != null) {
 						Comment comment = new Comment(commentText,
