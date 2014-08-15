@@ -73,7 +73,7 @@ public class MyProfile extends Controller {
 				// renderArgs.put("ajax", "true");
 				// renderTemplate("tags/ajax.html");
 				//String tagString = getTags(user.tags);
-				//render(user, tagString);
+				render(user);
 			}
 		}
 		Application.index();
