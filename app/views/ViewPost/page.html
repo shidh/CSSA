@@ -17,10 +17,11 @@
 	    </p>
 	    
 	    <p>
-	        <label for="description_input">Description: </label>
-	        <textarea rows="10" cols="100" name="description" id="description_input" readonly>${post?.description}</textarea>
+	        <label for="description_input">PostContent: </label>
+	        <textarea rows="10" cols="100" name="postContent" id="description_input" readonly>${post?.postContent}</textarea>
 	    </p>
 	    
+        #{if post.content} 
 	    <p>
 	        #{list items:post.content.pictures, as:'pic'}
 		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
@@ -28,13 +29,14 @@
 	        	</a>
 	        #{/list}
 	    </p>
-
-	    #{if post}
-	    #{if post.content.video}
-	    	${post.content.video.raw()}
-		#{/if}
-	    #{/if}
 	    
+
+	    	#{if post}
+	        	#{if post.content.video}
+	    			${post.content.video.raw()}
+				#{/if}
+	    	#{/if}
+	    #{/if}
 	    <!--  
 	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input" hidden/>
 	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"/>

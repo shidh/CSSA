@@ -8,6 +8,9 @@ import play.mvc.Controller;
 public class ViewPost extends Controller {
 	
 	public static void page(Long postId) {
+		boolean flag_login = false;
+		String email = null;
+
 		if (postId != null) {
 			Post post = Post.findById(postId);
 			
@@ -19,10 +22,14 @@ public class ViewPost extends Controller {
 				if (username != null) {
 					//user = User.findById(Long.parseLong(userId));
 				    user = User.find("byEmail", username).first();
-
+				    flag_login = true;
+					email = session.get("username");
 				}
+				System.out.println("From ViewPost#current postContent: "+post.postContent);
+				System.out.println("From ViewPost#current description: "+post.description);
 
-				render(post, user);
+				render(post, user, flag_login, email);
+
 			}
 		}
 

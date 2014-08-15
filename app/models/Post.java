@@ -26,7 +26,7 @@ import javax.persistence.OneToOne;
 public class Post extends Model {
 	public String title;
 	
-	@Column( length = 1000000 )
+	@Column( length = 100 )
 	public String description;
 	public Date postingDate;
 	

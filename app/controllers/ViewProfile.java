@@ -1,26 +1,27 @@
 package controllers;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-import models.Image;
-import models.Post;
-import models.User;
-import play.*;
-import play.db.jpa.Blob;
+
+import models.*;
 import play.mvc.*;
 
 public class ViewProfile extends Controller {
-
-	public static void page(Long Id) {
-		Long userId = Long.parseLong(session.get("userId"));
+	
+	public static void page(String UserName) {
+		
+		String myUsername = session.get("username");
+		
+		System.out.println("From MyProfile submit#current username: "+myUsername);
+		// System.out.println("follo:" + folloUserid);
+		
 		boolean followed = false;
-		if (userId == Id) {
+		if (myUsername == UserName) {
 			MyProfile.page();
 		}
-		if (Id != null) {
-			User user = User.findById(Id);
-			User me = User.findById(userId);
+		
+		if (UserName != null) {
+			User user = User.find("byEmail", UserName).first();
+			User me = User.find("byEmail", myUsername).first();
+
 			if (user != null) {
 				if (me.followed.contains(user)) {
 					followed = true;
@@ -32,6 +33,6 @@ public class ViewProfile extends Controller {
 		}
 		// MainPage.index();
 		MyProfile.page();
-	}
+	}	
 
 }

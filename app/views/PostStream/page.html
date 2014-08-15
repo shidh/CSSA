@@ -12,17 +12,17 @@
 	        <h3>Post Stream</h3>
         	
 
-            #{list items:posts, as:'myPost'}
+            #{list items:posts, as:'Onepost'}
                 <div class="post" >                
                     <h2 class="post-title" >
-                        <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+                        <a href="@{ViewPost.page(Onepost.id)}">${Onepost.title}</a>
                     </h2>                    
                     <div>
-						<span class="post-date"> Posted at: ${myPost.postingDate} </span>
+						<span class="post-date"> Posted at: ${Onepost.postingDate} </span>
 					</div>
 
-                    #{if myPost.content} 
-					#{list items:myPost.content.picturesTitles, as:'picture'}
+                    #{if Onepost.content} 
+					#{list items:Onepost.content.picturesTitles, as:'picture'}
 					<div class="post-image">
 						<span type="text" class="postimage">
 							${picture}
@@ -33,7 +33,7 @@
                     
                     <div class="post-metadata">
                         <span class="post-desc">
-                            ${myPost.description}
+                            ${Onepost.postContent}
                         </span>
                    
                         <span class="post-date">

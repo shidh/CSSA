@@ -1,14 +1,8 @@
 package controllers;
 
-import java.io.*;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
-import models.Image;
-import models.Post;
-import models.User;
-import play.*;
+import models.*;
 import play.db.jpa.Blob;
 import play.mvc.*;
 
@@ -18,10 +12,14 @@ public class MyProfile extends Controller {
 			String country, String city, String gender, String religion,
 			Date birthday, Blob photoData, String tags, String folloUserid,
 			String unFollowUserid, String delTag) {
-		Long userId = Long.parseLong(session.get("userId"));
+		
+		
+		String username = session.get("username");
+		
+		System.out.println("From MyProfile submit#current username: "+username);
 		// System.out.println("follo:" + folloUserid);
-		if (userId != null) {
-			User user = User.findById(userId);
+		if (username != null) {
+			User user = User.find("byEmail", username).first();
 			if (user != null) {
 				//System.out.println("Now name is:" + fullname);
 				if (fullname != null) {
@@ -66,9 +64,11 @@ public class MyProfile extends Controller {
 	}
 
 	public static void page() {
-		String userId = session.get("userId");
-		if (userId != null) {
-			User user = User.findById(Long.parseLong(userId));
+		String username = session.get("username");
+		
+		System.out.println("From MyProfile page#current username: "+username);
+		if (username != null) {
+			User user = User.find("byEmail", username).first();
 			if (user != null) {
 				// renderArgs.put("ajax", "true");
 				// renderTemplate("tags/ajax.html");
