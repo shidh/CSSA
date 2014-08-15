@@ -106,4 +106,15 @@ public class Post extends Model {
 
 		return null;
 	}
+
+	@Override
+	public String toString() {
+		return "Post [title=" + title + ", description=" + description
+				+ ", postingDate=" + postingDate + ", postContent="
+				+ postContent + ", rating=" + rating + ", mapLocation="
+				+ mapLocation + ", content=" + content + ", sender=" + sender
+				+ ", tags=" + tags + ", comments=" + comments + "]";
+	}
+	
+	
 }
