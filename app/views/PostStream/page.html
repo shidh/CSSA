@@ -1,27 +1,27 @@
 #{extends 'main.html'/}
 #{set title:'Post Stream'/}
 
-#{set userToShow: user /}
 
 #{set 'moreStyles'}
 	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/postStream.less'}">
 #{/set}
 
 
-<div id="my_post_middle_div">
+<div id="my_post">
 	<div class="myposts">
 	        <h3>Post Stream</h3>
         	
 
             #{list items:posts, as:'myPost'}
                 <div class="post" >                
-                    <h2 class="post-title" #{if myPost.mapLocation.latitude} onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})" #{/if}>
+                    <h2 class="post-title" >
                         <a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
                     </h2>                    
                     <div>
 						<span class="post-date"> Posted at: ${myPost.postingDate} </span>
 					</div>
 
+                    #{if myPost.content} 
 					#{list items:myPost.content.picturesTitles, as:'picture'}
 					<div class="post-image">
 						<span type="text" class="postimage">
@@ -29,6 +29,7 @@
 						</span>
 					</div>
 					#{/list}
+					#{/if}
                     
                     <div class="post-metadata">
                         <span class="post-desc">
@@ -47,11 +48,5 @@
 			    </div>
 			#{/else}
         </div>
-</div>
-
-
-
-<div id="my_post_right_div">
-    <div id="newpost-map-canvas" style="height:386px;width:386px">  </div>
 </div>
 
