@@ -1,7 +1,7 @@
 CSSA
 ====
 
-The website for Chinese students in Muenchen 
+The website for Chinese Students & Scholars Association in Muenchen 
 
  - User注册/登录
  - User前端交互页面 （用户浏览内容，报名活动，用户间SNS交互）
