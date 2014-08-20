@@ -25,8 +25,8 @@ public class ViewPost extends Controller {
 				    flag_login = true;
 					email = session.get("username");
 				}
-				System.out.println("From ViewPost#current postContent: "+post.postContent);
-				System.out.println("From ViewPost#current description: "+post.description);
+				//System.out.println("From ViewPost#current postContent: "+post.postContent);
+				//System.out.println("From ViewPost#current description: "+post.description);
 
 				render(post, user, flag_login, email);
 

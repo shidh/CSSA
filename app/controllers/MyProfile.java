@@ -64,16 +64,21 @@ public class MyProfile extends Controller {
 	}
 
 	public static void page() {
+		boolean flag_login = false;
+		String email = null;
+
 		String username = session.get("username");
 		
 		System.out.println("From MyProfile page#current username: "+username);
 		if (username != null) {
 			User user = User.find("byEmail", username).first();
 			if (user != null) {
+				email = username;
+				flag_login = true;
 				// renderArgs.put("ajax", "true");
 				// renderTemplate("tags/ajax.html");
 				//String tagString = getTags(user.tags);
-				render(user);
+				render(user, flag_login, email);
 			}
 		}
 		Application.index();

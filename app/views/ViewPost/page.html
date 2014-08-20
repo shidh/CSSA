@@ -1,25 +1,128 @@
 #{extends 'main.html'/}
 #{set title:'View Post'/}
-#{set mode:'view'/}
 
 
-<div id="view_post_div">
-<div id="view_post_left_div">
+<style type="text/css">
+/* 
+#view_post_left_div {
+	border: 1px solid #A9C9E2;
+	width: 150px;
+	position: relative;
+	top: 10px;
+	float: left; */
+	
+	.center{
+	font:italic arial,sans-serif;
+	font-size:16px;
+	margin:auto;
+	width:70%;
+	#background-color:#51629e;
+	}
+}
+</style>
+
+
+<script>
+	var newPostAddTagCounter = 0;
+	var newPostScope = {};
+	newPostScope.tags = {};
+	
+	$(function() {
+	   initialize();
+	});
+	
+
+	function deleteImage(elementId, idx){
+		$("#" + elementId).remove();
+		$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
+	}
+	
+	//initlaize map
+    function initialize() {
+    	  newPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        newPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+        		newPostScope.mapOptions);
+        
+        newPostScope.geocoder = new google.maps.Geocoder();
+        
+        newPostScope.address = "";
+        
+        #{if post}
+        newPostScope.address = "${post.mapLocation.address.raw()}";
+	        #{if post.mapLocation.latitude}
+	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+        	#{/if}
+       	#{/if}
+        
+        //map click callback
+        google.maps.event.addListener(newPostScope.map, 'click', function(event) {
+        	
+        	newPostScope.map.panTo(event.latLng);
+        	setMarkerAt(event.latLng);
+        });
+        
+        function setMarkerAt(location){
+   	    	newPostScope.map.setCenter(location);
+   	    	if(newPostScope.marker){
+   	    		newPostScope.marker.setPosition(location);
+   	    	}
+   	    	else{
+	   	        newPostScope.marker = new google.maps.Marker({
+	   	            map: newPostScope.map,
+	   	            position: location
+	   	        });
+   	    	}
+
+   	     	newPostScope.map.setZoom(16);
+   	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
+   	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
+        }
+        
+        //updaing address every 1.5 seconds
+		setInterval(function(){
+				var address = $("#address_input").val();
+				
+				//if(address){
+					address = $.trim(address);
+					if(address != newPostScope.address){
+						newPostScope.address = address;
+					
+						newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+					   	      if (status == google.maps.GeocoderStatus.OK) {
+					   	    		setMarkerAt(results[0].geometry.location);
+					   	      } else {
+					   	      }
+					   	    });
+					}
+				//}
+		}, 1500);
+      }
+    </script>
+
+
+
+
+
+
+<div id="view_post_div" >
+<div id="view_post_left_div" class="center">
 
 	    <p>
 	        <label for="title_input">Title: </label>
-	        <input type="text" name="title" id="title_input" value="${post?.title}" #{if mode == 'view'}readonly#{/if}/>
+	        ${post?.title}
 	    </p>
 	    
 	    <p>
 	        <label for="address_input">Address: </label>
-	        <input type="text" name="address" id="address_input" value="${post?.mapLocation?.address}" #{if mode == 'view'}readonly#{/if}/>
+	        ${post?.mapLocation?.address}
 	    </p>
 	    
-	    <p>
 	        <label for="description_input">PostContent: </label>
-	        <textarea rows="10" cols="100" name="postContent" id="description_input" readonly>${post?.postContent}</textarea>
-	    </p>
+	        ${post?.postContent.raw()}
 	    
         #{if post.content} 
 	    <p>
@@ -37,13 +140,11 @@
 				#{/if}
 	    	#{/if}
 	    #{/if}
-	    <!--  
 	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input" hidden/>
-	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"/>
-	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"/>
-     	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}"/>
-     	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input"/>	
-        -->
+	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"hidden/>
+	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"hidden/>
+     	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}" hidden/>
+     	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>	
      
      <div id="comments_div">
         <br>
@@ -72,5 +173,10 @@
 			#{/form}
 		</div>
     </div>
+
+
+    <div id="new_post_right_div" class="center">
+    	<div id="newpost-map-canvas" style="height:386px;width:386px"></div>
+	</div>	
 
 </div>

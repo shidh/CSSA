@@ -6,7 +6,7 @@ import play.mvc.*;
 
 public class ViewProfile extends Controller {
 	
-	public static void page(String UserName) {
+	public static void page(String userName) {
 		
 		String myUsername = session.get("username");
 		
@@ -14,12 +14,12 @@ public class ViewProfile extends Controller {
 		// System.out.println("follo:" + folloUserid);
 		
 		boolean followed = false;
-		if (myUsername == UserName) {
+		if (myUsername == userName) {
 			MyProfile.page();
 		}
 		
-		if (UserName != null) {
-			User user = User.find("byEmail", UserName).first();
+		if (userName != null) {
+			User user = User.find("byEmail", userName).first();
 			User me = User.find("byEmail", myUsername).first();
 
 			if (user != null) {
