@@ -26,6 +26,9 @@ GET     /viewPost                            	ViewPost.page
 # All Posts page
 GET     /postStream                            	PostStream.page
 
+# All Events page
+GET     /events                            	    EventStream.page
+
 # Download Page
 GET     /downloads                            	Application.index
 

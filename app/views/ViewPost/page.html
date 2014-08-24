@@ -51,7 +51,7 @@
         
         newPostScope.address = "";
         
-        #{if post}
+        #{if post.mapLocation}
         newPostScope.address = "${post.mapLocation.address.raw()}";
 	        #{if post.mapLocation.latitude}
 	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));

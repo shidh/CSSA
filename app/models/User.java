@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -36,6 +36,13 @@ public class User extends Model {
 	
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
+	
+	@ManyToOne
+	public Event confirmedEvent;
+	
+	@ManyToOne
+	public Event waitingEvent;
+		
 
 	public User(String email, String password, String fullname, String major,
 			String city, String gender, Date birthday,

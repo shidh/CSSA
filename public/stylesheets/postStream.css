@@ -1,0 +1,56 @@
+
+body{
+	background-color: #f2f2f2;
+	background-image: url('/public/images/noise.jpg');
+}
+
+.center{
+	font:italic arial,sans-serif;
+	font-size:16px;
+	margin:auto;
+	width:70%;
+	#background-color:#51629e;
+}
+
+.activities{
+	padding-top: 10px;
+	padding-bottom: 30px;
+	border-bottom: 8px solid #428bca;
+	color: #428bca;
+	text-align: center;
+	font-size: 30px;
+	font-weight: 900;
+}
+
+.post{
+	border-bottom: 4px solid #428bca;
+	padding: 10px 20px;
+}
+
+.post-title :hover{
+	color: red;
+}
+
+.postTime{
+	font-size: 12px;
+}
+
+.postImage{
+	height: 120px;
+	width: 120px;
+	margin-top:10px;
+	border: 1px solid #428bca;
+	float: left;
+	text-align: center;
+}
+
+.postImage span{
+	line-height: 120px;
+	color: ＃428bca;
+}
+
+.post-metadata{
+	margin-left:140px;
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
