@@ -3,22 +3,12 @@
 
 
 #{set 'moreStyles'}
-	<link rel="stylesheet/less" type="text/css" href="@{'/public/stylesheets/postStream.less'}">
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/postStream.css'}">
 #{/set}
-
-<style>
-.center{
-	font:italic arial,sans-serif;
-	font-size:16px;
-	margin:auto;
-	width:70%;
-	#background-color:#51629e;
-}
-</style>
 
 <div id="my_post">
 	<div class="center" >
-	        <h3>活动列表</h3>
+	        <h3 class="activities">活动列表</h3>
         	
 
             #{list items:posts, as:'onePost'}
@@ -26,15 +16,15 @@
                     <h2 class="post-title" >
                         <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
                     </h2>                    
-                    <div>
+                    <div class="postTime">
 						<span class="post-date"> Posted at: ${onePost.postingDate} </span>
 					</div>
 
                     #{if onePost.content} 
 					#{list items:onePost.content.picturesTitles, as:'picture'}
-					<div class="post-image">
-						<span type="text" class="postimage">
-							${picture}
+					<div class="postImage">
+						<span>
+							pic
 						</span>
 					</div>
 					#{/list}
