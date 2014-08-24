@@ -22,3 +22,6 @@ server.pid
 *.eml
 data
 .settings
+
+# uploaded images
+public/upload/*
