@@ -42,8 +42,11 @@ public class Admin extends Controller {
 	}
 	
 	public static void savePost(String title, String postEditor, String username){
+		System.out.println(title + " " + username);
 		// find user
 		User user = User.find("byEmail", username).first();
+		
+		System.out.println("found "+user.email);
 		
 		Post post =new Post(title, new Date(), postEditor, null, user);
 		// save
