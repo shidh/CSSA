@@ -1,19 +1,20 @@
 package controllers;
 
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import models.Post;
-import models.User;
+import models.*;
 import play.mvc.Controller;
 
-public class PostStream extends Controller{
+public class EventStream extends Controller{
+
 	public static void page()
 	{
 		String username = session.get("username");
 		
-		System.out.println("From PostStream#current username: "+username);
+		System.out.println("From EventStream#current username: "+username);
 		boolean flag_login = false;
 		if (username != null)
 		{
@@ -25,11 +26,11 @@ public class PostStream extends Controller{
 				String email = session.get("username");
 				//get all posts of all users
 				//LinkedList<Post> posts = new LinkedList<Post>();
-				List posts = Post.findAll();
+				List events = Event.findAll();
 
 				
 				//sort according to date
-				Collections.sort(posts, new Comparator<Post>(){
+				Collections.sort(events, new Comparator<Post>(){
 
 					@Override
 					public int compare(Post post1, Post post2)
@@ -39,7 +40,7 @@ public class PostStream extends Controller{
 				});
 				
 				//render(user, posts);
-				render(posts, flag_login, email);
+				render(events, flag_login, email);
 			}
 
 	

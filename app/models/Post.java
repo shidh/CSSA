@@ -51,6 +51,9 @@ public class Post extends Model {
 	public List<Comment> comments;
 	
 
+	public Post(){
+		super();
+	}
 	/**
 	 * 
 	 * @param title
