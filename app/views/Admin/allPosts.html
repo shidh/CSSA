@@ -15,7 +15,7 @@
 	        <tr>
 	        	<td>${post.id}</td>
 				<td>${post.title}</td>
-				<td>${post.sender.fullname}</td>
+				<td>#{if post.sender != null}${post.sender.fullname}#{/if}</td>
 				<td><a href="#">修改</a>&nbsp;<a href="#">删除</a></td>
 			</tr>
 	    #{/list}
