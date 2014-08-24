@@ -25,6 +25,7 @@
 			window.close();
 		}
 	</script>
+	#{if images.size > 0}
     #{list items:0..(images.size-1), as:'i'}
     	<div class="imgGalleryWrapper">
    			<div
@@ -38,7 +39,7 @@
    			</div>
     	</div>
     #{/list}
-    
+    #{/if}
     
     
 
