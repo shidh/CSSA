@@ -1,6 +1,4 @@
-#{extends 'templates/genericPost.html'/}
-#{set mode:'post'/}
-#{set title:'Post Stream'/}
+#{extends 'main.html'/}
 
 
 #{set 'moreStyles'}
@@ -9,10 +7,16 @@
 
 <div id="my_post">
 	<div class="center" >
+
+#{if mode == "post"} 
+	        <h3 class="activities">新闻列表</h3>
+#{/if}
+#{if mode == "event"} 
 	        <h3 class="activities">活动列表</h3>
-        	
+#{/if}
 
             #{list items:posts, as:'onePost'}
+
                 <div class="post" >                
                     <h2 class="post-title" >
                         <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
@@ -42,6 +46,7 @@
                     </div>
                 </div>
             #{/list}
+
             #{else}
 			    <div class="empty">
 			        No posts were published .

@@ -26,11 +26,11 @@ public class EventStream extends Controller{
 				String email = session.get("username");
 				//get all posts of all users
 				//LinkedList<Post> posts = new LinkedList<Post>();
-				List events = Event.findAll();
+				List posts = Event.findAll();
 
 				
 				//sort according to date
-				Collections.sort(events, new Comparator<Post>(){
+				Collections.sort(posts, new Comparator<Post>(){
 
 					@Override
 					public int compare(Post post1, Post post2)
@@ -40,7 +40,7 @@ public class EventStream extends Controller{
 				});
 				
 				//render(user, posts);
-				render(events, flag_login, email);
+				render(posts, flag_login, email);
 			}
 
 	
