@@ -11,14 +11,14 @@ import play.mvc.Controller;
 public class PostStream extends Controller{
 	public static void page()
 	{
-		String username = session.get("username");
+		String userId = session.get("userId");
 		
-		System.out.println("From PostStream#current username: "+username);
+		System.out.println("From PostStream#current username: "+userId);
 		boolean flag_login = false;
-		if (username != null)
+		if (userId != null)
 		{
-			//User user = User.findById(Long.parseLong(userId));
-			User user = User.find("byEmail", username).first();
+			User user = User.findById(Long.parseLong(userId));
+			//User user = User.find("byEmail", username).first();
 			if (user != null)
 			{
 				flag_login = true;
