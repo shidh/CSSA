@@ -17,8 +17,6 @@ public class Secure extends Controller {
 
 	@Before(unless = { "login", "authenticate", "logout" })
 	static void checkAccess() throws Throwable {
-		System.out.println("check access");
-		System.out.println(session.get("username"));
 		// Authent
 		if (!session.contains("username")) {
 			flash.put("url", "GET".equals(request.method) ? request.url
@@ -37,7 +35,6 @@ public class Secure extends Controller {
 	}
 
 	private static void check(Check check) throws Throwable {
-		System.out.println("check");
 		for (String profile : check.value()) {
 			boolean hasProfile = (Boolean) Security.invoke("check", profile);
 			if (!hasProfile) {
@@ -49,7 +46,6 @@ public class Secure extends Controller {
 	// ~~~ Login
 
 	public static void login() throws Throwable {
-		System.out.println("login");
 		Http.Cookie remember = request.cookies.get("rememberme");
 		if (remember != null) {
 			int firstIndex = remember.value.indexOf("-");
@@ -79,7 +75,6 @@ public class Secure extends Controller {
 
 	public static void authenticate(@Required String username, String password,
 			boolean remember) throws Throwable {
-		System.out.println("authenticate");
 		// Check tokens
 		Boolean allowed = false;
 		try {
@@ -99,6 +94,8 @@ public class Secure extends Controller {
 		}
 		// Mark user as connected
 		session.put("username", username);
+		User user = User.find("byEmail", username).first();
+		session.put("userId", user.getId());
 		// Remember if needed
 		if (remember) {
 			Date expiration = new Date();
@@ -116,7 +113,6 @@ public class Secure extends Controller {
 	}
 
 	public static void logout() throws Throwable {
-		System.out.println("logout");
 		Security.invoke("onDisconnect");
 		session.clear();
 		response.removeCookie("rememberme");
@@ -128,7 +124,6 @@ public class Secure extends Controller {
 	// ~~~ Utils
 
 	static void redirectToOriginalURL() throws Throwable {
-		System.out.println("redirectToOriginalURL");
 		Security.invoke("onAuthenticated");
 		String url = flash.get("url");
 		if (url == null) {

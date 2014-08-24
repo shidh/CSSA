@@ -10,6 +10,7 @@ public class Application extends Controller {
 	public static void index() {
 		// see if login
 		String email = session.get("username");
+		System.out.println(session.get("userId"));
 		if(email != null){
 			// has login
 			// redirect to home

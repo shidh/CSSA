@@ -11,14 +11,16 @@
 			</tr>
 		</thead>
 		<tbody>
-		#{list items:list, as:'post' }
+		#{if list.size != 0}
+		#{list items:0..list.size-1, as:'i' }
 	        <tr>
-	        	<td>${post.id}</td>
-				<td>${post.title}</td>
-				<td>#{if post.sender != null}${post.sender.fullname}#{/if}</td>
+	        	<td>${i+1}</td>
+				<td>${list.get(i).title}</td>
+				<td>#{if list.get(i).sender != null}${list.get(i).sender.fullname}#{/if}</td>
 				<td><a href="#">修改</a>&nbsp;<a href="#">删除</a></td>
 			</tr>
 	    #{/list}
+	    #{/if}
 			
 		</tbody>
 	</table>
