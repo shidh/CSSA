@@ -14,6 +14,10 @@ import play.db.jpa.Model;
  */
 @Entity
 public class Image extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3590582909260228000L;
 	public Blob imageDate;
 	public String url;
 

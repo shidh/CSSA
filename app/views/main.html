@@ -12,9 +12,12 @@
         <link rel="stylesheet" href="@{'/public/stylesheets/index.css'}">
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        <script src="@{'/public/javascripts/index.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+
+        
         #{get 'moreScripts' /}
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR5BqFaXKB9kYMEwy4xzFvuyMEX_P6IPU&sensor=false&language=en"></script>
+        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <script src="@{'/public/javascripts/index.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
     </head>
     <body>
     	<nav class="navbar navbar-primary" role="navigation">

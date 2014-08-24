@@ -4,12 +4,14 @@
 User(jeff):
    email: linxj92@gmail.com
    password: 123
+   fullname: "Jeff Lin"
+   posts: [p2]
    
 User(allen):
     fullname: "Allen Shi"
     email: shidenghui@gmail.com
     password: 123
-    posts: [p1, p2]
+    posts: [p1]
     
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
@@ -38,7 +40,7 @@ Post(p2):
     mapLocation: address
     rating: 2.0
     content: P1content
-    sender: allen
+    sender: jeff
     
 
     
