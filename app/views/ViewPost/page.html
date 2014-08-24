@@ -1,26 +1,9 @@
 #{extends 'main.html'/}
 #{set title:'View Post'/}
 
-
-<style type="text/css">
-/* 
-#view_post_left_div {
-	border: 1px solid #A9C9E2;
-	width: 150px;
-	position: relative;
-	top: 10px;
-	float: left; */
-	
-	.center{
-	font:italic arial,sans-serif;
-	font-size:16px;
-	margin:auto;
-	width:70%;
-	#background-color:#51629e;
-	}
-}
-</style>
-
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/viewPost.css'}">
+#{/set}
 
 <script>
 	var newPostAddTagCounter = 0;
@@ -92,27 +75,33 @@
 <div id="view_post_div" class="center">
 	<div id="view_post_left_div" >
 
-	    <p>
+	    <div class="info">
 	        <label for="title_input">Title: </label>
 	        ${post?.title}
-	    </p>
+	    </div>
 	    
-	    <p>
+	    <div class="info">
 	        <label for="address_input">Address: </label>
 	        ${post?.mapLocation?.address}
-	    </p>
+	        <div id="new_post_right_div" >
+    			<div id="newpost-map-canvas" style="height:150px;width:100%"></div>
+	 		</div>
+	    </div>
 	    
+	    <div class="info">
 	        <label for="description_input">PostContent: </label>
-	        ${post?.postContent.raw()}
+	        <div>${post?.postContent.raw()}</div>
+	    </div>
 	    
         #{if post.content} 
-	    <p>
+	    <div class="info">
+	    	<label for="pictures_input">Pictures: </label>
 	        #{list items:post.content.pictures, as:'pic'}
 		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
 		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
 	        	</a>
 	        #{/list}
-	    </p>
+	    </div>
 	    
 
 	    	#{if post}
@@ -128,27 +117,23 @@
      	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>	
      </div>
      
-     <div id="new_post_right_div" >
-    		<div id="newpost-map-canvas" style="height:386px;width:386px"></div>
-	 </div>
      
      
      
      <div id="comments_div">
-        <br>
-	    <br>
-		<b>Comments:</b> <br>
+		<label>Comments:</label>
 			#{list items:post.comments, as:'comment'}
-			
+			<div class="comments_content">
 				Comment sent by: #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
 				Comment: ${comment.text.raw()}<br>
 				Rating: ${comment.rating.raw()}<br>
+			</div>
 			<br>	
 			#{/list}
 			
 			#{form @ViewPost.postComment(post.id)}
 				<label for="comment_text_input">Add Comment</label>
-				<input type="text" id="comment_text_input" name="commentText"/><br>
+				<input type="text" id="comment_text_input" name="commentText"/>
 				<label for="rating_select">Rating</label>
 				<select name="commentRating" id="rating_select">
 					<option value="5">5</option>
@@ -157,7 +142,7 @@
 					<option value="2">2</option>
 					<option value="1">1</option>
 				</select>
-				<input type="submit" id="comment_button_input" name="postComment" value="Post Comment"/>
+				<input type="submit" class="btn btn-primary" id="comment_button_input" name="postComment" value="Comment"/>
 			#{/form}
 		</div>
 		

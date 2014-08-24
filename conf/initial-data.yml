@@ -14,7 +14,7 @@ MapLocation(address1):
     longitude: 5.7639551
     
 PostContent(P1content):    
-    video: "here is video name from initial-data.yml"
+    #video: "here is video name from initial-data.yml"
     #pictures: [p1image]
     picturesTitles: ["pic name here"]
     
