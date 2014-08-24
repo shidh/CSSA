@@ -98,6 +98,7 @@ function setMarkerPosition(lat, lng){
 //Add all markers related to the current user to the map
 function setMarkers(){
 		  #{list items:user.posts, as:'myPost'}
+		    #{if myPost.mapLocation}
 			var lati = ${myPost.mapLocation.latitude} ;
 		    var longi = ${myPost.mapLocation.longitude} ;
 
@@ -110,6 +111,7 @@ function setMarkers(){
 		      position: position,
 		      map: profileScope.map
 		    });
+			#{/if}
 		  #{/list}
 }
 
@@ -366,8 +368,10 @@ $(function(){
 	#{list items:user.posts, as:'myPost'}
 	<div class="post">
 		<h2 class="post-title"
+			#{if myPost.mapLocation}
 			onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
 			<a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+			#{/if}
 		</h2>
 		<div class="post-metadata">
 			<span class="post-desc"> ${myPost.description} </span> <span
