@@ -26,8 +26,25 @@ body{
 	margin-top: 10px;
 	
 }
-
-#comments_div label{
-	font-size:16px;	
+#comments_div .comments_content{
+	word-break:break-all; 
+	dispaly: block;
+	border: 2px solid #428bca;
+	border-radius: 10px;
+	padding: 10px 10px 10px 110px;
+	margin-bottom: -15px;
 }
+
+textarea{
+	padding: 5px 5px 5px 5px;
+	border-radius: 10px;
+}
+
+#comments_div form label{
+	font-size: 16px;
+	margin-left: 20px;	
+	padding-bottom: 20px;
+}
+
+
 

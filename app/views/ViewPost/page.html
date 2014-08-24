@@ -124,16 +124,15 @@
 		<label>Comments:</label>
 			#{list items:post.comments, as:'comment'}
 			<div class="comments_content">
-				Comment sent by: #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
-				Comment: ${comment.text.raw()}<br>
-				Rating: ${comment.rating.raw()}<br>
+				<b>Comment from:</b> #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+				<b>Comment:</b> ${comment.text.raw()}<br>
+				<b>Rating:</b> ${comment.rating.raw()}<br>
 			</div>
 			<br>	
 			#{/list}
 			
 			#{form @ViewPost.postComment(post.id)}
-				<label for="comment_text_input">Add Comment</label>
-				<input type="text" id="comment_text_input" name="commentText"/>
+				<textarea name="commentText" placeholder="Add comment..." id="comment_text_input" cols="90" rows="5"></textarea>
 				<label for="rating_select">Rating</label>
 				<select name="commentRating" id="rating_select">
 					<option value="5">5</option>
