@@ -2,6 +2,8 @@ package controllers;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -27,8 +29,12 @@ public class Admin extends Controller {
 	}
 	
 	public static void allPosts(){
-		int selectedIndex = 1;// selected index
-		render(selectedIndex);
+		// find all post
+		List<Post> list = Post.findAll();
+		// reverse
+		Collections.reverse(list);
+		
+		render(list);
 	}
 	
 	public static void savePost(String title, String postEditor, String username){
@@ -39,14 +45,7 @@ public class Admin extends Controller {
 		// save
 		post.save();
 		
-		List<Post> list = Post.find("bySender", user).fetch();
-		
-		for(Post item : list){
-			// test
-			System.out.println(item.toString());
-		}
-		
-		render("Admin/allPosts.html");
+		allPosts();
 	}
 	
 	public static void imageBrowseUrl(){

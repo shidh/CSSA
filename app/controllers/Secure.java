@@ -3,6 +3,7 @@ package controllers;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
 
+import models.User;
 import play.Play;
 import play.data.validation.Required;
 import play.libs.Crypto;
@@ -89,7 +90,6 @@ public class Secure extends Controller {
 			// This is the official method name
 			allowed = (Boolean) Security.invoke("authenticate", username,
 					password);
-			System.out.println(allowed);
 		}
 		if (validation.hasErrors() || !allowed) {
 			flash.keep("url");
@@ -161,6 +161,13 @@ public class Secure extends Controller {
 		 * @return true if the authentication process succeeded
 		 */
 		static boolean authenticate(String username, String password) {
+			User user = User.find("byEmail", username).first();
+			if(user == null){
+				return false;
+			}else if(!user.password.equals(password)){
+				return false;
+			}
+			
 			return true;
 		}
 
