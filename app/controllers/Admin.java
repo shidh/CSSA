@@ -62,8 +62,21 @@ public class Admin extends Controller {
 	}
 	
 	public static void uploadUrl(File upload){
-		// copy files from tmp directory to (app_root)/public/images/upload
+		// root path
 		String projectRoot = Play.applicationPath.getAbsolutePath();
+		
+		// check if upload folder exist, if not, create one
+		File uploadFolder = new File(projectRoot + "\\public\\images\\upload");
+		if(!uploadFolder.exists()){
+			try {
+				uploadFolder.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		// copy files from tmp directory to (app_root)/public/images/upload
 		String imagePath = projectRoot + "\\public\\images\\upload\\" + upload.getName();
 		
 		// new empty file for copy
