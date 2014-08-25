@@ -6,21 +6,23 @@ import play.mvc.*;
 
 public class ViewProfile extends Controller {
 	
-	public static void page(String userName) {
+	public static void page(Long Id) {
 		
 		String myUsername = session.get("username");
+		String userId = session.get("userId");
+
 		
 		System.out.println("From MyProfile submit#current username: "+myUsername);
 		// System.out.println("follo:" + folloUserid);
 		
 		boolean followed = false;
-		if (myUsername == userName) {
+		if (Long.parseLong(userId) == Id) {
 			MyProfile.page();
 		}
 		
-		if (userName != null) {
-			User user = User.find("byEmail", userName).first();
-			User me = User.find("byEmail", myUsername).first();
+		if (Id != null) {
+			User user = User.find("byEmail", Id).first();
+			User me = User.find("byEmail", userId).first();
 
 			if (user != null) {
 				if (me.followed.contains(user)) {
