@@ -19,7 +19,12 @@
 
                 <div class="post" >                
                     <h2 class="post-title" >
+                    #{if mode == "post"} 
                         <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
+		            #{if mode == "event"} 
+                        <a href="@{ViewEvent.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
                     </h2>                    
                     <div class="postTime">
 						<span class="post-date"> Posted at: ${onePost.postingDate} </span>

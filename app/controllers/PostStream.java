@@ -25,7 +25,11 @@ public class PostStream extends Controller{
 				String email = session.get("username");
 				//get all posts of all users
 				//LinkedList<Post> posts = new LinkedList<Post>();
-				List posts = Post.findAll();
+				List<Post> posts = Post.findAll();
+//				for(Post p : Post.<Post>findAll()) {
+//				    if(p.){
+//				    }
+//				}
 
 				
 				//sort according to date

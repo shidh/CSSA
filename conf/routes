@@ -6,7 +6,7 @@
 *      /                                        module:secure
 
 # Administration
-GET     /admin/                                  Admin.index
+GET     /admin/                                 Admin.index
 
 # Home page
 GET     /                                       Application.index
@@ -22,6 +22,9 @@ GET     /editPost                            	EditPost.page
 
 # View Post page
 GET     /viewPost                            	ViewPost.page
+
+# View Event page
+GET     /viewEvent                            	ViewEvent.page
 
 # All Posts page
 GET     /postStream                            	PostStream.page

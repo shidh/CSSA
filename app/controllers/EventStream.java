@@ -26,7 +26,7 @@ public class EventStream extends Controller{
 				String email = session.get("username");
 				//get all posts of all users
 				//LinkedList<Post> posts = new LinkedList<Post>();
-				List posts = Event.findAll();
+				List<Event> posts = Event.findAll();
 
 				
 				//sort according to date
