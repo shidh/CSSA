@@ -1,7 +1,7 @@
 CSSA
 ====
 
-The website for Chinese students in Muenchen 
+The website for Chinese Students & Scholars Association in Muenchen 
 
  - User注册/登录
  - User前端交互页面 （用户浏览内容，报名活动，用户间SNS交互）
@@ -36,3 +36,10 @@ III. Relevant Docs
  - Postcontent包含Image，Map，Video
  - 可以报名的Post是Activity
  - Activity有confirmedList和WaitingList
+  
+ 
+ TODO：
+ - 【前/后台】报名confirm list, waiting list, Event和User的多对多映射  --Allen
+ - 【后台】新建Post图片，地址（google）获取（存数据库）
+ - 【后台】User管理
+ 
