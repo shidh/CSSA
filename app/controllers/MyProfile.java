@@ -9,7 +9,7 @@ import play.mvc.*;
 public class MyProfile extends Controller {
 
 	public static void submit(String email, String password, String fullname,
-			String country, String city, String gender, String religion,
+			String country, String address, String gender, String religion,
 			Date birthday, Blob photoData, String tags, String folloUserid,
 			String unFollowUserid, String delTag) {
 		
@@ -25,8 +25,8 @@ public class MyProfile extends Controller {
 				if (fullname != null) {
 					user.fullname = fullname;
 				}
-				if (city != null) {
-					user.city = city;
+				if (address != null) {
+					user.address = address;
 				}
 				if (gender != null) {
 					user.gender = gender;
