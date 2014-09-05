@@ -16,7 +16,6 @@
 #{/if}
 
             #{list items:posts, as:'onePost'}
-
                 <div class="post" >                
                     <h2 class="post-title" >
                     #{if mode == "post"} 
@@ -33,9 +32,9 @@
                     #{if onePost.content} 
 					#{list items:onePost.content.picturesTitles, as:'picture'}
 					<div class="postImage">
-						<span>
-							pic
-						</span>
+						
+							<img border="1" src="public/images/IMG_6071-11111.JPG" alt="Pulpit Rock" width=119 height="119">
+					
 					</div>
 					#{/list}
 					#{/if}

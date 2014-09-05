@@ -1,7 +1,23 @@
 # you describe your data using the YAML notation here
 # and then load them using Fixtures.load("data.yml")
 
+User(allen):
+    fullname: "Allen Shi"
+    email: shidenghui@gmail.com
+    password: 123
+    posts: [p1, p3]
+    
+User(jeff):
+   email: linxj92@gmail.com
+   password: 123
+   fullname: "Jeff Lin"
+   #posts: [p2]
    
+User(huang):
+    email: uniquehuang1122@gmail.com
+    password: 123
+    fullname: "Wenbo Huang"
+    
     
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
@@ -26,7 +42,7 @@ Post(p1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    #sender: allen
+    sender: allen
     
 Post(p2):
     title: "2nd post"
@@ -35,7 +51,7 @@ Post(p2):
     mapLocation: address
     rating: 2.0
     content: P1content
-    #sender: jeff
+    sender: jeff
     
 Post(p3):
     title: "3rd post"
@@ -44,7 +60,7 @@ Post(p3):
     mapLocation: address1
     rating: 2.7
     content: P1content
-    #sender: allen
+    sender: allen
 
 Event(e1):
     title: "1st event"
@@ -53,8 +69,9 @@ Event(e1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    confirmedUsers: [allen, jeff]
+    confirmedUsers: [jeff]
     onWaitingListUsers: [huang]
+    capacity: 20
 
 Event(e2):
     title: "2nd event"
@@ -65,28 +82,7 @@ Event(e2):
     content: P1content
     confirmedUsers: [huang]
     onWaitingListUsers: [allen, jeff]
+    capacity: 30
     
-User(allen):
-    fullname: "Allen Shi"
-    email: shidenghui@gmail.com
-    password: 123
-    posts: [p1, p2]
-    confirmedEvent: e1
-    waitingEvent: e2
-    
-    
-User(jeff):
-   email: linxj92@gmail.com
-   password: 123
-   fullname: "Jeff Lin"
-   confirmedEvent: e1
-   waitingEvent: e2
-   
-User(huang):
-    fullname: "Wenbo Huang"
-    email: uniquehuang1122@gmail.com
-    password: 123
-    confirmedEvent: e2
-    waitingEvent: e1
-    
+
     

@@ -50,6 +50,9 @@ public class User extends Model {
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
+	@OneToMany
+	public List<Event> events;
+	
 	@ManyToOne
 	public Event confirmedEvent;
 	
