@@ -39,10 +39,8 @@ GET     /downloads                            	Application.index
 # Freshman welcome page
 GET     /freshman                            	Application.index
 
-
 # About page
-GET     /about                            	    Application.index
-
+GET     /about                            	    About.page
 
 # Admin homepage
 GET    /admin									Admin.index

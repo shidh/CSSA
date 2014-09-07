@@ -21,8 +21,8 @@ public class ViewProfile extends Controller {
 		}
 		
 		if (Id != null) {
-			User user = User.find("byEmail", Id).first();
-			User me = User.find("byEmail", userId).first();
+			User user = User.findById(Id);
+			User me = User.findById(userId);
 
 			if (user != null) {
 				if (me.followed.contains(user)) {
