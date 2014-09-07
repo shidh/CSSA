@@ -17,7 +17,7 @@ import play.Play;
 import play.mvc.Controller;
 import play.mvc.With;
 
-@With(Secure.class)
+@With(SecureCssa.class)
 public class Admin extends Controller {
 	
 	public static void index() {

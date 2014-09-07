@@ -13,7 +13,7 @@ import play.mvc.Controller;
 import play.mvc.Http;
 import play.utils.Java;
 
-public class Secure extends Controller {
+public class SecureCssa extends Controller {
 
 	@Before(unless = { "login", "authenticate", "logout" })
 	static void checkAccess() throws Throwable {
@@ -24,17 +24,17 @@ public class Secure extends Controller {
 			login();
 		}
 		// Checks
-		Check check = getActionAnnotation(Check.class);
+		CheckCssa check = getActionAnnotation(CheckCssa.class);
 		if (check != null) {
 			check(check);
 		}
-		check = getControllerInheritedAnnotation(Check.class);
+		check = getControllerInheritedAnnotation(CheckCssa.class);
 		if (check != null) {
 			check(check);
 		}
 	}
 
-	private static void check(Check check) throws Throwable {
+	private static void check(CheckCssa check) throws Throwable {
 		for (String profile : check.value()) {
 			boolean hasProfile = (Boolean) Security.invoke("check", profile);
 			if (!hasProfile) {
