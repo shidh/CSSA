@@ -21,7 +21,7 @@ import play.mvc.With;
 
 import com.google.gson.Gson;
 
-@With(Secure.class)
+@With(SecureCssa.class)
 public class Admin extends Controller {
 	
 	public static void index() {
@@ -76,10 +76,6 @@ public class Admin extends Controller {
 				
 				// push
 				imageList.add(img);
-			}
-			
-			for(Image test:imageList){
-				System.out.println(test.getUrl());
 			}
 			
 			// post content
