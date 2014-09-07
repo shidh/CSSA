@@ -8,59 +8,12 @@
 #{set title:'view Profile'/}
 #{/else}
 
-
-<style type="text/css">
-#my_profile_left_div {
-	border: 1px solid red;
-	width: 150px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_middle_div {
-	font:italic arial,sans-serif;
-	font-size:16px;
-	border: 1px solid green;
-	width: 380px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_right_div {
-	border: 1px solid blue;
-	width: 400px;
-	float: left;
-	position: relative;
-	top: 10px;
-}
-
-.userimage {
-	max-width: 100px;
-	max-height: 100px;
-	overflow: hidden;
-}
-
-input.r {
-	border: 1px solid #fff;
-}
-
-input.w {
-	border: 1px solid #369;
-}
-</style>
-
-<style>
-.center
-{
-margin:auto;
-width:70%;
-#background-color:#51629e;
-}
-</style>
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/genericProfile.css'}">
+#{/set}
 
 <script>
+
 var profileScope = {};
 var profileAddTagCounter = 0;
 
@@ -117,7 +70,7 @@ function setMarkers(){
 
 
 
- function addTag(newTagText){
+function addTag(newTagText){
 	var newElementID = "tag_span_id" + profileAddTagCounter;
 	var newElementHTML = "<span id='" 
 	+ newElementID + "'>" 
@@ -131,18 +84,18 @@ function setMarkers(){
 $(function(){
 #{if mode == "myProfile"}
 
-	$("p.edit").mouseover(function(){
-	  	$(this).css("background-color","#E9E9E4");
+	  $("p.edit").mouseover(function(){
+	  	$(this).css("background-color","green");
 	  });
+	  
 	  $("p.edit").mouseout(function(){
-	    $(this).css("background-color","white");
+	    $(this).css("background-color","gray");
 	  });
 
-
-	  $("input.r").click(function(){
+	  $("input.form-control").click(function(){
 		 $(this).removeAttr("readonly");
 		 $(this).attr("class", "t");
-		 $("input.w").css("display","inline");
+		 $("input#w").css("display","inline");
 	  });
 
 	  $("input.w").click(function(){
@@ -165,7 +118,6 @@ $(function(){
 		  	$(this).css("background-color","white");
 			}
 	  );
-
 
 
 	  $("div.tag").click(function(){
@@ -271,8 +223,8 @@ $(function(){
 
 
 
-<div class="center">
 
+<div class="center">
 <div id="my_profile_left_div">
 	#{if mode == "myProfile"}
 	<h3>${user.fullname}</h3>
@@ -332,25 +284,26 @@ $(function(){
 <div id="my_profile_middle_div">
 	<h3>User's Info:</h3>
 
+<input type="text" class="form-control" placeholder="Username">
 	<p class="edit">
-		Name: <input class="r" name="fullname" value="${user.fullname}"
+		Name: <input class="form-control" name="fullname" value="${user.fullname}"
 			readonly />
 	</p>
 	<br>
 	<p class="edit">
-		gender: <input class="r" name="gender" value="${user.gender}" readonly />
+		gender: <input class="form-control" name="gender" value="${user.gender}" readonly />
 	</p>
 	<br>
 	<p class="edit">
-		birthday: <input class="r" name="birthday" value="${user.birthday} "
+		birthday: <input class="form-control" name="birthday" value="${user.birthday} "
 			readonly />
 	</p>
 	<br>
 	<p class="edit">
-		location: <input class="r" name="address" value="${user.address}" readonly />
+		location: <input class="form-control" name="address" value="${user.address}" readonly />
 	</p>
 
-	<br> <input class="w" type="submit" value="save"
+	<br> <input id="w" class="form-control" type="submit" value="save"
 		style="display: none;" /> 
 	#{/form} 
 		<br> 
