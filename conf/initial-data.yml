@@ -6,6 +6,7 @@ User(allen):
     email: shidenghui@gmail.com
     password: 123
     posts: [p1, p3]
+    events: [e1, e2]
     
 User(jeff):
    email: linxj92@gmail.com
@@ -72,17 +73,19 @@ Event(e1):
     confirmedUsers: [jeff]
     onWaitingListUsers: [huang]
     capacity: 20
+    members: [allen]
 
 Event(e2):
     title: "2nd event"
     postContent: "非常感谢您对中国北京汽车集团有限公司（简称“北汽集团”）的关注，特邀请您参加中国北汽集团的海外高层次人才招聘会，届时用人企业方将与您面对面沟通。 中国北汽集团将在2014年7月份赴德举办招聘活动，本次招聘涉及汽车高级管理人才、汽车研发、市场和财务岗位等。欢迎资深汽车人才和留学生投递简历并前来参加汽车行业研讨会暨招聘活动。 本次赴德招聘的有集团领导及各子公司领导，包括：北京汽车研究总院有限公司、北京通用航空有限公司、北京汽车国际发展有限公司、北京海纳川汽车部件股份有限公司、北京福田汽车股份有限公司、北京汽车股份有限公司、北京奔驰汽车有限公司、北京汽车集团有限公司整车事业本部以及北京北汽鹏龙汽车服务贸易股份有限公司。大家可以借此机会畅抒自己的抱负和能力，把握报效祖国的契机。 "
     postingDate: 2014-08-05
-    mapLocation: address
+    mapLocation: address1
     rating: 2.0
     content: P1content
     confirmedUsers: [huang]
     onWaitingListUsers: [allen, jeff]
     capacity: 30
+    members: [allen]
     
 
     

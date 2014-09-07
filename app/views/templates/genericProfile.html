@@ -97,7 +97,7 @@ function setMarkerPosition(lat, lng){
 
 //Add all markers related to the current user to the map
 function setMarkers(){
-		  #{list items:user.posts, as:'myPost'}
+		  #{list items:user.events, as:'myPost'}
 		    #{if myPost.mapLocation}
 			var lati = ${myPost.mapLocation.latitude} ;
 		    var longi = ${myPost.mapLocation.longitude} ;
@@ -365,7 +365,7 @@ $(function(){
 	<div id="profile-map-canvas" style="height: 386px; width: 386px">
 	</div>
 	<div id="myPostList">
-	#{list items:user.posts, as:'myPost'}
+	#{list items:user.events, as:'myPost'}
 	<div class="post">
 		<h2 class="post-title"
 			#{if myPost.mapLocation}
