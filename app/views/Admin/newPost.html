@@ -4,26 +4,86 @@
 <h1 class="page-header">新建帖子</h1>
 
 #{form @savePost()}
-<h2 class="sub-header">标题</h2>
-<input type="text" style="width: 300px" name="title" />
-<input type="hidden" name="username" value="${username}" />
-<h2 class="sub-header">内容</h2>
-<textarea name="postEditor" id="postEditor" rows="10" cols="80">
-              This is my textarea to be replaced with CKEditor.
-          	</textarea>
-<script>
-	// Replace the <textarea id="editor1"> with a CKEditor
-	// instance, using default configuration.
-	CKEDITOR.replace('postEditor', {
-		filebrowserBrowseUrl : '/admin/browseUrl',
-		filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
-		filebrowserImageUploadUrl : '/admin/uploadUrl',
-		filebrowserImageWindowWidth : '640',
-		filebrowserImageWindowHeight : '480'
-	});
+
+<div id="newPostForm">
+
+	<h2 class="sub-header">标题</h2>
 	
-</script>
-<div style="margin-top: 10px">
-	<button type="submit" class="btn btn-sm btn-info">保存</button>
+	<input type="text" style="width: 300px" name="title" />
+	
+	<input type="hidden" name="username" value="${username}" />
+	
+	<h2 class="sub-header">内容</h2>
+	
+	<textarea name="postEditor" id="postEditor" rows="10" cols="80">
+	              This is my textarea to be replaced with CKEditor.
+	          	</textarea>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace('postEditor', {
+			filebrowserBrowseUrl : '/admin/browseUrl',
+			filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
+			filebrowserImageUploadUrl : '/admin/uploadUrl',
+			filebrowserImageWindowWidth : '640',
+			filebrowserImageWindowHeight : '480'
+		});
+		
+		// Get all the image inside the post
+		function saveHandler(){
+			// create input
+			var input = document.createElement("INPUT");
+			
+			// set hidden
+			input.type = "hidden";
+			
+			// set name
+			input.name = "imgUrls";
+			
+			// get ckeditor iframe
+			var iframe = document.getElementsByClassName("cke_wysiwyg_frame")[0];
+			
+			// get innerdoc
+			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			
+			// get images
+			var imgTags = innerDoc.getElementsByTagName("img");
+			
+			// if no image, do nothing
+			if(imgTags.length === 0){
+				return;
+			}
+			
+			// stores image urls
+			var imgUrls = new Array();
+			for(var i = 0; i < imgTags.length; i++){
+
+				// absolute url
+				var url = imgTags[i].src;
+				
+				// relative url
+				var relativeUrl = url.replace("http://localhost:9000","");
+				
+				// windows path
+				var path = relativeUrl.replace(/\//g, '\\');
+				
+				// push
+				imgUrls.push(path);
+			}
+			
+			// write urls to input
+			input.value = JSON.stringify(imgUrls);
+			
+			// insert input into form
+			document.getElementById("newPostForm").appendChild(input);
+			
+			console.log(document.getElementById("newPostForm"));
+		}
+	</script>
+	
+	<div style="margin-top: 10px">
+		<button type="submit" class="btn btn-sm btn-info" onclick="saveHandler();">保存</button>
+	</div>
+	
 </div>
 #{/form}

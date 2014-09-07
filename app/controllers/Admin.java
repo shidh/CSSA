@@ -6,16 +6,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 import models.Image;
 import models.Post;
+import models.PostContent;
 import models.User;
 import play.Play;
 import play.mvc.Controller;
 import play.mvc.With;
+
+import com.google.gson.Gson;
 
 @With(Secure.class)
 public class Admin extends Controller {
@@ -38,17 +42,58 @@ public class Admin extends Controller {
 		// reverse
 		Collections.reverse(list);
 		
+		for(Post p:list){
+			System.out.println(p.toString());
+		}
+		
 		render(list);
 	}
 	
-	public static void savePost(String title, String postEditor, String username){
-		System.out.println(title + " " + username);
+	public static void savePost(String title, String postEditor, String username, String imgUrls){
 		// find user
 		User user = User.find("byEmail", username).first();
 		
-		System.out.println("found "+user.email);
+		// post content
+		PostContent postContent = null;
 		
-		Post post =new Post(title, new Date(), postEditor, null, user);
+		// handle image urls
+		if(imgUrls != null){
+			// JSON
+			Gson gson = new Gson();
+			
+			// Deserialization
+			String[] strArray = gson.fromJson(imgUrls, String[].class);
+			
+			// image list
+			ArrayList<Image> imageList = new ArrayList<Image>();
+			
+			// root path
+			String projectRoot = Play.applicationPath.getAbsolutePath();
+			
+			for(int i = 0; i < strArray.length; i++){
+				// find and push
+				Image img = (Image) Image.find("byUrl", projectRoot + strArray[i]).first();
+				
+				// push
+				imageList.add(img);
+			}
+			
+			for(Image test:imageList){
+				System.out.println(test.getUrl());
+			}
+			
+			// post content
+			postContent = new PostContent();
+			postContent.setPictures(imageList);
+			
+			// save 
+			postContent.save();
+			
+		}
+		
+		// new post
+		Post post =new Post(title, new Date(), postEditor, postContent, user);
+		
 		// save
 		post.save();
 		
@@ -66,13 +111,13 @@ public class Admin extends Controller {
 		String projectRoot = Play.applicationPath.getAbsolutePath();
 		
 		// check if upload folder exist, if not, create one
-		File uploadFolder = new File(projectRoot + "/public/images/upload");
+		File uploadFolder = new File(projectRoot + "\\public\\images\\upload");
 		if(!uploadFolder.exists()){
 			uploadFolder.mkdir();
 		}
 		
 		// copy files from tmp directory to (app_root)/public/images/upload
-		String imagePath = projectRoot + "/public/images/upload/" + upload.getName();
+		String imagePath = projectRoot + "\\public\\images\\upload\\" + upload.getName();
 		
 		// new empty file for copy
 		File copyFile = new File(imagePath);
@@ -96,6 +141,8 @@ public class Admin extends Controller {
 		image.setUrl(imagePath);
 		image.setFileName(upload.getName());
 		image.save();
+		
+		
 		
 		render();
 	}
