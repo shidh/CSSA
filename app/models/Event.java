@@ -3,14 +3,14 @@
  */
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
 
 
 /**
@@ -19,6 +19,11 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Event extends Post {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public boolean isClosed;
 	
 	public Integer capacity;
@@ -31,6 +36,9 @@ public class Event extends Post {
 	
 	@OneToMany(mappedBy = "waitingEvent", cascade = CascadeType.ALL)
 	public List<User> onWaitingListUsers;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+    public List<User> members = new ArrayList<User>();
 
 	public Event(boolean isClosed, Integer capacity, MapLocation mapLocation,
 			List<User> confirmedUsers, List<User> onWaitingListUsers) {
@@ -45,7 +53,7 @@ public class Event extends Post {
 	public Event(String title, String description, String postContent,
 			MapLocation mapLocation, Date postingDate, User sender,
 			PostContent content, List<String> tags, Integer capacity) {
-		super(title, description, postContent, postingDate, sender,
+		super(title, description, postContent, mapLocation, postingDate, sender,
 				content, tags);
 		this.title = title;
 		this.description = description;
