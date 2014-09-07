@@ -274,11 +274,11 @@ $(function(){
 <div class="center">
 
 <div id="my_profile_left_div">
-	#{if mode == "viewProfile"}
+	#{if mode == "myProfile"}
 	<h3>${user.fullname}</h3>
 	#{if user.image}
 	<input type="image" id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <br>
+		src="cssa/public/images/01.jpg" alt="Edit Pic" /> <br>
 	<br>
 	#{/if}
 	<div class="follow">
