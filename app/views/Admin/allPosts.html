@@ -17,7 +17,10 @@
 	        	<td>${i+1}</td>
 				<td>${list.get(i).title}</td>
 				<td>#{if list.get(i).sender != null}${list.get(i).sender.fullname}#{/if}</td>
-				<td><a href="#">修改</a>&nbsp;<a href="/Admin/deletePost?postId=${list.get(i).getId()}">删除</a></td>
+				<td>
+					<a href="/Admin/updatePost?postId=${list.get(i).getId()}">修改</a>&nbsp;
+					<a href="/Admin/deletePost?postId=${list.get(i).getId()}">删除</a>
+				</td>
 			</tr>
 	    #{/list}
 	    #{/if}

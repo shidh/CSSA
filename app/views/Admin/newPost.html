@@ -9,7 +9,9 @@
 
 	<h2 class="sub-header">标题</h2>
 	
-	<input type="text" style="width: 300px" name="title" />
+	<input type="hidden" value="${postId}" name="postId" />
+	
+	<input type="text" id="postTitle" style="width: 300px" name="title" />
 	
 	<input type="hidden" name="username" value="${username}" />
 	
@@ -28,6 +30,16 @@
 			filebrowserImageWindowWidth : '640',
 			filebrowserImageWindowHeight : '480'
 		});
+		
+		// if content --> update post
+		#{if content != null}
+			CKEDITOR.instances['postEditor'].setData('${content}');
+		#{/if}
+			
+		// if title
+		#{if title != null}
+			document.getElementById("postTitle").value = '${title}';
+		#{/if}
 		
 		// Get all the image inside the post
 		function saveHandler(){

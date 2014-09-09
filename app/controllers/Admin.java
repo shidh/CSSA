@@ -28,13 +28,14 @@ public class Admin extends Controller {
 	 * The main page of admin
 	 */
 	public static void index() {
-		newPost();
+		newPost(null);
 	} 
 	
 	/**
 	 * New a post
+	 * @param postId - The post id. If set it should update, if not insert a new post.
 	 */
-	public static void newPost(){
+	public static void newPost(String postId){
 		// get username
 		String username = session.get("username");
 		
@@ -44,7 +45,24 @@ public class Admin extends Controller {
 		// get system path separator
 		String separator = System.getProperty("file.separator");
 		
-		render(username,selectedIndex, separator);
+		// if post id --> update post
+		if(postId != null){
+			// find
+			Post post = Post.find("byId", Long.parseLong(postId)).first();
+			
+			// get content
+			String content = post.getPostContent();
+			
+			// get title
+			String title = post.getTitle();
+			
+			// render
+			render(postId, username, selectedIndex, separator, content, title);
+			
+			return;
+		}
+		
+		render(postId, username, selectedIndex, separator);
 	}
 	
 	/**
@@ -61,6 +79,11 @@ public class Admin extends Controller {
 		}
 		
 		render(list);
+	}
+	
+	public static void updatePost(String postId){
+		// redirect to new post
+		newPost(postId);
 	}
 	
 	/**
@@ -85,7 +108,12 @@ public class Admin extends Controller {
 	 * @param username - The username
 	 * @param imgUrls - The urls of image in this post
 	 */
-	public static void savePost(String title, String postEditor, String username, String imgUrls){
+	public static void savePost(String postId,
+			String title, 
+			String postEditor, 
+			String username, 
+			String imgUrls){
+		
 		// find user
 		User user = User.find("byEmail", username).first();
 		
@@ -123,8 +151,25 @@ public class Admin extends Controller {
 			
 		}
 		
-		// new post
-		Post post =new Post(title, new Date(), postEditor, postContent, user);
+		// post
+		Post post = null;
+		
+		// if post id not null --> update
+		if(postId != null && !postId.trim().equals("")){
+			// find
+			post = Post.find("byId", Long.parseLong(postId)).first();
+			// set date
+			post.setPostingDate(new Date());
+			// set sender
+			post.setPostContent(postEditor);
+			// set images etc.
+			post.setContent(postContent);
+			// set sender
+			post.setSender(user);
+		}else{
+			// new post
+			post = new Post(title, new Date(), postEditor, postContent, user);
+		}
 		
 		// save
 		post.save();

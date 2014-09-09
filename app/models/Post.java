@@ -157,6 +157,66 @@ public class Post extends Model {
 		return null;
 	}
 
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public Date getPostingDate() {
+		return postingDate;
+	}
+	public void setPostingDate(Date postingDate) {
+		this.postingDate = postingDate;
+	}
+	public String getPostContent() {
+		return postContent;
+	}
+	public void setPostContent(String postContent) {
+		this.postContent = postContent;
+	}
+	public Double getRating() {
+		return rating;
+	}
+	public void setRating(Double rating) {
+		this.rating = rating;
+	}
+	public MapLocation getMapLocation() {
+		return mapLocation;
+	}
+	public void setMapLocation(MapLocation mapLocation) {
+		this.mapLocation = mapLocation;
+	}
+	public PostContent getContent() {
+		return content;
+	}
+	public void setContent(PostContent content) {
+		this.content = content;
+	}
+	public User getSender() {
+		return sender;
+	}
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+	public List<String> getTags() {
+		return tags;
+	}
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+	public List<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
 	@Override
 	public String toString() {
 		Gson gson = new Gson();
