@@ -24,18 +24,32 @@ import com.google.gson.Gson;
 @With(SecureCssa.class)
 public class Admin extends Controller {
 	
+	/**
+	 * The main page of admin
+	 */
 	public static void index() {
 		newPost();
 	} 
 	
+	/**
+	 * New a post
+	 */
 	public static void newPost(){
 		// get username
 		String username = session.get("username");
 		
-		int selectedIndex = 0;// selected index
-		render(username,selectedIndex);
+		// selected index
+		int selectedIndex = 0;
+		
+		// get system path separator
+		String separator = System.getProperty("file.separator");
+		
+		render(username,selectedIndex, separator);
 	}
 	
+	/**
+	 * Show all posts
+	 */
 	public static void allPosts(){
 		// find all post
 		List<Post> list = Post.findAll();
@@ -49,6 +63,28 @@ public class Admin extends Controller {
 		render(list);
 	}
 	
+	/**
+	 * Delete a post
+	 * @param postId - The id of the post
+	 */
+	public static void deletePost(String postId){
+		// find
+		Post post = Post.find("byId", Long.parseLong(postId)).first();
+		
+		// delete
+		post.delete();
+		
+		// redirect to all post 
+		allPosts();
+	}
+	
+	/**
+	 * Save a post
+	 * @param title - The title of the post
+	 * @param postEditor - The identifier of the ckeditor
+	 * @param username - The username
+	 * @param imgUrls - The urls of image in this post
+	 */
 	public static void savePost(String title, String postEditor, String username, String imgUrls){
 		// find user
 		User user = User.find("byEmail", username).first();
@@ -96,24 +132,46 @@ public class Admin extends Controller {
 		allPosts();
 	}
 	
+	/**
+	 * Browser image in server
+	 * @param CKEditorFuncNum - The identifier of the ckeditor callback function
+	 */
 	public static void imageBrowseUrl(String CKEditorFuncNum){
 		// find all images
 		List<Image> images = Image.findAll();
 		render(images,CKEditorFuncNum);
 	}
 	
+	/**
+	 * Handler of image upload
+	 * @param upload - The file to be upload
+	 */
 	public static void uploadUrl(File upload){
 		// root path
 		String projectRoot = Play.applicationPath.getAbsolutePath();
 		
+		// system separator
+		String syetemSeperator = System.getProperty("file.separator");
+		
 		// check if upload folder exist, if not, create one
-		File uploadFolder = new File(projectRoot + "\\public\\images\\upload");
+		File uploadFolder = new File(projectRoot + syetemSeperator + 
+				"public" + syetemSeperator +
+				"images" + syetemSeperator +
+				"upload");
 		if(!uploadFolder.exists()){
 			uploadFolder.mkdir();
 		}
 		
-		// copy files from tmp directory to (app_root)/public/images/upload
-		String imagePath = projectRoot + "\\public\\images\\upload\\" + upload.getName();
+		// copy files from tmp directory to (app_root)/public/images/upload using system seperator
+		String imagePath = projectRoot + 
+				syetemSeperator +
+				"public" +
+				syetemSeperator + 
+				"images" +
+				syetemSeperator + 
+				"upload" + 
+				syetemSeperator + 
+				upload.getName();
 		
 		// new empty file for copy
 		File copyFile = new File(imagePath);
@@ -145,8 +203,8 @@ public class Admin extends Controller {
 	
 	/**
 	 * copy file using stream
-	 * @param source
-	 * @param dest
+	 * @param source - The source path
+	 * @param dest - The destination path
 	 * @throws IOException
 	 */
 	private static void copyFileUsingStream(File source, File dest) throws IOException {

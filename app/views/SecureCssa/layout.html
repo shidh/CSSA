@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Login</title>
+<meta http-equiv="Content-Type"
+	content="text/html; charset=${_response_encoding}" />
+
+<!-- jQuery -->
+<script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
+	type="text/javascript" charset="${_response_encoding}"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/bootstrap.min.css'}">
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/bootstrap-theme.min.css'}">
+<!-- admin stylesheet -->
+<link rel="stylesheet" media="screen"
+	href="@{'/public/stylesheets/admin.css'}">
+</head>
+<body>
+	#{doLayout /}
+
+	<!-- Bootstrap -->
+	<script src="@{'/public/javascripts/bootstrap.min.js'}"
+		type="text/javascript"></script>
+	<!-- centerization -->
+	<script type="text/javascript">
+		$(window).resize(
+				function() {
+					$('#adminloginbox').css(
+							{
+								position : 'absolute',
+								left : ($(window).width() - $('#adminloginbox')
+										.outerWidth()) / 2,
+								top : ($(window).height() - $('#adminloginbox')
+										.outerHeight())
+										/ 2 + $(document).scrollTop()
+							});
+				});
+		$(window).resize();
+	</script>
+</body>
+</html>

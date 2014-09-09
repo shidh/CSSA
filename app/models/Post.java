@@ -6,8 +6,6 @@ package models;
 
 import java.util.Date;
 import java.util.List;
-import play.db.jpa.Model;
-
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import play.db.jpa.Model;
+
+import com.google.gson.Gson;
 
 
 /**
@@ -157,10 +159,11 @@ public class Post extends Model {
 
 	@Override
 	public String toString() {
+		Gson gson = new Gson();
 		return "Post [title=" + title + ", description=" + description
 				+ ", postingDate=" + postingDate + ", postContent="
 				+ postContent + ", rating=" + rating + ", mapLocation="
-				+ mapLocation + ", content=" + content + ", sender=" + sender
+				+ mapLocation + ", content=" + gson.toJson(content) + ", sender=" + sender
 				+ ", tags=" + tags + ", comments=" + comments + "]";
 	}
 	
