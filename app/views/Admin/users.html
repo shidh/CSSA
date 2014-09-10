@@ -1,0 +1,32 @@
+#{extends 'Admin/index.html' /}
+<h1 class="page-header">用户管理</h1>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>邮箱</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{if list.size != 0}
+		#{list items:0..list.size-1, as:'i' }
+	        <tr>
+	        	<td>${i+1}</td>
+				<td>${list.get(i).email}</td>
+				<td>${list.get(i).fullname}</td>
+				<td>${list.get(i).gender}</td>
+				<td>
+					<a href="/Admin/updateUser?userId=${list.get(i).getId()}">修改</a>&nbsp;
+					<a href="/Admin/deleteUser?userId=${list.get(i).getId()}">删除</a>
+				</td>
+			</tr>
+	    #{/list}
+	    #{/if}
+			
+		</tbody>
+	</table>
+</div>

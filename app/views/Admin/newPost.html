@@ -11,15 +11,20 @@
 	
 	<input type="hidden" value="${postId}" name="postId" />
 	
-	<input type="text" id="postTitle" style="width: 300px" name="title" />
+	<input type="text" id="postTitle" style="width: 300px" name="title" 
+	#{if title != null}
+		value = '${title}'
+	#{/if}/>
 	
 	<input type="hidden" name="username" value="${username}" />
 	
 	<h2 class="sub-header">内容</h2>
 	
 	<textarea name="postEditor" id="postEditor" rows="10" cols="80">
-	              This is my textarea to be replaced with CKEditor.
-	          	</textarea>
+		#{if content != null}
+			${content}
+		#{/if}
+	</textarea>
 	<script>
 		// Replace the <textarea id="editor1"> with a CKEditor
 		// instance, using default configuration.
@@ -28,18 +33,8 @@
 			filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
 			filebrowserImageUploadUrl : '/admin/uploadUrl',
 			filebrowserImageWindowWidth : '640',
-			filebrowserImageWindowHeight : '480'
+			filebrowserImageWindowHeight : '480',
 		});
-		
-		// if content --> update post
-		#{if content != null}
-			CKEDITOR.instances['postEditor'].setData('${content}');
-		#{/if}
-			
-		// if title
-		#{if title != null}
-			document.getElementById("postTitle").value = '${title}';
-		#{/if}
 		
 		// Get all the image inside the post
 		function saveHandler(){

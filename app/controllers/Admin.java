@@ -31,6 +31,48 @@ public class Admin extends Controller {
 		newPost(null);
 	} 
 	
+	public static void updateUser(String userId){
+		// find
+		User user = User.find("byId", Long.parseLong(userId)).first();
+		
+		// selected index
+		int selectedIndex = 2;
+		
+		// render
+		render(user, selectedIndex);
+	}
+	
+	/**
+	 * Delete user
+	 * @param userId - The id to be delete
+	 */
+	public static void deleteUser(String userId){
+		// find
+		User user = User.find("byId", Long.parseLong(userId)).first();
+		
+		// delete
+		user.delete();
+		
+		// redirect to all post 
+		users();
+	}
+	
+	/**
+	 * Shows all users
+	 */
+	public static void users(){
+		// selected index
+		int selectedIndex = 2;
+		
+		// get all users
+		List<User> list = User.findAll();
+		
+		// reverse
+		Collections.reverse(list);
+		
+		render(list, selectedIndex);
+	}
+	
 	/**
 	 * New a post
 	 * @param postId - The post id. If set it should update, if not insert a new post.
@@ -74,11 +116,10 @@ public class Admin extends Controller {
 		// reverse
 		Collections.reverse(list);
 		
-		for(Post p:list){
-			System.out.println(p.toString());
-		}
+		// selected index
+		int selectedIndex = 1;
 		
-		render(list);
+		render(list, selectedIndex);
 	}
 	
 	public static void updatePost(String postId){
