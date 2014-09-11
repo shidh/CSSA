@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import models.Event;
 import models.Image;
 import models.Post;
 import models.PostContent;
@@ -31,6 +32,99 @@ public class Admin extends Controller {
 		newPost(null);
 	} 
 	
+	/**
+	 * Statistics page
+	 */
+	public static void statistics(){
+		// selected
+		int selectedIndex = 4;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * Broadcast email page
+	 */
+	public static void broadcastEmail(){
+		// selected
+		int selectedIndex = 5;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * Setting page
+	 */
+	public static void setting(){
+		// selected
+		int selectedIndex = 6;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * Help page
+	 */
+	public static void help(){
+		// selected
+		int selectedIndex = 8;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * The main page
+	 */
+	public static void main(){
+		// selected
+		int selectedIndex = 7;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * Management of joining an event
+	 * @param eventId - The event id
+	 */
+	public static void joinEvent(Long eventId){
+		// selected
+		int selectedIndex = 3;
+		
+		render(selectedIndex);
+	}
+	
+	/**
+	 * Delete event 
+	 * @param eventId - Event id
+	 */
+	public static void deleteEvent(Long eventId){
+		// find
+		Event event = Event.find("byId", eventId).first();
+		
+		// delete
+		event.delete();
+		
+		// redirect to all event page
+		events();
+	}
+	
+	/**
+	 * Show all events
+	 */
+	public static void events(){
+		// selected index
+		int selectedIndex = 3;
+		
+		// find all events
+		List<Event> list = Event.findAll();
+		
+		render(selectedIndex, list);
+	}
+	
+	/**
+	 * Update a user
+	 * @param userId - The user id
+	 */
 	public static void updateUser(String userId){
 		// find
 		User user = User.find("byId", Long.parseLong(userId)).first();

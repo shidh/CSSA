@@ -1,0 +1,33 @@
+#{extends 'Admin/index.html' /}
+<h1 class="page-header">活动管理</h1>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>标题</th>
+				<th>作者</th>
+				<th>容量/已报名/已确认（人）</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{if list.size != 0}
+		#{list items:0..list.size-1, as:'i' }
+	        <tr>
+	        	<td>${i+1}</td>
+				<td>${list.get(i).title}</td>
+				<td>#{if list.get(i).sender != null}${list.get(i).sender.fullname}#{/if}</td>
+				<td>${list.get(i).capacity}/${list.get(i).onWaitingListUsers.size}/${list.get(i).confirmedUsers.size}</td>
+				<td>
+					<a href="/Admin/updateEvent?eventId=${list.get(i).getId()}">修改</a>&nbsp;
+					<a href="/Admin/deleteEvent?eventId=${list.get(i).getId()}">删除</a>
+					<a href="/Admin/joinEvent?eventId=${list.get(i).getId()}">报名管理</a>
+				</td>
+			</tr>
+	    #{/list}
+	    #{/if}
+			
+		</tbody>
+	</table>
+</div>

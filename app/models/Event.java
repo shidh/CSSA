@@ -81,5 +81,49 @@ public class Event extends Post {
 
 	}
 
+	public boolean isClosed() {
+		return isClosed;
+	}
+
+	public void setClosed(boolean isClosed) {
+		this.isClosed = isClosed;
+	}
+
+	public Integer getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(Integer capacity) {
+		this.capacity = capacity;
+	}
+
+	public List<User> getConfirmedUsers() {
+		return confirmedUsers;
+	}
+
+	public void setConfirmedUsers(List<User> confirmedUsers) {
+		this.confirmedUsers = confirmedUsers;
+	}
+
+	public List<User> getOnWaitingListUsers() {
+		return onWaitingListUsers;
+	}
+
+	public void setOnWaitingListUsers(List<User> onWaitingListUsers) {
+		this.onWaitingListUsers = onWaitingListUsers;
+	}
+
+	public List<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 }

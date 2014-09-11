@@ -11,7 +11,7 @@
 	
 	<input type="hidden" value="${postId}" name="postId" />
 	
-	<input type="text" id="postTitle" style="width: 300px" name="title" 
+	<input type="text" class="form-control" id="postTitle" name="title" 
 	#{if title != null}
 		value = '${title}'
 	#{/if}/>
@@ -87,9 +87,9 @@
 			console.log(document.getElementById("newPostForm"));
 		}
 	</script>
-	
+	<hr>
 	<div style="margin-top: 10px">
-		<button type="submit" class="btn btn-sm btn-info" onclick="saveHandler();">保存</button>
+		<button type="submit"  class="btn btn-default" onclick="saveHandler();">保存</button>
 	</div>
 	
 </div>
