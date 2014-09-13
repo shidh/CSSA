@@ -49,7 +49,10 @@ public class Admin extends Controller {
 		// selected
 		int selectedIndex = 5;
 		
-		render(selectedIndex);
+		// find all user
+		List<User> list = User.findAll();
+		
+		render(selectedIndex, list);
 	}
 	
 	/**
@@ -293,6 +296,8 @@ public class Admin extends Controller {
 		if(postId != null && !postId.trim().equals("")){
 			// find
 			post = Post.find("byId", Long.parseLong(postId)).first();
+			// update title
+			post.setTitle(title);
 			// set date
 			post.setPostingDate(new Date());
 			// set sender

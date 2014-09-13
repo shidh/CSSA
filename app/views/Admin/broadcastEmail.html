@@ -1,2 +1,76 @@
 #{extends 'Admin/index.html' /}
 <h1 class="page-header">群发邮件</h1>
+<div class ="row">
+<div class ="col-md-9">
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">收件人</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="邮箱地址">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword3" class="col-sm-2 control-label">主题</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputPassword3" placeholder="主题">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 纯文本模式
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">正文</label>
+    <div class="col-sm-10">
+      <textarea name="emailEditor" id="emailEditor" rows="10" cols="80">
+		#{if content != null}
+			${content}
+		#{/if}
+	  </textarea>
+	  <script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace('emailEditor', {
+			filebrowserBrowseUrl : '/admin/browseUrl',
+			filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
+			filebrowserImageUploadUrl : '/admin/uploadUrl',
+			filebrowserImageWindowWidth : '640',
+			filebrowserImageWindowHeight : '480',
+		});
+	  </script>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <button type="submit" class="btn btn-default">发送</button>
+    </div>
+  </div>
+</form>
+</div>
+<div class="col-md-3">
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#">联系人</a></li>
+  <li><a href="#">模板</a></li>
+</ul>
+<div class="table-responsive">
+	<table class="table table-striped">
+		<tbody>
+		#{if list.size != 0}
+		#{list items:0..list.size-1, as:'i' }
+	        <tr>
+				<td>${list.get(i).email}</td>
+			</tr>
+	    #{/list}
+	    #{/if}
+			
+		</tbody>
+	</table>
+</div>
+</div>
+</div>
+

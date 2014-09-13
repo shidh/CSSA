@@ -1,26 +1,62 @@
 #{extends 'Admin/index.html' /}
-
-
 <h1 class="page-header">新建帖子</h1>
 
 #{form @savePost()}
+<input type="hidden" value="${postId}" name="postId" />
+<input type="hidden" name="username" value="${username}" />
+  <div class="form-group">
+    <label for="exampleInputEmail1">类型</label>
+    <script type="text/javascript">
+    	function typeHandler(){
+    		// find
+    		var typeValue=document.getElementById("postType").value;
 
-<div id="newPostForm">
-
-	<h2 class="sub-header">标题</h2>
-	
-	<input type="hidden" value="${postId}" name="postId" />
-	
-	<input type="text" class="form-control" id="postTitle" name="title" 
+			if(typeValue == "event"){
+				// show event specific form
+				console.log(document.getElementById("eventSpecific"));
+				document.getElementById("eventSpecific").style.display="block";
+			}else if(typeValue == "news"){
+				// hide event specific form
+				document.getElementById("eventSpecific").style.display="none";
+			}
+    	}
+    </script>
+    <select id="postType" name="type" class="form-control" onchange="typeHandler()">
+	  <option value="news">新闻</option>
+	  <option value="event">活动</option>
+	</select>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">标题</label>
+    <input type="text" class="form-control" id="postTitle" placeholder="请输入标题" name="title" 
 	#{if title != null}
 		value = '${title}'
 	#{/if}/>
-	
-	<input type="hidden" name="username" value="${username}" />
-	
-	<h2 class="sub-header">内容</h2>
-	
-	<textarea name="postEditor" id="postEditor" rows="10" cols="80">
+  </div>
+  <div id="eventSpecific" style="display:none;">
+  <div class="form-group">
+    <label for="exampleInputEmail1">人数上限</label>
+    <input type="text" name="capacity" class="form-control" id="postTitle" placeholder="请输入人数上限" name="title"/>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">时间</label>
+    <div class='input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" placeholder="单击右边图标可以选择日期"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+        </span>
+    </div>
+    <script type="text/javascript">
+        document.getElementById('datetimepicker1').datetimepicker();
+    </script>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">地址</label>
+    <input type="text" name="location" class="form-control" id="postTitle" placeholder="请输入地址" name="title"/>
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">正文</label>
+    <textarea name="postEditor" id="postEditor" rows="10" cols="80">
 		#{if content != null}
 			${content}
 		#{/if}
@@ -87,10 +123,6 @@
 			console.log(document.getElementById("newPostForm"));
 		}
 	</script>
-	<hr>
-	<div style="margin-top: 10px">
-		<button type="submit"  class="btn btn-default" onclick="saveHandler();">保存</button>
-	</div>
-	
-</div>
+  </div>
+  <button type="submit"  class="btn btn-default" onclick="saveHandler();">保存</button>
 #{/form}
