@@ -4,61 +4,9 @@
 #{set title:'My Profile'/} 
 #{/if} 
 
-#{else} 
-#{set title:'view Profile'/}
-#{/else}
-
-
-<style type="text/css">
-#my_profile_left_div {
-	border: 1px solid red;
-	width: 150px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_middle_div {
-	font:italic arial,sans-serif;
-	font-size:16px;
-	border: 1px solid green;
-	width: 380px;
-	position: relative;
-	top: 10px;
-	float: left;
-}
-
-#my_profile_right_div {
-	border: 1px solid blue;
-	width: 400px;
-	float: left;
-	position: relative;
-	top: 10px;
-}
-
-.userimage {
-	max-width: 100px;
-	max-height: 100px;
-	overflow: hidden;
-}
-
-input.r {
-	border: 1px solid #fff;
-}
-
-input.w {
-	border: 1px solid #369;
-}
-</style>
-
-<style>
-.center
-{
-margin:auto;
-width:70%;
-#background-color:#51629e;
-}
-</style>
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/myProfile.css'}">
+#{/set}
 
 <script>
 var profileScope = {};
@@ -115,273 +63,125 @@ function setMarkers(){
 		  #{/list}
 }
 
-
-
- function addTag(newTagText){
-	var newElementID = "tag_span_id" + profileAddTagCounter;
-	var newElementHTML = "<span id='" 
-	+ newElementID + "'>" 
-	+newTagText 
-	+ "</span><br>";
-
-	$("#added_tags_div").append(newElementHTML);
-	profileAddTagCounter = profileAddTagCounter + 1;
+function iconSelected(input) {
+	if (input.files && input.files[0]) {
+    	var reader = new FileReader();
+		var imgData;
+        reader.onload = function (e) {
+        	imgData = e.target.result;
+        	$('#img')
+            	.attr('src', imgData)
+            	.width(160)
+            	.height(160);
+        	
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
 }
 
+
 $(function(){
-#{if mode == "myProfile"}
-
-	$("p.edit").mouseover(function(){
-	  	$(this).css("background-color","#E9E9E4");
-	  });
-	  $("p.edit").mouseout(function(){
-	    $(this).css("background-color","white");
-	  });
-
-
-	  $("input.r").click(function(){
-		 $(this).removeAttr("readonly");
-		 $(this).attr("class", "t");
-		 $("input.w").css("display","inline");
-	  });
-
-	  $("input.w").click(function(){
-			 $("input.t").attr("readonly", "true");
-			 $("input.t").attr("class", "r");
-			 $("input.w").css("display","none");
-	  });
-
-	  $(".userimage").click(function(){
-			 $("#photo").click();
-			 $("input.w").css("display","inline");
-	  });
-
-
-	  $("div.tag").mouseover(function(){
-		  	$(this).css("background-color","#E9E9E4");
-			}
-	  );
-	  $("div.tag").mouseout(function(){
-		  	$(this).css("background-color","white");
-			}
-	  );
-
-
-
-	  $("div.tag").click(function(){
-			$(this).attr("class", "tag_to_be_del");
-			//var newElementHTML = "<button id=\"del_tag_button\" >Del</button>";	
-			//$(this).append(newElementHTML);	
-			$("#del_tag_button").css("display","inline");
-			}
-	  );
-
-
-
-	  $("#add_tag_button").click(function(){		  
-		    var tag = "${tagString}";
-			var newTagText = $("#add_tag_input").val();
-			newTagText = $.trim(newTagText);
-			$("#add_tag_input").val("");
-
-			if(newTagText != ""){
-				tag = tag+";"+newTagText;
-				$.post("@{MyProfile.submit()}",
-						  {
-							tags:tag
-						  },
-						  function(data){
-								addTag(newTagText);
-						  } 
-				);
-			}
-	  });
-
-	  $("#del_tag_button").click(function(){
-		  var deltag = $(".tag_to_be_del").text();
-		  $.post("@{MyProfile.submit()}",
-					  {
-			  			delTag:deltag
-					  },
-					  //success(alert("success followed"))
-					  function(data){
-						  $(".tag_to_be_del").remove();	
-						  $("#del_tag_button").css("display","none");
-					  }
-				);
-
-	  });
-
-#{/if}
-
-
-#{if mode == "viewProfile"}
-    var tag = ${followed};
-    if(tag == true){
-    	$("#follow").css("display","none");
-		$("#followed").css("display","inline");				  
-        $(".unfollow").css("display","inline");
-    }else{
-		$("#follow").css("display","inline");
-    	$("#followed").css("display","none");
-        $(".unfollow").css("display","none");
-    }
-	$("#follow").click(function(){
-		$.post("@{MyProfile.submit()}",
-			  {
-			   	folloUserid:"${user.id}"
-			  },
-			  //success(alert("success followed"))
-			  function(data){
-				  //$("#added_tags_div").reload();
-				  //alert(data);
-				  $("#follow").css("display","none");
-				  $("#followed").css("display","inline");				  
-				  $(".unfollow").css("display","inline");
-			  } 
-		);
-	});	
-
-
-	$(".unfollow").click(function(){
-		$.post("@{MyProfile.submit()}",
-			  {
-				unFollowUserid:"${user.id}"
-			  },
-			  //success(alert("success followed"))
-			  function(data){
-				  //$("#added_tags_div").reload();
-				  //alert(data);
-				  $("#follow").css("display","inline");
-				  $("#followed").css("display","none");				  
-				  $(".unfollow").css("display","none");
-			  }
-		);
-	});
-
-#{/if}
-
-
-
-
+	$("#profileIcon").click(function(){
+        $(this).next().trigger('click');
+    });
 });
+    
 </script>
 
+#{else} 
+#{set title:'view Profile'/}
+#{/else}
 
+#{form @MyProfile.submit(), enctype:"multipart/form-data", role:"form", class:"otherProfile"}
+  	<div class="form-group profileData" onmousemove="document.getElementById('fullname').disabled=false" onmouseout="document.getElementById('fullname').disabled=true">
+    	<label for="fullname">Fullname</label>
+    	<input type="text" name="fullname" class="form-control" id="fullname" placeholder="fullname" value="${user.fullname}" disabled/>
+  	</div>
+  	<div class="form-group profileData">
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" checked>Male
+    	</label>
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" >Female
+    	</label>
+  	</div>
+  	<div class="form-group profileData">
+    	<label for="country">Country</label>
+    	<input type="text" name="country" class="form-control" id="country" placeholder="country">
+  	</div>
+  	<div class="form-group profileData">
+    	<label for="religion">Religion</label>
+    	<input type="text" name="religion" class="form-control" id="religion" placeholder="religion">
+  	</div>
+  	<div class="form-group profileData" onmousemove="document.getElementById('address').disabled=false" onmouseout="document.getElementById('address').disabled=true">
+    	<label for="address">Address</label>
+    	<input type="text" name="address" class="form-control" id="address" placeholder="address" value="${user.address}" disabled/>
+  	</div>
+  	<div class="form-group profileData input-append date">
+    	<label for="birthday">Birthday</label>
+    	<input type="text" name="birthday" class="form-control" id="datepicker" placeholder="birthday">
+  	</div>
+  	<button type="submit" class="btn btn-primary newPasswordSubmit">Submit</button>
+#{/form}
 
-
-
-<div class="center">
-
-<div id="my_profile_left_div">
-	#{if mode == "viewProfile"}
-	<h3>${user.fullname}</h3>
-	#{if user.image}
-	<input type="image" id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <br>
-	<br>
-	#{/if}
-	<div class="follow">
-		<button id="follow">Follow ${user.fullname}</button>
-
-		<input id="followed" value="Followed ${user.fullname}" readonly>
-		<button class="unfollow" style="display: none;">Unfollow
-			${user.fullname}</button>
-	</div>
-
-	#{/if} 
-	
-	#{form @MyProfile.submit(), enctype:"multipart/form-data"} 
-	
-	<!-- view the profile of one user -->
-	#{if mode == "myProfile"}
-	<h3>${user.fullname}</h3>
-	<br> 
-	
-	#{if user.image}
-	<img id="userimage" class="userimage"
-		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> 
-		
-		<input type="file" id="photo" class="photo" name="photoData"
-		style="display: none;" /> 
-	<br>
-	#{/if}
-
-
-	<h3>Followed</h3>
-	#{list items:user.followed, as:'followed'}
-	<div class="followed">
-		<h2 class="myfollowed-fullname">
-			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
-		</h2>
-		<div>
-			<img class="userimage"
-				src="@{RequestUtils.renderImage(followed.image.id)}">
-
+<div class="middle">
+	<div class="layoutContainer">
+		<div id="profileIcon" >
+			<img id="img" src="#" />
 		</div>
-		<a href="@{ViewProfile.page(followed.id)}">more</a>
+		<input id="updateFile" name="file" type="file" accept="image/*" onchange="iconSelected(this)"/ >
 	</div>
-	#{/list} 
-	#{/if}
-</div>
-
-
-
-
-<!-- view myProfile of current user -->
-<div id="my_profile_middle_div">
-	<h3>User's Info:</h3>
-
-	<p class="edit">
-		Name: <input class="r" name="fullname" value="${user.fullname}"
-			readonly />
-	</p>
-	<br>
-	<p class="edit">
-		gender: <input class="r" name="gender" value="${user.gender}" readonly />
-	</p>
-	<br>
-	<p class="edit">
-		birthday: <input class="r" name="birthday" value="${user.birthday} "
-			readonly />
-	</p>
-	<br>
-	<p class="edit">
-		location: <input class="r" name="address" value="${user.address}" readonly />
-	</p>
-
-	<br> <input class="w" type="submit" value="save"
-		style="display: none;" /> 
-	#{/form} 
-		<br> 
 	
-</div>
-
-
-
-<div id="my_profile_right_div">
-	<h3>Attended Events:</h3>
-
-	<div id="profile-map-canvas" style="height: 386px; width: 386px">
-	</div>
-	<div id="myPostList">
-	#{list items:user.events, as:'myPost'}
-	<div class="post">
-		<h2 class="post-title"
-			#{if myPost.mapLocation}
-			onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
-			<a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
-			#{/if}
-		</h2>
-		<div class="post-metadata">
-			<span class="post-desc"> ${myPost.description} </span> <span
-				class="post-date"> </span>
+	<div id="eventsMap">
+		<div id="profile-map-canvas" style="height: 350px; width: 100%">
+		</div>
+		<div id="myPostList">
+		#{list items:user.events, as:'myPost'}
+			<div class="post">
+				<h2 class="post-title"
+				#{if myPost.mapLocation}
+					onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
+					<a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+				#{/if}
+				</h2>
+				<div class="post-metadata">
+					<span class="post-desc"> ${myPost.description} </span> <span class="post-date"> </span>
+				</div>
+			</div>
+		#{/list}
 		</div>
 	</div>
-	#{/list}
-	</div>
-	</div>
+</div>
 
+#{form @MyProfile.submit(), enctype:"multipart/form-data", role:"form", class:"keyProfile"}
+	<div class="form-group profileData">
+		<label for="emailAdress">Email Address</label>
+		<input type="text" class="form-control" id="emailAdress" disabled/ >
+	</div>
+	<div class="form-group profileData">
+		<label for=cssaID>CSSA Id</label>
+		<input type="text" class="form-control" id="cssaID" disabled/>
+	</div>
+	<div class="changePasswordButton" onclick="document.getElementById('changePasswordBox').style.visibility='visible'">
+		Password change <span class="glyphicon glyphicon-align-justify"></span>
+	</div>
+	
+	<div id="changePasswordBox">
+	  	<div class="form-group profileData">
+	    	<label for="oldPassword">Old password</label>
+	   	 	<input type="password" class="form-control" id="oldPassword" placeholder="Enter old password" >
+	  	</div>
+	  	<div class="form-group profileData">
+	    	<label for="newPassword1">New password</label>
+	    	<input type="password" class="form-control" id="newPassword1" placeholder="Enter new password">
+	  	</div>
+	  	<div class="form-group profileData ">
+	    	<label for="newPassword2">Confirm password</label>
+	    	<input type="password" class="form-control" id="newPassword2" placeholder="Confirm new Password">
+	  	</div>
+	  	
+	  	<button type="submit" class="btn btn-primary newPasswordSubmit">Submit</button>
+  	</div>
+#{/form}
 
-</div> 
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.Date;
 
 import models.*;
@@ -11,8 +12,7 @@ public class MyProfile extends Controller {
 	public static void submit(String email, String password, String fullname,
 			String country, String address, String gender, String religion,
 			Date birthday, Blob photoData, String tags, String folloUserid,
-			String unFollowUserid, String delTag) {
-		
+			String unFollowUserid, String delTag, File file) {
 		
 		String username = session.get("username");
 		

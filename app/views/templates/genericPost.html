@@ -5,6 +5,21 @@
 	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/postStream.css'}">
 #{/set}
 
+<div class="sidebar">
+	<h4>Archives</h4>
+	<ol class="list-unstyled">
+		<li><a href="#">September 2014</li>
+		<li><a href="#">August 2014</li>
+		<li><a href="#">July 2014</li>
+		<li><a href="#">June 2014</li>
+		<li><a href="#">May 2014</li>
+		<li><a href="#">April 2014</li>
+		<li><a href="#">March 2014</li>
+		<li><a href="#">February 2014</li>
+		<li><a href="#">January 2014</li>
+	</ol>
+</div>
+
 <div id="my_post">
 	<div class="center" >
 
@@ -14,10 +29,11 @@
 #{if mode == "event"} 
 	        <h3 class="activities">活动列表</h3>
 #{/if}
-
+			<hr>
+			
             #{list items:posts, as:'onePost'}
                 <div class="post" >                
-                    <h2 class="post-title" >
+                    <h3 class="post-title" >
                     #{if mode == "post"} 
                         <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
 					#{/if}
@@ -33,7 +49,7 @@
 					#{list items:onePost.content.picturesTitles, as:'picture'}
 					<div class="postImage">
 						
-							<img border="1" src="public/images/IMG_6071-11111.JPG" alt="Pulpit Rock" width=119 height="119">
+							<img border="1" src="public/images/IMG_6071-11111.JPG" alt="Pulpit Rock" width=200 height="200">
 					
 					</div>
 					#{/list}
@@ -49,6 +65,7 @@
                         </span>
                     </div>
                 </div>
+                <hr>
             #{/list}
 
             #{else}
