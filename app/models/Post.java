@@ -14,18 +14,27 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import play.db.jpa.Model;
-
 import com.google.gson.Gson;
-
 
 /**
  * @author allen
  *
  */
 @Entity
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) 
 public class Post extends Model {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.TABLE)
+	//private int id;
+
 	public String title;
 	
 	@Column( length = 100 )
@@ -36,7 +45,10 @@ public class Post extends Model {
 	public String postContent;
 
 	public Double rating;
-
+	
+	@Column(name = "postType")
+	public String postType;
+	
 	@OneToOne
 	public MapLocation mapLocation;
 
@@ -72,6 +84,8 @@ public class Post extends Model {
 		this.postContent = postContent;
 		this.content = content;
 		this.sender = sender;
+		this.postType = "news";
+
 	}
 
 	public Post(String title, String description, String postContent, MapLocation mapLocation,
@@ -87,6 +101,8 @@ public class Post extends Model {
 		this.tags = tags;
 		this.rating = 0.0;
 		this.postContent =postContent;
+		this.postType = "news";
+
 	}
 
 	public static Post getMostRecent()

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -51,15 +52,19 @@ public class User extends Model {
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Post> posts;
 	
-	@ManyToMany(mappedBy = "members", cascade = CascadeType.ALL)
+	@ManyToMany(mappedBy = "members")
 	public List<Event> events;
 	
 	@ManyToOne
 	public Event confirmedEvent;
 	
+//	@ManyToMany(mappedBy = "waitingMembers")
+//	public List<Event> waitingEvents;
+	
 	@ManyToOne
 	public Event waitingEvent;
 		
+	
 	
 	public String getEmail() {
 		return email;
@@ -205,13 +210,6 @@ public class User extends Model {
 		this.posts = posts;
 	}
 
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
 
 	public Event getConfirmedEvent() {
 		return confirmedEvent;

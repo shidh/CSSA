@@ -44,6 +44,7 @@ Post(p1):
     rating: 2.3
     content: P1content
     sender: allen
+    postType: "news"
     
 Post(p2):
     title: "2nd post"
@@ -53,6 +54,7 @@ Post(p2):
     rating: 2.0
     content: P1content
     sender: jeff
+    postType: "news"
     
 Post(p3):
     title: "3rd post"
@@ -62,6 +64,7 @@ Post(p3):
     rating: 2.7
     content: P1content
     sender: allen
+    postType: "news"
 
 Event(e1):
     title: "1st event"
@@ -72,8 +75,9 @@ Event(e1):
     content: P1content
     confirmedUsers: [jeff]
     onWaitingListUsers: [huang]
-    capacity: 20
+    capacity: 1
     members: [allen]
+    postType: "event"
 
 Event(e2):
     title: "2nd event"
@@ -86,6 +90,7 @@ Event(e2):
     onWaitingListUsers: [allen, jeff]
     capacity: 30
     members: [allen]
+    postType: "event"
     
 
     

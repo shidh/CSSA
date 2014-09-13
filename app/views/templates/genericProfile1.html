@@ -1,0 +1,340 @@
+#{extends 'main.html'/} 
+
+#{if mode == "myProfile"} 
+#{set title:'My Profile'/} 
+#{/if} 
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/myProfile.css'}">
+#{/set}
+
+#{else} 
+#{set title:'view Profile'/}
+#{/else}
+
+
+<script>
+var profileScope = {};
+var profileAddTagCounter = 0;
+
+$(function() {      
+   initialize();   
+});
+
+function initialize() {
+	profileScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+	profileScope.map = new google.maps.Map(document.getElementById("profile-map-canvas"),
+											profileScope.mapOptions);
+
+	profileScope.tags = {};
+
+	setMarkers();
+}
+
+//setMarkerPosition
+function setMarkerPosition(lat, lng){
+	var location = new google.maps.LatLng(lat, lng);
+
+   	profileScope.map.panTo(location);
+   	profileScope.map.setZoom(16);
+   	
+	profileScope.marker = new google.maps.Marker({
+         map: profileScope.map,
+         position: location
+     });
+}
+
+//Add all markers related to the current user to the map
+function setMarkers(){
+		  #{list items:user.events, as:'myPost'}
+		    #{if myPost.mapLocation}
+			var lati = ${myPost.mapLocation.latitude} ;
+		    var longi = ${myPost.mapLocation.longitude} ;
+
+			var location = new google.maps.LatLng(lati, longi);
+			profileScope.map.panTo(location);
+			profileScope.map.setZoom(1);		  
+
+		   	var position = new google.maps.LatLng(lati, longi);
+			var marker = new google.maps.Marker({
+		      position: position,
+		      map: profileScope.map
+		    });
+			#{/if}
+		  #{/list}
+}
+
+
+
+ function addTag(newTagText){
+	var newElementID = "tag_span_id" + profileAddTagCounter;
+	var newElementHTML = "<span id='" 
+	+ newElementID + "'>" 
+	+newTagText 
+	+ "</span><br>";
+
+	$("#added_tags_div").append(newElementHTML);
+	profileAddTagCounter = profileAddTagCounter + 1;
+}
+
+$(function(){
+#{if mode == "myProfile"}
+
+	$("p.edit").mouseover(function(){
+	  	$(this).css("background-color","#E9E9E4");
+	  });
+	  $("p.edit").mouseout(function(){
+	    $(this).css("background-color","white");
+	  });
+
+
+	  $("input.r").click(function(){
+		 $(this).removeAttr("readonly");
+		 $(this).attr("class", "t");
+		 $("input.w").css("display","inline");
+	  });
+
+	  $("input.w").click(function(){
+			 $("input.t").attr("readonly", "true");
+			 $("input.t").attr("class", "r");
+			 $("input.w").css("display","none");
+	  });
+
+	  $(".userimage").click(function(){
+			 $("#photo").click();
+			 $("input.w").css("display","inline");
+	  });
+
+
+	  $("div.tag").mouseover(function(){
+		  	$(this).css("background-color","#E9E9E4");
+			}
+	  );
+	  $("div.tag").mouseout(function(){
+		  	$(this).css("background-color","white");
+			}
+	  );
+
+
+
+	  $("div.tag").click(function(){
+			$(this).attr("class", "tag_to_be_del");
+			//var newElementHTML = "<button id=\"del_tag_button\" >Del</button>";	
+			//$(this).append(newElementHTML);	
+			$("#del_tag_button").css("display","inline");
+			}
+	  );
+
+
+
+	  $("#add_tag_button").click(function(){		  
+		    var tag = "${tagString}";
+			var newTagText = $("#add_tag_input").val();
+			newTagText = $.trim(newTagText);
+			$("#add_tag_input").val("");
+
+			if(newTagText != ""){
+				tag = tag+";"+newTagText;
+				$.post("@{MyProfile.submit()}",
+						  {
+							tags:tag
+						  },
+						  function(data){
+								addTag(newTagText);
+						  } 
+				);
+			}
+	  });
+
+	  $("#del_tag_button").click(function(){
+		  var deltag = $(".tag_to_be_del").text();
+		  $.post("@{MyProfile.submit()}",
+					  {
+			  			delTag:deltag
+					  },
+					  //success(alert("success followed"))
+					  function(data){
+						  $(".tag_to_be_del").remove();	
+						  $("#del_tag_button").css("display","none");
+					  }
+				);
+
+	  });
+
+#{/if}
+
+
+#{if mode == "viewProfile"}
+    var tag = ${followed};
+    if(tag == true){
+    	$("#follow").css("display","none");
+		$("#followed").css("display","inline");				  
+        $(".unfollow").css("display","inline");
+    }else{
+		$("#follow").css("display","inline");
+    	$("#followed").css("display","none");
+        $(".unfollow").css("display","none");
+    }
+	$("#follow").click(function(){
+		$.post("@{MyProfile.submit()}",
+			  {
+			   	folloUserid:"${user.id}"
+			  },
+			  //success(alert("success followed"))
+			  function(data){
+				  //$("#added_tags_div").reload();
+				  //alert(data);
+				  $("#follow").css("display","none");
+				  $("#followed").css("display","inline");				  
+				  $(".unfollow").css("display","inline");
+			  } 
+		);
+	});	
+
+
+	$(".unfollow").click(function(){
+		$.post("@{MyProfile.submit()}",
+			  {
+				unFollowUserid:"${user.id}"
+			  },
+			  //success(alert("success followed"))
+			  function(data){
+				  //$("#added_tags_div").reload();
+				  //alert(data);
+				  $("#follow").css("display","inline");
+				  $("#followed").css("display","none");				  
+				  $(".unfollow").css("display","none");
+			  }
+		);
+	});
+
+#{/if}
+
+
+
+
+});
+</script>
+
+
+
+
+
+<div class="center">
+
+<div id="my_profile_left_div">
+	#{if mode == "viewProfile"}
+	<h3>${user.fullname}</h3>
+	#{if user.image}
+	<input type="image" id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> <br>
+	<br>
+	#{/if}
+	<div class="follow">
+		<button id="follow">Follow ${user.fullname}</button>
+
+		<input id="followed" value="Followed ${user.fullname}" readonly>
+		<button class="unfollow" style="display: none;">Unfollow
+			${user.fullname}</button>
+	</div>
+
+	#{/if} 
+	
+	#{form @MyProfile.submit(), enctype:"multipart/form-data"} 
+	
+	<!-- view the profile of one user -->
+	#{if mode == "myProfile"}
+	<h3>${user.fullname}</h3>
+	<br> 
+	
+	#{if user.image}
+	<img id="userimage" class="userimage"
+		src="@{RequestUtils.renderImage(user.image.id)}" alt="Edit Pic" /> 
+		
+		<input type="file" id="photo" class="photo" name="photoData"
+		style="display: none;" /> 
+	<br>
+	#{/if}
+
+
+	<h3>Followed</h3>
+	#{list items:user.followed, as:'followed'}
+	<div class="followed">
+		<h2 class="myfollowed-fullname">
+			<a href="@{ViewProfile.page(followed.id)}">${followed.fullname}</a>
+		</h2>
+		<div>
+			<img class="userimage"
+				src="@{RequestUtils.renderImage(followed.image.id)}">
+
+		</div>
+		<a href="@{ViewProfile.page(followed.id)}">more</a>
+	</div>
+	#{/list} 
+	#{/if}
+</div>
+
+
+
+
+<!-- view myProfile of current user -->
+<div id="my_profile_middle_div">
+	<h3>User's Info:</h3>
+
+	<p class="edit">
+		Name: <input class="r" name="fullname" value="${user.fullname}"
+			readonly />
+	</p>
+	<br>
+	<p class="edit">
+		gender: <input class="r" name="gender" value="${user.gender}" readonly />
+	</p>
+	<br>
+	<p class="edit">
+		birthday: <input class="r" name="birthday" value="${user.birthday} "
+			readonly />
+	</p>
+	<br>
+	<p class="edit">
+		location: <input class="r" name="address" value="${user.address}" readonly />
+	</p>
+
+	<br> <input class="w" type="submit" value="save"
+		style="display: none;" /> 
+	#{/form} 
+		<br> 
+	
+</div>
+
+
+
+<div id="my_profile_right_div">
+	<h3>Attended Events:</h3>
+
+	<div id="profile-map-canvas" style="height: 386px; width: 386px">
+	</div>
+	<div id="myPostList">
+	#{list items:user.events, as:'myPost'}
+	<div class="post">
+		<h2 class="post-title"
+			#{if myPost.mapLocation}
+			onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
+			<a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+			#{/if}
+		</h2>
+		<div class="post-metadata">
+			<span class="post-desc"> ${myPost.description} </span> <span
+				class="post-date"> </span>
+		</div>
+	</div>
+	#{/list}
+	</div>
+	</div>
+
+
+</div> 
+

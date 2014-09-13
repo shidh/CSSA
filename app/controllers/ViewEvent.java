@@ -7,7 +7,7 @@ import play.mvc.Controller;
 
 public class ViewEvent extends Controller {
 	
-	public static void page(Long eventId, boolean isFull, boolean isSigned) {
+	public static void page(Long eventId) {
 		boolean flag_login = false;
 		String email = null;
 
@@ -16,6 +16,7 @@ public class ViewEvent extends Controller {
 			System.out.println("From ViewEvent#confirmedUsers username: "+post.confirmedUsers);
 			//System.out.println("From ViewEvent#capacity: "+post.capacity);
 
+			//boolean isFull = ViewEvent.isFull(eventId);
 			if (post != null) {
 				User user = null;
 				String username = session.get("username");
@@ -27,10 +28,14 @@ public class ViewEvent extends Controller {
 				    flag_login = true;
 					email = session.get("username");
 				}
-				//System.out.println("From ViewPost#current postContent: "+post.postContent);
-				//System.out.println("From ViewPost#current description: "+post.description);
+				System.out.println("confirm list: "+post.confirmedUsers);
 
-				render(post, user, flag_login, email, isFull, isSigned);
+				if(post.onWaitingListUsers.size()>0){
+					System.out.println("person on the 1st of waiting list: "+post.onWaitingListUsers.get(0).fullname);
+				}else{
+					System.out.println("no one on the waiting list");
+				}
+				render(post, user, flag_login, email);
 
 			}
 		}
@@ -84,11 +89,11 @@ public class ViewEvent extends Controller {
 						isSigned = true;
 						//System.out.println("###2: "+post.onWaitingListUsers.size());
 						//Event is full
-						ViewEvent.page(eventId, isFull, isSigned);
+						ViewEvent.page(eventId);
 					}else{
 						//check is signuped or not
 						if(post.confirmedUsers.contains(user) || post.onWaitingListUsers.contains(user)){
-							ViewEvent.page(eventId, isFull, isSigned);
+							ViewEvent.page(eventId);
 							System.out.println("###already signed up");
 						}else{
 							//System.out.println("##1: "+post.confirmedUsers.size());
@@ -100,7 +105,7 @@ public class ViewEvent extends Controller {
 							System.out.println("###confirmed user: "+username);
 							System.out.println("##2: "+post.confirmedUsers.size());
 
-							ViewEvent.page(eventId, isFull, isSigned);
+							ViewEvent.page(eventId);
 						}
 
 					}

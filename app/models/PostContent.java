@@ -19,6 +19,10 @@ import play.db.jpa.Model;
  */
 @Entity
 public class PostContent extends Model {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public String video;
 	@OneToMany( cascade = CascadeType.ALL)
 	@JoinColumn()
