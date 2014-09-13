@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -57,10 +58,8 @@ public class User extends Model {
 	@ManyToOne
 	public Event confirmedEvent;
 	
-	
-	
-	@ManyToMany(mappedBy = "waitingMembers")
-	public List<Event> waitingEvents;
+//	@ManyToMany(mappedBy = "waitingMembers")
+//	public List<Event> waitingEvents;
 	
 	@ManyToOne
 	public Event waitingEvent;
@@ -211,13 +210,6 @@ public class User extends Model {
 		this.posts = posts;
 	}
 
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
 
 	public Event getConfirmedEvent() {
 		return confirmedEvent;

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 
@@ -40,8 +41,8 @@ public class Event extends Post {
 	@ManyToMany()
     public List<User> members = new ArrayList<User>();
 
-	@ManyToMany()
-    public List<User> waitingMembers = new ArrayList<User>();
+//	@ManyToMany()
+//	public List<User> waitingMembers = new ArrayList<User>();
 	
 	public Event(boolean isClosed, Integer capacity, MapLocation mapLocation,
 			List<User> confirmedUsers, List<User> onWaitingListUsers) {
@@ -118,14 +119,6 @@ public class Event extends Post {
 		this.onWaitingListUsers = onWaitingListUsers;
 	}
 
-	public List<User> getMembers() {
-		return members;
-	}
-
-	public void setMembers(List<User> members) {
-		this.members = members;
-		
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

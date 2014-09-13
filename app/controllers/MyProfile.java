@@ -9,9 +9,9 @@ import play.mvc.*;
 public class MyProfile extends Controller {
 
 	public static void submit(String email, String password, String fullname,
-			String country, String address, String gender, String religion,
-			Date birthday, Blob photoData, String tags, String folloUserid,
-			String unFollowUserid, String delTag) {
+			String major, String address, String gender,
+			Date birthday, String cssaID, String currentDegree,
+			String mobileNo, String organization, String lastDegree) {
 		
 		
 		String username = session.get("username");
@@ -34,28 +34,24 @@ public class MyProfile extends Controller {
 				if (birthday != null) {
 					user.birthday = birthday;
 				}
-
-				//System.out.println("Photo :" + photoData);
-				if (photoData != null) {
-					user.image = new Image(photoData);
-					user.image.save();
+				if (major != null) {
+					user.major = major;
 				}
-
-				if (folloUserid != null) {
-					User folloUser = User.findById(Long.parseLong(folloUserid));
-					if (!user.followed.contains(folloUser)) {
-						user.followed.add(folloUser);
-					}
+				if (cssaID != null) {
+					user.cssaID = cssaID;
 				}
-
-				if (unFollowUserid != null) {
-					User unFollowUser = User.findById(Long
-							.parseLong(unFollowUserid));
-					if (user.followed.contains(unFollowUser)) {
-						user.followed.remove(unFollowUser);
-					}
+				if (currentDegree != null) {
+					user.currentDegree = currentDegree;
 				}
-
+				if (mobileNo != null) {
+					user.mobileNo = mobileNo;
+				}
+				if (organization != null) {
+					user.organization = organization;
+				}
+				if (lastDegree != null) {
+					user.lastDegree = lastDegree;
+				}
 				user.save();
 			}
 
