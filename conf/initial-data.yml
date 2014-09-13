@@ -75,7 +75,7 @@ Event(e1):
     content: P1content
     confirmedUsers: [jeff]
     onWaitingListUsers: [huang]
-    capacity: 20
+    capacity: 1
     members: [allen]
     postType: "event"
 

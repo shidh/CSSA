@@ -11,19 +11,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import play.db.jpa.Model;
-
 import com.google.gson.Gson;
 
-import javax.persistence.InheritanceType;
-import javax.persistence.Inheritance;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 /**
  * @author allen
  *

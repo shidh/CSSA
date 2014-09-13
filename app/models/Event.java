@@ -121,11 +121,68 @@ public class Event extends Post {
 
 	public void setMembers(List<User> members) {
 		this.members = members;
+		
 	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public boolean isFull(){
+		Long eventId = this.id;
+		boolean isFull = false;
+		if (eventId != null) {
+			Event post = Event.findById(eventId);
+			if (post != null) {
+				if (post.confirmedUsers.size() < post.capacity){
+					isFull = false;
+					System.out.println("#not full");
+				}else{
+					isFull = true;
+					System.out.println("#is full");
+				}
+			}	
+		}
 
+		return isFull;
+	}
+	
+	public boolean isConfirmed(Long userId){
+		Long eventId = this.id;
+		boolean isSigned = false;
+		if (userId != null) {
+			User user = User.findById(userId);
+			Event post = Event.findById(eventId);
+			if (user != null) {
+				if (post.confirmedUsers.contains(user) ){
+					isSigned = true;
+					System.out.println("###You are already confirmed");
+				}else{
+					isSigned = false;
+					System.out.println("###You haven't signed up");
+				}
+			}
+		}
+		return isSigned;
+	}
+
+	public boolean isOnWaiting(Long userId){
+		Long eventId = this.id;
+		boolean isSigned = false;
+		if (userId != null) {
+			User user = User.findById(userId);
+			Event post = Event.findById(eventId);
+			if (user != null) {
+				if (post.onWaitingListUsers.contains(user)){
+					isSigned = true;
+					System.out.println("###You are already on waiting list");
+				}else{
+					isSigned = false;
+					System.out.println("###You haven't signed up");
+				}
+			}
+		}
+		return isSigned;
+	}
 
 }

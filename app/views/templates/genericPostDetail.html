@@ -67,7 +67,7 @@
     </script>
 
 
-<!-- render(post, user, flag_login, email, isFull, isSigned);-->
+<!-- render(post, user, flag_login, email);-->
 
 <div id="view_post_div" class="center">
 	<div id="view_post_left_div" >
@@ -115,16 +115,19 @@
      	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}" hidden/>
      	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>
      	
-     	<div  align="center">
+     	<div align="center">
      	
         #{if mode == "event"}
-        	#{if isSigned}
-   		     		<input type="submit" class="btn btn-success" id="comment_button_input" name="join" value="你已经报过名"/>
+        	#{if post.isConfirmed(user.id)}
+   		     		<input  class="btn btn-success" id="comment_button_input" name="confirm" value="你已经确认报名"/>
         	#{/if}
+        	#{elseif  post.isOnWaiting(user.id)}
+   		     		<input  class="btn btn-warning" id="comment_button_input" name="waiting" value="你已经在waiting list上"/>
+        	#{/elseif }
         	
-        	#{elseif isFull}
+        	#{elseif post.isFull()}
                #{form @ViewEvent.signUp(post.id)}
-   		     		<input type="submit" class="btn btn-primary" id="comment_button_input" name="join" value="活动已经爆满，只能加入Waiting List"/>
+   		     		<input type="submit" class="btn btn-info" id="comment_button_input" name="join" value="活动已经爆满，只能加入Waiting List"/>
        	    	#{/form}
         	#{/elseif}
             

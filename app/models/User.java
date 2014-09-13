@@ -61,6 +61,7 @@ public class User extends Model {
 	public Event waitingEvent;
 		
 	
+	
 	public String getEmail() {
 		return email;
 	}
