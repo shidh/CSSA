@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.util.Date;
 
 import models.*;
@@ -12,7 +13,7 @@ public class MyProfile extends Controller {
 			String major, String address, String gender,
 			Date birthday, String cssaID, String currentDegree,
 			String mobileNo, String organization, String lastDegree) {
-		
+
 		
 		String username = session.get("username");
 		

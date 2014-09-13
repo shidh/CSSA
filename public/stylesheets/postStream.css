@@ -6,10 +6,16 @@
 	width:70%;
 }
 
+.sidebar{
+	position: absolute;
+	position: fixed;
+	margin-left: 88%;
+	margin-top: 8%;
+}
+
 .activities{
 	padding-top: 10px;
 	padding-bottom: 30px;
-	border-bottom: 8px solid #428bca;
 	color: #428bca;
 	text-align: center;
 	font-size: 30px;
@@ -17,8 +23,11 @@
 }
 
 .post{
-	border-bottom: 4px solid #428bca;
-	padding: 10px 20px;
+	padding: 0px 20px;
+}
+
+.post-title{
+	margin-left: 220px;
 }
 
 .post-title :hover{
@@ -27,12 +36,13 @@
 
 .postTime{
 	font-size: 12px;
+	margin-left: 220px;
 }
 
 .postImage{
-	height: 120px;
-	width: 120px;
-	margin-top:10px;
+	height: 200px;
+	width: 200px;
+	margin-top:-50px;
 	border: 1px solid #428bca;
 	float: left;
 	text-align: center;
@@ -44,7 +54,13 @@
 }
 
 .post-metadata{
-	margin-left:140px;
+	margin-left:220px;
 	margin-top: 10px;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+	font-size: 15px;
+}
+
+.post-desc{
+	overflow: hidden;
+	max-height: 100px;
 }
