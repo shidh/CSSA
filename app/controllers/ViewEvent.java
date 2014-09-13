@@ -30,8 +30,11 @@ public class ViewEvent extends Controller {
 				}
 				System.out.println("confirm list: "+post.confirmedUsers);
 
-				System.out.println("person on the 1st of waiting list: "+post.onWaitingListUsers.get(0).fullname);
-				
+				if(post.onWaitingListUsers.size()>0){
+					System.out.println("person on the 1st of waiting list: "+post.onWaitingListUsers.get(0).fullname);
+				}else{
+					System.out.println("no one on the waiting list");
+				}
 				render(post, user, flag_login, email);
 
 			}

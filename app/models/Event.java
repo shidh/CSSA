@@ -40,6 +40,9 @@ public class Event extends Post {
 	@ManyToMany()
     public List<User> members = new ArrayList<User>();
 
+	@ManyToMany()
+    public List<User> waitingMembers = new ArrayList<User>();
+	
 	public Event(boolean isClosed, Integer capacity, MapLocation mapLocation,
 			List<User> confirmedUsers, List<User> onWaitingListUsers) {
 		super();
