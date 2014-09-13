@@ -48,6 +48,7 @@ public class Event extends Post {
 		this.mapLocation = mapLocation;
 		this.confirmedUsers = confirmedUsers;
 		this.onWaitingListUsers = onWaitingListUsers;
+		this.postType = "event";
 	}
 
 	public Event(String title, String description, String postContent,
@@ -64,6 +65,7 @@ public class Event extends Post {
 		this.tags = tags;
 		this.rating = 0.0;
 		this.capacity = 0;
+		this.postType = "event";
 	}
 	
 	public Event(String title, String description, MapLocation mapLocation,
@@ -78,7 +80,7 @@ public class Event extends Post {
 		this.tags = tags;
 		this.rating = 0.0;
 		this.capacity = 0;
-
+		this.postType = "event";
 	}
 
 	public boolean isClosed() {

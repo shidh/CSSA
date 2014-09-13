@@ -52,7 +52,10 @@ public class Post extends Model {
 	public String postContent;
 
 	public Double rating;
-
+	
+	@Column(name = "postType")
+	public String postType;
+	
 	@OneToOne
 	public MapLocation mapLocation;
 
@@ -88,6 +91,8 @@ public class Post extends Model {
 		this.postContent = postContent;
 		this.content = content;
 		this.sender = sender;
+		this.postType = "news";
+
 	}
 
 	public Post(String title, String description, String postContent, MapLocation mapLocation,
@@ -103,6 +108,8 @@ public class Post extends Model {
 		this.tags = tags;
 		this.rating = 0.0;
 		this.postContent =postContent;
+		this.postType = "news";
+
 	}
 
 	public static Post getMostRecent()
