@@ -37,7 +37,7 @@ public class Event extends Post {
 	@OneToMany(mappedBy = "waitingEvent", cascade = CascadeType.ALL)
 	public List<User> onWaitingListUsers;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany()
     public List<User> members = new ArrayList<User>();
 
 	public Event(boolean isClosed, Integer capacity, MapLocation mapLocation,

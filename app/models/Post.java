@@ -11,6 +11,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -19,13 +20,28 @@ import play.db.jpa.Model;
 
 import com.google.gson.Gson;
 
-
+import javax.persistence.InheritanceType;
+import javax.persistence.Inheritance;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 /**
  * @author allen
  *
  */
 @Entity
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS) 
 public class Post extends Model {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	//@Id
+	//@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.TABLE)
+	//private int id;
+
 	public String title;
 	
 	@Column( length = 100 )
