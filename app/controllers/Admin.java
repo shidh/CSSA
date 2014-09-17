@@ -350,7 +350,6 @@ public class Admin extends Controller {
 				event.setCapacity(capacity);
 				// update time
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM hh:mm");
-				System.out.println(time);
 				try {
 					event.setTime(formatter.parse(time));
 				} catch (ParseException e) {
@@ -381,7 +380,6 @@ public class Admin extends Controller {
 				event.setCapacity(capacity);
 				// set time
 				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM hh:mm");
-				System.out.println(time);
 				try {
 					event.setTime(formatter.parse(time));
 				} catch (ParseException e) {
