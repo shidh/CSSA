@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -196,12 +198,12 @@ public class Admin extends Controller {
 			String title = post.getTitle();
 			
 			// render
-			render(postId, username, selectedIndex, separator, content, title);
+			render(postId, post, username, selectedIndex, separator);
 			
 			return;
 		}
 		
-		render(postId, username, selectedIndex, separator);
+		render(username, selectedIndex, separator);
 	}
 	
 	/**
@@ -246,11 +248,16 @@ public class Admin extends Controller {
 	 * @param username - The username
 	 * @param imgUrls - The urls of image in this post
 	 */
-	public static void savePost(String postId,
+	public static void savePost(
+			String postType,
+			String postId,
 			String title, 
 			String postEditor, 
 			String username, 
-			String imgUrls){
+			String imgUrls,
+			int capacity,
+			String location,
+			String time){
 		
 		// find user
 		User user = User.find("byEmail", username).first();
@@ -289,30 +296,103 @@ public class Admin extends Controller {
 			
 		}
 		
-		// post
-		Post post = null;
-		
-		// if post id not null --> update
-		if(postId != null && !postId.trim().equals("")){
-			// find
-			post = Post.find("byId", Long.parseLong(postId)).first();
-			// update title
-			post.setTitle(title);
-			// set date
-			post.setPostingDate(new Date());
-			// set sender
-			post.setPostContent(postEditor);
-			// set images etc.
-			post.setContent(postContent);
-			// set sender
-			post.setSender(user);
-		}else{
-			// new post
-			post = new Post(title, new Date(), postEditor, postContent, user);
+		if(postType.equals("news")){ // news
+			// if post id not null --> update
+			if(postId != null && !postId.trim().equals("")){
+				// post
+				Post post = null;
+				// find
+				post = Post.find("byId", Long.parseLong(postId)).first();
+				// set type
+				post.setPostType("news");
+				// update title
+				post.setTitle(title);
+				// set date
+				post.setPostingDate(new Date());
+				// set sender
+				post.setPostContent(postEditor);
+				// set images etc.
+				post.setContent(postContent);
+				// set sender
+				post.setSender(user);
+				// save
+				post.save();
+			}else{
+				// post
+				Post post = null;
+				// new post
+				post = new Post(title, new Date(), postEditor, postContent, user);
+				// set type
+				post.setPostType("news");
+				// save
+				post.save();
+			}
+		}else if(postType.equals("event")){// event
+			// if post id not null --> update
+			if(postId != null && !postId.trim().equals("")){
+				// event
+				Event event = null;
+				// find
+				event = Post.find("byId", Long.parseLong(postId)).first();
+				// set type
+				event.setPostType("event");
+				// update title
+				event.setTitle(title);
+				// set date
+				event.setPostingDate(new Date());
+				// set sender
+				event.setPostContent(postEditor);
+				// set images etc.
+				event.setContent(postContent);
+				// set sender
+				event.setSender(user);
+				// update capacity
+				event.setCapacity(capacity);
+				// update time
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM hh:mm");
+				System.out.println(time);
+				try {
+					event.setTime(formatter.parse(time));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				// update location
+				event.setLocation(location);
+				// save
+				event.save();
+			}else{
+				// post
+				Event event = null;
+				// new event
+				event = new Event();
+				// set type
+				event.setPostType("event");
+				// set title
+				event.setTitle(title);
+				// set date
+				event.setPostingDate(new Date());
+				// set sender
+				event.setPostContent(postEditor);
+				// set images etc.
+				event.setContent(postContent);
+				// set sender
+				event.setSender(user);
+				// set capacity
+				event.setCapacity(capacity);
+				// set time
+				SimpleDateFormat formatter = new SimpleDateFormat("yyyy-dd-MM hh:mm");
+				System.out.println(time);
+				try {
+					event.setTime(formatter.parse(time));
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				// set location
+				event.setLocation(location);
+				// save
+				event.save();
+			}
 		}
-		
-		// save
-		post.save();
 		
 		allPosts();
 	}

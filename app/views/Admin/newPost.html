@@ -21,27 +21,43 @@
 			}
     	}
     </script>
-    <select id="postType" name="type" class="form-control" onchange="typeHandler()">
+    <select id="postType" name="postType" class="form-control" onchange="typeHandler()">
 	  <option value="news">新闻</option>
-	  <option value="event">活动</option>
+	  <option value="event" #{if post != null && post.postType == "event"}selected#{/if}>活动</option>
 	</select>
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">标题</label>
     <input type="text" class="form-control" id="postTitle" placeholder="请输入标题" name="title" 
-	#{if title != null}
-		value = '${title}'
+	#{if post != null}
+		value = '${post.title}'
 	#{/if}/>
   </div>
-  <div id="eventSpecific" style="display:none;">
+  <div id="eventSpecific" 
+  #{if post != null}
+  	#{if post.postType == "news"}
+  	  style="display:none;"
+  	#{/if}
+  	#{if post.postType == "event"}
+  	  style="display:block;"
+  	#{/if}
+  #{/if}
+  #{else}
+  	style="display:none;"
+  #{/else}
+  >
   <div class="form-group">
     <label for="exampleInputEmail1">人数上限</label>
-    <input type="text" name="capacity" class="form-control" id="postTitle" placeholder="请输入人数上限" name="title"/>
+    <input type="text" name="capacity" class="form-control" id="postTitle" placeholder="请输入人数上限" name="capacity"
+    #{if post != null && post.postType == "event"}value="${post.capacity}"#{/if}
+    />
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">时间</label>
     <div class='input-group date' id='datetimepicker1'>
-        <input type='text' class="form-control" placeholder="单击右边图标可以选择日期"/>
+        <input type='text' class="form-control" placeholder="单击右边图标可以选择日期" name="time"
+        #{if post != null && post.postType == "event"}value="${post.time.format('yyyy-dd-MM hh:mm')}"#{/if}
+        />
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
         </span>
     </div>
@@ -51,14 +67,16 @@
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">地址</label>
-    <input type="text" name="location" class="form-control" id="postTitle" placeholder="请输入地址" name="title"/>
+    <input type="text" name="location" class="form-control" id="postTitle" placeholder="请输入地址" name="location"
+    #{if post != null && post.postType == "event"}value="${post.location}"#{/if}
+    />
   </div>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">正文</label>
     <textarea name="postEditor" id="postEditor" rows="10" cols="80">
-		#{if content != null}
-			${content}
+		#{if post != null}
+			${post.postContent}
 		#{/if}
 	</textarea>
 	<script>

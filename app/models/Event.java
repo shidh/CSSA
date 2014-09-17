@@ -28,10 +28,35 @@ public class Event extends Post {
 	public boolean isClosed;
 	
 	public Integer capacity;
+	
+	public Date time;
+	
+	public String location;
+	
 
 //	@OneToOne
 //	public MapLocation mapLocation;
 	
+	public Event() {
+		super();
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Date getTime() {
+		return time;
+	}
+
+	public void setTime(Date time) {
+		this.time = time;
+	}
+
 	@OneToMany(mappedBy = "confirmedEvent", cascade = CascadeType.ALL)
 	public List<User> confirmedUsers;
 	

@@ -78,6 +78,8 @@ Event(e1):
     capacity: 1
     members: [allen]
     postType: "event"
+    time: 2014-07-16T6:59:43+02:00
+    location: Alzeyer Str. 16. 80993 München
 
 Event(e2):
     title: "2nd event"
@@ -91,6 +93,8 @@ Event(e2):
     capacity: 30
     members: [allen]
     postType: "event"
+    time: 2014-07-16T6:59:43+02:00
+    location: Pocci Str. 27. 89223 München
     
 
     

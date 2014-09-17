@@ -46,12 +46,21 @@ public class Post extends Model {
 
 	public Double rating;
 	
+	/**
+	 * event/news
+	 */
 	@Column(name = "postType")
 	public String postType;
 	
 	@OneToOne
 	public MapLocation mapLocation;
 
+	public String getPostType() {
+		return postType;
+	}
+	public void setPostType(String postType) {
+		this.postType = postType;
+	}
 	@OneToOne
 	public PostContent content;
 
