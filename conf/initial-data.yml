@@ -1,24 +1,37 @@
 # you describe your data using the YAML notation here
 # and then load them using Fixtures.load("data.yml")
 
+User(linda):
+    fullname: "Linda"
+    email: linda@gmail.com
+    password: 123
+    posts: [p1, p3]
+    events: [e2]
+
+User(petter):
+    fullname: "Petter Lin"
+    email: petter@gmail.com
+    password: 123
+    posts: [p1, p3]
+    events: [e2]
+
 User(allen):
     fullname: "Allen Shi"
     email: shidenghui@gmail.com
     password: 123
     posts: [p1, p3]
-    events: [e1, e2]
+    events: [e2]
     
 User(jeff):
    email: linxj92@gmail.com
    password: 123
    fullname: "Jeff Lin"
-   #posts: [p2]
+   posts: [p2]
    
 User(huang):
     email: uniquehuang1122@gmail.com
     password: 123
     fullname: "Wenbo Huang"
-    
     
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
@@ -73,10 +86,10 @@ Event(e1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    confirmedUsers: [jeff]
-    onWaitingListUsers: [huang]
+    confirmedUsers: [allen, linda, petter]
+    onWaitingListUsers: [huang, jeff]
     capacity: 1
-    members: [allen]
+    members: [allen, linda, petter]
     postType: "event"
     time: 2014-07-16T6:59:43+02:00
     location: Alzeyer Str. 16. 80993 München
@@ -91,7 +104,7 @@ Event(e2):
     confirmedUsers: [huang]
     onWaitingListUsers: [allen, jeff]
     capacity: 30
-    members: [allen]
+    members: [allen, linda, petter]
     postType: "event"
     time: 2014-07-16T6:59:43+02:00
     location: Pocci Str. 27. 89223 München

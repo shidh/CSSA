@@ -10,6 +10,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToMany;
 
@@ -57,11 +58,19 @@ public class Event extends Post {
 		this.time = time;
 	}
 
-	@OneToMany(mappedBy = "confirmedEvent", cascade = CascadeType.ALL)
-	public List<User> confirmedUsers;
+	@ManyToMany
+	@JoinTable(
+		      name="CMF_JOIN",
+		      joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="id")},
+		      inverseJoinColumns={@JoinColumn(name="EVENT_ID", referencedColumnName="id")})
+	public List<User> confirmedUsers = new ArrayList<User>();
 	
-	@OneToMany(mappedBy = "waitingEvent", cascade = CascadeType.ALL)
-	public List<User> onWaitingListUsers;
+	@ManyToMany
+	@JoinTable(
+		      name="WAT_JOIN",
+		      joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="id")},
+		      inverseJoinColumns={@JoinColumn(name="EVENT_ID", referencedColumnName="id")})
+	public List<User> onWaitingListUsers = new ArrayList<User>();
 	
 	@ManyToMany()
     public List<User> members = new ArrayList<User>();
@@ -168,6 +177,29 @@ public class Event extends Post {
 		return isFull;
 	}
 	
+	public List<User> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<User> members) {
+		this.members = members;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Event [isClosed=" + isClosed + ", capacity=" + capacity
+				+ ", time=" + time + ", location=" + location
+				+ ", confirmedUsers=" + confirmedUsers
+				+ ", onWaitingListUsers=" + onWaitingListUsers + ", members="
+				+ members + ", title=" + title + ", description=" + description
+				+ ", postingDate=" + postingDate + ", postContent="
+				+ postContent + ", rating=" + rating + ", postType=" + postType
+				+ ", mapLocation=" + mapLocation + ", content=" + content
+				+ ", sender=" + sender + ", tags=" + tags + ", comments="
+				+ comments + ", id=" + id + "]";
+	}
+
 	public boolean isConfirmed(Long userId){
 		Long eventId = this.id;
 		boolean isSigned = false;

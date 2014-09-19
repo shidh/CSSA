@@ -95,7 +95,10 @@ public class Admin extends Controller {
 		// selected
 		int selectedIndex = 3;
 		
-		render(selectedIndex);
+		// find event
+		Event event = Event.find("byId", eventId).first();
+		
+		render(selectedIndex, event);
 	}
 	
 	/**

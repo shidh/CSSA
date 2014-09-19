@@ -83,7 +83,7 @@ public class ViewEvent extends Controller {
 						System.out.println("###event is already full");
 						//System.out.println("###1: "+post.onWaitingListUsers.size());
 						post.onWaitingListUsers.add(user);
-						user.waitingEvent = post;
+//						user.waitingEvent = post; //我改了数据库 --林
 						post.save();
 						user.save();
 						isSigned = true;
@@ -98,7 +98,7 @@ public class ViewEvent extends Controller {
 						}else{
 							//System.out.println("##1: "+post.confirmedUsers.size());
 							post.confirmedUsers.add(user);
-							user.confirmedEvent = post;
+//							user.confirmedEvent = post; // 我改了数据库 -- 林
 							post.save();
 							user.save();
 							isSigned = true;

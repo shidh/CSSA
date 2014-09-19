@@ -9,8 +9,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -55,14 +55,14 @@ public class User extends Model {
 	@ManyToMany(mappedBy = "members")
 	public List<Event> events;
 	
-	@ManyToOne
-	public Event confirmedEvent;
+	@ManyToMany(mappedBy="confirmedUsers")
+	public List<Event> confirmedEvent;
 	
 //	@ManyToMany(mappedBy = "waitingMembers")
 //	public List<Event> waitingEvents;
 	
-	@ManyToOne
-	public Event waitingEvent;
+	@ManyToMany(mappedBy="onWaitingListUsers")
+	public List<Event> waitingEvent;
 		
 	
 	
@@ -211,19 +211,28 @@ public class User extends Model {
 	}
 
 
-	public Event getConfirmedEvent() {
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public List<Event> getConfirmedEvent() {
 		return confirmedEvent;
 	}
 
-	public void setConfirmedEvent(Event confirmedEvent) {
+	public void setConfirmedEvent(List<Event> confirmedEvent) {
 		this.confirmedEvent = confirmedEvent;
 	}
 
-	public Event getWaitingEvent() {
+	public List<Event> getWaitingEvent() {
 		return waitingEvent;
 	}
 
-	public void setWaitingEvent(Event waitingEvent) {
+	public void setWaitingEvent(List<Event> waitingEvent) {
 		this.waitingEvent = waitingEvent;
 	}
 

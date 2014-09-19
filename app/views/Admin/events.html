@@ -18,7 +18,7 @@
 	        	<td>${i+1}</td>
 				<td>${list.get(i).title}</td>
 				<td>#{if list.get(i).sender != null}${list.get(i).sender.fullname}#{/if}</td>
-				<td>${list.get(i).capacity}/${list.get(i).onWaitingListUsers.size}/${list.get(i).confirmedUsers.size}</td>
+				<td>${list.get(i).capacity}/${list.get(i).onWaitingListUsers.size()}/${list.get(i).confirmedUsers.size()}</td>
 				<td>
 					<a href="/Admin/updatePost?postId=${list.get(i).getId()}">修改</a>&nbsp;
 					<a href="/Admin/deleteEvent?eventId=${list.get(i).getId()}">删除</a>

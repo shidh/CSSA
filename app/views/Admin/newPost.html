@@ -123,7 +123,7 @@
 				var url = imgTags[i].src;
 				
 				// relative url
-				var relativeUrl = url.replace("http://localhost:9000","");
+				var relativeUrl = url.replace(window.location.origin,"");
 				
 				// windows path
 				var path = relativeUrl.replace(/\//g, '\${separator}');
