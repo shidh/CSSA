@@ -28,6 +28,52 @@ import com.google.gson.Gson;
 public class Admin extends Controller {
 	
 	/**
+	 * Management of application of an event
+	 */
+	public static void updateApply(Long eventId, Long[] confirm, Long[] waiting){
+		// find event
+		Event event = Event.find("byId", eventId).first();
+		
+		// list of confirm
+		List<User> confirmList = new ArrayList<User>();
+		
+		// loop all confirm user
+		if(confirm != null){
+			for(int i = 0;i < confirm.length; i++){
+				// find user
+				User user = User.find("byId", confirm[i]).first();
+				
+				// add to list
+				confirmList.add(user);
+			}
+		}
+		
+		// list of confirm
+		List<User> waitingList = new ArrayList<User>();
+		
+		// loop all confirm user
+		if(waiting != null){
+			for(int i = 0;i < waiting.length; i++){
+				// find user
+				User user = User.find("byId", waiting[i]).first();
+				
+				// add to list
+				waitingList.add(user);
+			}
+		}
+		
+		// update event
+		event.setConfirmedUsers(confirmList);
+		event.setOnWaitingListUsers(waitingList);
+		
+		// save
+		event.save();
+		
+		// show all events
+		events();
+	}
+	
+	/**
 	 * The main page of admin
 	 */
 	public static void index() {
