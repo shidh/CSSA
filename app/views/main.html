@@ -43,13 +43,19 @@
         
       				</ul>
       				    				
-
-      				<form class="navbar-form navbar-left" role="search">
-        				<div class="form-group">
-         					<input type="text" class="form-control" placeholder="Search">
-        				</div>
-        				<button type="submit" class="btn btn-primary">搜索</button>
-      				</form>
+      				<form class="navbar-form navbar-left"  role="form" action="https://www.google.com/search">
+						<div class="input-group">
+						<input type="hidden" name="sitesearch" value="www.cssa-munich.de">
+						<input type="text" name="as_q" class="form-control" placeholder="Search">
+						
+						<span class="input-group-btn">
+							<button class="btn btn-primary" type="submit" value="Go" title="搜索">
+						搜索&nbsp&nbsp
+						<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</span>
+						</div>
+					</form>
 							#{if flag_login}
 							<ul class="nav navbar-nav navbar-right">
 								<li ><a href="/myProfile">欢迎, ${email}</a></li>
