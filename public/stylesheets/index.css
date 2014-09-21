@@ -8,6 +8,14 @@ body{
 	padding-bottom: 30px;
 }
 
+.inner-col {
+max-width: 960px;
+position: relative;
+width: 1024px;
+margin: 0 auto;
+padding-bottom: 50px;
+}
+
 * {
 	margin: 0;
 	padding: 0;
