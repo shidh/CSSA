@@ -122,7 +122,91 @@
 
   <hr>
   <script type="text/javascript">
-//move selected item from waiting to confirm
+  // dis-select all
+  function disSelectAll(){
+	// get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = false;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = false;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all redios
+  function selectAll(){
+	  // get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = true;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all redios
+  function selectAll(){
+	  // get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = true;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  //move selected item from waiting to confirm
   function moveToConfirm(){
 	  // get container
 	  var container = document.getElementById("waitingContainer");
@@ -287,14 +371,50 @@
 	    操作 <span class="caret"></span>
 	</button>
 	<ul class="dropdown-menu" role="menu">
-	  <li><a href="#">群发邮件</a></li>
-	  <li><a href="#">删除选中项</a></li>
-	  <li><a href="#">全选</a></li>
-	  <li><a href="#">全部反选</a></li>
+	  <li><a href="javascript:void(0);" onclick="broadcastEmail();">群发邮件</a></li>
+	  <li><a href="javascript:void(0);">删除选中项</a></li>
+	  <li><a href="javascript:void(0);" onclick="selectAll();">全选</a></li>
+	  <li><a href="javascript:void(0);" onclick="disSelectAll();">全部反选</a></li>
 	</ul>
   </div>
   
 <script type="text/javascript">
+// broadcast email
+function broadcastEmail(){
+	// all ids
+	var ids = new Array();
+	
+	// all items
+	var items = document.getElementsByClassName("well");
+	
+	// loop all items
+	for(var i = 0; i < items.length; i++){
+		// get radio of item
+		var radio = items[i].getElementsByClassName("selectRadio")[0];
+		
+		// if checked
+		if(radio.checked == true){
+			// get id
+			var id = items[i].getElementsByClassName("userId")[0];
+			
+			// push
+			ids.push(id.value);
+		}
+	}
+	
+	// generate url
+	var url = window.location.origin+"/admin/broadcastEmail";
+	
+	if(ids.length > 0){
+		url = url + "?";
+		for(var j = 0; j < ids.length; j++){
+			url = url + "userId=" + ids[j] + "&";
+		}
+	}
+
+	window.open(url,"_self");
+}
+
 // parent
 var parent = null;
 

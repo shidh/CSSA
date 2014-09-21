@@ -2,6 +2,7 @@
 <h1 class="page-header">新建帖子</h1>
 
 #{form @savePost()}
+
 <input type="hidden" value="${postId}" name="postId" />
 <input type="hidden" name="username" value="${username}" />
   <div class="form-group">
@@ -55,11 +56,15 @@
   <div class="form-group">
     <label for="exampleInputEmail1">时间</label>
     <div class='input-group date' id='datetimepicker1'>
-        <input type='text' class="form-control" placeholder="单击右边图标可以选择日期" name="time"
-        #{if post != null && post.postType == "event"}value="${post.time.format('yyyy-dd-MM hh:mm')}"#{/if}
-        />
-        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-        </span>
+    	<input type='text' class="form-control" placeholder="输入时间" name="time" data-date-format="YYYY-MM-DD HH:mm" id='datepicker' #{if post != null && post.postType == "event"}value="${post.time.format('yyyy-MM-dd HH:mm')}"#{/if}/>
+    	<span class="input-group-addon">
+			<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+    	<script type="text/javascript">
+            $(function () {
+                $('#datepicker').datetimepicker();
+            });
+        </script>
     </div>
     <script type="text/javascript">
         document.getElementById('datetimepicker1').datetimepicker();
@@ -144,3 +149,5 @@
   </div>
   <button type="submit"  class="btn btn-default" onclick="saveHandler();">保存</button>
 #{/form}
+
+
