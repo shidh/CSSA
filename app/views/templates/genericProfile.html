@@ -11,9 +11,10 @@
 <script>
 var profileScope = {};
 var profileAddTagCounter = 0;
+var display = false;
 
 $(function() {      
-   initialize();   
+   initialize();
 });
 
 function initialize() {
@@ -79,10 +80,31 @@ function iconSelected(input) {
     }
 }
 
+function passwordBoxDisplay() {
+	if (display) {
+		document.getElementById('changePasswordBox').style.visibility='hidden';
+		display = false;
+	} else {
+		document.getElementById('changePasswordBox').style.visibility='visible';
+		display = true;
+	}
+}
+
 
 $(function(){
 	$("#profileIcon").click(function(){
         $(this).next().trigger('click');
+        var $elie = $("#profileIcon"), degree = 0, timer;
+        rotate();
+        function rotate() {
+        	if(degree < 720){
+            	$elie.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});  
+           		$elie.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});                      
+            	timer = setTimeout(function() {
+                	++degree; rotate();
+            	},1);
+        	}
+        }
     });
 });
     
@@ -94,7 +116,7 @@ $(function(){
 
 #{form @MyProfile.submit(), enctype:"multipart/form-data", role:"form", class:"otherProfile"}
   	<div class="form-group profileData" onmousemove="document.getElementById('fullname').disabled=false" onmouseout="document.getElementById('fullname').disabled=true">
-    	<label for="fullname">Fullname</label>
+    	<label for="fullname" style="margin-top:50px;">Fullname</label>
     	<input type="text" name="fullname" class="form-control" id="fullname" placeholder="fullname" value="${user.fullname}" disabled/>
   	</div>
   	<div class="form-group profileData">
@@ -113,9 +135,9 @@ $(function(){
     	<label for="religion">Religion</label>
     	<input type="text" name="religion" class="form-control" id="religion" placeholder="religion">
   	</div>
-  	<div class="form-group profileData" onmousemove="document.getElementById('address').disabled=false" onmouseout="document.getElementById('address').disabled=true">
+  	<div class="form-group profileData">
     	<label for="address">Address</label>
-    	<input type="text" name="address" class="form-control" id="address" placeholder="address" value="${user.address}" disabled/>
+    	<input type="text" name="address" class="form-control" id="address" placeholder="address" value="${user.address}">
   	</div>
   	<div class="form-group profileData input-append date">
     	<label for="birthday">Birthday</label>
@@ -132,7 +154,7 @@ $(function(){
 		<input id="updateFile" name="file" type="file" accept="image/*" onchange="iconSelected(this)"/ >
 	</div>
 	
-	<div id="eventsMap">
+	<div id="eventsMap" >
 		<div id="profile-map-canvas" style="height: 350px; width: 100%">
 		</div>
 		<div id="myPostList">
@@ -155,14 +177,10 @@ $(function(){
 
 #{form @MyProfile.submit(), enctype:"multipart/form-data", role:"form", class:"keyProfile"}
 	<div class="form-group profileData">
-		<label for="emailAdress">Email Address</label>
-		<input type="text" class="form-control" id="emailAdress" disabled/ >
-	</div>
-	<div class="form-group profileData">
-		<label for=cssaID>CSSA Id</label>
+		<label for="cssaID" style="margin-top:50px;">CSSA Id</label>
 		<input type="text" class="form-control" id="cssaID" disabled/>
 	</div>
-	<div class="changePasswordButton" onclick="document.getElementById('changePasswordBox').style.visibility='visible'">
+	<div class="changePasswordButton" onclick="passwordBoxDisplay()">
 		Password change <span class="glyphicon glyphicon-align-justify"></span>
 	</div>
 	
