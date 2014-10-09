@@ -13,11 +13,6 @@
 	   initialize();
 	});
 	
-
-	function deleteImage(elementId, idx){
-		$("#" + elementId).remove();
-		$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
-	}
 	
 	//initlaize map
     function initialize() {
@@ -33,10 +28,11 @@
         
         newPostScope.address = "";
         
+        getlatlng();
         #{if post.mapLocation}
-        newPostScope.address = "${post.mapLocation.address.raw()}";
+        	newPostScope.address = "${post.mapLocation.address.raw()}";
 	        #{if post.mapLocation.latitude}
-	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+	        	setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
         	#{/if}
        	#{/if}
         
@@ -63,38 +59,68 @@
    	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
    	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
         }
+        
+        
+		function getlatlng(){
+			var address = $("#address_input").val();
+			
+			//if(address){
+				address = $.trim(address);
+				if(address != newPostScope.address){
+					newPostScope.address = address;
+				
+					newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+				   	      if (status == google.maps.GeocoderStatus.OK) {
+				   	    		setMarkerAt(results[0].geometry.location);
+				   	      } else {
+				   	      }
+				   	    });
+				}
+			//}
+		}
       }
     </script>
 
 
 <!-- render(post, user, flag_login, email);-->
-
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
 <div id="view_post_div" class="center">
 	<div id="view_post_left_div" >
 
-	    <div class="info">
-	        <label for="title_input">Title: </label>
+	    <h1>
 	        ${post?.title}
-	    </div>
+	    </h1>
+	    <hr>
 	    
-	    #{if mode == "event"} 
-	    <div class="info">
-	        <label for="address_input">Address: </label>
-	        ${post?.mapLocation?.address}
+	    #{if mode == "event"}
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">时间</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="${post.time.format('yyyy-MM-dd HH:mm')}" readonly>
+		  </div>
+		</form>
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">地点</label>
+		    <input type="email" class="form-control" id="address_input" value="${post?.mapLocation?.address}" placeholder="${post?.mapLocation?.address}" readonly>
+		  </div>
+		</form>
+	    <div class="panel panel-default">
 	        <div id="new_post_right_div" >
     			<div id="newpost-map-canvas" style="height:150px;width:100%"></div>
 	 		</div>
 	    </div>
+	    <hr>
 	    #{/if}
 	    
 	    <div class="info">
-	        <label for="description_input">PostContent: </label>
-	        <div>${post?.postContent.raw()}</div>
+	    	<div>${post?.postContent.raw()}</div>
 	    </div>
 	    
         #{if post.content} 
 	    <div class="info">
-	    	<label for="pictures_input">Pictures: </label>
 	        #{list items:post.content.pictures, as:'pic'}
 		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
 		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
@@ -115,77 +141,75 @@
      	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}" hidden/>
      	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>
      	
-     	<div align="center">
+     	<hr>
      	
         #{if mode == "event"}
         	#{if post.isConfirmed(user.id)}
-   		     		<input  class="btn btn-success" id="comment_button_input" name="confirm" value="你已经确认报名"/>
+        		<div class="alert alert-success" role="alert">你已经确认报名</div>
         	#{/if}
         	#{elseif  post.isOnWaiting(user.id)}
-   		     		<input  class="btn btn-warning" id="comment_button_input" name="waiting" value="你已经在waiting list上"/>
+        		<div class="alert alert-info" role="alert">你已经在waiting list上</div>
         	#{/elseif }
         	
         	#{elseif post.isFull()}
-               #{form @ViewEvent.signUp(post.id)}
-   		     		<input type="submit" class="btn btn-info" id="comment_button_input" name="join" value="活动已经爆满，只能加入Waiting List"/>
-       	    	#{/form}
+        		<div class="alert alert-danger" role="alert">
+	       	    	<div class="row">
+	       	    		<div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
+	       	    		<div class="col-sm-2">
+						#{form @ViewEvent.signUp(post.id)}
+		   		     		<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+		       	    	#{/form}
+						</div>
+	       	    	</div>
+       	    	</div>
         	#{/elseif}
             
             #{else}
-        		#{form @ViewEvent.signUp(post.id)}
-        			<input type="submit" class="btn btn-primary" id="comment_button_input" name="join" value="我要参加"/>
-     			#{/form}
+            	<div class="alert alert-info" role="alert">
+	       	    	<div class="row">
+	       	    		<div class="col-sm-10">我要参加</div>
+	       	    		<div class="col-sm-2">
+						#{form @ViewEvent.signUp(post.id)}
+		        			<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+		     			#{/form}
+						</div>
+	       	    	</div>
+       	    	</div>
         	#{/else}	
      	#{/if}	
-     	</div>
      </div>
      
+     <hr>
      
      
-     
+	 #{form @ViewPost.postComment(post.id)}
      <div id="comments_div">
-		<label>Comments:</label>
-			#{list items:post.comments, as:'comment'}
-			<div class="comments_content">
-				<b>Comment from:</b> #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
-				<b>Comment:</b> ${comment.text.raw()}<br>
-				<b>Rating:</b> ${comment.rating.raw()}<br>
-			</div>
-			<br>	
-			#{/list}
-			
-			#{form @ViewPost.postComment(post.id)}
-				<textarea name="commentText" placeholder="Add comment..." id="comment_text_input" cols="121" rows="5"></textarea>
-				<label for="rating_select">Rating</label>
-				<select name="commentRating" id="rating_select">
-					<option value="5">5</option>
-					<option value="4">4</option>
-					<option value="3">3</option>
-					<option value="2">2</option>
-					<option value="1">1</option>
-				</select>
-				<input type="submit" class="btn btn-primary" id="comment_button_input" name="postComment" value="Comment"/>
-			#{/form}
+		<h2>评论:</h2>
+		#{list items:post.comments, as:'comment'}
+		<div class="comments_content">
+			<b>Comment from:</b> #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+			<b>Comment:</b> ${comment.text.raw()}<br>
+			<b>Rating:</b> ${comment.rating.raw()}<br>
+		</div>
+		#{/list}
+		
+     	<div class="form-group">
+			<textarea name="commentText" placeholder="Add comment..." id="comment_text_input" class="form-control" rows="3"></textarea>
+		</div>
+		<div class="form-group">
+		<label for="rating_select">评分</label>
+		<select name="commentRating" id="rating_select">
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+		</select>
+		<input type="submit" class="btn btn-primary" id="comment_button_input" name="postComment" value="提交"/>
+		</div>
 	</div>
-		
-		
-		
-    	<div class="box" class="content">
-		<h2>Comments</h2>
-		<div id="disqus_thread"></div>
-		<script type="text/javascript">
-		  /**
-		    * var disqus_identifier; [Optional but recommended: Define a unique identifier (e.g. post id or slug) for this thread] 
-		    */
-		  (function() {
-		   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-		   dsq.src = 'http://elsewhere.disqus.com/embed.js';
-		   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-		  })();
-		</script>
- 		</div>
-		
-		
-	
-
+	#{/form}
+</div>
+</div>
+<div class="col-sm-2"></div>
 </div>
