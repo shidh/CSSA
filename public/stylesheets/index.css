@@ -11,20 +11,7 @@ body{
 	padding-bottom: 30px;
 }
 
-[class*="block-grid-"] {
-display: block;
-padding: 0;
-margin-left: 150px;
-margin-right: auto;
-}
 
-.row {
-width: 100%;
-margin-left: auto;
-margin-right: auto;
-margin-top: 0;
-margin-bottom: 0;
-}
 
 .inner-col {
 max-width: 960px;
@@ -83,6 +70,17 @@ img {
 	padding-bottom: 50px;
 	margin: 0 auto;
 	position: relative;
+}
+
+.partner_container {
+	width: 900px;
+	padding-bottom: 50px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.col-md-3{
+	margin-top: 10px;	
 }
 
 .nail {
