@@ -17,6 +17,7 @@ import java.util.List;
 
 import models.Event;
 import models.Image;
+import models.MapLocation;
 import models.Post;
 import models.PostContent;
 import models.User;
@@ -475,6 +476,10 @@ public class Admin extends Controller {
 				}
 				// update location
 				event.setLocation(location);
+				// new map location
+				MapLocation mapLocation = new MapLocation(location, null, null).save();
+				// update maplocation
+				event.setMapLocation(mapLocation);
 				// save
 				event.save();
 			} else {
@@ -506,6 +511,10 @@ public class Admin extends Controller {
 				}
 				// set location
 				event.setLocation(location);
+				// new map location
+				MapLocation mapLocation = new MapLocation(location, null, null).save();
+				// set maplocation
+				event.setMapLocation(mapLocation);
 				// save
 				event.save();
 			}
