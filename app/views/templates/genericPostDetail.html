@@ -79,13 +79,25 @@
 	    </h1>
 	    <hr>
 	    
-	    #{if mode == "event"} 
+	    #{if mode == "event"}
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">时间</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="${post.time.format('yyyy-MM-dd HH:mm')}" readonly>
+		  </div>
+		</form>
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">地点</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="${post?.mapLocation?.address}" readonly>
+		  </div>
+		</form>
 	    <div class="panel panel-default">
-	        ${post?.mapLocation?.address}
 	        <div id="new_post_right_div" >
     			<div id="newpost-map-canvas" style="height:150px;width:100%"></div>
 	 		</div>
 	    </div>
+	    <hr>
 	    #{/if}
 	    
 	    <div class="info">
