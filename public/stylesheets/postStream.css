@@ -13,6 +13,7 @@ a:hover{
 }
 
 .my-post-content{
+	margin-top:15px;
 	font: 14px/1.5 arial,serif;
 	font-size: 14px;
 	line-height: 1.8em;
