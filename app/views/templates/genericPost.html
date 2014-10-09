@@ -5,74 +5,62 @@
 	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/postStream.css'}">
 #{/set}
 
-<div class="sidebar">
-	<h4>Archives</h4>
-	<ol class="list-unstyled">
-		<li><a href="#">September 2014</li>
-		<li><a href="#">August 2014</li>
-		<li><a href="#">July 2014</li>
-		<li><a href="#">June 2014</li>
-		<li><a href="#">May 2014</li>
-		<li><a href="#">April 2014</li>
-		<li><a href="#">March 2014</li>
-		<li><a href="#">February 2014</li>
-		<li><a href="#">January 2014</li>
-	</ol>
-</div>
-
-<div id="my_post">
-	<div class="center" >
-
-#{if mode == "post"} 
-	        <h3 class="activities">新闻列表</h3>
-#{/if}
-#{if mode == "event"} 
-	        <h3 class="activities">活动列表</h3>
-#{/if}
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-6">
+		#{list items:posts, as:'onePost'}
+		<div class="my-container">
+			<div class="row my-title">
+				<div class="col-sm-1">
+					<span class="label label-primary">标签</span>
+				</div>
+				<div class="col-sm-11">
+					#{if mode == "post"} 
+			        	<a class="h1" href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
+			        #{if mode == "event"} 
+			        	<a class="h1" href="@{ViewEvent.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-5">
+					<img src="public/images/IMG_6071-11111.JPG" alt="pic" class="img-thumbnail img-responsive">
+				</div>
+				<div class="col-sm-7 my-post-content">
+					${onePost.postContent.raw()}
+				</div>
+			</div>
 			<hr>
-			
-            #{list items:posts, as:'onePost'}
-                <div class="post" >                
-                    <h3 class="post-title" >
-                    #{if mode == "post"} 
-                        <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
-					#{/if}
-		            #{if mode == "event"} 
-                        <a href="@{ViewEvent.page(onePost.id)}">${onePost.title}</a>
-					#{/if}
-                    </h2>                    
-                    <div class="postTime">
-						<span class="post-date"> Posted at: ${onePost.postingDate} </span>
-					</div>
-
-                    #{if onePost.content} 
-					#{list items:onePost.content.picturesTitles, as:'picture'}
-					<div class="postImage">
-						
-							<img border="1" src="public/images/IMG_6071-11111.JPG" alt="Pulpit Rock" width=200 height="200">
-					
-					</div>
-					#{/list}
-					#{/if}
-                    
-                    <div class="post-metadata">
-                        <span class="post-desc">
-                            ${onePost.postContent.raw()}
-                        </span>
-                   
-                        <span class="post-date">
-
-                        </span>
-                    </div>
-                </div>
-                <hr>
-            #{/list}
-
-            #{else}
-			    <div class="empty">
-			        No posts were published .
-			    </div>
-			#{/else}
-        </div>
+		</div>
+		#{/list}
+	</div>
+	<div class="col-sm-2">
+		<div class="jumbotron">
+		  <h4>热门文章</h4>
+		  <ol class="list-unstyled">
+			<li><a href="#">#全国雾霾# </li>
+			<li><a href="#">#胖妹也性感# </li>
+			<li><a href="#">#上厕所插队被拍板砖# </li>
+			<li><a href="#">#天降六天小长假# </li>
+			<li><a href="#">#诺贝尔文学奖# </li>
+			<li><a href="#">#心疼村上春树# </li>
+			<li><a href="#">#女子割下双亲头颅# </li>
+			<li><a href="#">#权志龙水原希子# </li>
+		  </ol>
+		</div>
+		<h4>按月分类</h4>
+		<ol class="list-unstyled">
+			<li><a href="#">September 2014</li>
+			<li><a href="#">August 2014</li>
+			<li><a href="#">July 2014</li>
+			<li><a href="#">June 2014</li>
+			<li><a href="#">May 2014</li>
+			<li><a href="#">April 2014</li>
+			<li><a href="#">March 2014</li>
+			<li><a href="#">February 2014</li>
+			<li><a href="#">January 2014</li>
+		</ol>
+	</div>
+	<div class="col-sm-2"></div>
 </div>
-

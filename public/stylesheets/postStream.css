@@ -1,66 +1,21 @@
-
-.center{
-	font:italic arial,sans-serif;
-	font-size:16px;
-	margin:auto;
-	width:70%;
+.h1 {
+	font-size: 18px;
+	font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
+	font-weight: bold;
 }
 
-.sidebar{
-	position: absolute;
-	position: fixed;
-	margin-left: 88%;
-	margin-top: 8%;
+a:hover{
+	text-decoration: none;
 }
 
-.activities{
-	padding-top: 10px;
-	padding-bottom: 30px;
-	color: #428bca;
-	text-align: center;
-	font-size: 30px;
-	font-weight: 900;
+.my-title{
+	margin-bottom:10px;
 }
 
-.post{
-	padding: 0px 20px;
-}
-
-.post-title{
-	margin-left: 220px;
-}
-
-.post-title :hover{
-	color: red;
-}
-
-.postTime{
-	font-size: 12px;
-	margin-left: 220px;
-}
-
-.postImage{
-	height: 200px;
-	width: 200px;
-	margin-top:-50px;
-	border: 1px solid #428bca;
-	float: left;
-	text-align: center;
-}
-
-.postImage span{
-	line-height: 120px;
-	color: ＃428bca;
-}
-
-.post-metadata{
-	margin-left:220px;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	font-size: 15px;
-}
-
-.post-desc{
+.my-post-content{
+	font: 14px/1.5 arial,serif;
+	font-size: 14px;
+	line-height: 1.8em;
 	overflow: hidden;
-	max-height: 100px;
+	height:150px;
 }
