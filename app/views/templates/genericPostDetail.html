@@ -13,11 +13,6 @@
 	   initialize();
 	});
 	
-
-	function deleteImage(elementId, idx){
-		$("#" + elementId).remove();
-		$("#delete_images_hidden_input").val($("#delete_images_hidden_input").val() + ";" + idx);		
-	}
 	
 	//initlaize map
     function initialize() {
@@ -33,10 +28,11 @@
         
         newPostScope.address = "";
         
+        getlatlng();
         #{if post.mapLocation}
-        newPostScope.address = "${post.mapLocation.address.raw()}";
+        	newPostScope.address = "${post.mapLocation.address.raw()}";
 	        #{if post.mapLocation.latitude}
-	        setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+	        	setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
         	#{/if}
        	#{/if}
         
@@ -63,6 +59,25 @@
    	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
    	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
         }
+        
+        
+		function getlatlng(){
+			var address = $("#address_input").val();
+			
+			//if(address){
+				address = $.trim(address);
+				if(address != newPostScope.address){
+					newPostScope.address = address;
+				
+					newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+				   	      if (status == google.maps.GeocoderStatus.OK) {
+				   	    		setMarkerAt(results[0].geometry.location);
+				   	      } else {
+				   	      }
+				   	    });
+				}
+			//}
+		}
       }
     </script>
 
