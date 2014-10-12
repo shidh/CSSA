@@ -45,7 +45,7 @@ public class EventStream extends Controller{
 
 	
 		}
-		
-		Application.index();
+		boolean promote_login = true;
+		Application.index(promote_login);
 	}
 }
