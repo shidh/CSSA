@@ -15,6 +15,8 @@ public class PostStream extends Controller{
 		
 		System.out.println("From PostStream#current username: "+userId);
 		boolean flag_login = false;
+		List<Post> posts = Post.find("byPostType", "news").fetch();
+
 		if (userId != null)
 		{
 			User user = User.findById(Long.parseLong(userId));
@@ -25,7 +27,6 @@ public class PostStream extends Controller{
 				String email = session.get("username");
 				//get all posts of all users
 				//List<Post> posts = Post.findAll();
-				List<Post> posts = Post.find("byPostType", "news").fetch();
 
 				//sort according to date
 				Collections.sort(posts, new Comparator<Post>(){
@@ -43,7 +44,7 @@ public class PostStream extends Controller{
 
 	
 		}
-		
-		Application.index();
+		render(posts, flag_login);
+		//Application.index();
 	}
 }
