@@ -1,5 +1,13 @@
 #{extends 'main.html' /} #{set title:'Home' /}
 
+#{if promote_login==true}
+<div class="alert alert-warning alert-dismissible" align="center" role="alert" style="width:1024px; margin:10px auto">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Please login first to check the events page</strong>
+</div>
+
+#{/if}
+
 <div class="slides_container">
 	<div id="focus">
 		<ul>
