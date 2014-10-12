@@ -67,7 +67,7 @@ public class ViewEvent extends Controller {
 				}
 			}
 		}
-		EventStream.page();
+		ViewEvent.page(eventId);
 	}
 	
 	public static void signUp(Long eventId) {
