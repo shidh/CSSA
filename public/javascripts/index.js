@@ -1,4 +1,3 @@
-
 $(function() {
 
 	var sWidth = $("#focus").width(); // 获取焦点图的宽度（显示面积）
@@ -104,6 +103,7 @@ $(function() {
 		$(".Alert").css("display", "none");
 	});
 
-	$(".alert").alert();
+	
+
 });
 
