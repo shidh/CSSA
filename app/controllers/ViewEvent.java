@@ -112,7 +112,7 @@ public class ViewEvent extends Controller {
 				}
 			}
 		}
-		EventStream.page();
+		EventStream.page(10,1);
 
 	}
 	

@@ -10,7 +10,7 @@ import play.mvc.Controller;
 
 public class EventStream extends Controller{
 
-	public static void page()
+	public static void page(int size, int page)
 	{
 		String username = session.get("username");
 		
@@ -24,23 +24,14 @@ public class EventStream extends Controller{
 			{
 				flag_login = true;
 				String email = session.get("username");
-				//get all posts of all users
-				//LinkedList<Post> posts = new LinkedList<Post>();
-				List<Event> posts = Event.findAll();
 
-				
-				//sort according to date
-				Collections.sort(posts, new Comparator<Post>(){
+				// 'size' is the number of elements displayed per page
+			    // 'page' is the current page index, starting from 1.
+			    int start = (page-1) * size;
+				List<Event> posts = Event.find("order by postingDate desc").from(start).fetch(size);
 
-					@Override
-					public int compare(Post post1, Post post2)
-					{
-						return post1.postingDate.compareTo(post2.postingDate);
-					}
-				});
-				
 				//render(user, posts);
-				render(posts, flag_login, email);
+				render(posts, flag_login, email, size, page);
 			}
 
 	
