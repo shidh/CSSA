@@ -104,6 +104,6 @@ $(function() {
 		$(".Alert").css("display", "none");
 	});
 
-	$(".alert").alert();
+	//$(".alert").alert();
 });
 
