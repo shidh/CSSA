@@ -1,12 +1,9 @@
 package controllers;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import models.Post;
 import models.User;
-import play.modules.paginate.ModelPaginator;
 import play.mvc.Controller;
 
 public class PostStream extends Controller{
