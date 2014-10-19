@@ -9,7 +9,7 @@ import play.mvc.*;
 
 public class MyProfile extends Controller {
 	
-	private static boolean updateSuccessFlag;
+	private static boolean updateSuccessFlag = false;
 	private static boolean wrongOldPassFlag = false;
 	private static boolean tooShortPassFlag = false;
 	private static boolean wrongSecondPassFlag = false;
