@@ -33,6 +33,8 @@ public class User extends Model {
 	public String major;    //专业
 	public String gender;   //性别
 	public Date birthday;   //生日 1985-1-4
+	public Date registerDate;
+	
 	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
@@ -42,7 +44,7 @@ public class User extends Model {
 	public String organization;
 	public String lastDegree;
 	public String currentDegree;
-
+	
 	@OneToOne
 	public Image image;
 

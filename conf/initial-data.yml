@@ -32,6 +32,7 @@ User(huang):
     email: uniquehuang1122@gmail.com
     password: 123
     fullname: "Wenbo Huang"
+    cssaID: ga35qux
     
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
