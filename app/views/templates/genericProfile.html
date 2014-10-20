@@ -150,7 +150,15 @@ $(function(){
   	</div>
   	<div class="form-group profileData input-append date">
     	<label for="birthday">Birthday</label>
-    	<input type="text" name="birthday" class="form-control" id="birthday" placeholder="birthday" value="${user.birthday}">
+    	<!--  <input type="text" name="birthday" class="form-control" id="birthday" placeholder="birthday" value="${user.birthday}">-->
+  		<input type='text' class="form-control" placeholder="birthday" name="birthday" data-date-format="YYYY-MM-DD HH:mm" id='birthday' #{if post != null && post.postType == "event"}value="${user.birthday.format('yyyy-MM-dd')}"#{/if}/>
+    	<script type="text/javascript">
+            $(function () {
+                $('#birthday').datetimepicker({
+					pickTime: false
+				});
+            });
+        </script>
   	</div>
   	<div class="form-group profileData">
     	<label for="address">Address</label>
