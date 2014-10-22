@@ -1,0 +1,12 @@
+<table class="table table-striped">
+	<tbody>
+	#{if list.size != 0}
+	#{list items:0..list.size-1, as:'i' }
+        <tr>
+			<td>${list.get(i).email}</td>
+		</tr>
+    #{/list}
+    #{/if}
+		
+	</tbody>
+</table>
