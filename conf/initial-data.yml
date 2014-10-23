@@ -14,24 +14,6 @@ User(petter):
     password: 123
     posts: [p1, p3]
     events: [e2]
-
-User(allen):
-    fullname: "Allen Shi"
-    email: shidenghui@gmail.com
-    password: 123
-    posts: [p1, p3]
-    events: [e2]
-    
-User(jeff):
-   email: linxj92@gmail.com
-   password: 123
-   fullname: "Jeff Lin"
-   posts: [p2]
-   
-User(huang):
-    email: uniquehuang1122@gmail.com
-    password: 123
-    fullname: "Wenbo Huang"
     
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
@@ -56,7 +38,7 @@ Post(p1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
     
 Post(p2):
@@ -66,7 +48,7 @@ Post(p2):
     mapLocation: address
     rating: 2.0
     content: P1content
-    sender: jeff
+    sender: linda
     postType: "news"
     
 Post(p3):
@@ -76,7 +58,7 @@ Post(p3):
     mapLocation: address1
     rating: 2.7
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 
 Event(e1):
@@ -86,10 +68,10 @@ Event(e1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    confirmedUsers: [allen, linda, petter]
-    onWaitingListUsers: [huang, jeff]
-    capacity: 1
-    members: [allen, linda, petter]
+    confirmedUsers: [linda, petter]
+    onWaitingListUsers: []
+    capacity: 10
+    members: [linda, petter]
     postType: "event"
     time: 2014-07-16T6:59:43+02:00
     location: Alzeyer Str. 16. 80993 München
@@ -101,10 +83,10 @@ Event(e2):
     mapLocation: address1
     rating: 2.0
     content: P1content
-    confirmedUsers: [huang]
-    onWaitingListUsers: [allen, jeff]
+    confirmedUsers: [linda]
+    onWaitingListUsers: []
     capacity: 30
-    members: [allen, linda, petter]
+    members: [linda, petter]
     postType: "event"
     time: 2014-07-16T6:59:43+02:00
     location: Pocci Str. 27. 89223 München
@@ -117,7 +99,7 @@ Post(t1):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t2):
     title: "测试"
@@ -126,7 +108,7 @@ Post(t2):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t3):
     title: "测试"
@@ -135,7 +117,7 @@ Post(t3):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t4):
     title: "测试"
@@ -144,7 +126,7 @@ Post(t4):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t5):
     title: "测试"
@@ -153,7 +135,7 @@ Post(t5):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t6):
     title: "测试"
@@ -162,7 +144,7 @@ Post(t6):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t7):
     title: "测试"
@@ -171,7 +153,7 @@ Post(t7):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
 Post(t8):
     title: "测试"
@@ -180,249 +162,6 @@ Post(t8):
     mapLocation: address
     rating: 2.3
     content: P1content
-    sender: allen
-    postType: "news"
-Post(t9):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t10):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t11):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t12):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t13):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t14):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t15):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t16):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t17):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t18):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t19):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t20):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t21):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t22):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t23):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t24):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t25):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t26):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t27):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t28):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t29):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t30):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t31):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t32):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t33):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t34):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
-    postType: "news"
-Post(t35):
-    title: "测试"
-    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
-    postingDate: 2014-08-04
-    mapLocation: address
-    rating: 2.3
-    content: P1content
-    sender: allen
+    sender: linda
     postType: "news"
     
