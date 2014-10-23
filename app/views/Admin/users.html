@@ -32,15 +32,60 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-4 col-md-offset-4">
+	<div class="col-sm-6 col-md-offset-4">
 	<ul class="pagination">
-	  <li><a href="#">&laquo;</a></li>
-	  <li><a href="#">1</a></li>
-	  <li><a href="#">2</a></li>
-	  <li><a href="#">3</a></li>
-	  <li><a href="#">4</a></li>
-	  <li><a href="#">5</a></li>
-	  <li><a href="#">&raquo;</a></li>
+	  <li><a href="javascript:void(0)" onclick="last()">&laquo;</a></li>
+	  <li class="p"><a class="number" href="users?size=10&page=1">1</a></li>
+	  <li class="p"><a class="number" href="users?size=10&page=2">2</a></li>
+	  <li class="p"><a class="number" href="users?size=10&page=3">3</a></li>
+	  <li class="p"><a class="number" href="users?size=10&page=4">4</a></li>
+	  <li class="p"><a class="number" href="users?size=10&page=5">5</a></li>
+	  <li><a href="javascript:void(0)" onclick="next()">&raquo;</a></li>
 	</ul>
 	</div>
 </div>
+<script>
+// get pagination elements
+var pagination = document.getElementsByClassName("pagination")[0];
+var elements = pagination.getElementsByClassName("p");
+
+// calculate the first number
+var firstNumber = ${page} - (${page} -1) % 5;
+
+// mark the current page as active
+for(var i = 0;i < elements.length; i++){
+	elements[i].outerHTML = "<li class='p'><a class='number' href='users?size=10&page="+firstNumber+"'>"+firstNumber+"</a></li>";
+	var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+	if(currentPN == "${page}"){
+		elements[i].outerHTML = "<li class='p active'><a class='number'>" + currentPN + "</a></li>";
+	}	
+	firstNumber++;
+}
+
+// show the next five numbers
+function next(){
+	for(var i = 0;i < elements.length; i++){
+		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+		var pageNumber = parseInt(currentPN) + 5;
+		if(pageNumber == "${page}"){
+			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+		}else{
+			elements[i].outerHTML = "<li class='p'><a class='number' href='users?size=10&page=" + pageNumber + "'>" + pageNumber + "</a></li>";
+		}
+	}
+}
+
+// show the last five numbers
+function last(){
+	for(var i = 0;i < elements.length; i++){
+		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+		var pageNumber = parseInt(currentPN) - 5;
+		if(pageNumber <= 0) return;
+		if(pageNumber == "${page}"){
+			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+		}else{
+			elements[i].outerHTML = "<li class='p'><a class='number' href='users?size=10&page=" + pageNumber + "'>" + pageNumber + "</a></li>";
+		}
+	}
+}
+</script>

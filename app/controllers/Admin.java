@@ -34,6 +34,14 @@ import com.google.gson.Gson;
 
 @With(SecureCssa.class)
 public class Admin extends Controller {
+	
+	public static void contacts(int size, int page){
+		// 'size' is the number of elements displayed per page
+	    // 'page' is the current page index, starting from 1.
+	    int start = (page-1) * size;
+		List<User> list = User.find("").from(start).fetch(size);
+		render(list,size,page);
+	}
 
 	public static void sendEmail(String targetEmail, String subject,
 			String emailEditor) {
@@ -110,7 +118,7 @@ public class Admin extends Controller {
 		event.save();
 
 		// show all events
-		events();
+		events(10,1);
 	}
 
 	/**
@@ -136,9 +144,10 @@ public class Admin extends Controller {
 	public static void broadcastEmail(Long[] userId) {
 		// selected
 		int selectedIndex = 5;
-
-		// find all user
-		List<User> list = User.findAll();
+		// size
+		int size=10;
+		// page
+		int page=1;
 
 		// if there are user id
 		if (userId != null) {
@@ -151,12 +160,12 @@ public class Admin extends Controller {
 				targetUsers.add(user);
 			}
 
-			render(selectedIndex, list, targetUsers);
+			render(selectedIndex, targetUsers, size, page);
 
 			return;
 		}
 
-		render(selectedIndex, list);
+		render(selectedIndex, size, page);
 	}
 
 	/**
@@ -219,20 +228,22 @@ public class Admin extends Controller {
 		event.delete();
 
 		// redirect to all event page
-		events();
+		events(10,1);
 	}
 
 	/**
 	 * Show all events
 	 */
-	public static void events() {
+	public static void events(int size, int page) {
 		// selected index
 		int selectedIndex = 3;
 
-		// find all events
-		List<Event> list = Event.findAll();
+		// 'size' is the number of elements displayed per page
+	    // 'page' is the current page index, starting from 1.
+	    int start = (page-1) * size;
+		List<Event> list = Event.find("").from(start).fetch(size);
 
-		render(selectedIndex, list);
+		render(selectedIndex, list, size, page);
 	}
 
 	/**
@@ -266,23 +277,25 @@ public class Admin extends Controller {
 		user.delete();
 
 		// redirect to all post
-		users();
+		users(10,1);
 	}
 
 	/**
 	 * Shows all users
 	 */
-	public static void users() {
+	public static void users(int size,int page) {
 		// selected index
 		int selectedIndex = 2;
 
-		// get all users
-		List<User> list = User.findAll();
+		// 'size' is the number of elements displayed per page
+	    // 'page' is the current page index, starting from 1.
+	    int start = (page-1) * size;
+		List<User> list = User.find("").from(start).fetch(size);
 
 		// reverse
 		Collections.reverse(list);
 
-		render(list, selectedIndex);
+		render(list, selectedIndex, size, page);
 	}
 
 	/**
@@ -325,16 +338,18 @@ public class Admin extends Controller {
 	/**
 	 * Show all posts
 	 */
-	public static void allPosts() {
-		// find all post
-		List<Post> list = Post.findAll();
+	public static void allPosts(int size, int page) {
+		// 'size' is the number of elements displayed per page
+	    // 'page' is the current page index, starting from 1.
+	    int start = (page-1) * size;
+		List<Post> list = Post.find("order by postingDate desc").from(start).fetch(size);
 		// reverse
 		Collections.reverse(list);
 
 		// selected index
 		int selectedIndex = 1;
 
-		render(list, selectedIndex);
+		render(list, selectedIndex, size, page);
 	}
 
 	public static void updatePost(String postId) {
@@ -356,7 +371,7 @@ public class Admin extends Controller {
 		post.delete();
 
 		// redirect to all post
-		allPosts();
+		allPosts(10,1);
 	}
 
 	/**
@@ -520,7 +535,7 @@ public class Admin extends Controller {
 			}
 		}
 
-		allPosts();
+		allPosts(10,1);
 	}
 
 	/**

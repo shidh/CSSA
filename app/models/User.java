@@ -8,8 +8,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -34,7 +32,8 @@ public class User extends Model {
 	public String major;    //专业
 	public String gender;   //性别
 	public Date birthday;   //生日 1985-1-4
-
+	public Date registerDate;
+	
 	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
@@ -44,7 +43,7 @@ public class User extends Model {
 	public String organization;
 	public String lastDegree;
 	public String currentDegree;
-
+	
 	@OneToOne
 	public Image image;
 
@@ -66,7 +65,21 @@ public class User extends Model {
 	@ManyToMany(mappedBy="onWaitingListUsers")
 	public List<Event> waitingEvent;
 		
-	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public Date getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(Date registerDate) {
+		this.registerDate = registerDate;
+	}	
 	
 	public String getEmail() {
 		return email;
