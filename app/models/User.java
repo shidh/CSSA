@@ -27,12 +27,14 @@ public class User extends Model {
 	 */
 	private static final long serialVersionUID = 1L;
 	public String email; //Email
+	public String username;
 	public String password;
 	public String fullname; //姓名
 	public String address;  //地址
 	public String major;    //专业
 	public String gender;   //性别
 	public Date birthday;   //生日 1985-1-4
+
 	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
