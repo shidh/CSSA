@@ -1,11 +1,17 @@
 package controllers;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import models.*;
-import play.db.jpa.Blob;
-import play.mvc.*;
+import models.Image;
+import models.User;
+import play.Play;
+import play.mvc.Controller;
+import play.mvc.results.Ok;
+import play.mvc.results.Result;
 
 public class MyProfile extends Controller {
 	
@@ -14,9 +20,59 @@ public class MyProfile extends Controller {
 	private static boolean tooShortPassFlag = false;
 	private static boolean wrongSecondPassFlag = false;
 
+	public static Result saveIconImg(String userId, File file){
+		// root path
+		String projectRoot = Play.applicationPath.getAbsolutePath();
+
+		// system separator
+		String syetemSeperator = System.getProperty("file.separator");
+
+		// check if upload folder exist, if not, create one
+		File uploadFolder = new File(projectRoot + syetemSeperator + "public"
+				+ syetemSeperator + "images" + syetemSeperator + "upload");
+		if (!uploadFolder.exists()) {
+			uploadFolder.mkdir();
+		}
+
+		// copy files from tmp directory to (app_root)/public/images/upload
+		// using system seperator
+		String imagePath = projectRoot + syetemSeperator + "public"
+				+ syetemSeperator + "images" + syetemSeperator + "upload"
+				+ syetemSeperator + file.getName();
+
+		// new empty file for copy
+		File copyFile = new File(imagePath);
+		try {
+			copyFile.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		// copy
+		try {
+			Admin.copyFileUsingStream(file, copyFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// stores image
+		Image image = new Image(null);
+		image.setUrl(imagePath);
+		image.setFileName(file.getName());
+		image.save();
+		
+		// link user image
+		User user=User.find("byId", Long.parseLong(userId)).first();
+		user.setImage(image);
+		user.save();
+		return new Ok();
+	}
+	
 	public static void submitGeneral(String email, String password, String fullname,
 			String major, String address, String gender,
-			Date birthday, String currentDegree,
+			String birthday, String currentDegree,
 			String mobileNo, String organization, String lastDegree) {
 
 		System.out.println("here " + gender);
@@ -38,7 +94,16 @@ public class MyProfile extends Controller {
 					user.gender = gender;
 				}
 				if (birthday != null) {
-					user.birthday = birthday;
+					System.out.println("birthday"+birthday);
+					SimpleDateFormat formatter = new SimpleDateFormat(
+							"yyyy-MM-dd");
+					try {
+						user.birthday = formatter.parse(birthday);
+						System.out.println(user.birthday);
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					
 				}
 				if (major != null) {
 					user.major = major;

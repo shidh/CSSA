@@ -72,9 +72,11 @@ function iconSelected(input) {
         	imgData = e.target.result;
         	$('#img')
             	.attr('src', imgData)
-            	.width(160)
-            	.height(160);
+            	.width("100%")
+            	.height("auto");
         	
+        	//Program a custom submit function for the form
+        	$("#profileIconForm").submit();
         };
         reader.readAsDataURL(input.files[0]);
     }
@@ -151,7 +153,7 @@ $(function(){
   	<div class="form-group profileData input-append date">
     	<label for="birthday">Birthday</label>
     	<!--  <input type="text" name="birthday" class="form-control" id="birthday" placeholder="birthday" value="${user.birthday}">-->
-  		<input type='text' class="form-control" placeholder="birthday" name="birthday" data-date-format="YYYY-MM-DD HH:mm" id='birthday' #{if post != null && post.postType == "event"}value="${user.birthday.format('yyyy-MM-dd')}"#{/if}/>
+  		<input type='text' class="form-control" placeholder="birthday" name="birthday" data-date-format="YYYY-MM-DD" id='birthday' #{if user.birthday}value="${user.birthday.format('yyyy-MM-dd')}"#{/if}/>
     	<script type="text/javascript">
             $(function () {
                 $('#birthday').datetimepicker({
@@ -172,12 +174,16 @@ $(function(){
 #{/form}
 
 <div class="middle">
+	<form  target="upload_target" id="profileIconForm" action="MyProfile/saveIconImg" enctype="multipart/form-data" method="post" >
+	<input type="hidden" name="userId" value="${user.id}">
 	<div class="layoutContainer">
 		<div id="profileIcon" >
-			<img id="img" src="#" />
+			<img id="img" style="width:100%;height:auto;" src="#{if user.image}public/images/upload/${user.image.fileName}#{/if}" />
 		</div>
 		<input id="updateFile" name="file" type="file" accept="image/*" onchange="iconSelected(this)"/ >
 	</div>
+	</form>
+	<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe> 
 	
 	<div id="eventsMap" >
 		<div id="profile-map-canvas" style="height: 350px; width: 100%">

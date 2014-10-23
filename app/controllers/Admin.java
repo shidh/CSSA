@@ -611,7 +611,7 @@ public class Admin extends Controller {
 	 *            - The destination path
 	 * @throws IOException
 	 */
-	private static void copyFileUsingStream(File source, File dest)
+	public static void copyFileUsingStream(File source, File dest)
 			throws IOException {
 		InputStream is = null;
 		OutputStream os = null;
