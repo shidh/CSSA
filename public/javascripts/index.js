@@ -103,7 +103,6 @@ $(function() {
 		$(".Alert").css("display", "none");
 	});
 
-	
-
+	//$(".alert").alert();
 });
 

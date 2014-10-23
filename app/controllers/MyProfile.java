@@ -8,13 +8,18 @@ import play.db.jpa.Blob;
 import play.mvc.*;
 
 public class MyProfile extends Controller {
+	
+	private static boolean updateSuccessFlag = false;
+	private static boolean wrongOldPassFlag = false;
+	private static boolean tooShortPassFlag = false;
+	private static boolean wrongSecondPassFlag = false;
 
-	public static void submit(String email, String password, String fullname,
+	public static void submitGeneral(String email, String password, String fullname,
 			String major, String address, String gender,
-			Date birthday, String cssaID, String currentDegree,
+			Date birthday, String currentDegree,
 			String mobileNo, String organization, String lastDegree) {
 
-		
+		System.out.println("here " + gender);
 		String username = session.get("username");
 		
 		System.out.println("From MyProfile submit#current username: "+username);
@@ -38,9 +43,6 @@ public class MyProfile extends Controller {
 				if (major != null) {
 					user.major = major;
 				}
-				if (cssaID != null) {
-					user.cssaID = cssaID;
-				}
 				if (currentDegree != null) {
 					user.currentDegree = currentDegree;
 				}
@@ -59,8 +61,42 @@ public class MyProfile extends Controller {
 			MyProfile.page();
 		}
 	}
+	
+	public static void submitPassword(String oldPassword, String newPassword, String confirmed) {
+		updateSuccessFlag = false;
+		
+		String username = session.get("username");
+		
+		System.out.println("From MyProfile submit#current username: "+username);
+		// System.out.println("follo:" + folloUserid);
+		if (username != null) {
+			User user = User.find("byEmail", username).first();
+			if (user != null) {
+				//System.out.println("Now name is:" + fullname);
+
+				if (oldPassword.equals(user.password)) {
+					if (newPassword.equals(confirmed) ){
+						if (newPassword.length() > 5) {
+							updateSuccessFlag = true;
+							user.password = newPassword;
+							user.save();
+						} else {
+							tooShortPassFlag = true;
+						}
+					} else {
+						wrongSecondPassFlag = true;
+					}
+				} else {
+					wrongOldPassFlag = true;
+				}
+			}
+
+			MyProfile.page();
+		}
+	}
 
 	public static void page() {
+		
 		boolean flag_login = false;
 		String email = null;
 
@@ -75,7 +111,28 @@ public class MyProfile extends Controller {
 				// renderArgs.put("ajax", "true");
 				// renderTemplate("tags/ajax.html");
 				//String tagString = getTags(user.tags);
-				render(user, flag_login, email);
+				System.out.println(user.cssaID);
+				boolean updateSuc = false;
+				boolean shortPass = false;
+				boolean wrongSec = false;
+				boolean wrongOld = false;
+				if (updateSuccessFlag){
+					updateSuc = true;
+				}
+				if (tooShortPassFlag){
+					shortPass = true;
+				}
+				if (wrongSecondPassFlag){
+					wrongSec = true;
+				}
+				if (wrongOldPassFlag){
+					wrongOld = true;
+				}
+				updateSuccessFlag = false;
+				tooShortPassFlag = false;
+				wrongSecondPassFlag = false;
+				wrongOldPassFlag = false;
+				render(user, flag_login, email, updateSuc, shortPass, wrongSec, wrongOld);
 			}
 		}
 		Application.index();

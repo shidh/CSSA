@@ -7,9 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,23 +25,31 @@ public class User extends Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Column(unique=true)
 	public String email; //Email
+	
+	@Column(unique=true)
+	public String username; //cssa old login name
+	
 	public String password;
 	public String fullname; //姓名
 	public String address;  //地址
 	public String major;    //专业
 	public String gender;   //性别
 	public Date birthday;   //生日 1985-1-4
+	public String registerDate;
+	
 	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
 	
+	@Column(unique=true)
 	public String cssaID;
 	public String mobileNo;
 	public String organization;
 	public String lastDegree;
 	public String currentDegree;
-
+	
 	@OneToOne
 	public Image image;
 
@@ -64,7 +71,21 @@ public class User extends Model {
 	@ManyToMany(mappedBy="onWaitingListUsers")
 	public List<Event> waitingEvent;
 		
-	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getRegisterDate() {
+		return registerDate;
+	}
+
+	public void setRegisterDate(String registerDate) {
+		this.registerDate = registerDate;
+	}	
 	
 	public String getEmail() {
 		return email;

@@ -1,5 +1,5 @@
 *{
-	font-family: "Microsoft Yahei",arial,helvetica,sans-serif;
+	font-family: "STHeiti",arial,helvetica,sans-serif;
 }
 body{
 	font-size: 12px;
@@ -18,7 +18,6 @@ max-width: 960px;
 position: relative;
 width: 1024px;
 margin: 0 auto;
-padding-bottom: 50px;
 }
 
 
@@ -49,11 +48,6 @@ padding-bottom: 50px;
 	min-width:1024px;
 }
 
-ul,li {
-	list-style: none;
-	float: left;
-
-	}
 
 img {
 	border: 0;
@@ -74,13 +68,63 @@ img {
 
 .partner_container {
 	width: 900px;
-	padding-bottom: 50px;
 	margin: 0 auto;
 	position: relative;
+ }
+ 
+.partner_container .china{
+	max-height: 100%;
+	width: auto;
+	margin-left: 50px;
+}
+
+.partner_container .kaiyuan{
+	max-width: 100%;
+	height: auto;
+	margin-top: 20px;
+}
+
+.partner_container .gerig{
+	max-width: 100%;
+	height: auto;
+}
+
+.partner_container .kksim{
+	max-height: 100%;
+	width: auto;
+	margin-left: 40px;
+}
+
+.partner_container .epi{
+	max-width: 100%;
+	height: auto;
+}
+
+.partner_container .tumi{
+	width: auto;
+	max-height: 100%;
+	margin-left: 40px;
+}
+
+.partner_container .tutoria{
+	max-width: 100%;
+	height: auto;
+}
+
+.partner_container .dcgm{
+	width: auto;
+	max-height: 100%;
+	margin-left: 20px;
+}
+
+.partner_container span{
+	font-size: 18px;
+	text-align: center;
+	display: block;
 }
 
 .col-md-3{
-	margin-top: 10px;	
+	margin-top: 40px;	
 }
 
 .nail {
@@ -278,17 +322,18 @@ img {
 	border: solid 1px #cccccc;
 	border-radius: 5px;
 	position: absolute;
-	right: 40%;
+	left: 41%;
 	top: 153px;
-	width: 250px;
+	width: 262px;
 	height: 120px;
 	background: white;
 }
 
 .alertMessage {
-	width: 250px;
+	width: 100%;
 	height: 60px;
-	padding: 25px 30px 15px 80px;
+	text-align: center;
+	line-height: 60px;
 	font-size: 18px;
 	font-weight: bold;
 	color: #428bca;	

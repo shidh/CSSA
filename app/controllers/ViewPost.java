@@ -13,7 +13,6 @@ public class ViewPost extends Controller {
 
 		if (postId != null) {
 			Post post = Post.findById(postId);
-			
 			if (post != null) {
 				User user = null;
 				String username = session.get("username");
@@ -27,7 +26,6 @@ public class ViewPost extends Controller {
 				}
 				//System.out.println("From ViewPost#current postContent: "+post.postContent);
 				//System.out.println("From ViewPost#current description: "+post.description);
-
 				render(post, user, flag_login, email);
 
 			}
@@ -61,7 +59,6 @@ public class ViewPost extends Controller {
 				}
 			}
 		}
-
 		ViewPost.page(postId);
 	}
 }
