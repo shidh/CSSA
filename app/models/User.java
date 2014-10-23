@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -24,20 +25,25 @@ public class User extends Model {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	@Column(unique=true)
 	public String email; //Email
-	public String username;
+	
+	@Column(unique=true)
+	public String username; //cssa old login name
+	
 	public String password;
 	public String fullname; //姓名
 	public String address;  //地址
 	public String major;    //专业
 	public String gender;   //性别
 	public Date birthday;   //生日 1985-1-4
-	public Date registerDate;
+	public String registerDate;
 	
 	public boolean isAdmin;
 	public boolean isConfirmed;
 	public boolean isOnWaitingList;
 	
+	@Column(unique=true)
 	public String cssaID;
 	public String mobileNo;
 	public String organization;
@@ -73,11 +79,11 @@ public class User extends Model {
 		this.username = username;
 	}
 
-	public Date getRegisterDate() {
+	public String getRegisterDate() {
 		return registerDate;
 	}
 
-	public void setRegisterDate(Date registerDate) {
+	public void setRegisterDate(String registerDate) {
 		this.registerDate = registerDate;
 	}	
 	
