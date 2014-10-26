@@ -12,7 +12,12 @@
 		<div class="my-container">
 			<div class="row my-title">
 				<div class="col-sm-1">
+					#{if mode == "post"} 
 					<span class="label label-primary">新闻</span>
+					#{/if}
+					#{if mode == "event"} 
+					<span class="label label-primary">活动</span>
+					#{/if}					
 				</div>
 				<div class="col-sm-11">
 					#{if mode == "post"} 

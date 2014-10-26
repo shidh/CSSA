@@ -1,5 +1,5 @@
 .h1 {
-	font-size: 18px;
+	font-size: 28px;
 	font-weight: bold;
 }
 
@@ -8,13 +8,13 @@ a:hover{
 }
 
 .my-title{
-	margin-bottom:10px;
+	margin-bottom:18px;
 }
 
 .my-post-content{
 	margin-top:15px;
-	font-size: 14px;
+	font-size: 16px;
 	line-height: 1.8em;
 	overflow: hidden;
-	height:150px;
+	height:165px;
 }
