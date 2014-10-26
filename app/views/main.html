@@ -57,9 +57,9 @@
       				<ul class="nav navbar-nav">        				
 	      				<li id="post" class="post"><a href="/postStream/page?size=10&page=1">新闻</a></li>
         				<li id="event" class="event"><a href="/eventStream/page?size=10&page=1">活动</a></li>
-        				<li><a href="/Download/page">下载</a></li>
-        				<li><a href="http://128.199.229.101/dokuwiki/doku.php?id=wiki:welcome">新生指南</a></li>
-        				<li><a href="/About/page">关于</a></li>
+        				<li id="download"><a href="/Download/page">下载</a></li>
+        				<li id="wiki"><a href="http://128.199.229.101/dokuwiki/doku.php?id=wiki:welcome">新生指南</a></li>
+        				<li id="about"><a href="/About/page">关于</a></li>
         
       				</ul>
       				    				
@@ -232,11 +232,12 @@
 		if(title == "Event Stream"){
 			$("li#event").attr("style","background-color:#f0f0f0;");
 			$("li#post").attr("style","background-color:#ffffff;");
-		}
-		
-		if(title == "Post Stream"){
+		}else if(title == "Post Stream"){
 			$("li#post").attr("style","background-color:#f0f0f0;");
-			$("li#event").attr("style","background-color:#ffffff;");
+		}else if(title == "Download"){
+			$("li#download").attr("style","background-color:#f0f0f0;");
+		}else if(title == "About Us"){
+			$("li#about").attr("style","background-color:#f0f0f0;");
 		}
 	});
 	
