@@ -54,9 +54,9 @@
 
     			<!-- Collect the nav links, forms, and other content for toggling -->
     			<div class="collapse navbar-collapse minindex" id="bs-example-navbar-collapse-1">
-      				<ul class="nav navbar-nav ">        				
-	      				<li><a href="/postStream/page?size=10&page=1">新闻</a></li>
-        				<li><a href="/eventStream/page?size=10&page=1">活动</a></li>
+      				<ul class="nav navbar-nav">        				
+	      				<li id="post" class="post"><a href="/postStream/page?size=10&page=1">新闻</a></li>
+        				<li id="event" class="event"><a href="/eventStream/page?size=10&page=1">活动</a></li>
         				<li><a href="/downloads">下载</a></li>
         				<li><a href="http://128.199.229.101/dokuwiki/doku.php?id=wiki:welcome">新生指南</a></li>
         				<li><a href="/about">关于</a></li>
@@ -229,6 +229,22 @@
 		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/elsewhere/get_num_replies.js' + query + '"></' + 'script>');
 	})();
 	//]]>
+	
+	
+	$(document).ready(function(){
+		var title = $("title").text();
+		if(title == "Event Stream"){
+			$("li#event").attr("style","background-color:#f0f0f0;");
+			$("li#post").attr("style","background-color:#ffffff;");
+		}
+		
+		if(title == "Post Stream"){
+			$("li#post").attr("style","background-color:#f0f0f0;");
+			$("li#event").attr("style","background-color:#ffffff;");
+		}
+	});
+	
 	</script>
+	
     </body>
 </html>
