@@ -13,6 +13,7 @@ logs
 precompiled
 project/project
 project/target
+public/images/upload
 target
 tmp
 bin
