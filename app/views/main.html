@@ -202,15 +202,11 @@
 	</div>
 #{/if}
 
-#{if login}
-	#{if flag_login}
-	#{/if}
-	#{else}
-	<div class="Alert">
-		<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-	#{/else}
+#{if wrongPW}
+<div class="Alert">
+	<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
+	<button type="button" class="btn btn-primary returnAlert">确认</button>
+</div>
 #{/if}
         
  
@@ -229,6 +225,22 @@
 		document.write('<script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/elsewhere/get_num_replies.js' + query + '"></' + 'script>');
 	})();
 	//]]>
+	
+	
+	$(document).ready(function(){
+		var title = $("title").text();
+		if(title == "Event Stream"){
+			$("li#event").attr("style","background-color:#f0f0f0;");
+			$("li#post").attr("style","background-color:#ffffff;");
+		}
+		
+		if(title == "Post Stream"){
+			$("li#post").attr("style","background-color:#f0f0f0;");
+			$("li#event").attr("style","background-color:#ffffff;");
+		}
+	});
+	
 	</script>
+	
     </body>
 </html>
