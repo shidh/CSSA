@@ -8,7 +8,6 @@ public class About extends Controller {
 	public static void page() {
 		
 		String userId = session.get("userId");
-		
 		if (userId != null) {
 			User user = User.findById(Long.parseLong(userId));
 			boolean flag_login = true;
@@ -17,7 +16,7 @@ public class About extends Controller {
 				render(user, flag_login, email);
 			}
 		}else{
-	       Application.index();
+	       render();
 		}
 
 	}

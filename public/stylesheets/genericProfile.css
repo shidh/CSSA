@@ -5,7 +5,6 @@ body{
 }
 
 .center{
-	font:italic arial,sans-serif;
 	font-size:16px;
 	margin:auto;
 	width:70%;
@@ -20,7 +19,6 @@ body{
 }
 
 #my_profile_middle_div {
-	font:italic arial,sans-serif;
 	font-size:16px;
 	border: 1px solid green;
 	width: 380px;
