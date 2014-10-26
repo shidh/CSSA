@@ -202,15 +202,11 @@
 	</div>
 #{/if}
 
-#{if login}
-	#{if flag_login}
-	#{/if}
-	#{else}
-	<div class="Alert">
-		<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-	#{/else}
+#{if wrongPW}
+<div class="Alert">
+	<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
+	<button type="button" class="btn btn-primary returnAlert">确认</button>
+</div>
 #{/if}
         
  

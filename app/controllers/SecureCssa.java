@@ -90,7 +90,13 @@ public class SecureCssa extends Controller {
 			flash.keep("url");
 			flash.error("secure.error");
 			params.flash();
-			login();
+			// if url is null then redirect back to home
+			String url = flash.get("url");
+			if(url == null){
+				Application.index(false, true);
+			}else{
+				login();
+			}
 		}
 		// Mark user as connected
 		session.put("username", username);
@@ -118,7 +124,7 @@ public class SecureCssa extends Controller {
 		response.removeCookie("rememberme");
 		Security.invoke("onDisconnected");
 		flash.success("secure.logout");
-		redirect(Play.ctxPath + "/");
+		Application.index(false, false);
 	}
 
 	// ~~~ Utils
