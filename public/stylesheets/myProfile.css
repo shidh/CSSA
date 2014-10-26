@@ -4,7 +4,6 @@
 	margin-top:10px;
 	width: 33%;
 	border-right: 1px solid #dddddd;
-	height: 680px;
 	float:left
 }
 
@@ -38,17 +37,32 @@
 
 #eventsMap
 {
-	margin-top: 250px;
+	margin-top: 180px;
 	width: 100%;
 	height: 350px;
 }
+
+#tagCloud {
+    height: 300px;
+    width: 100px;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+}
+#tagCloud a {
+    position: absolute;
+    text-decoration: none;
+    color: #0B61A4;
+    text-shadow: #66A3D2 1px -1px 1px;
+}
+
+
 /*right part*/
 .keyProfile{
 	margin-left: 66%;
 	margin-top: 30px;
 	width: 33%;
 	border-left: 1px solid #dddddd;
-	height:680px;
 }
 
 
