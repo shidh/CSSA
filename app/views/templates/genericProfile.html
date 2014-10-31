@@ -108,7 +108,20 @@ $(function(){
         	}
         }
     });
+	
+	$("#profileIcon").hover(function(){
+	  	$(this).attr({
+	  		"title" : "快点击上传头像吧"
+	  	});
+	  	$(this).css("border","5px solid #7cfc00");
+	  }, 
+	  function(){
+		  	$(this).css("border","5px solid #428bca");
+		  }
+	  );
 });
+
+
     
 </script>
 
@@ -176,7 +189,7 @@ $(function(){
 <div class="middle">
 	<form  target="upload_target" id="profileIconForm" action="MyProfile/saveIconImg" enctype="multipart/form-data" method="post" >
 	<input type="hidden" name="userId" value="${user.id}">
-	<div class="layoutContainer">
+	<div class="layoutContainer" id="icon" >
 		<div id="profileIcon" >
 			<img id="img" style="width:100%;height:auto;" src="#{if user.image}public/images/upload/${user.image.fileName}#{/if}" />
 		</div>
