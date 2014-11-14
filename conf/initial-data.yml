@@ -3,6 +3,7 @@
 
 User(linda):
     fullname: "Linda"
+    username: "linda"
     email: linda@gmail.com
     password: 123
     posts: [p1, p3]

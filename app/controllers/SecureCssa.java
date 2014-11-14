@@ -101,7 +101,14 @@ public class SecureCssa extends Controller {
 		// Mark user as connected
 		session.put("username", username);
 		User user = User.find("byEmail", username).first();
-		session.put("userId", user.getId());
+		User user2 = User.find("byUsername", username).first();
+
+		if(user == null){ 
+			session.put("userId", user2.getId());
+		}else if(user2 == null){ 
+			session.put("userId", user.getId());
+		}
+		
 		// Remember if needed
 		if (remember) {
 			Date expiration = new Date();
@@ -163,10 +170,17 @@ public class SecureCssa extends Controller {
 		 */
 		static boolean authenticate(String username, String password) {
 			User user = User.find("byEmail", username).first();
-			if(user == null){
+			User user2 = User.find("byUsername", username).first();
+			if(user == null && user2 ==null){
 				return false;
-			}else if(!user.password.equals(password)){
-				return false;
+			}else if(user == null){ 
+				if(!user2.password.equals(password)){
+					return false;
+				}
+			}else if(user2 == null){ 
+				if(!user.password.equals(password)){
+					return false;
+				}
 			}
 			
 			return true;

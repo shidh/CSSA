@@ -169,7 +169,15 @@ public class MyProfile extends Controller {
 		
 		System.out.println("From MyProfile page#current username: "+username);
 		if (username != null) {
-			User user = User.find("byEmail", username).first();
+			User user = null;
+			User user1 = User.find("byEmail", username).first();
+			User user2 = User.find("byUsername", username).first();
+
+			if(user1 == null){
+				user = user2; 
+			}else if(user2 == null){
+				user = user1;
+			}
 			if (user != null) {
 				email = username;
 				flag_login = true;
