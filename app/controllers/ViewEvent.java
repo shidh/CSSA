@@ -18,13 +18,21 @@ public class ViewEvent extends Controller {
 
 			//boolean isFull = ViewEvent.isFull(eventId);
 			if (post != null) {
-				User user = null;
 				String username = session.get("username");
 				System.out.println("From ViewEvent#current username: "+username);
+				User user = null;
 
 				if (username != null) {
 					//user = User.findById(Long.parseLong(userId));
-				    user = User.find("byEmail", username).first();
+					User user1 = User.find("byEmail", username).first();
+					User user2 = User.find("byUsername", username).first();
+					
+					if(user1 == null){
+						user = user2; 
+					}else if(user2 == null){
+						user = user1;
+					}
+				    
 				    flag_login = true;
 					email = session.get("username");
 				}

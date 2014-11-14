@@ -144,12 +144,14 @@
      	<hr>
      	
         #{if mode == "event"}
+        	#{if user != null}
         	#{if post.isConfirmed(user.id)}
         		<div class="alert alert-success" role="alert">你已经确认报名</div>
         	#{/if}
         	#{elseif  post.isOnWaiting(user.id)}
         		<div class="alert alert-info" role="alert">你已经在waiting list上</div>
         	#{/elseif }
+        	#{/if}
         	
         	#{elseif post.isFull()}
         		<div class="alert alert-danger" role="alert">
