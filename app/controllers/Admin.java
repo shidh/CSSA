@@ -40,7 +40,9 @@ public class Admin extends Controller {
 	    // 'page' is the current page index, starting from 1.
 	    int start = (page-1) * size;
 		List<User> list = User.find("").from(start).fetch(size);
-		render(list,size,page);
+		int pageTotal=(int) Math.ceil((double)User.count()/size);
+		
+		render(list,size,page, pageTotal);
 	}
 
 	public static void sendEmail(String targetEmail, String subject,
@@ -148,6 +150,8 @@ public class Admin extends Controller {
 		int size=10;
 		// page
 		int page=1;
+		
+		int pageTotal=(int) Math.ceil((double)User.count()/size);
 
 		// if there are user id
 		if (userId != null) {
@@ -160,12 +164,12 @@ public class Admin extends Controller {
 				targetUsers.add(user);
 			}
 
-			render(selectedIndex, targetUsers, size, page);
+			render(selectedIndex, targetUsers, size, page,pageTotal);
 
 			return;
 		}
 
-		render(selectedIndex, size, page);
+		render(selectedIndex, size, page,pageTotal);
 	}
 
 	/**
@@ -242,8 +246,11 @@ public class Admin extends Controller {
 	    // 'page' is the current page index, starting from 1.
 	    int start = (page-1) * size;
 		List<Event> list = Event.find("").from(start).fetch(size);
+		
+		int pageTotal=(int) Math.ceil((double)Event.count()/size);
+		
 
-		render(selectedIndex, list, size, page);
+		render(selectedIndex, list, size, page, pageTotal);
 	}
 
 	/**
@@ -291,11 +298,11 @@ public class Admin extends Controller {
 	    // 'page' is the current page index, starting from 1.
 	    int start = (page-1) * size;
 		List<User> list = User.find("").from(start).fetch(size);
-
+		int pageTotal=(int) Math.ceil((double)User.count()/size);
 		// reverse
 		Collections.reverse(list);
 
-		render(list, selectedIndex, size, page);
+		render(list, selectedIndex, size, page, pageTotal);
 	}
 
 	/**
@@ -343,13 +350,14 @@ public class Admin extends Controller {
 	    // 'page' is the current page index, starting from 1.
 	    int start = (page-1) * size;
 		List<Post> list = Post.find("order by postingDate desc").from(start).fetch(size);
+		int pageTotal=(int) Math.ceil((double)Post.count()/size);
 		// reverse
 		Collections.reverse(list);
 
 		// selected index
 		int selectedIndex = 1;
 
-		render(list, selectedIndex, size, page);
+		render(list, selectedIndex, size, page, pageTotal);
 	}
 
 	public static void updatePost(String postId) {

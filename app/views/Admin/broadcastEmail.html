@@ -93,13 +93,20 @@
 	</script>
 	<div class="row">
 		<div class="col-sm-12">
-		<ul class="pagination">
+		<!-- <ul class="pagination">
 		  <li><a href="javascript:void(0)" onclick="last()">&laquo;</a></li>
+		  #{if pageTotal > 0}
 		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,1)'>1</a></li>
+		  #{/if}
+		  #{if pageTotal > 1}
 		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,2)'>2</a></li>
+		  #{/if}
+		  #{if pageTotal > 2}
 		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,3)'>3</a></li>
+		  #{/if}
 		  <li><a href="javascript:void(0)" onclick="next()">&raquo;</a></li>
-		</ul>
+		</ul> -->
+		<div id="myPagination"></div>
 		</div>
 	</div>
 	<script>
@@ -111,7 +118,14 @@
 		xmlhttp.open("GET","contacts?size="+size+"&page="+page+"",true);
 		xmlhttp.send();
 	}
-	
+	pagination.create("myPagination",{
+		"controller":"allPosts",
+		"pageTotal":${pageTotal},
+		"pageEach":3,
+		"page":${page},
+		"size":${size}
+	});
+	/*
 	// get pagination elements
 	var pagination = document.getElementsByClassName("pagination")[0];
 	var elements = pagination.getElementsByClassName("p");
@@ -157,7 +171,7 @@
 				elements[i].outerHTML = "<li class='p'><a class='number' href='javascript:void(0)' onclick='getContact(10,"+pageNumber+")'>" + pageNumber + "</a></li>";
 			}
 		}
-	}
+	}*/
 	</script>
 </div>
 </div>

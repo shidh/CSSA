@@ -4,6 +4,7 @@ import java.util.List;
 
 import models.Post;
 import models.User;
+import play.db.jpa.GenericModel.JPAQuery;
 import play.mvc.Controller;
 
 public class PostStream extends Controller{
@@ -15,9 +16,11 @@ public class PostStream extends Controller{
 		boolean flag_login = false;
 		// 'size' is the number of elements displayed per page
 	    // 'page' is the current page index, starting from 1.
+		// pageTotal is the total page number
 	    int start = (page-1) * size;
-	    Post.find("byPostType", "news");
+	    List<Post> allPost=Post.find("byPostType", "news").fetch();
 		List<Post> posts = Post.find("postType = ? order by postingDate desc", "news").from(start).fetch(size);
+		int pageTotal=(int) Math.ceil((double)allPost.size()/size);
 		if (userId != null)
 		{
 			User user = User.findById(Long.parseLong(userId));
@@ -28,12 +31,12 @@ public class PostStream extends Controller{
 				String email = session.get("username");
 				
 				//render(user, posts);
-				render(posts, flag_login, email);
+				render(posts, flag_login, email, page, size,pageTotal);
 			}
 
 	
 		}
-		render(posts, flag_login, page, size);
+		render(posts, flag_login, page, size,pageTotal);
 		//Application.index();
 	}
 }
