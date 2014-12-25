@@ -18,9 +18,10 @@ public class EventStream extends Controller{
 		boolean flag_login = false;
 		// 'size' is the number of elements displayed per page
 	    // 'page' is the current page index, starting from 1.
+		// pageTotal is the total page number
 	    int start = (page-1) * size;
 		List<Event> posts = Event.find("order by postingDate desc").from(start).fetch(size);
-		
+		int pageTotal=(int) Math.ceil((double)Event.count()/size);
 		if (username != null)
 		{
 			//User user = User.findById(Long.parseLong(userId));
@@ -33,7 +34,7 @@ public class EventStream extends Controller{
 				String email = session.get("username");
 
 				//render(user, posts);
-				render(posts, flag_login, email, size, page);
+				render(posts, flag_login, email, size, page,pageTotal);
 			}
 
 	
@@ -41,7 +42,7 @@ public class EventStream extends Controller{
 		//set true to ask user login firstly
 		//boolean promote_login = true;
 		//Application.index(promote_login, false);
-		render(posts, flag_login, size, page);
+		render(posts, flag_login, size, page,pageTotal);
 
 
 	}

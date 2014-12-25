@@ -76,24 +76,50 @@
 </div>
 <div class="row">
 	<div class="col-sm-6 col-md-offset-4">
-	<ul class="pagination">
+	<!-- <ul class="pagination">
 	  <li><a href="javascript:void(0)" onclick="last()">&laquo;</a></li>
+	  #{if pageTotal > 0}
 	  <li class="p"><a class="number" href="page?size=10&page=1">1</a></li>
+	  #{/if}
+	  #{if pageTotal > 1}
 	  <li class="p"><a class="number" href="page?size=10&page=2">2</a></li>
+	  #{/if}
+	  #{if pageTotal > 2}
 	  <li class="p"><a class="number" href="page?size=10&page=3">3</a></li>
+	  #{/if}
+	  #{if pageTotal > 3}
 	  <li class="p"><a class="number" href="page?size=10&page=4">4</a></li>
+	  #{/if}
+	  #{if pageTotal > 4}
 	  <li class="p"><a class="number" href="page?size=10&page=5">5</a></li>
+	  #{/if}
 	  <li><a href="javascript:void(0)" onclick="next()">&raquo;</a></li>
-	</ul>
+	</ul> -->
+	<div id="myPagination"></div>
 	</div>
 </div>
 <script>
+pagination.create("myPagination",{
+	"controller":"page",
+	"pageTotal":${pageTotal},
+	"pageEach":5,
+	"page":${page},
+	"size":${size}
+});
+
+
+
+
+/*
 // get pagination elements
 var pagination = document.getElementsByClassName("pagination")[0];
 var elements = pagination.getElementsByClassName("p");
 
 // calculate the first number
 var firstNumber = ${page} - (${page} -1) % 5;
+
+// totalPage
+var pageTotal=${pageTotal};
 
 // mark the current page as active
 for(var i = 0;i < elements.length; i++){
@@ -110,6 +136,15 @@ function next(){
 	for(var i = 0;i < elements.length; i++){
 		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
 		var pageNumber = parseInt(currentPN) + 5;
+		if(pageNumber>pageTotal){
+			break;
+		}
+		if(pageNumber>pageTotal){
+			elements[i].style.display="none";
+			continue;
+		}else{
+			elements[i].style.display="auto";
+		}
 		if(pageNumber == "${page}"){
 			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
 		}else{
@@ -123,6 +158,7 @@ function last(){
 	for(var i = 0;i < elements.length; i++){
 		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
 		var pageNumber = parseInt(currentPN) - 5;
+		elements[i].style.display="auto";
 		if(pageNumber <= 0) return;
 		if(pageNumber == "${page}"){
 			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
@@ -130,5 +166,5 @@ function last(){
 			elements[i].outerHTML = "<li class='p'><a class='number' href='page?size=10&page=" + pageNumber + "'>" + pageNumber + "</a></li>";
 		}
 	}
-}
+}*/
 </script>
