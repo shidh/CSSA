@@ -15,6 +15,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import models.DownloadFile;
 import models.Event;
 import models.Image;
 import models.MapLocation;
@@ -126,16 +127,6 @@ public class Admin extends Controller {
 	 */
 	public static void index() {
 		newPost(null);
-	}
-
-	/**
-	 * Statistics page
-	 */
-	public static void statistics() {
-		// selected
-		int selectedIndex = 4;
-
-		render(selectedIndex);
 	}
 
 	/**
@@ -601,6 +592,84 @@ public class Admin extends Controller {
 
 		render();
 	}
+	
+	/**
+	 * Handler of file upload
+	 * 
+	 * @param upload
+	 *            - The file to be upload
+	 */
+	public static void uploadFile(File upload, String fileType) {
+		DownloadFile existedFile = DownloadFile.find("byFileName", upload.getName()).first();
+		if (existedFile != null) {
+			main("该文件已存在，上传失败");
+			return;
+		}
+		
+		// root path
+		String projectRoot = Play.applicationPath.getAbsolutePath();
+
+		// system separator
+		String syetemSeperator = System.getProperty("file.separator");
+
+		// check if upload folder exist, if not, create one
+		File uploadFolder = new File(projectRoot + syetemSeperator + "public"
+				+ syetemSeperator + "files");
+		if (!uploadFolder.exists()) {
+			uploadFolder.mkdir();
+		}
+
+		// copy files from tmp directory to (app_root)/public/files
+		// using system seperator
+		String filePath = projectRoot + syetemSeperator + "public"
+				+ syetemSeperator + "files" + syetemSeperator + upload.getName();
+
+		// new empty file for copy
+		File copyFile = new File(filePath);
+		try {
+			copyFile.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// copy
+		try {
+			InputStream is = null;
+			OutputStream os = null;
+			try {
+				is = new FileInputStream(upload);
+				os = new FileOutputStream(copyFile);
+				byte[] buffer = new byte[1024];
+				int length;
+				while ((length = is.read(buffer)) > 0) {
+					os.write(buffer, 0, length);
+				}
+			} finally {
+				is.close();
+				os.close();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		DownloadFile file = new DownloadFile(null);
+		// set type
+		file.setFileType(fileType);
+		// set date
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-M-d");
+		String dateString = format.format(new Date());
+		file.setUploadDate(dateString);
+		// set name
+		file.setFileName(upload.getName());
+		// set url
+		String fileUrl = syetemSeperator + "public" + syetemSeperator + "files" + syetemSeperator + upload.getName();
+		file.setUrl(fileUrl);
+		// save
+		file.save();
+		
+		main("上传成功");
+	}
 
 	/**
 	 * copy file using stream
@@ -628,4 +697,15 @@ public class Admin extends Controller {
 			os.close();
 		}
 	}
+	
+	/**
+	 * New a download file
+	 * 
+	 */
+	public static void newDownloadFile() {
+		// selected
+		int selectedIndex = 4;
+		render(selectedIndex);
+	}
+	
 }

@@ -10,95 +10,29 @@
 <div id="content">
 	<hr>
 	#{if flag_login}
-	<a class="contentCell" href="/public/files/11.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 慕尼黑攻略2013版 (2013-09-29)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/10.ppt">
-		<span class="glyphicon glyphicon-download-alt"> 慕尼黑近郊游及饮食 (2010-04-07)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/9.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 医疗健康系统讲座 (2009-05-15)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/8.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 分享与交流－慕尼黑购物tips (2009-01-20)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/7.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 分享与交流－留学生心理压力与调试 (2009-01-20)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/6.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 分享与交流－慕尼黑的节日和风俗 (2009-01-20)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/5.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 分享与交流－德国特色旅游和欧洲穷游经 (2009-01-20)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/4.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 如何拍摄夜景 (2008-12-19)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/3.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 冬日摄影技巧 (2008-12-19)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/2.pdf">
-		<span class="glyphicon glyphicon-download-alt"> 张福森-国外创业甘苦谈 (2008-04-03)</span>
-	</a>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/1.pptx">
-		<span class="glyphicon glyphicon-download-alt"> 申老师讲座 (2007-12-09)</span>
-	</a>
+		#{list items:downloadFiles, as:'oneFile'}
+			<a class="contentCell" href="/public/files/11.pdf">
+				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} ${oneFile.uploadDate}</span>
+			</a>
+			<br>
+			<br>
+		#{/list}
 	#{/if}
 	#{else}
-	<h5>会员登录后便可下载“只对会员提供下载”的文件</h5>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 慕尼黑攻略2013版 (2013-09-29) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<a class="contentCell" href="/public/files/10.ppt">
-		<span class="glyphicon glyphicon-download-alt"> 慕尼黑近郊游及饮食 (2010-04-07)</span>
-	</a>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 医疗健康系统讲座 (2009-05-15) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 分享与交流－慕尼黑购物tips (2009-01-20) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 分享与交流－留学生心理压力与调试 (2009-01-20) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 分享与交流－慕尼黑的节日和风俗 (2009-01-20) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 分享与交流－德国特色旅游和欧洲穷游经 (2009-01-20) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 如何拍摄夜景 (2008-12-19) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 冬日摄影技巧 (2008-12-19) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 张福森-国外创业甘苦谈 (2008-04-03) (只对会员提供下载！)</span>
-	<br>
-	<br>
-	<span class="glyphicon glyphicon-download-alt contentCell"> 申老师讲座 (2007-12-09) (只对会员提供下载！)</span>
+		#{list items:downloadFiles, as:'oneFile'}
+			#{if oneFile.fileType == "anyone"}
+				<a class="contentCell" href="/public/files/11.pdf">
+				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} ${oneFile.uploadDate}</span>
+			</a>
+			<br>
+			<br>
+			#{/if}
+			#{else}
+				<span class="glyphicon glyphicon-download-alt contentCell"> ${oneFile.fileName} ${oneFile.uploadDate} (只对会员提供下载！)</span>
+				<br>
+				<br>
+			#{/else}
+		#{/list}
 	#{/else}
 </div>
+	
