@@ -11,7 +11,7 @@
 	<hr>
 	#{if flag_login}
 		#{list items:downloadFiles, as:'oneFile'}
-			<a class="contentCell" href="/public/files/11.pdf">
+			<a class="contentCell" href="${oneFile.url}">
 				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} (${oneFile.uploadDate})</span>
 			</a>
 			<br>
@@ -21,7 +21,7 @@
 	#{else}
 		#{list items:downloadFiles, as:'oneFile'}
 			#{if oneFile.fileType == "anyone"}
-				<a class="contentCell" href="/public/files/11.pdf">
+				<a class="contentCell" href="${oneFile.url}">
 				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} (${oneFile.uploadDate})</span>
 			</a>
 			<br>
