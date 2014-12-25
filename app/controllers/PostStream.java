@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+
 import models.Post;
 import models.User;
 import play.db.jpa.GenericModel.JPAQuery;
@@ -36,6 +38,7 @@ public class PostStream extends Controller{
 
 	
 		}
+//		System.out.println(posts.get(0).getContent().getPictures().get(0).getUrl());
 		render(posts, flag_login, page, size,pageTotal);
 		//Application.index();
 	}

@@ -30,6 +30,8 @@ public class PostContent extends Model {
 	@ElementCollection
 	public List<String> picturesTitles;
 	
+	public String coverImgUrl;
+	
 	
 
 	public String getVideo() {

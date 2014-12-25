@@ -411,16 +411,16 @@ public class Admin extends Controller {
 
 			for (int i = 0; i < strArray.length; i++) {
 				// find and push
-				Image img = (Image) Image.find("byUrl",
-						projectRoot + strArray[i]).first();
+				Image img = (Image) Image.find("byUrl", strArray[i]).first();
 
 				// push
 				imageList.add(img);
 			}
-
+			
 			// post content
 			postContent = new PostContent();
 			postContent.setPictures(imageList);
+			postContent.coverImgUrl = imageList.get(0).url;
 
 			// save
 			postContent.save();
@@ -610,12 +610,17 @@ public class Admin extends Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		String relativeUrl = syetemSeperator + "public"
+				+ syetemSeperator + "images" + syetemSeperator + "upload"
+				+ syetemSeperator + upload.getName();
 		// stores image
 		Image image = new Image(null);
-		image.setUrl(imagePath);
+		image.setUrl(relativeUrl);
 		image.setFileName(upload.getName());
 		image.save();
+		
+		System.out.println("save image in"+imagePath);
 
 		render();
 	}

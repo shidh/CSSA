@@ -1,7 +1,7 @@
 #{extends 'Admin/index.html' /}
 <h1 class="page-header">新建帖子</h1>
 
-#{form @savePost()}
+#{form @savePost(), id:'newPostForm'}
 
 <input type="hidden" value="${postId}" name="postId" />
 <input type="hidden" name="username" value="${username}" />
@@ -67,7 +67,7 @@
         </script>
     </div>
     <script type="text/javascript">
-        document.getElementById('datetimepicker1').datetimepicker();
+        //document.getElementById('datetimepicker1').datetimepicker();
     </script>
   </div>
   <div class="form-group">
@@ -97,6 +97,7 @@
 		
 		// Get all the image inside the post
 		function saveHandler(){
+			
 			// create input
 			var input = document.createElement("INPUT");
 			
