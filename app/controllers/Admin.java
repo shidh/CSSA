@@ -584,6 +584,7 @@ public class Admin extends Controller {
 				+ syetemSeperator + "images" + syetemSeperator + "upload"
 				+ syetemSeperator + upload.getName();
 
+		System.out.println("#"+upload.getAbsolutePath());
 		// new empty file for copy
 		File copyFile = new File(imagePath);
 		try {
@@ -595,7 +596,25 @@ public class Admin extends Controller {
 
 		// copy
 		try {
-			copyFileUsingStream(upload, copyFile);
+			//copyFileUsingStream(upload, copyFile);
+			InputStream is = null;
+			OutputStream os = null;
+			System.out.println("##"+upload.getName());
+
+			try {
+				is = new FileInputStream(upload);
+				os = new FileOutputStream(copyFile);
+				byte[] buffer = new byte[1024];
+				int length;
+				while ((length = is.read(buffer)) > 0) {
+					os.write(buffer, 0, length);
+				}
+			} finally {
+				is.close();
+				os.close();
+			}
+			
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -623,6 +642,8 @@ public class Admin extends Controller {
 			throws IOException {
 		InputStream is = null;
 		OutputStream os = null;
+		System.out.println("##"+source.getName());
+
 		try {
 			is = new FileInputStream(source);
 			os = new FileOutputStream(dest);
