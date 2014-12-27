@@ -75,6 +75,21 @@ public class SecureCssa extends Controller {
 
 	public static void authenticate(@Required String username, String password,
 			boolean remember) throws Throwable {
+		if(flash.get("url")!=null){
+			User user = User.find("byEmail", username).first();
+			User user2 = User.find("byUsername", username).first();
+
+			boolean flag=false;
+			if(user != null){ 
+				flag=user.isAdmin;
+			}else if(user2 != null){ 
+				flag=user2.isAdmin;
+			}
+			
+			if(flag==false){
+				login();
+			}
+		}
 		// Check tokens
 		Boolean allowed = false;
 		try {
@@ -98,6 +113,7 @@ public class SecureCssa extends Controller {
 				login();
 			}
 		}
+		
 		// Mark user as connected
 		session.put("username", username);
 		User user = User.find("byEmail", username).first();

@@ -120,15 +120,6 @@
 	    </div>
 	    
         #{if post.content} 
-	    <div class="info">
-	        #{list items:post.content.pictures, as:'pic'}
-		        <a href="@{RequestUtils.renderImage(pic.id)}"  target="_new">
-		        	  <img src="@{RequestUtils.renderImage(pic.id)}" class='postImage'>
-	        	</a>
-	        #{/list}
-	    </div>
-	    
-
 	    	#{if post}
 	        	#{if post.content.video}
 	    			${post.content.video.raw()}

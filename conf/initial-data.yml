@@ -13,6 +13,7 @@ User(petter):
     fullname: "Petter Lin"
     email: petter@gmail.com
     password: 123
+    isAdmin: true
     posts: [p1, p3]
     events: [e2]
     
