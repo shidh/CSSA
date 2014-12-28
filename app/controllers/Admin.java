@@ -36,15 +36,15 @@ import com.google.gson.Gson;
 @Check("administrator")
 @With(Secure.class)
 public class Admin extends Controller {
-	
-	public static void contacts(int size, int page){
+
+	public static void contacts(int size, int page) {
 		// 'size' is the number of elements displayed per page
-	    // 'page' is the current page index, starting from 1.
-	    int start = (page-1) * size;
+		// 'page' is the current page index, starting from 1.
+		int start = (page - 1) * size;
 		List<User> list = User.find("").from(start).fetch(size);
-		int pageTotal=(int) Math.ceil((double)User.count()/size);
-		
-		render(list,size,page, pageTotal);
+		int pageTotal = (int) Math.ceil((double) User.count() / size);
+
+		render(list, size, page, pageTotal);
 	}
 
 	public static void sendEmail(String targetEmail, String subject,
@@ -58,23 +58,23 @@ public class Admin extends Controller {
 			}
 			email.setFrom("linxj92@gmail.com", "Jeff");
 			email.setSubject(subject);
-//			// embed the image and get the content id
-//			URL url = null;
-//			url = new URL(
-//					"https://www.playframework.com/assets/images/logos/normal.png");
-//			String cid = null;
-//			cid = email.embed(url, "play logo");
+			// // embed the image and get the content id
+			// URL url = null;
+			// url = new URL(
+			// "https://www.playframework.com/assets/images/logos/normal.png");
+			// String cid = null;
+			// cid = email.embed(url, "play logo");
 			// set the html message
 			email.setHtmlMsg(emailEditor);
-//			// set the alternative message
-//			email.setTextMsg("Your email client does not support HTML, too bad :(");
+			// // set the alternative message
+			// email.setTextMsg("Your email client does not support HTML, too bad :(");
 		} catch (EmailException e) {
 			e.printStackTrace();
-		} 
-		
+		}
+
 		email.setCharset("UTF-8");// 中文乱码
 		Mail.send(email);
-		
+
 		// index
 		main("你的邮件已成功发送");
 	}
@@ -122,7 +122,7 @@ public class Admin extends Controller {
 		event.save();
 
 		// show all events
-		events(10,1);
+		events(10, 1);
 	}
 
 	/**
@@ -139,11 +139,11 @@ public class Admin extends Controller {
 		// selected
 		int selectedIndex = 5;
 		// size
-		int size=10;
+		int size = 10;
 		// page
-		int page=1;
-		
-		int pageTotal=(int) Math.ceil((double)User.count()/size);
+		int page = 1;
+
+		int pageTotal = (int) Math.ceil((double) User.count() / size);
 
 		// if there are user id
 		if (userId != null) {
@@ -156,12 +156,12 @@ public class Admin extends Controller {
 				targetUsers.add(user);
 			}
 
-			render(selectedIndex, targetUsers, size, page,pageTotal);
+			render(selectedIndex, targetUsers, size, page, pageTotal);
 
 			return;
 		}
 
-		render(selectedIndex, size, page,pageTotal);
+		render(selectedIndex, size, page, pageTotal);
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class Admin extends Controller {
 		event.delete();
 
 		// redirect to all event page
-		events(10,1);
+		events(10, 1);
 	}
 
 	/**
@@ -235,12 +235,11 @@ public class Admin extends Controller {
 		int selectedIndex = 3;
 
 		// 'size' is the number of elements displayed per page
-	    // 'page' is the current page index, starting from 1.
-	    int start = (page-1) * size;
+		// 'page' is the current page index, starting from 1.
+		int start = (page - 1) * size;
 		List<Event> list = Event.find("").from(start).fetch(size);
-		
-		int pageTotal=(int) Math.ceil((double)Event.count()/size);
-		
+
+		int pageTotal = (int) Math.ceil((double) Event.count() / size);
 
 		render(selectedIndex, list, size, page, pageTotal);
 	}
@@ -276,21 +275,21 @@ public class Admin extends Controller {
 		user.delete();
 
 		// redirect to all post
-		users(10,1);
+		users(10, 1);
 	}
 
 	/**
 	 * Shows all users
 	 */
-	public static void users(int size,int page) {
+	public static void users(int size, int page) {
 		// selected index
 		int selectedIndex = 2;
 
 		// 'size' is the number of elements displayed per page
-	    // 'page' is the current page index, starting from 1.
-	    int start = (page-1) * size;
+		// 'page' is the current page index, starting from 1.
+		int start = (page - 1) * size;
 		List<User> list = User.find("").from(start).fetch(size);
-		int pageTotal=(int) Math.ceil((double)User.count()/size);
+		int pageTotal = (int) Math.ceil((double) User.count() / size);
 		// reverse
 		Collections.reverse(list);
 
@@ -339,10 +338,11 @@ public class Admin extends Controller {
 	 */
 	public static void allPosts(int size, int page) {
 		// 'size' is the number of elements displayed per page
-	    // 'page' is the current page index, starting from 1.
-	    int start = (page-1) * size;
-		List<Post> list = Post.find("order by postingDate desc").from(start).fetch(size);
-		int pageTotal=(int) Math.ceil((double)Post.count()/size);
+		// 'page' is the current page index, starting from 1.
+		int start = (page - 1) * size;
+		List<Post> list = Post.find("order by postingDate desc").from(start)
+				.fetch(size);
+		int pageTotal = (int) Math.ceil((double) Post.count() / size);
 		// reverse
 		Collections.reverse(list);
 
@@ -350,6 +350,62 @@ public class Admin extends Controller {
 		int selectedIndex = 1;
 
 		render(list, selectedIndex, size, page, pageTotal);
+	}
+
+	/**
+	 * Show all download files
+	 */
+	public static void allFiles(int size, int page) {
+		// 'size' is the number of elements displayed per page
+		// 'page' is the current page index, starting from 1.
+		int start = (page - 1) * size;
+		List<DownloadFile> list = DownloadFile.find("").from(start).fetch(size);
+		int pageTotal = (int) Math.ceil((double) DownloadFile.count() / size);
+		// reverse
+		Collections.reverse(list);
+
+		// selected index
+		int selectedIndex = 9;
+		System.out.print(DownloadFile.count());
+
+		render(list, selectedIndex, size, page, pageTotal);
+	}
+
+	/**
+	 * Show all download files
+	 */
+	public static void deleteFile(String fileId) {
+		// find
+		DownloadFile file = DownloadFile.find("byId", Long.parseLong(fileId))
+				.first();
+
+		// delete file in disk
+		// root path
+		String projectRoot = Play.applicationPath.getAbsolutePath();
+
+		// check if upload folder exist, if not, create one
+		String url = projectRoot + file.getUrl();
+
+		File checkFile = new File(url);
+		
+		if (checkFile.exists()) {
+			String command = "rm "+url;
+			Runtime run = Runtime.getRuntime();
+			
+			try {
+				Process proc;
+				System.out.println(command);
+				proc = run.exec(command);
+			} catch (IOException e) {
+				System.out.println("ERROR! Failed to delete file " + url);
+			}
+		}
+
+		// delete
+		file.delete();
+
+		// redirect to all post
+		allFiles(10, 1);
 	}
 
 	public static void updatePost(String postId) {
@@ -371,7 +427,7 @@ public class Admin extends Controller {
 		post.delete();
 
 		// redirect to all post
-		allPosts(10,1);
+		allPosts(10, 1);
 	}
 
 	/**
@@ -417,7 +473,7 @@ public class Admin extends Controller {
 				// push
 				imageList.add(img);
 			}
-			
+
 			// post content
 			postContent = new PostContent();
 			postContent.setPictures(imageList);
@@ -492,7 +548,8 @@ public class Admin extends Controller {
 				// update location
 				event.setLocation(location);
 				// new map location
-				MapLocation mapLocation = new MapLocation(location, null, null).save();
+				MapLocation mapLocation = new MapLocation(location, null, null)
+						.save();
 				// update maplocation
 				event.setMapLocation(mapLocation);
 				// save
@@ -527,7 +584,8 @@ public class Admin extends Controller {
 				// set location
 				event.setLocation(location);
 				// new map location
-				MapLocation mapLocation = new MapLocation(location, null, null).save();
+				MapLocation mapLocation = new MapLocation(location, null, null)
+						.save();
 				// set maplocation
 				event.setMapLocation(mapLocation);
 				// save
@@ -535,7 +593,7 @@ public class Admin extends Controller {
 			}
 		}
 
-		allPosts(10,1);
+		allPosts(10, 1);
 	}
 
 	/**
@@ -576,7 +634,7 @@ public class Admin extends Controller {
 				+ syetemSeperator + "images" + syetemSeperator + "upload"
 				+ syetemSeperator + upload.getName();
 
-		System.out.println("#"+upload.getAbsolutePath());
+		System.out.println("#" + upload.getAbsolutePath());
 		// new empty file for copy
 		File copyFile = new File(imagePath);
 		try {
@@ -588,10 +646,10 @@ public class Admin extends Controller {
 
 		// copy
 		try {
-			//copyFileUsingStream(upload, copyFile);
+			// copyFileUsingStream(upload, copyFile);
 			InputStream is = null;
 			OutputStream os = null;
-			System.out.println("##"+upload.getName());
+			System.out.println("##" + upload.getName());
 
 			try {
 				is = new FileInputStream(upload);
@@ -605,27 +663,26 @@ public class Admin extends Controller {
 				is.close();
 				os.close();
 			}
-			
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		String relativeUrl = syetemSeperator + "public"
-				+ syetemSeperator + "images" + syetemSeperator + "upload"
-				+ syetemSeperator + upload.getName();
+
+		String relativeUrl = syetemSeperator + "public" + syetemSeperator
+				+ "images" + syetemSeperator + "upload" + syetemSeperator
+				+ upload.getName();
 		// stores image
 		Image image = new Image(null);
 		image.setUrl(relativeUrl);
 		image.setFileName(upload.getName());
 		image.save();
-		
-		System.out.println("save image in"+imagePath);
+
+		System.out.println("save image in" + imagePath);
 
 		render();
 	}
-	
+
 	/**
 	 * Handler of file upload
 	 * 
@@ -633,12 +690,13 @@ public class Admin extends Controller {
 	 *            - The file to be upload
 	 */
 	public static void uploadFile(File upload, String fileType) {
-		DownloadFile existedFile = DownloadFile.find("byFileName", upload.getName()).first();
+		DownloadFile existedFile = DownloadFile.find("byFileName",
+				upload.getName()).first();
 		if (existedFile != null) {
 			main("该文件已存在，上传失败");
 			return;
 		}
-		
+
 		// root path
 		String projectRoot = Play.applicationPath.getAbsolutePath();
 
@@ -655,7 +713,8 @@ public class Admin extends Controller {
 		// copy files from tmp directory to (app_root)/public/files
 		// using system seperator
 		String filePath = projectRoot + syetemSeperator + "public"
-				+ syetemSeperator + "files" + syetemSeperator + upload.getName();
+				+ syetemSeperator + "files" + syetemSeperator
+				+ upload.getName();
 
 		// new empty file for copy
 		File copyFile = new File(filePath);
@@ -685,7 +744,7 @@ public class Admin extends Controller {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		DownloadFile file = new DownloadFile(null);
 		// set type
 		file.setFileType(fileType);
@@ -696,11 +755,12 @@ public class Admin extends Controller {
 		// set name
 		file.setFileName(upload.getName());
 		// set url
-		String fileUrl = syetemSeperator + "public" + syetemSeperator + "files" + syetemSeperator + upload.getName();
+		String fileUrl = syetemSeperator + "public" + syetemSeperator + "files"
+				+ syetemSeperator + upload.getName();
 		file.setUrl(fileUrl);
 		// save
 		file.save();
-		
+
 		main("上传成功");
 	}
 
@@ -717,7 +777,7 @@ public class Admin extends Controller {
 			throws IOException {
 		InputStream is = null;
 		OutputStream os = null;
-		System.out.println("##"+source.getName());
+		System.out.println("##" + source.getName());
 
 		try {
 			is = new FileInputStream(source);
@@ -732,7 +792,7 @@ public class Admin extends Controller {
 			os.close();
 		}
 	}
-	
+
 	/**
 	 * New a download file
 	 * 
@@ -742,5 +802,5 @@ public class Admin extends Controller {
 		int selectedIndex = 4;
 		render(selectedIndex);
 	}
-	
+
 }
