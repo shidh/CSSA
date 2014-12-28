@@ -33,7 +33,8 @@ import play.mvc.With;
 
 import com.google.gson.Gson;
 
-@With(SecureCssa.class)
+@Check("administrator")
+@With(Secure.class)
 public class Admin extends Controller {
 	
 	public static void contacts(int size, int page){

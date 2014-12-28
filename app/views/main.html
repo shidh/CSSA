@@ -80,7 +80,7 @@
 							#{if flag_login}
 							<ul class="nav navbar-nav navbar-right">
 								<li ><a href="/myProfile">欢迎, ${email}</a></li>
-        						<li ><a href="/SecureCssa/logout">登出</a></li>
+        						<li ><a href="/Secure/logout">登出</a></li>
       						</ul>
 							#{/if}
 							#{else}
@@ -98,7 +98,7 @@
         #{doLayout /}
         <div id="loginForm">
 
-	<form action="@{SecureCssa.authenticate()}" class="form-horizontal" method="post" role="form">
+	<form action="@{Secure.authenticate()}" class="form-horizontal" method="post" role="form">
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
 			<div class="col-sm-9">
