@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="@{'/public/stylesheets/bootstrap.min.css'}">
         <link rel="stylesheet" href="@{'/public/stylesheets/index.css'}">
         #{get 'moreStyles' /}
-        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.ico'}">
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
 
         
         #{get 'moreScripts' /}
@@ -173,11 +173,11 @@
 				<div id="row">
 					<ul>
 						<li><h3>相关链接:</h3></li>
-						<li><a href="http://www.weibo.com/cssamunich">慕尼黑学联weibo主页</a></li>
-						<li><a href="http://page.renren.com/601326255?checked=true">慕尼黑学联人人主页</a></li>
-						<li><a href="https://www.facebook.com/pages/CSSA-in-Munich-eV/334763784624">慕尼黑学联facebook主页</a></li>
-						<li><a href="https://sites.google.com/a/cssa-munich.de/cssa/">学联工作平台</a></li>
-						<li><a href="/admin/main">管理员</a></li>
+						<a href="http://www.weibo.com/cssamunich">慕尼黑学联weibo主页</a><br>
+						<a href="http://page.renren.com/601326255?checked=true">慕尼黑学联人人主页</a><br>
+						<a href="https://www.facebook.com/pages/CSSA-in-Munich-eV/334763784624">慕尼黑学联facebook主页</a><br>
+						<a href="https://sites.google.com/a/cssa-munich.de/cssa/">学联工作平台</a><br>
+						<a href="/admin/main">管理员</a>
 					</ul>
 				</div>
 			</div>
@@ -233,14 +233,14 @@
 	
 	$(document).ready(function(){
 		var title = $("title").text();
-		if(title == "Event Stream"){
+		if(title == "学联活动"){
 			$("li#event").attr("style","background-color:#f0f0f0;");
 			$("li#post").attr("style","background-color:#ffffff;");
-		}else if(title == "Post Stream"){
+		}else if(title == "学联新闻"){
 			$("li#post").attr("style","background-color:#f0f0f0;");
-		}else if(title == "Download"){
+		}else if(title == "下载"){
 			$("li#download").attr("style","background-color:#f0f0f0;");
-		}else if(title == "About Us"){
+		}else if(title == "关于学联"){
 			$("li#about").attr("style","background-color:#f0f0f0;");
 		}
 	});
