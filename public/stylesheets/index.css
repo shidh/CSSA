@@ -1,13 +1,11 @@
 *{
-	font-family: "STHeiti",arial,helvetica,sans-serif;
+	font-family: Arial, "Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;	
 }
 body{
-	font-size: 12px;
 	background: #f0f0f0;
 	min-width:900px;
 	background-color: #f2f2f2;
 	background-image: url('/public/images/noise.jpg');
-	padding-bottom: 30px;
 }
 
 
@@ -248,7 +246,7 @@ margin: 0 auto;
 
 .footer {
 	min-width:1024px;
-	height: 200px;
+	height: 250px;
 	background-color: #428bca;
 	margin: 0 auto;
 }

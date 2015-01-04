@@ -43,10 +43,12 @@
 					#{/else}
 				#{/if}
 				#{if mode == "post"} 
-					 #{if onePost.content.coverImgUrl!=null}
-					 	<img src=" ${onePost.content.coverImgUrl}" alt="pic" class="img-thumbnail img-responsive">
-					 #{/if}
-					 #{else}
+					#{if onePost.content != null}
+						 #{if onePost.content.coverImgUrl != null}
+						 	<img src=" ${onePost.content.coverImgUrl}" alt="pic" class="img-thumbnail img-responsive">
+						 #{/if}
+					#{/if}
+					#{else}
 						<img src="/public/images/News.jpg" alt="pic" class="img-thumbnail img-responsive">
 					#{/else}
 				#{/if}				
