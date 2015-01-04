@@ -71,7 +71,7 @@ var pagination=(function(){
 			function next(){
 				// insert li
 				var m=0;
-				for(var j=currentPagesIndex[0]+properties.pageEach;j<(currentPagesIndex[properties.pageEach-1]+properties.pageEach)&&j<properties.pageTotal;j++){
+				for(var j=currentPagesIndex[0]+properties.pageEach;m<properties.pageEach&&j<=(currentPagesIndex[properties.pageEach-1]+properties.pageEach)&&j<properties.pageTotal;j++){
 					ul.appendChild(liArray[j]);
 					currentPagesIndex[m]=j;
 					m+=1;
@@ -112,9 +112,12 @@ var pagination=(function(){
 			liArray[properties.page-1].className+="active";
 			
 			appendPreBtn();
-			for(var j=0;j<properties.pageEach&&j<properties.pageTotal;j++){
+			var firstNumber = properties.page - (properties.page -1) % properties.pageEach;
+			var m=0;
+			for(var j=firstNumber-1;m<properties.pageEach&&j<properties.pageTotal;j++){
 				ul.appendChild(liArray[j]);
 				currentPagesIndex.push(j);
+				m++;
 			}
 			appendNxtBtn();
 		
