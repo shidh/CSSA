@@ -5,7 +5,7 @@ body{
 	background: #f0f0f0;
 	min-width:900px;
 	background-color: #f2f2f2;
-	background-image: url('/public/images/noise.jpg');
+	background-image: url('/public/images/upload/back2.jpg');
 }
 
 
@@ -43,12 +43,12 @@ margin: 0 auto;
 }
 
 .topbar {
-	background: white;
+	/* background: #070808; */
 	font-size: 18px;
-	border: solid 1px #cccccc;
-	border-radius: 5px;
-	font-weight: bold;
-	min-width:1024px;
+	/* border: solid 1px #cccccc; */
+	/* border-radius: 0px; */
+	/* font-weight: bold; */
+	max-width: 1060px;
 }
 
 
@@ -235,25 +235,25 @@ margin: 0 auto;
 
 .thumbnail h3 {
 	margin-top:0;	
-	margin-bottom:15px;	
-	font-size: 26px;
+	margin-bottom: -37px;	
+	font-size: 21px;
 	font-weight: bold;
-	color: #FFFFFF;
-	background-color: #428bca;
+	color: #6E6A6A;
+	/* background-color: #428bca; */
 }
 
 
 
 .footer {
-	min-width:1024px;
-	height: 250px;
-	background-color: #428bca;
+	min-width: 1024px;
+	height: 360px;
+	background-color: rgb(27, 26, 26);
 	margin: 0 auto;
 }
 
 #reference {
 	width: 1000px;
-	height: 150px;
+	height: 160px;
 	margin: 0 auto;
 	padding-top: 20px;
 	padding-left: 20px;
@@ -263,8 +263,8 @@ margin: 0 auto;
 #row {
 	float: left;
 	width: 250px;
-	margin-right: 50px;
-	padding-top: 15px;
+	margin-right: 75px;
+	padding-top: 6px;
 }
 
 #row p {
