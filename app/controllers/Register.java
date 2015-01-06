@@ -21,8 +21,8 @@ public class Register extends Controller {
 					flag_register = true;
 					new User(email, password).save();
 					
-					String subject = "Welcome to join Munich CSSA!";
-					String msg = "Congratulations! Register successfully!";
+					String subject = "欢迎加入慕尼黑中国学生学者联合会!";
+					String msg = "恭喜您成功注册，成为CSSAM慕尼黑中国学生学者联合会的一员。";
 					Mails.sendEmail(email, subject, msg);
 					
 					render("Application/index.html", flag_register, register);
