@@ -201,7 +201,7 @@
 	#{/if}
 	#{else}
 	<div class="Alert">
-		<div class="alertMessage">邮箱已存在！</div>
+		<div class="alertMessage">邮箱已被注册！</div>
 		<button type="button" class="btn btn-primary returnAlert">确认</button>
 	</div>
 	#{/else}
@@ -209,14 +209,14 @@
 
 #{if flag_twice}
 	<div class="Alert">
-		<div class="alertMessage">密码不一致！</div>
+		<div class="alertMessage">密码和确认密码不一致！</div>
 		<button type="button" class="btn btn-primary returnAlert">确认</button>
 	</div>
 #{/if}
 
 #{if wrongPW}
 <div class="Alert">
-	<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
+	<div class="alertMessage">&nbsp;&nbsp;密码错误,请重新输入！</div>
 	<button type="button" class="btn btn-primary returnAlert">确认</button>
 </div>
 #{/if}
