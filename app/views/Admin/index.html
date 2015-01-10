@@ -3,21 +3,105 @@
 <html>
 <head>
 <title>CSSA admin login</title>
-<meta charset="${_response_encoding}">
+<meta charset="utf-8">
+
+<!-- jquery -->
+<script src="@{'/public/javascripts/jquery-2.1.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+
+<!-- Bootstrap js -->
+<script src="@{'/public/javascripts/bootstrap.min.js'}" charset="${_response_encoding}" type="text/javascript"></script>
+
+<!-- moment js -->
+<script src="@{'/public/javascripts/moment-with-locales.min.js'}" charset="${_response_encoding}" type="text/javascript"></script>
+
+<!-- datetime picker js -->
+<script src="@{'/public/javascripts/bootstrap-datetimepicker.min.js'}" charset="${_response_encoding}" type="text/javascript"></script>
+
+<!-- bootstrap css -->
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap.min.css'}">
+
+<!-- datepicker css -->
+<link rel="stylesheet" media="screen" href="@{'/public/stylesheets/bootstrap-datetimepicker.min.css'}" />
+
+
 <link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/admin.css'}">
+	href="@{'/public/stylesheets/admin-main.css'}">
 #{get 'moreStyles' /}
-<script src="@{'/public/javascripts/jquery-1.6.4.min.js'}"
+<script src="@{'/public/javascripts/ckeditorStandard/ckeditor.js'}"
 	type="text/javascript" charset="${_response_encoding}"></script>
+
 #{get 'moreScripts' /}
 
-<!-- Bootstrap -->
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/bootstrap.min.css'}">
-<link rel="stylesheet" media="screen"
-	href="@{'/public/stylesheets/bootstrap-theme.min.css'}">
+
+<!-- self-defined pagination -->
+<script src="@{'/public/javascripts/pagination.js'}" charset="${_response_encoding}" type="text/javascript"></script>
+
+
+	
+
 </head>
 <body>
-	Welcome to admin
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+				<a class="navbar-brand" href="/admin/main">CSSA 后台管理</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/admin/main">主面板</a></li>
+					<li><a href="/admin/setting">设置</a></li>
+					<li><a href="/Secure/logout">退出登录</a></li>
+				</ul>
+				<form class="navbar-form navbar-right">
+					<input type="text" class="form-control" placeholder="Search...">
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 sidebar">
+				<ul class="nav nav-sidebar">
+					<li #{if selectedIndex == 0}class="active"#{/if} ><a href="/admin/newPost">新建帖子</a></li>
+					<li #{if selectedIndex == 1}class="active"#{/if} ><a href="/admin/allPosts?size=10&page=1">所有帖子</a></li>
+					<li #{if selectedIndex == 2}class="active"#{/if} ><a href="/admin/users?size=10&page=1">用户管理</a></li>
+					<li #{if selectedIndex == 3}class="active"#{/if} ><a href="/admin/events?size=10&page=1">活动管理</a></li>
+				</ul>
+				
+				<ul class="nav nav-sidebar">
+					<li #{if selectedIndex == 4}class="active"#{/if}><a href="/admin/newDownloadFile">文件上传</a></li>
+					<li #{if selectedIndex == 9}class="active"#{/if}><a href="/admin/allFiles?size=10&page=1">文件管理</a></li>
+					<li #{if selectedIndex == 5}class="active"#{/if}><a href="/admin/broadcastEmail">群发邮件</a></li>
+				</ul>
+				
+				<ul class="nav nav-sidebar">
+					<li #{if selectedIndex == 6}class="active"#{/if}><a href="/admin/setting">设置</a></li>
+					<li #{if selectedIndex == 7}class="active"#{/if}><a href="/admin/main">主面板</a></li>
+					<li #{if selectedIndex == 8}class="active"#{/if}><a href="/admin/help">使用帮助</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			#{if msg != null}
+			  <div class="alert alert-success" role="alert">${msg}</div>
+			  <script type="text/javascript">
+			  	// delete alert after 3 secs
+			  	var msg = document.getElementsByClassName("alert")[0];
+			  	
+			  	setTimeout(function(){
+			  		msg.style.display = "none";
+			  	},3000);
+			  </script>
+			#{/if}
+			#{doLayout /}
+			</div>
+		</div>
+	</div>
 </body>
 </html>

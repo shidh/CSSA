@@ -1,0 +1,51 @@
+body{
+	background-color: #f2f2f2;
+	background-image: url('/public/images/noise.jpg');
+	padding-bottom: 30px;
+}
+
+.center{
+	font-size:16px;
+	margin:auto;
+	width:70%;
+}
+
+#my_profile_left_div {
+	border: 1px solid red;
+	width: 150px;
+	position: relative;
+	top: 10px;
+	float: left;
+}
+
+#my_profile_middle_div {
+	font-size:16px;
+	border: 1px solid green;
+	width: 380px;
+	position: relative;
+	top: 10px;
+	float: left;
+}
+
+#my_profile_right_div {
+	border: 1px solid blue;
+	width: 400px;
+	float: left;
+	position: relative;
+	top: 10px;
+}
+
+.userimage {
+	max-width: 100px;
+	max-height: 100px;
+	overflow: hidden;
+}
+
+input.r {
+	border: 1px solid #fff;
+}
+
+input.w {
+	border: 1px solid #369;
+}
+

@@ -1,0 +1,170 @@
+#{extends 'main.html'/}
+
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/postStream.css'}">
+#{/set}
+
+<script>
+	var count = 0;
+</script>
+
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-7">
+		#{list items:posts, as:'onePost'}
+		<div class="my-container">
+			<div class="row my-title">
+				<div class="col-sm-1">
+					#{if mode == "post"} 
+					<span class="label label-primary">新闻</span>
+					#{/if}
+					#{if mode == "event"} 
+					<span class="label label-primary">活动</span>
+					#{/if}					
+				</div>
+				<div class="col-sm-11">
+					#{if mode == "post"} 
+			        	<a class="h1" href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
+			        #{if mode == "event"} 
+			        	<a class="h1" href="@{ViewEvent.page(onePost.id)}">${onePost.title}</a>
+					#{/if}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-4">
+				#{if mode == "event"} 
+					#{if onePost.content.coverImgUrl!=null}
+					 	<img src=" ${onePost.content.coverImgUrl}" alt="pic" class="img-thumbnail img-responsive">
+					 #{/if}
+					 #{else}
+						<img src="/public/images/Events.jpg" alt="pic" class="img-thumbnail img-responsive">
+					#{/else}
+				#{/if}
+				#{if mode == "post"} 
+					#{if onePost.content != null}
+						 #{if onePost.content.coverImgUrl != null}
+						 	<img src=" ${onePost.content.coverImgUrl}" alt="pic" class="img-thumbnail img-responsive">
+						 #{/if}
+					#{/if}
+					#{else}
+						<img src="/public/images/News.jpg" alt="pic" class="img-thumbnail img-responsive">
+					#{/else}
+				#{/if}				
+				</div>
+				<div class="hiddenDiv" style="display:none;">
+					${onePost.postContent.raw()}
+				</div>
+				<div class="col-sm-8 my-post-content text">
+					<script>
+						var string = document.getElementsByClassName("hiddenDiv")[count].innerHTML;
+						console.error(string);
+						var output = string.replace(/<img[^>]*>/g,"");
+						document.getElementsByClassName("text")[count].innerHTML = output;
+						count++;
+					</script>
+				</div>
+			</div>
+			<hr>
+		</div>
+		#{/list}
+	</div>
+	
+
+	<div class="col-sm-1"></div>
+</div>
+<div class="row">
+	<div class="col-sm-6 col-md-offset-4">
+	<!-- <ul class="pagination">
+	  <li><a href="javascript:void(0)" onclick="last()">&laquo;</a></li>
+	  #{if pageTotal > 0}
+	  <li class="p"><a class="number" href="page?size=10&page=1">1</a></li>
+	  #{/if}
+	  #{if pageTotal > 1}
+	  <li class="p"><a class="number" href="page?size=10&page=2">2</a></li>
+	  #{/if}
+	  #{if pageTotal > 2}
+	  <li class="p"><a class="number" href="page?size=10&page=3">3</a></li>
+	  #{/if}
+	  #{if pageTotal > 3}
+	  <li class="p"><a class="number" href="page?size=10&page=4">4</a></li>
+	  #{/if}
+	  #{if pageTotal > 4}
+	  <li class="p"><a class="number" href="page?size=10&page=5">5</a></li>
+	  #{/if}
+	  <li><a href="javascript:void(0)" onclick="next()">&raquo;</a></li>
+	</ul> -->
+	<div id="myPagination"></div>
+	</div>
+</div>
+<script>
+pagination.create("myPagination",{
+	"controller":"page",
+	"pageTotal":${pageTotal},
+	"pageEach":5,
+	"page":${page},
+	"size":${size}
+});
+
+
+
+
+/*
+// get pagination elements
+var pagination = document.getElementsByClassName("pagination")[0];
+var elements = pagination.getElementsByClassName("p");
+
+// calculate the first number
+var firstNumber = ${page} - (${page} -1) % 5;
+
+// totalPage
+var pageTotal=${pageTotal};
+
+// mark the current page as active
+for(var i = 0;i < elements.length; i++){
+	elements[i].outerHTML = "<li class='p'><a class='number' href='page?size=10&page="+firstNumber+"'>"+firstNumber+"</a></li>";
+	var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+	if(currentPN == "${page}"){
+		elements[i].outerHTML = "<li class='p active'><a class='number'>" + currentPN + "</a></li>";
+	}	
+	firstNumber++;
+}
+
+// show the next five numbers
+function next(){
+	for(var i = 0;i < elements.length; i++){
+		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+		var pageNumber = parseInt(currentPN) + 5;
+		if(pageNumber>pageTotal){
+			break;
+		}
+		if(pageNumber>pageTotal){
+			elements[i].style.display="none";
+			continue;
+		}else{
+			elements[i].style.display="auto";
+		}
+		if(pageNumber == "${page}"){
+			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+		}else{
+			elements[i].outerHTML = "<li class='p'><a class='number' href='page?size=10&page=" + pageNumber + "'>" + pageNumber + "</a></li>";
+		}
+	}
+}
+
+// show the last five numbers
+function last(){
+	for(var i = 0;i < elements.length; i++){
+		var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+		var pageNumber = parseInt(currentPN) - 5;
+		elements[i].style.display="auto";
+		if(pageNumber <= 0) return;
+		if(pageNumber == "${page}"){
+			elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+		}else{
+			elements[i].outerHTML = "<li class='p'><a class='number' href='page?size=10&page=" + pageNumber + "'>" + pageNumber + "</a></li>";
+		}
+	}
+}*/
+</script>

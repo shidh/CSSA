@@ -1,15 +1,23 @@
-#{extends 'main.html' /} #{set title:'Home' /}
+#{extends 'main.html' /} #{set title:'慕尼黑中国学生学者联合会' /}
+
+#{if promote_login==true}
+<div class="alert alert-warning alert-dismissible" align="center" role="alert" style="width:1024px; margin:10px auto">
+  <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  <strong>Please login first to check the events page</strong>
+</div>
+
+#{/if}
 
 <div class="slides_container">
 	<div id="focus">
 		<ul>
-			<li><a href="#" target="_blank"><img
+			<li><a href="http://test.cssa-munich.de/viewPost?postId=20" target="_blank"><img
 					src="/public/images/01.jpg" /></a></li>
 			<li><a href="#" target="_blank"><img
 					src="/public/images/02.jpg" /></a></li>
 			<li><a href="#" target="_blank"><img
 					src="/public/images/03.jpg" /></a></li>
-			<li><a href="#" target="_blank"><img
+			<li><a href="http://test.cssa-munich.de/viewPost?postId=60" target="_blank"><img
 					src="/public/images/04.jpg" /></a></li>
 			<li><a href="#" target="_blank"><img
 					src="/public/images/05.jpg" /></a></li>
@@ -20,12 +28,11 @@
 <div class="row block_container">
 	<div class="col-sm-6 col-md-3 nailleft">
 		<div class="thumbnail">
-			<h3>活动</h3>
-			<img src="/public/images/Events.jpeg">
+			<h3>学联活动</h3>
+				<img class="middle" src="/public/images/Events.jpg" width="310" height="270">
 			<div class="caption">
-				<p>...</p>
 				<p>
-					<a href="#" class="btn btn-primary" role="button">了解更多..</a>
+					<a href="/eventStream/page?size=10&page=1" class="btn btn-primary" role="button">了解更多..</a>
 				</p>
 			</div>
 		</div>
@@ -33,139 +40,81 @@
 	<div class="col-sm-6 col-md-3 nail">
 		<div class="thumbnail">
 			<h3>学联新闻</h3>
-			<img src="/public/images/News.jpeg">
+			<img class="middle" src="/public/images/News.jpg">
 			<div class="caption">
-				<p>...</p>
 				<p>
-					<a href="#" class="btn btn-primary" role="button">了解更多..</a>
+					<a href="/postStream/page?size=10&page=1" class="btn btn-primary" role="button">了解更多..</a>
 				</p>
 			</div>
 		</div>
 	</div>
 	<div class="col-sm-6 col-md-3 nailright">
 		<div class="thumbnail">
-			<h3>视频</h3>
-			<img src="/public/images/Videos.jpeg">
+			<h3>学联攻略</h3>
+			<img class="middle" src="/public/images/wiki.jpg">
 			<div class="caption">
-				<p>...</p>
 				<p>
-					<a href="#" class="btn btn-primary" role="button">了解更多..</a>
+					<a href="/Download/page" class="btn btn-primary" role="button">了解更多..</a>
 				</p>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="footer">
-	<div id="reference">
-		<div id="row">
-			<p>欢迎!</p>
-		</div>
-		<div id="row">
-			<ul>
-				<li><h3>联系我们:</h3></li>
-				<li>Wenbo</li>
-				<li>farewell1122@163.com</li>
-			</ul>
-		</div>
-		<div id="row">
-			<ul>
-				<li><h3>相关链接:</h3></li>
-				<li><a href="#">Wenbo.com</a></li>
-				<li><a href="#">Lin.com</a></li>
-				<li><a href="/secure/login">管理员</a></li>
-			</ul>
-		</div>
+ <div class="inner-col" align="center">
+ 	<h1 align="center">我们的重要合作伙伴</h1>
+ 	</br>
+ </div>
+
+<div class="row partner_container">
+	<div class="col-xs-6 col-md-3">
+		<a href="http://munich.china-consulate.org/chn/">
+			<img class="china" src="/public/images/partner/china.png" alt="AIA logo" width="190" height="101" />
+			<span style="margin-top: 1px;">中国驻慕尼黑总领事馆</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3">
+		<a href="http://www.kaiyuan.de/">
+			<img class="kaiyuan" src="/public/images/partner/kaiyuan.png" alt="AIA logo"width="190" height="101" />
+			<span style="margin-top: 10px;">德国开元网</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3">
+		<a href="http://www.gerig-wealth.com/">
+			<img class="gerig" src="/public/images/partner/gerig.png" alt="AIA logo"width="190" height="101" />
+			<span>德国格瑞阁理财</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3">
+		<a href="http://konfuzius-muenchen.de/">
+			<img class="kksim" src="/public/images/partner/kksim.png" alt="AIA logo"width="190" height="101" />
+			<span>慕尼黑孔子课堂</span>
+		</a>
 	</div>
 </div>
+<div class="row partner_container" style="margin-top:10px;">
+	<div class="col-xs-6 col-md-3" style="margin-top:40px;">
+		<a href="http://www.erich-paulun-institut.de/de/startseite">
+			<img class="epi" src="/public/images/partner/epi.png" alt="AIA logo"width="190" height="101" />
+			<span style="margin-top:20px;">埃里希宝隆学院</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3">
+		<a href="http://www.international.tum.de/willkommen-an-der-tum/internationale-austauschstudierende/tuminternational/">
+			<img class="tumi" src="/public/images/partner/tumi.png" alt="AIA logo"width="190" height="101" />
+			<span style="margin-top:1px;">TUMinternational</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3" style="margin-top:25px;">
+		<a href="http://www.tutoria-lmu.de/">
+			<img class="tutoria" src="/public/images/partner/tutoria.png" alt="AIA logo"width="190" height="101" />
+			<span style="margin-top:14px;">TutoRIA LMU</span>
+		</a>
+	</div>
+	<div class="col-xs-6 col-md-3">
+		<a href="https://www.xing.com/communities/groups/deutsch-chinesische-gesellschaft-muenchen-1063129">
+			<img class="dcgm" src="/public/images/partner/dcgm.png" alt="AIA logo"width="190" height="101" />
+			<span style="margin-top:2px;">慕尼黑德中友协</span>
+		</a>
+	</div>
 </div>
-
-<div id="loginForm">
-	<form action="@{Login.authenticate()}" class="form-horizontal" method="post" role="form">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-			<div class="col-sm-9">
-				<input name="email" type="email" class="form-control" id="inputEmail3"
-					placeholder="Email">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-			<div class="col-sm-9">
-				<input name="password" type="password" class="form-control" id="inputPassword3"
-					placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-9">
-				<div class="checkbox">
-					<label> <input type="checkbox"> 记住我
-					</label>
-				</div>
-			</div>
-		</div>
-		<button type="submit" class="btn btn-primary dis submitLogin">登录</button>
-		<button type="button" class="btn btn-primary dis returnLogin">返回</button>
-	</form>
-</div>
-
-<div id="registerForm">
-	<form action="@{Application.register()}" class="form-horizontal" method="post" role="form">
-		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-			<div class="col-sm-9">
-				<input name="email" type="email" class="form-control" id="inputEmail3"
-					placeholder="Email">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-			<div class="col-sm-9">
-				<input name="password1" type="password" class="form-control" id="inputPassword3"
-					placeholder="Password">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">确认密码</label>
-			<div class="col-sm-9">
-				<input name="password2" type="password" class="form-control" id="inputPassword3"
-					placeholder="Password Twice">
-			</div>
-		</div>
-		<button type="submit" class="btn btn-primary dis submitRegister">注册</button>
-		<button type="button" class="btn btn-primary dis returnRegister">返回</button>
-	</form>
-</div>
-
-#{if register}
-	#{if flag_register}
-	<div class="Alert">
-		<div class="alertMessage">&nbsp;&nbsp;注册成功！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-	#{/if}
-	#{else}
-	<div class="Alert">
-		<div class="alertMessage">邮箱已存在！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-	#{/else}
-#{/if}
-
-#{if flag_twice}
-	<div class="Alert">
-		<div class="alertMessage">密码不一致！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-#{/if}
-
-#{if login}
-	#{if flag_login}
-	#{/if}
-	#{else}
-	<div class="Alert">
-		<div class="alertMessage">&nbsp;&nbsp;密码错误！</div>
-		<button type="button" class="btn btn-primary returnAlert">确认</button>
-	</div>
-	#{/else}
-#{/if}

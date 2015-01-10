@@ -1,0 +1,23 @@
+@CHARSET "UTF-8";
+
+h1{
+	text-align:center;
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	color: #428bca;
+}
+
+#content{
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.contentCell{
+	margin-bottom: 50px;
+}
+
+.contentCell span{
+	font-size: 16px;
+}

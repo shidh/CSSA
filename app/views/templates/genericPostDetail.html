@@ -1,0 +1,257 @@
+#{extends 'main.html'/}
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/viewPost.css'}">
+#{/set}
+
+<script>
+	var newPostAddTagCounter = 0;
+	var newPostScope = {};
+	newPostScope.tags = {};
+	
+	
+	//initlaize map
+    function initialize() {
+		  console.error('here');
+    	  newPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        newPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+        		newPostScope.mapOptions);
+        
+        newPostScope.geocoder = new google.maps.Geocoder();
+        
+        newPostScope.address = "";
+        
+        getlatlng();
+        #{if post.mapLocation}
+        	newPostScope.address = "${post.mapLocation.address.raw()}";
+	        #{if post.mapLocation.latitude}
+	        	setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+        	#{/if}
+       	#{/if}
+        
+        //map click callback
+        google.maps.event.addListener(newPostScope.map, 'click', function(event) {
+        	
+        	newPostScope.map.panTo(event.latLng);
+        	setMarkerAt(event.latLng);
+        });
+        
+        function setMarkerAt(location){
+   	    	newPostScope.map.setCenter(location);
+   	    	if(newPostScope.marker){
+   	    		newPostScope.marker.setPosition(location);
+   	    	}
+   	    	else{
+	   	        newPostScope.marker = new google.maps.Marker({
+	   	            map: newPostScope.map,
+	   	            position: location
+	   	        });
+   	    	}
+
+   	     	newPostScope.map.setZoom(16);
+   	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
+   	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
+        }
+        
+        
+		function getlatlng(){
+			var address = $("#address_input").val();
+			
+			//if(address){
+				address = $.trim(address);
+				if(address != newPostScope.address){
+					newPostScope.address = address;
+				
+					newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+				   	      if (status == google.maps.GeocoderStatus.OK) {
+				   	    		setMarkerAt(results[0].geometry.location);
+				   	      } else {
+				   	      }
+				   	    });
+				}
+			//}
+		}
+      }
+    </script>
+
+
+<!-- render(post, user, flag_login, email);-->
+<div class="row">
+<div class="col-sm-2"></div>
+<div class="col-sm-8">
+<div id="view_post_div" class="center">
+	<div id="view_post_left_div" >
+
+	    <h1>
+	        ${post?.title}
+	    </h1>
+	    <hr>
+	    
+	    #{if mode == "event"}
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">时间</label>
+		    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="${post.time.format('yyyy-MM-dd HH:mm')}" readonly>
+		  </div>
+		</form>
+	    <form role="form">
+		  <div class="form-group">
+		    <label for="exampleInputEmail1">地点</label>
+		    <input type="email" class="form-control" id="address_input" value="${post?.mapLocation?.address}" placeholder="${post?.mapLocation?.address}" readonly>
+		  </div>
+		</form>
+	    <div class="panel panel-default">
+	        <div id="new_post_right_div" >
+    			<div id="newpost-map-canvas" style="height:150px;width:100%"></div>
+	 		</div>
+	    </div>
+	    <script type="text/javascript">
+			google.maps.event.addDomListener(window, "load", initialize);
+		</script>
+	    <hr>
+	    #{/if}
+	    
+	    <div class="info">
+	    	<div>${post?.postContent.raw()}</div>
+	    </div>
+	    
+        #{if post.content} 
+	    	#{if post}
+	        	#{if post.content.video}
+	    			${post.content.video.raw()}
+				#{/if}
+	    	#{/if}
+	    #{/if}
+	    <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input" hidden/>
+	    <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"hidden/>
+	    <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"hidden/>
+     	<input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}" hidden/>
+     	<input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>
+     	
+     	<hr>
+     	
+        #{if mode == "event"}
+        	#{if user != null}
+        	#{if post.isConfirmed(user.id)}
+        		<div class="alert alert-success" role="alert">你已经确认报名</div>
+        	#{/if}
+        	#{elseif  post.isOnWaiting(user.id)}
+        		<div class="alert alert-info" role="alert">你已经在waiting list上</div>
+        	#{/elseif }
+        	#{/if}
+        	
+        	#{elseif post.isFull()}
+        		<div class="alert alert-danger" role="alert">
+	       	    	<div class="row">
+	       	    		<div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
+	       	    		<div class="col-sm-2">
+						#{form @ViewEvent.signUp(post.id)}
+		   		     		<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+		       	    	#{/form}
+						</div>
+	       	    	</div>
+       	    	</div>
+        	#{/elseif}
+            
+            #{else}
+            	<div class="alert alert-info" role="alert">
+	       	    	<div class="row">
+	       	    		<div class="col-sm-10">我要参加</div>
+	       	    		<div class="col-sm-2">
+						#{form @ViewEvent.signUp(post.id)}
+		        			<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+		     			#{/form}
+						</div>
+	       	    	</div>
+       	    	</div>
+        	#{/else}	
+     	#{/if}	
+     </div>
+     
+    
+<!--      #{if mode == "event"}
+      	#{form @ViewEvent.postComment(post.id)}
+ 
+     <div id="comments_div">
+		<h2>评论:</h2>
+		#{list items:post.comments, as:'comment'}
+		<div class="comments_content">
+			<b>Comment from:</b> #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+			<b>Comment:</b> ${comment.text.raw()}<br>
+			<b>Rating:</b> ${comment.rating.raw()}<br>
+		</div>
+		#{/list}
+		
+     	<div class="form-group">
+			<textarea name="commentText" placeholder="Add comment..." id="comment_text_input" class="form-control" rows="3"></textarea>
+		</div>
+		<div class="form-group">
+		<label for="rating_select">评分</label>
+		<select name="commentRating" id="rating_select">
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+		</select>
+		<input type="submit" class="btn btn-primary" id="comment_button_input" name="postComment" value="提交"/>
+		</div>
+	</div>
+	#{/form}
+ #{/if}
+ 
+      #{if mode == "post"}
+      	#{form @ViewPost.postComment(post.id)}
+ 
+     <div id="comments_div">
+		<h2>评论:</h2>
+		#{list items:post.comments, as:'comment'}
+		<div class="comments_content">
+			<b>Comment from:</b> #{if comment.sender} ${comment.sender.email.raw()} #{/if} <br>
+			<b>Comment:</b> ${comment.text.raw()}<br>
+			<b>Rating:</b> ${comment.rating.raw()}<br>
+		</div>
+		#{/list}
+		
+     	<div class="form-group">
+			<textarea name="commentText" placeholder="Add comment..." id="comment_text_input" class="form-control" rows="3"></textarea>
+		</div>
+		<div class="form-group">
+		<label for="rating_select">评分</label>
+		<select name="commentRating" id="rating_select">
+			<option value="5">5</option>
+			<option value="4">4</option>
+			<option value="3">3</option>
+			<option value="2">2</option>
+			<option value="1">1</option>
+		</select>
+		<input type="submit" class="btn btn-primary" id="comment_button_input" name="postComment" value="提交"/>
+		</div>
+	</div>
+	#{/form}
+ #{/if} -->
+ 
+        		<h2>评论:</h2>
+        <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'cssamunich'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript#disqus_thread">comments powered by Disqus.</a></noscript>
+	
+	
+</div>
+</div>
+<div class="col-sm-2"></div>
+</div>

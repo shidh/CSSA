@@ -1,0 +1,34 @@
+#{extends 'Secure/layout.html' /}
+<div id="adminloginbackground">
+	<div id="adminloginbox">
+		#{form @authenticate()} #{if flash.error}
+		<p class="error">&{flash.error}</p>
+		#{/if} #{if flash.success}
+		<p class="success">&{flash.success}</p>
+		#{/if}
+		
+			<div id="adminlogintitle">&{'secure.title'}</div>
+			<hr>
+			<table id="adminlogintable">
+				<tr id="adminloginuserbar">
+					<td><span>&{'secure.username'}</span></td>
+					<td><input type="text" name="username" id="username" value="${flash.username}"/></td>
+				</tr>
+				<tr id="adminloginpasswordbar">
+					<td><span>&{'secure.password'}</span></td>
+					<td><input type="password" name="password" id="password" value="" />
+					<td>
+				</tr>
+			</table>
+			<p id="remember-field">
+				<input type="checkbox" name="remember" id="remember" value="true"
+					${flash.remember ? 'checked="true" ' : ''} /> <label for="remember">&{'secure.remember'}</label>
+			</p>
+			<div id="adminloginbtnbar">
+				<button class="btn btn-primary" type="submit">&{'secure.signin'}</button>
+			</div>
+			
+		#{/form}
+	</div>
+</div>
+

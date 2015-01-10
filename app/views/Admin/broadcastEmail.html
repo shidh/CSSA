@@ -1,0 +1,181 @@
+#{extends 'Admin/index.html' /}
+#{form @sendEmail()}
+<h1 class="page-header">群发邮件</h1>
+<div class ="row">
+<div class ="col-md-9">
+<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <div class="row">
+    <label for="target" class="col-sm-2 control-label">收件人</label>
+    <div class="col-sm-10">
+      <input name="targetEmail" type="text" class="form-control" id="target" placeholder="邮箱地址"
+      #{if targetUsers != null}
+      value="#{list items:targetUsers,as:'target'}${target.email};#{/list}"
+      #{/if}>
+    </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+    <label for="subject" class="col-sm-2 control-label">主题</label>
+    <div class="col-sm-10">
+      <input name="subject" type="text" class="form-control" id="subject" placeholder="主题">
+    </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> 纯文本模式
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+    <label for="emailEditor" class="col-sm-2 control-label">正文</label>
+    <div class="col-sm-10">
+      <textarea name="emailEditor" id="emailEditor" rows="10" cols="80">
+		#{if content != null}
+			${content}
+		#{/if}
+	  </textarea>
+	  <script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace('emailEditor', {
+			filebrowserBrowseUrl : '/admin/browseUrl',
+			filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
+			filebrowserImageUploadUrl : '/admin/uploadUrl',
+			filebrowserImageWindowWidth : '640',
+			filebrowserImageWindowHeight : '480',
+		});
+	  </script>
+    </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-6">
+      <button type="submit" class="btn btn-default">发送</button>
+    </div>
+  </div>
+</form>
+</div>
+#{/form}
+<div class="col-md-3">
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#">联系人</a></li>
+  <li><a href="#">模板</a></li>
+</ul>
+<div class="table-responsive">
+	<div id="dummy"></div>
+	<script>
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.open("GET","contacts?size=${size}&page=${page}",true);
+	xmlhttp.send();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("dummy").innerHTML=xmlhttp.responseText;
+				markActive()
+			}
+	}
+	</script>
+	<div class="row">
+		<div class="col-sm-12">
+		<!-- <ul class="pagination">
+		  <li><a href="javascript:void(0)" onclick="last()">&laquo;</a></li>
+		  #{if pageTotal > 0}
+		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,1)'>1</a></li>
+		  #{/if}
+		  #{if pageTotal > 1}
+		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,2)'>2</a></li>
+		  #{/if}
+		  #{if pageTotal > 2}
+		  <li class="p"><a class="number" href="javascript:void(0)" onclick='getContact(10,3)'>3</a></li>
+		  #{/if}
+		  <li><a href="javascript:void(0)" onclick="next()">&raquo;</a></li>
+		</ul> -->
+		<div id="myPagination"></div>
+		</div>
+	</div>
+	<script>
+	var pageGlobal=${page};
+	var sizeGlobal=${size};
+	function getContact(size, page){
+		sizeGlobal = size;
+		pageGlobal = page;
+		xmlhttp.open("GET","contacts?size="+size+"&page="+page+"",true);
+		xmlhttp.send();
+	}
+	pagination.create("myPagination",{
+		"controller":"allPosts",
+		"pageTotal":${pageTotal},
+		"pageEach":3,
+		"page":${page},
+		"size":${size}
+	});
+	/*
+	// get pagination elements
+	var pagination = document.getElementsByClassName("pagination")[0];
+	var elements = pagination.getElementsByClassName("p");
+	
+	// calculate the first number
+	var firstNumber;
+	
+	function markActive(){
+		firstNumber = pageGlobal - (pageGlobal -1) % 3;
+		// mark the current page as active
+		for(var i = 0;i < elements.length; i++){
+			elements[i].outerHTML = "<li class='p'><a class='number' href='javascript:void(0)' onclick='getContact(10,"+firstNumber+")'>"+firstNumber+"</a></li>";
+			var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+			if(currentPN == pageGlobal){
+				elements[i].outerHTML = "<li class='p active'><a class='number'>" + currentPN + "</a></li>";
+			}	
+			firstNumber++;
+		}
+	}
+	
+	// show the next numbers
+	function next(){
+		for(var i = 0;i < elements.length; i++){
+			var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+			var pageNumber = parseInt(currentPN) + 3;
+			if(pageNumber == pageGlobal){
+				elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+			}else{
+				elements[i].outerHTML = "<li class='p'><a class='number' href='javascript:void(0)' onclick='getContact(10,"+pageNumber+")'>" + pageNumber + "</a></li>";
+			}
+		}
+	}
+	
+	// show the last five numbers
+	function last(){
+		for(var i = 0;i < elements.length; i++){
+			var currentPN = elements[i].getElementsByClassName("number")[0].innerHTML;
+			var pageNumber = parseInt(currentPN) - 3;
+			if(pageNumber <= 0) return;
+			if(pageNumber == pageGlobal){
+				elements[i].outerHTML = "<li class='p active'><a class='number'>" + pageNumber + "</a></li>";
+			}else{
+				elements[i].outerHTML = "<li class='p'><a class='number' href='javascript:void(0)' onclick='getContact(10,"+pageNumber+")'>" + pageNumber + "</a></li>";
+			}
+		}
+	}*/
+	</script>
+</div>
+</div>
+</div>
+
+
+

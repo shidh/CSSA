@@ -2,13 +2,53 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
+# Import Secure routes
+*      /                                        module:secure
 
 # Administration
-GET     /admin/?                                Admin.index
-*       /admin                                  module:crud
+GET     /admin/                                 Admin.index
 
 # Home page
 GET     /                                       Application.index
+
+# My Profle page
+GET     /myProfile                            	MyProfile.page
+
+# View Profle page
+GET     /viewProfile                            ViewProfile.page
+
+# Edit Post page
+GET     /editPost                            	EditPost.page
+
+# View Post page
+GET     /viewPost                            	ViewPost.page
+
+# View Event page
+GET     /viewEvent                            	ViewEvent.page
+
+# All Posts page
+GET     /postStream                            	PostStream.page
+
+# All Events page
+GET     /events                            	    EventStream.page
+
+# Download Page
+GET     /downloads                            	Application.index
+
+
+# Freshman welcome page
+GET     /freshman                            	Application.index
+
+# About page
+GET     /about                            	    About.page
+
+# Admin homepage
+GET    /admin									Admin.index
+
+
+
+
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

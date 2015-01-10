@@ -1,0 +1,279 @@
+#{extends 'main.html'/} 
+
+#{if mode == "myProfile"} 
+#{set title:'My Profile'/} 
+#{/if} 
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/myProfile.css'}">
+#{/set}
+
+<script>
+var profileScope = {};
+var profileAddTagCounter = 0;
+var display = false;
+
+$(function() {      
+   initialize();
+});
+
+function initialize() {
+	profileScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+	profileScope.map = new google.maps.Map(document.getElementById("profile-map-canvas"),
+											profileScope.mapOptions);
+
+	profileScope.tags = {};
+
+	setMarkers();
+}
+
+//setMarkerPosition
+function setMarkerPosition(lat, lng){
+	var location = new google.maps.LatLng(lat, lng);
+
+   	profileScope.map.panTo(location);
+   	profileScope.map.setZoom(16);
+   	
+	profileScope.marker = new google.maps.Marker({
+         map: profileScope.map,
+         position: location
+     });
+}
+
+//Add all markers related to the current user to the map
+function setMarkers(){
+		  #{list items:user.events, as:'myPost'}
+		    #{if myPost.mapLocation}
+			var lati = ${myPost.mapLocation.latitude} ;
+		    var longi = ${myPost.mapLocation.longitude} ;
+
+			var location = new google.maps.LatLng(lati, longi);
+			profileScope.map.panTo(location);
+			profileScope.map.setZoom(1);		  
+
+		   	var position = new google.maps.LatLng(lati, longi);
+			var marker = new google.maps.Marker({
+		      position: position,
+		      map: profileScope.map
+		    });
+			#{/if}
+		  #{/list}
+}
+
+function iconSelected(input) {
+	if (input.files && input.files[0]) {
+    	var reader = new FileReader();
+		var imgData;
+        reader.onload = function (e) {
+        	imgData = e.target.result;
+        	$('#img')
+            	.attr('src', imgData)
+            	.width("100%")
+            	.height("auto");
+        	
+        	//Program a custom submit function for the form
+        	$("#profileIconForm").submit();
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function passwordBoxDisplay() {
+	if (display) {
+		document.getElementById('changePasswordBox').style.visibility='hidden';
+		display = false;
+	} else {
+		document.getElementById('changePasswordBox').style.visibility='visible';
+		display = true;
+	}
+}
+
+
+$(function(){
+	$("#profileIcon").click(function(){
+        $(this).next().trigger('click');
+        var $elie = $("#profileIcon"), degree = 0, timer;
+        rotate();
+        function rotate() {
+        	if(degree < 720){
+            	$elie.css({ WebkitTransform: 'rotate(' + degree + 'deg)'});  
+           		$elie.css({ '-moz-transform': 'rotate(' + degree + 'deg)'});                      
+            	timer = setTimeout(function() {
+                	++degree; rotate();
+            	},1);
+        	}
+        }
+    });
+	
+	$("#profileIcon").hover(function(){
+	  	$(this).attr({
+	  		"title" : "快点击上传头像吧"
+	  	});
+	  	$(this).css("border","5px solid #7cfc00");
+	  }, 
+	  function(){
+		  	$(this).css("border","5px solid #428bca");
+		  }
+	  );
+});
+
+
+    
+</script>
+
+#{else} 
+#{set title:'view Profile'/}
+#{/else}
+
+
+#{form @MyProfile.submitGeneral(), enctype:"multipart/form-data", role:"form", class:"otherProfile"}
+  	<div class="form-group profileData" >
+    	<label for="fullname" style="margin-top:20px;">姓名</label>
+    	<input type="text" name="fullname" class="form-control" id="fullname" placeholder="fullname" value="${user.fullname}">
+  	</div>
+  	#{if user.gender == "女"}
+  	<div class="form-group profileData">
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" value="男">男
+    	</label>
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" value="女" checked>女
+    	</label>
+  	</div>
+  	#{/if}
+  	#{else}
+  	<div class="form-group profileData">
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" value="男" checked>男
+    	</label>
+    	<label class="radio-inline">
+    		<input type="radio" name="gender" id="inlineRadio1" value="女">女
+    	</label>
+  	</div>
+  	#{/else}
+  	<div class="form-group profileData">
+    	<label for="religion">学校</label>
+    	<input type="text" name="organization" class="form-control" id="organization" placeholder="organization" value="${user.organization}">
+  	</div>
+  	<div class="form-group profileData">
+    	<label for="country">专业</label>
+    	<input type="text" name="major" class="form-control" id="major" placeholder="major" value="${user.major}">
+  	</div>
+  	<div class="form-group profileData input-append date">
+    	<label for="birthday">生日</label>
+    	<!--  <input type="text" name="birthday" class="form-control" id="birthday" placeholder="birthday" value="${user.birthday}">-->
+  		<input type='text' class="form-control" placeholder="birthday" name="birthday" data-date-format="YYYY-MM-DD" id='birthday' #{if user.birthday}value="${user.birthday.format('yyyy-MM-dd')}"#{/if}/>
+    	<script type="text/javascript">
+            $(function () {
+                $('#birthday').datetimepicker({
+					pickTime: false
+				});
+            });
+        </script>
+  	</div>
+  	<div class="form-group profileData">
+    	<label for="address">地址</label>
+    	<input type="text" name="address" class="form-control" id="address" placeholder="address" value="${user.address}">
+  	</div>
+  	<div class="form-group profileData input-append date">
+    	<label for="birthday">电话</label>
+    	<input type="text" name="mobileNo" class="form-control" id="mobileNo" placeholder="telephone" value="${user.mobileNo}">
+  	</div>
+  	<button type="submit" class="btn btn-primary newPasswordSubmit">Submit</button>
+#{/form}
+
+<div class="middle">
+	<form  target="upload_target" id="profileIconForm" action="MyProfile/saveIconImg" enctype="multipart/form-data" method="post" >
+	<input type="hidden" name="userId" value="${user.id}">
+	<div class="layoutContainer" id="icon" >
+		<div id="profileIcon" >
+			<img id="img" style="width:100%;height:auto;" src="#{if user.image}public/images/upload/${user.image.fileName}#{/if}" />
+		</div>
+		<input id="updateFile" name="file" type="file" accept="image/*"  onchange="iconSelected(this)"/ >
+	</div>
+	</form>
+	<iframe id="upload_target" name="upload_target" src="#" style="width:0;height:0;border:0px solid #fff;"></iframe> 
+	
+	<div id="eventsMap" >
+		<div id="profile-map-canvas" style="height: 350px; width: 100%">
+		</div>
+		<div id="myPostList">
+		
+		
+			<div id="tagCloud">
+		    	<ul>
+				#{list items:user.events, as:'myPost'}
+					<li class="post-title"
+					#{if myPost.mapLocation}
+						onmouseover="setMarkerPosition(${myPost.mapLocation.latitude}, ${myPost.mapLocation.longitude})">
+						<a href="@{ViewPost.page(myPost.id)}">${myPost.title}</a>
+					#{/if}
+					</li>
+				#{/list}
+    			</ul>
+	  	 	</div>
+		</div>
+	</div>
+</div>
+
+#{form @MyProfile.submitPassword(), enctype:"multipart/form-data", role:"form", class:"keyProfile"}
+	<div class="form-group profileData">
+		<label for="cssaID" style="margin-top:50px;">CSSA ID</label>
+		<input type="text" class="form-control" id="cssaID" value="${user.cssaID}" disabled/>
+	</div>
+	<div class="form-group profileData">
+		<label for="registerDate">注册日期</label>
+		<input type="text" class="form-control" id="registerDate" value="${user.registerDate}" disabled/>
+	</div>
+	<div class="changePasswordButton" onclick="passwordBoxDisplay()">
+		修改密码 <span class="glyphicon glyphicon-align-justify"></span>
+	</div>
+	
+	<div id="changePasswordBox">
+	  	<div class="form-group profileData">
+	    	<label for="oldPassword">Old password</label>
+	   	 	<input type="password" class="form-control" id="oldPassword" name="oldPassword" placeholder="Enter old password" >
+	  	</div>
+	  	<div class="form-group profileData">
+	    	<label for="newPassword1">New password</label>
+	    	<input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Enter new password">
+	  	</div>
+	  	<div class="form-group profileData ">
+	    	<label for="newPassword2">Confirm password</label>
+	    	<input type="password" class="form-control" id="confirmed" name="confirmed" placeholder="Confirm new Password">
+	  	</div>
+	  	
+	  	<button type="submit" class="btn btn-primary newPasswordSubmit">Submit</button>
+  	</div>
+#{/form}
+
+#{if updateSuc}
+	<div class="Alert">
+		<div class="alertMessage">修改成功！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+#{/if} 
+#{if shortPass}
+	<div class="Alert">
+		<div class="alertMessage">密码不能少于6位！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+#{/if} 
+#{if wrongSec}
+	<div class="Alert">
+		<div class="alertMessage">两次密码不一致！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+#{/if} 
+#{if wrongOld}
+	<div class="Alert">
+		<div class="alertMessage">旧密码错误！</div>
+		<button type="button" class="btn btn-primary returnAlert">确认</button>
+	</div>
+#{/if} 
+
+	

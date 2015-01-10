@@ -1,0 +1,154 @@
+#{extends 'Admin/index.html' /}
+<h1 class="page-header">新建帖子</h1>
+
+#{form @savePost(), id:'newPostForm'}
+
+<input type="hidden" value="${postId}" name="postId" />
+<input type="hidden" name="username" value="${username}" />
+  <div class="form-group">
+    <label for="exampleInputEmail1">类型</label>
+    <script type="text/javascript">
+    	function typeHandler(){
+    		// find
+    		var typeValue=document.getElementById("postType").value;
+
+			if(typeValue == "event"){
+				// show event specific form
+				console.log(document.getElementById("eventSpecific"));
+				document.getElementById("eventSpecific").style.display="block";
+			}else if(typeValue == "news"){
+				// hide event specific form
+				document.getElementById("eventSpecific").style.display="none";
+			}
+    	}
+    </script>
+    <select id="postType" name="postType" class="form-control" onchange="typeHandler()">
+	  <option value="news">新闻</option>
+	  <option value="event" #{if post != null && post.postType == "event"}selected#{/if}>活动</option>
+	</select>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">标题</label>
+    <input type="text" class="form-control" id="postTitle" placeholder="请输入标题" name="title" 
+	#{if post != null}
+		value = '${post.title}'
+	#{/if}/>
+  </div>
+  <div id="eventSpecific" 
+  #{if post != null}
+  	#{if post.postType == "news"}
+  	  style="display:none;"
+  	#{/if}
+  	#{if post.postType == "event"}
+  	  style="display:block;"
+  	#{/if}
+  #{/if}
+  #{else}
+  	style="display:none;"
+  #{/else}
+  >
+  <div class="form-group">
+    <label for="exampleInputEmail1">人数上限</label>
+    <input type="text" name="capacity" class="form-control" id="postTitle" placeholder="请输入人数上限" name="capacity"
+    #{if post != null && post.postType == "event"}value="${post.capacity}"#{/if}
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">时间</label>
+    <div class='input-group date' id='datetimepicker1'>
+    	<input type='text' class="form-control" placeholder="输入时间" name="time" data-date-format="YYYY-MM-DD HH:mm" id='datepicker' #{if post != null && post.postType == "event"}value="${post.time.format('yyyy-MM-dd HH:mm')}"#{/if}/>
+    	<span class="input-group-addon">
+			<span class="glyphicon glyphicon-calendar"></span>
+		</span>
+    	<script type="text/javascript">
+            $(function () {
+                $('#datepicker').datetimepicker();
+            });
+        </script>
+    </div>
+    <script type="text/javascript">
+        //document.getElementById('datetimepicker1').datetimepicker();
+    </script>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">地址</label>
+    <input type="text" name="location" class="form-control" id="postTitle" placeholder="请输入地址" name="location"
+    #{if post != null && post.postType == "event"}value="${post.location}"#{/if}
+    />
+  </div>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">正文</label>
+    <textarea name="postEditor" id="postEditor" rows="10" cols="80">
+		#{if post != null}
+			${post.postContent}
+		#{/if}
+	</textarea>
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace('postEditor', {
+			filebrowserBrowseUrl : '/admin/browseUrl',
+			filebrowserImageBrowseUrl : '/admin/imageBrowseUrl',
+			filebrowserImageUploadUrl : '/admin/uploadUrl',
+			filebrowserImageWindowWidth : '640',
+			filebrowserImageWindowHeight : '480',
+		});
+		
+		// Get all the image inside the post
+		function saveHandler(){
+			
+			// create input
+			var input = document.createElement("INPUT");
+			
+			// set hidden
+			input.type = "hidden";
+			
+			// set name
+			input.name = "imgUrls";
+			
+			// get ckeditor iframe
+			var iframe = document.getElementsByClassName("cke_wysiwyg_frame")[0];
+			
+			// get innerdoc
+			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			
+			// get images
+			var imgTags = innerDoc.getElementsByTagName("img");
+			
+			// if no image, do nothing
+			if(imgTags.length === 0){
+				return;
+			}
+			
+			// stores image urls
+			var imgUrls = new Array();
+			for(var i = 0; i < imgTags.length; i++){
+
+				// absolute url
+				var url = imgTags[i].src;
+				
+				// relative url
+				var relativeUrl = url.replace(window.location.origin,"");
+				
+				// windows path
+				var path = relativeUrl.replace(/\//g, '\${separator}');
+				
+				// push
+				imgUrls.push(path);
+			}
+			
+			// write urls to input
+			input.value = JSON.stringify(imgUrls);
+			
+			// insert input into form
+			document.getElementById("newPostForm").appendChild(input);
+			
+			console.log(document.getElementById("newPostForm"));
+		}
+	</script>
+  </div>
+  <button type="submit"  class="btn btn-default" onclick="saveHandler();">保存</button>
+#{/form}
+
+
