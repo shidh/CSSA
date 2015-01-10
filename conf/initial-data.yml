@@ -17,6 +17,34 @@ User(petter):
     posts: [p1, p3]
     events: [e2]
     
+User(ALin):
+    fullname: "ALin"
+    email: alin@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
+User(Bob):
+    fullname: "Bob"
+    email: bob@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+
+User(Allen):
+    fullname: "Allen"
+    email: allen@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
+User(Gogo):
+    fullname: "Gogo"
+    email: gogo@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
 MapLocation(address):
     address: "Christ-Probst-Str 8109, 80805 Munich"
     latitude: 48.220498
@@ -85,8 +113,8 @@ Event(e2):
     mapLocation: address1
     rating: 2.0
     content: P1content
-    confirmedUsers: [linda]
-    onWaitingListUsers: []
+    confirmedUsers: [linda,ALin,petter]
+    onWaitingListUsers: [Gogo,Bob,Allen]
     capacity: 30
     members: [linda, petter]
     postType: "event"
