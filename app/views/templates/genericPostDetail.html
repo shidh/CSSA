@@ -135,39 +135,48 @@
      	<hr>
      	
         #{if mode == "event"}
+        	<!-- login == true -->
         	#{if user != null}
-        	#{if post.isConfirmed(user.id)}
-        		<div class="alert alert-success" role="alert">你已经确认报名</div>
-        	#{/if}
-        	#{elseif  post.isOnWaiting(user.id)}
-        		<div class="alert alert-info" role="alert">你已经在waiting list上</div>
-        	#{/elseif }
-        	#{/if}
+        		#{if post.isConfirmed(user.id)}
+        			<div class="alert alert-success" role="alert">你已经确认报名</div>
+        		#{/if}
+        		#{elseif  post.isOnWaiting(user.id)}
+        			<div class="alert alert-info" role="alert">你已经在waiting list上</div>
+        		#{/elseif }
+        		
+	        	#{elseif post.isFull()}
+	        		<div class="alert alert-danger" role="alert">
+		       	    	<div class="row">
+		       	    		<div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
+		       	    		<div class="col-sm-2">
+							#{form @ViewEvent.signUp(post.id)}
+			   		     		<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+			       	    	#{/form}
+							</div>
+		       	    	</div>
+	       	    	</div>
+	        	#{/elseif}
+	            #{else}
+	            	<div class="alert alert-info" role="alert">
+		       	    	<div class="row">
+		       	    		<div class="col-sm-10">我要参加</div>
+		       	    		<div class="col-sm-2">
+							#{form @ViewEvent.signUp(post.id)}
+			        			<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+			     			#{/form}
+							</div>
+		       	    	</div>
+	       	    	</div>
+	        	#{/else}	
+	        #{/if}
         	
-        	#{elseif post.isFull()}
-        		<div class="alert alert-danger" role="alert">
-	       	    	<div class="row">
-	       	    		<div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
-	       	    		<div class="col-sm-2">
-						#{form @ViewEvent.signUp(post.id)}
-		   		     		<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
-		       	    	#{/form}
-						</div>
-	       	    	</div>
-       	    	</div>
-        	#{/elseif}
-            
-            #{else}
-            	<div class="alert alert-info" role="alert">
-	       	    	<div class="row">
-	       	    		<div class="col-sm-10">我要参加</div>
-	       	    		<div class="col-sm-2">
-						#{form @ViewEvent.signUp(post.id)}
-		        			<input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
-		     			#{/form}
-						</div>
-	       	    	</div>
-       	    	</div>
+        	<!-- login == false -->
+        	#{else}
+        	<div class="alert alert-danger" role="alert">
+		       	    	<div class="row">
+		       	    		<div class="col-sm-10">请先登录才能报名活动</div>
+		       	    	</div>
+	       	</div>
         	#{/else}	
      	#{/if}	
      </div>
