@@ -117,7 +117,7 @@
 		<div class="form-group">
 			<div class="col-sm-12">
 				<div class="col-sm-offset-1 col-sm-4">
-					<div class="checkbox">
+					<div class="checkbox" style="padding-top:0px;">
 						<label> <input type="checkbox"> 记住我 </label>
 					</div>
 				</div>
@@ -144,24 +144,22 @@
         <h4 class="modal-title" id="myModalLabel" align="center">忘记密码</h4>
       </div>
       <div class="modal-body">
-      <p align="center">重设密码会发到您的邮箱，请确保此邮箱是CSSA注册邮箱</p>
-      <hr>
-			<div>
-				<input name="username" type="text" class="form-control" id="resetEmail" placeholder="Email">
-			</div>
+	    <p align="center">重设密码会发到您的邮箱，请确保此邮箱是CSSA注册邮箱</p>
+	    <hr>
+		<div>
+			<input name="username" type="text" class="form-control" id="resetEmail" placeholder="Email">
+		</div>
       </div>
       <div class="modal-footer">
-		
-		<div id="ok" class="alert alert-success" style="display:none;">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-	 	邮箱发送成功，请去邮箱设置新密码。
+      	<div id="ok" class="alert alert-success" style="display:none;">
+	 		邮箱发送成功，请去邮箱设置新密码。
+	 		<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
       	
       	<div id="danger" class="alert alert-danger " style="display:none;">
-      	<button type="button" class="close" data-dismiss="alert">&times;</button>
-  		Oh! 好像邮箱不对哦！
+  			Oh! 好像邮箱不对哦！
+  			<button type="button" class="close" data-dismiss="alert">&times;</button>
 		</div>
-		
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" id="resetPassButton" onclick="resetPassOnclick();">重设密码</button>
       </div>
@@ -315,9 +313,18 @@
 		//document.getElementById("numberInput").value=map.K;
 		//邮件发送成功
 		if (result == true){
+			if ($("div#danger").css("display") === "block"){
+				$("div#danger").attr("style","display: none;");
+			}
 			$("div#ok").attr("style","display: inline;");
+			$("div#ok").attr("style","float: left;");
+			$("div#ok").attr("style","margin-bottom: 15px");
+			$("div#ok").attr("style","text-align: left");
 		} else{
 			$("div#danger").attr("style","display: inline;");
+			$("div#danger").attr("style","float: left;");
+			$("div#danger").attr("style","margin-bottom: 15px");
+			$("div#danger").attr("style","text-align: left");
 		}
 	}
 	
