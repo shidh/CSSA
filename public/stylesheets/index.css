@@ -8,6 +8,9 @@ body{
 	background-image: url('/public/images/noise.jpg');
 }
 
+.reset-password {
+float: right;
+}
 
 .thumbnail>img {
 	display: block;

@@ -15,14 +15,17 @@
         
         #{get 'moreScripts' /}
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAR5BqFaXKB9kYMEwy4xzFvuyMEX_P6IPU&sensor=false&language=en"></script>
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-        
+        <script src="@{'/public/javascripts/jquery-1.7.1.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+
+		<!-- bootstrap-modal js -->
+		<script src="@{'/public/javascripts/bootstrap.js'}" charset="${_response_encoding}" type="text/javascript"></script>        
+		
         <script src="@{'/public/javascripts/index.js'}" type="text/javascript" charset="${_response_encoding}"></script>        
     
-    <!-- Jeff added the following -->
-    	<!-- jquery -->
+  	    <!-- Jeff added the following -->
+    	<!-- jquery 
 		<script src="@{'/public/javascripts/jquery-2.1.1.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
-		
+		--> 
 		<!-- moment js -->
 		<script src="@{'/public/javascripts/moment-with-locales.min.js'}" charset="${_response_encoding}" type="text/javascript"></script>
 		
@@ -34,8 +37,7 @@
 		
 		<!-- self-defined pagination -->
 		<script src="@{'/public/javascripts/pagination.js'}" charset="${_response_encoding}" type="text/javascript"></script>
-		
-	<!-- End of Jeff -->	
+		<!-- End of Jeff -->	
     
     
     </head>
@@ -96,35 +98,68 @@
  		
  		
         #{doLayout /}
-        <div id="loginForm">
-
+<div id="loginForm">
 	<form action="@{Secure.authenticate()}" class="form-horizontal" method="post" role="form">
 		<div class="form-group">
-			<label for="inputEmail3" class="col-sm-3 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
-			<div class="col-sm-9">
+			<label for="inputEmail3" class="col-sm-4 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+			<div class="col-sm-8">
 				<input name="username" type="text" class="form-control" id="inputEmail3"
 					placeholder="Email or Username">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
-			<div class="col-sm-9">
+			<label for="inputPassword3" class="col-sm-4 control-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+			<div class="col-sm-8">
 				<input name="password" type="password" class="form-control" id="inputPassword3"
 					placeholder="Password">
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-sm-offset-3 col-sm-9">
-				<div class="checkbox">
-					<label> <input type="checkbox"> 记住我
-					</label>
+			<div class="col-sm-12">
+				<div class="col-sm-offset-1 col-sm-4">
+					<div class="checkbox">
+						<label> <input type="checkbox"> 记住我 </label>
+					</div>
+				</div>
+				
+				<div class="col-sm-offset-3 col-sm-4">
+
+					<!-- Button trigger modal -->
+					<a data-toggle="modal" data-target="#myModal" >忘记密码?</a>
 				</div>
 			</div>
 		</div>
+		
 		<button type="submit" class="btn btn-primary dis submitLogin">登录</button>
 		<button type="button" class="btn btn-primary dis returnLogin">返回</button>
 	</form>
 </div>
+
+<!--ResetPass Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel" align="center">忘记密码</h4>
+      </div>
+      <div class="modal-body">
+      <p align="center">重设密码会发到您的邮箱，请确保此邮箱是CSSA注册邮箱</p>
+      <hr>
+			<div>
+				<input name="username" type="text" class="form-control" id="resetEmail" placeholder="Email">
+			</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="resetPass" >重设密码</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 
 
 <div id="registerForm">
@@ -246,6 +281,5 @@
 	});
 	
 	</script>
-	
     </body>
 </html>
