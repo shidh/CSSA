@@ -46,6 +46,17 @@ GET     /about                            	    About.page
 GET    /admin									Admin.index
 
 
+# wenti page
+GET     /wenti                            	    wenti.page
+
+# fluginfo
+GET     /fluginfo                            	staticFile:/public/fluginfo.html
+
+# testpage
+GET     /test                            	    test.page
+
+# cssa
+GET     /cssa                            		cssa.page
 
 
 

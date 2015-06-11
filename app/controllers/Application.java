@@ -61,13 +61,13 @@ public class Application extends Controller {
 		boolean isRJobDone = false;
 		User user = User.find("byEmail", email).first();
 		if (user != null){		
-			String newPass = getRandomString(12);
+			String newPass = getRandomString(12); // 生成12位随机密码
 
 			user.password = newPass;
 			user.save();
 			
 			String targetEmail = email+";";
-			isRJobDone = sendEmail(targetEmail, "CSSA 重置密码", newPass);
+			isRJobDone = sendEmail(targetEmail, "CSSA 重置密码", "亲爱的学联用户您好，您的学联账号密码已重置，请使用此密码登陆:"+newPass); // 邮箱地址，主题，正文
 			System.out.println("isRJobStarted: " + isRJobDone);
 		}
 		
@@ -83,7 +83,7 @@ public class Application extends Controller {
 			for (int i = 0; i < split.length; i++) {
 				email.addTo(split[i]);
 			}
-			email.setFrom("cssamuenchen@gmail.com", "CSSA Admin");
+			email.setFrom("info@cssa-munich.de", "CSSAMunich Admin"); //显示邮箱地址和名字
 			email.setSubject(subject);
 			// set the html message
 			email.setHtmlMsg(emailEditor);
@@ -98,12 +98,12 @@ public class Application extends Controller {
 			return false;
 		}
 	}
-	/**
+	/** 
      * get ramdom pass
      * @param length
      * @return
      */
-    public static String getRandomString(int length) { 
+    public static String getRandomString(int length) {  //生成随机密码模块
         StringBuffer buffer = new StringBuffer("0123456789abcdefghijklmnopqrstuvwxyz"); 
         StringBuffer sb = new StringBuffer(); 
         Random r = new Random(); 

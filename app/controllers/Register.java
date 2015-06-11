@@ -21,8 +21,9 @@ public class Register extends Controller {
 					flag_register = true;
 					new User(email, password).save();
 					
-					String subject = "Welcome to join Munich CSSA!";
-					String msg = "Congratulations! Register successfully!";
+					String subject = "欢迎加入慕尼黑中国学生学者联合会! Welcome to CSSA Munich!";
+					String msg = "Thank you for registering.\n\nPlease note: This email was sent from an auto-notification system that cannot accept incoming email. Please do not reply to this message. \n\nBest Regards\n\nCSSA Munich\n(Verein der Chinesischen Studenten & Wissenschaftler e. V.)\n-----------------------------------\nGoogle mailing list: http://www.cssa-munich.de/public/images/mail.html ;\nWechat: cssamunich;\nFacebook: CSSA Munich.\n\nInfo: chinese.muenchen@gmail.com;\nSupport: support@cssa-munich.de\n\n";
+
 					Mails.sendEmail(email, subject, msg);
 					
 					render("Application/index.html", flag_register, register);

@@ -56,7 +56,7 @@ public class Admin extends Controller {
 			for (int i = 0; i < split.length; i++) {
 				email.addTo(split[i]);
 			}
-			email.setFrom("linxj92@gmail.com", "Jeff");
+			email.setFrom("info@cssa-munich.de", "CSSA Munich");
 			email.setSubject(subject);
 			// // embed the image and get the content id
 			// URL url = null;

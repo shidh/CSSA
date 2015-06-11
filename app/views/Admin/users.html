@@ -8,6 +8,10 @@
 				<th>邮箱</th>
 				<th>姓名</th>
 				<th>性别</th>
+				<th>学校</th>
+				<th>专业</th>
+				<th>电话</th>
+				<th>注册日期</th>
 				<th>操作</th>
 			</tr>
 		</thead>
@@ -19,6 +23,10 @@
 				<td>${list.get(i).email}</td>
 				<td>${list.get(i).fullname}</td>
 				<td>${list.get(i).gender}</td>
+				<td>${list.get(i).organization}</td>
+				<td>${list.get(i).major}</td>
+				<td>${list.get(i).mobileNo}</td>
+				<td>${list.get(i).registerDate}</td>
 				<td>
 					<!--  <a href="/Admin/updateUser?userId=${list.get(i).getId()}">修改</a>&nbsp;-->
 					<!--  <a href="/Admin/deleteUser?userId=${list.get(i).getId()}">删除</a>-->

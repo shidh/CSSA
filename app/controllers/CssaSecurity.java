@@ -18,7 +18,7 @@ public class CssaSecurity extends Secure.Security {
 	
     static boolean authenticate(String username, String password) {
 			User user = User.find("byEmail", username).first();
-			User user2 = User.find("byUsername", username).first();
+			User user2 = User.find("byEmail", username).first();
 			
 			boolean isSuccess = false;
 			if(user != null && user.password.equals(password)){ 

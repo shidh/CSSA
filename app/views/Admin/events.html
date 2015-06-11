@@ -5,6 +5,7 @@
 		<thead>
 			<tr>
 				<th>#</th>
+				<th>最后修改时间</th>
 				<th>标题</th>
 				<th>作者</th>
 				<th>容量/已确认/等待队列（人）</th>
@@ -13,9 +14,10 @@
 		</thead>
 		<tbody>
 		#{if list.size != 0}
-		#{list items:0..list.size-1, as:'i' }
+		#{list items:list.size-1..0, as:'i' }
 	        <tr>
 	        	<td>${i+1}</td>
+	        	<td>${list.get(i).postingDate}</td>
 				<td>${list.get(i).title}</td>
 				<td>#{if list.get(i).sender != null}${list.get(i).sender.fullname}#{/if}</td>
 				<td>${list.get(i).capacity}/${list.get(i).confirmedUsers.size()}/${list.get(i).onWaitingListUsers.size()}</td>

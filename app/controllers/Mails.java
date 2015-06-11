@@ -20,7 +20,7 @@ public class Mails extends Mailer {
                 try {
                 	SimpleEmail e_mail = new SimpleEmail();
     				e_mail.setDebug(true);
-    				e_mail.setFrom("munich.cssa@gmail.com");
+    				e_mail.setFrom("info@cssa-munich.de");
     				e_mail.setSubject(subject);
     				e_mail.setMsg(msg);
     				e_mail.addTo(toAddress);
