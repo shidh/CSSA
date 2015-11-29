@@ -1,0 +1,344 @@
+#{extends 'main.html'/}
+#{set title:'关于学联'/}
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/about.css'}">
+#{/set}
+
+<!-- BEGIN PAGE LEVEL JAVASCRIPTS (REQUIRED ONLY FOR CURRENT PAGE) -->
+    <script src="/public/javascripts/jquery.fancybox.pack.js" type="text/javascript"></script><!-- pop up -->
+    <script src="/public/javascripts/jquery.mixitup.min.js" type="text/javascript"></script>
+    
+    <script src="/public/javascripts/layout.js" type="text/javascript"></script>
+    <script src="/public/javascripts/portfolio.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Layout.init();
+            Layout.initTwitter();
+            Portfolio.init();
+        });
+    </script>
+    <!-- END PAGE LEVEL JAVASCRIPTS -->
+<div class="main">
+	<div id="content">
+	  	<div class="single-top">
+	  		<div class="about-desc">
+				<h3>&{'views.about.helloword'}</h3>
+			   	<hr>
+				<p>
+				<span style="color: #428bca" class="glyphicon glyphicon-info-sign"></span>
+				<span style="color: #428bca">&{'views.about.test1'}</span>
+				&{'views.about.test2'}<br><br>
+				&{'views.about.test3'}
+				</p>
+				<a href="http://www.cssa-munich.de/cssa/page" title="read more" class="button">read more</a>
+		    </div>
+
+		    <div class="aboutmain">
+			<div class="container" style="
+			    margin-left: 0px;
+			    margin-right: 0px;
+			    padding-left: 0px;
+			    padding-right: 0px;
+			    width: 1200px;
+			">
+				
+      			
+		    
+
+		
+		<!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>Unser Team</h1>
+            <div class="content-page">
+                <div class="filter-v1">
+                  <ul class="mix-filter">
+                    <li data-filter="category_1" class="filter active">&{'views.about.team.all'}</li>
+                    <li data-filter="category_5" class="filter">&{'views.about.team.vorstand'}</li>
+                    <li data-filter="category_2" class="filter">&{'views.about.team.jura'}</li>
+                    <li data-filter="category_3" class="filter">&{'views.about.team.foto'}</li>
+                    <li data-filter="category_4" class="filter">&{'views.about.team.beratung'}</li>
+                  </ul>
+                              <div class="row mix-grid thumbnails">
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: none; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/zhai_chengyuan.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>翟程远 Zhai Chengyuan</h4>
+		                                	<h5>
+		                                	<p>学联和执委会主席<br>
+											Vorstandvorsitzender<br></p>
+											<p>慕尼黑工业大学<br>
+											Technische Universität München<br>
+											机械系机械工程专业在读硕士<br></p>
+											<p>E-Mail<br>
+											<a href="mailto:chengyuan.zhai@cssa-munich.de">chengyuan.zhai@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:chengyuan.zhai@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>翟程远 Zhai Chengyuan</h3>
+										&{'views.about.vorstand1'}          
+	                                </div>                       
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                       <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/liu_song.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>刘嵩 Liu Song</h4>
+		                                	<h5>
+		                                	<p>学联和执委会财长，执委会秘书长，分管内务<br>
+											Schatzmeister des Vorstands und Vereins, Vorstandsmitglied des Innern<br></p>
+											<p>慕尼黑工业大学<br>
+											Technische Universität München<br>
+											机械制造与管理专业在读硕士<br></p>
+											<p>E-Mail<br>
+											<a href="mailto:song.liu@cssa-munich.de">song.liu@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:song.liu@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>刘嵩 Liu Song</h3>
+										&{'views.about.vorstand2'}          
+	                                </div>                
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                       <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/wang_kaizhong.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>王楷中 Wang Kaizhong</h4>
+		                                	<h5>
+		                                	<p>执委会执委，分管职业和校友事务<br>
+													Vorstandsmitglied für Karriere und Alumni<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													机械制造与管理专业在读硕士<br></p>
+													<p>E-Mail：<a href="mailto:kaizhong.wang@cssa-munich.de">kaizhong.wang@cssa-munich.de</a></p><br></h5>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:kaizhong.wang@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>王楷中 Wang Kaizhong</h3>
+										&{'views.about.vorstand3'}          
+	                                </div>      
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                       <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/wu_wei.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>吴薇 Wu Wei</h4>
+		                                	<h5>
+		                                	<p>执委会执委，分管学术，学者事务<br>
+													Vorstandsmitglied für Wissen und Wissenschaftler<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													病理学专业在读博士<br></p>
+													<p>E-Mail：<a href="mailto:wei.wu@cssa-munich.de">wei.wu@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:wei.wu@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>吴薇 Wu Wei</h3>
+										&{'views.about.vorstand4'}          
+	                                </div>                 
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/zhang_kai.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>张凯 Zhang Kai</h4>
+		                                	<h5>
+		                                	<p>执委会执委，分管公共关系<br>
+													Vorstandsmitglied für Öffentlichkeitsarbeit<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													机械与管理专业在读硕士<br></p>
+													<p>E-Mail：<a href="mailto:kai.zhang@cssa-munich.de">kai.zhang@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:kai.zhang@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>张凯 Zhang Kai</h3>
+										&{'views.about.vorstand5'}          
+	                                </div>                                   
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                   <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/zhu_jiazhen.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>朱佳桢 Zhu Jiazhen</h4>
+		                                	<h5>
+		                                	<p>执委会执委，分管文化，艺术， 体育事务<br>
+													Vorstandsmitglied für Kultur, Kunst und Sport<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													电子信息专业在读硕士<br></p>
+													<p>E-Mail：<a href="mailto:jiazhen.zhu@cssa-munich.de">jiazhen.zhu@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:jiazhen.zhu@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>朱佳桢 Zhu Jiazhen</h3>
+										&{'views.about.vorstand6'}          
+	                                </div>                                               
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5 " style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/li_wanmeng.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>李宛濛 Li Wanmeng</h4>
+		                                	<h5>
+		                                	<p>学联和执委会主席助理
+													<br>Assistent des Präsidenten<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													经济专业在读学士<br></p>
+													<p>E-Mail：<a href="mailto:wanmeng.li@cssa-munich.de">wanmeng.li@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:wanmeng.li@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>李宛濛 Li Wanmeng</h3>
+										&{'views.about.vorstand8'}          
+	                                </div>                                                   
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_5" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/bi_haokun.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>毕昊昆 Bi Haokun</h4>
+		                                	<h5>
+		                                	<p>执委会执委，分管网络和技术支持<br>
+													Abteilungsleiter für IT und technische Unterstützung<br>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br>
+														Technische Universität München<br>
+													机械工程专业在读硕士<br></p>
+													<p>E-Mail：<a href="mailto:haokun.bi@cssa-munich.de">haokun.bi@cssa-munich.de</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:haokun.bi@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>毕昊昆 Bi Haokun</h3>
+										&{'views.about.vorstand9'}          
+	                                </div>                                                       
+                                  </div>
+                                  <div class="col-md-3 col-sm-4 mix category_2" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/yu_lu.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>于露 Yu Lu</h4>
+		                                	<h5>
+		                                	<p>于璐是百达律师事务所慕尼黑分所的中国业务组成员。他的业务重点是为中国企业开拓德国市场和在德国经营业务提供法律咨询，同时也为德国企业在中国从事商业活动提供法律咨询。<br><br>
+		                                	于璐在上海华东政法大学取得法律学士学位。在2008年完成德国法硕士学位后，他开始博士论文。2009年于璐取得了中国法律职业资格。在加盟百达律师事务所之前，他通过在中国和德国知名律所累积了实务经验。<br></p>
+											<p>E-Mail<br>
+											<a href="mailto:yulu24@hotmail.com">yulu24@hotmail.com</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:yulu24@hotmail.com" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>于露 Yu Lu</h3>
+										法律顾问          
+	                                </div>                                                
+                                  </div>
+                                <div class="col-md-3 col-sm-4 mix category_3" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/wu_xiao.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>武虓 Wu Xiao</h4>
+		                                	<h5>
+		                                	<p>学联特约摄影师<br>
+											<strong></strong></p>
+											<p>亥姆霍兹环境健康研究中心<br><br>
+											在读博士，慕尼黑自由摄影师，多年摄影现场经验，有个人工作室，擅长人像摄影如婚礼、婚纱、写真、演出、会议、旅行摄影等，风格清新大气，擅长抓拍最动人的瞬间，作品多次登上国内最大中文摄影网站“蜂鸟网”首页。<br></p>
+											<p>E-Mail：<br>
+											<a href="mailto:wuxiao0123@gmail.com">wuxiao0123@gmail.com</a>
+											Wechat：wx1987123 </a></p>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:wuxiao0123@gmail.com" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>武虓 Wu Xiao</h3>
+										特约摄影师        
+	                                </div> 
+                                </div>
+                                <div class="col-md-3 col-sm-4 mix category_3" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/yang_yang.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>杨扬 Yang Yang</h4>
+		                                	<h5>
+		                                	<p>学联特约摄影师<br>
+											<strong></strong></p>
+													<strong></strong></p>
+													<p>慕尼黑工业大学<br><br>
+													牙科博士在读，生于摄影世家。追求生活，热爱艺术。怀揣一份坚守与理想，滴水藏海，波澜不惊。<br></p>
+													<p>E-Mail：<a href="mailto:yylmu@outlook.com">yylmu@outlook.com</a></p><br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:yylmu@outlook.com" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>杨扬 Yang Yang</h3>
+										特约摄影师        
+	                                </div> 
+                                </div>
+                                <div class="col-md-3 col-sm-4 mix category_4" style="display: block; opacity: 1; ">
+                                    <div class="mix-inner">
+                                    	<img alt="" src="/public/images/about/beratung.jpg">
+                                    	<div class="mix-details">
+	                                		<h4>心理咨询</h4>
+		                                	<h5>
+		                                	<p>在一些重大事件发生的时候所造成的短期的压力, 焦虑不安、情绪激动等都是合理的反应。但在事件告一段落候，仍因此影响基本的生活，或无法恢复事件以前的生活状态、感受压力依然的存在，就可以建议找適合的人谈谈。<br>
+													可面谈或email联系,可匿名, 不留下记录, 不追踪.<br>
+	                                        <a class="mix-link"><i class="fa fa-info"></i></a>
+	                                        <a data-rel="fancybox-button" title="发送邮件" href="mailto:beratung@cssa-munich.de" class="mix-preview fancybox-button"><i class="fa fa-envelope-o"></i></a>
+                                    	</div> 
+	                                    <h3>心理咨询</h3>
+										Psychologische Beratung        
+	                                </div> 
+                                </div>
+
+                              </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+
+					<div align="center"><img src="/public/images/cssa20142015.jpg" alt="1" width="800" border="0" /></div><br><br>
+			<div class="about" style="
+			    padding-top: 10px;
+			    padding-bottom: 145px;
+			">
+				<div class="lsidebar span_1_of_about">
+				  	<ul class="about-list">
+						<h4 class="m_2">&{'views.about.document'}</h4>
+		            	<li><a href="http://www.cssa-munich.de/public/files/CSSA Munich Flyer cn.pdf">&{'views.about.flyer'}</a><p>&{'views.about.flyer.text'}</p></li>
+		            	<li><a href="http://www.cssa-munich.de/public/files/%E6%85%95%E5%B0%BC%E9%BB%91%E4%B8%AD%E5%9B%BD%E5%AD%A6%E7%94%9F%E5%AD%A6%E8%80%85%E8%81%94%E5%90%88%E4%BC%9A%E7%AB%A0%E7%A8%8B.pdf">&{'views.about.satzungch'}</a><p>&{'views.about.satzungch.text'}</p></li>
+		            	<li><a href="http://www.cssa-munich.de/public/files/%E6%85%95%E5%B0%BC%E9%BB%91%E4%B8%AD%E5%9B%BD%E5%AD%A6%E7%94%9F%E5%AD%A6%E8%80%85%E8%81%94%E5%90%88%E4%BC%9A%E7%AB%A0%E7%A8%8B(%E5%BE%B7%E8%AF%AD%E7%89%88).pdf">&{'views.about.satzungde'}</a><p>&{'views.about.satzungde.text'}</p></li>
+		            	<li><a href="http://www.cssa-munich.de/public/files/%E6%85%95%E5%B0%BC%E9%BB%91%E6%94%BB%E7%95%A52013%E7%89%88.pdf">&{'views.about.munichinfo'}</a><p>&{'views.about.munichinfo.text'}</p></li>
+		         	</ul>
+				</div>
+
+				
+				<div class="cont span_2_of_about">
+					<h4 class="m_2">&{'views.about.follow'}</h4>
+				    	<div class="lsidebar span_1_of_about">
+							<a href="javascript:var%20KICKASSVERSION='2.0';var%20s%20=%20document.createElement('script');s.type='text/javascript';document.body.appendChild(s);s.src='//hi.kickassapp.com/kickass.js';void(0);"><img src="../public/images/a-img1.jpg" title="continue" alt=""/></a>
+
+							
+
+						</div>
+
+				<div class="cont span_2_of_about">
+					<h3>&{'views.about.media'}</a></h3>
+				    <p>&{'views.about.media.test'}</p>
+				</div>
+					<div class="clear"></div>
+				</div>
+
+				<div class="clear"></div>	
+
+			</div>	
+						
+		</div>
+	</div>
+</div>
+</div>

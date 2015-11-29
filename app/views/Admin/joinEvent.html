@@ -1,0 +1,650 @@
+#{extends 'Admin/index.html' /}
+<style>
+/* Prevent the text contents of draggable elements from being selectable. */
+[draggable] {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  /* Required to make elements draggable in old WebKit */
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+}
+
+.well{
+  cursor: move;
+}
+
+.panel-body.over{
+  border: solid 1px #33b5e5;
+  border-radius: 3px;
+}
+
+.well.move{
+  opacity:0.6:
+}
+</style>
+#{form @updateApply()}
+<input type="hidden" value=${event.id} name="eventId">
+<h1 class="page-header">报名管理<small>${event.title}</small></h1>
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-xs-12 col-sm-9">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="alert alert-info" role="alert">拖拽下面的用户，管理活动报名</div>
+      <div class="row">
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+          	<div class="panel-heading">
+          	  <div class="row">
+          	  	<div class="col-sm-9"><h5>已确认</h5></div>
+          	  	<div class="col-sm-3">
+          	  	  <div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					    操作 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+					  <li><a href="javascript:void(0);" onclick="moveToWaiting();">移动到右边</a></li>
+					  <li><a href="javascript:void(0);" onclick="selectAllConfirmHandler();">全选</a></li>
+					  <li><a href="javascript:void(0);" onclick="disSelectAllConfirmHandler();">全部反选</a></li>
+					  <li><a href="javascript:void(0);" onclick="deleteuser();">删除选中项</a></li>
+					</ul>
+				  </div>
+          	  	</div>
+          	  </div>
+          	</div>
+		    <div  id="confirmContainer" class="panel-body">
+		    #{list items:event.confirmedUsers, as:"entry"}
+		      <div draggable="true" class="well">
+		      	<input type="hidden" class="userId" name="" value=${entry.id}>
+		        <div class="row">
+		          <div class="col-sm-2">
+		          	<span class="glyphicon glyphicon-user"></span>
+		          </div>
+		          <div class="col-sm-8">
+			          <div>
+			          	${entry.email}  
+			          </div>
+			          <div>
+			          	${entry.fullname}&nbsp&nbsp&nbsp${entry.id}
+			          </div>
+		          </div>
+		          <div class="col-sm-2">
+					<input type="checkbox" class="selectRadio">
+		          </div>
+		        </div>
+		      </div>
+		    #{/list}
+		    </div>
+		  </div>
+        </div><!--/span-->
+        <div class="col-xs-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+            <div class="row">
+          	  	<div class="col-sm-9"><h5>等待队列</h5></div>
+          	  	<div class="col-sm-3">
+          	  	  <div class="btn-group">
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+					    操作 <span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu">
+					  <li><a href="javascript:void(0);" onclick="moveToConfirm();">移动到左边</a></li>
+					  <li><a href="javascript:void(0);" onclick="selectAllWaitingHandler();">全选</a></li>
+					  <li><a href="javascript:void(0);" onclick="disSelectAllWaitingHandler();">全部反选</a></li>
+					</ul>
+				  </div>
+          	  	</div>
+          	  </div>
+            </div>
+		    <div  id="waitingContainer" class="panel-body">
+		    #{list items:event.onWaitingListUsers, as:"entry"}
+		      <div draggable="true" class="well">
+		        <input type="hidden" class="userId" name="" value=${entry.id}>
+		        <div class="row">
+		          <div class="col-sm-2">
+		          	<span class="glyphicon glyphicon-user"></span>
+		          </div>
+		          <div class="col-sm-8">
+			          <div>
+			          	${entry.email}
+			          </div>
+			          <div>
+			          	${entry.fullname}&nbsp&nbsp&nbsp${entry.id}
+			          </div>
+		          </div>
+		          <div class="col-sm-2">
+					<input type="checkbox" class="selectRadio">
+		          </div>
+		        </div>
+		      </div>
+		    #{/list}
+		    </div>
+		  </div>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+
+  </div><!--/row-->
+
+  <hr>
+  <script type="text/javascript">
+
+  // dis-select all java取消全选
+  function disSelectAll(){
+	// get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = false;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = false;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all redios
+  function selectAll(){
+	  // get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = true;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all redios
+  function selectAll(){
+	  // get container
+	  var containerWaiting = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radiosWaiting = containerWaiting.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosWaiting){
+		  radiosWaiting[i].checked = true;
+	  }
+	  
+	  // get container
+	  var containerConfirm = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radiosConfirm = containerConfirm.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radiosConfirm){
+		  radiosConfirm[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  //move selected item from waiting to confirm
+  function moveToConfirm(){
+	  // get container
+	  var container = document.getElementById("waitingContainer");
+	  var targetContainer = document.getElementById("confirmContainer");
+	  
+	  // get all item in container
+	  var items = container.getElementsByClassName("well");
+	  
+	  // to be delete
+	  var result = new Array();
+	  
+	  // loop all items
+	  for(var i = 0; i < items.length; i++){
+		  // get radio
+		  var radio = items[i].getElementsByClassName("selectRadio")[0];
+		  // if checked
+		  if(radio.checked == true){
+			  console.log(items[i].outerHTML);
+			  // insert into target
+			  targetContainer.innerHTML = targetContainer.innerHTML + items[i].outerHTML;
+			  
+			  // add to result
+			  result.push(items[i]);
+		  }
+	  }
+	  
+	  // remove
+	  while(item=result.pop()){
+		  container.removeChild(item);
+	  }
+  }
+  
+  // move selected item in confirm list to waiting list
+  function moveToWaiting(){
+	  // get container
+	  var container = document.getElementById("confirmContainer");
+	  var targetContainer = document.getElementById("waitingContainer");
+	  
+	  // get all item in container
+	  var items = container.getElementsByClassName("well");
+	  
+	  // to be delete
+	  var result = new Array();
+	  
+	  // loop all items
+	  for(var i = 0; i < items.length; i++){
+		  // get radio
+		  var radio = items[i].getElementsByClassName("selectRadio")[0];
+		  // if checked
+		  if(radio.checked == true){
+			  console.log(items[i].outerHTML);
+			  // insert into target
+			  targetContainer.innerHTML = targetContainer.innerHTML + items[i].outerHTML;
+			  
+			// add to result
+			  result.push(items[i]);
+		  }
+	  }
+	  
+	  // remove
+	  while(item=result.pop()){
+		  container.removeChild(item);
+	  }
+  }
+  
+  //dis-select all waiting
+  function disSelectAllWaitingHandler(){
+	  // get container
+	  var container = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radios = container.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radios){
+		  radios[i].checked = false;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // dis-select all confirm
+  function disSelectAllConfirmHandler(){
+	  // get container
+	  var container = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radios = container.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radios){
+		  radios[i].checked = false;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all item in waiting list
+  function selectAllWaitingHandler(){
+	  // get container
+	  var container = document.getElementById("waitingContainer");
+	  
+	  // get all radios
+	  var radios = container.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radios){
+		  radios[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  // select all items in confirm list
+  function selectAllConfirmHandler(){
+	  // get container
+	  var container = document.getElementById("confirmContainer");
+	  
+	  // get all radios
+	  var radios = container.getElementsByClassName("selectRadio");
+	  
+	  // check all
+	  for(var i in radios){
+		  radios[i].checked = true;
+	  }
+	  
+	  // disable jump of a tag
+	  return false;
+  }
+  
+  function deleteuser(){
+	  // get container
+	  var container = document.getElementById("confirmContainer");
+	  var targetContainer = document.getElementById("waitingContainer");
+	  
+	  // get all item in container
+	  var items = container.getElementsByClassName("well");
+	  
+	  // to be delete
+	  var result = new Array();
+	  
+	  // loop all items
+	  for(var i = 0; i < items.length; i++){
+		  // get radio
+		  var radio = items[i].getElementsByClassName("selectRadio")[0];
+		  // if checked
+		  if(radio.checked == true){
+			  console.log(items[i].outerHTML);
+			 
+			  
+			// add to result
+			  result.push(items[i]);
+		  }
+	  }
+	  
+	  // remove
+	  while(item=result.pop()){
+		  container.removeChild(item);
+	  }
+  } // 结束删除报名功能
+
+  // set name of the input in different container
+  function saveHandler(){
+	  // get container
+	  var confirmContainer = document.getElementById("confirmContainer");
+	  var waitingContainer = document.getElementById("waitingContainer");
+	  
+	  // get confirm inputs
+	  var confirmInputs = confirmContainer.getElementsByClassName("userId");
+	  
+	  // set names
+	  for(var i in confirmInputs){
+		  confirmInputs[i].name = "confirm";
+	  }
+	  
+	  // get waiting inputs
+	  var waitingInputs = waitingContainer.getElementsByClassName("userId");
+	  
+	  // set names
+	  for(var j in waitingInputs){
+		  waitingInputs[j].name = "waiting";
+	  }
+  }
+  </script>
+
+  <button type="submit" class="btn btn-default" onclick="saveHandler();">保存</button>
+#{/form}
+  <!--<button type="submit" class="btn btn-default">重置</button>-->
+  <div class="btn-group">
+	<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	    操作 <span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu">
+	  <li><a href="javascript:void(0);" onclick="broadcastEmail();">群发邮件</a></li>
+	  <li><a href="javascript:void(0);" onclick="selectAll();">全选</a></li>
+	  <li><a href="javascript:void(0);" onclick="disSelectAll();">全部反选</a></li>
+	</ul>
+  </div>
+  
+<script type="text/javascript">
+
+// broadcast email
+function broadcastEmail(){
+	// all ids
+	var ids = new Array();
+	
+	// all items
+	var items = document.getElementsByClassName("well");
+	
+	// loop all items
+	for(var i = 0; i < items.length; i++){
+		// get radio of item
+		var radio = items[i].getElementsByClassName("selectRadio")[0];
+		
+		// if checked
+		if(radio.checked == true){
+			// get id
+			var id = items[i].getElementsByClassName("userId")[0];
+			
+			// push
+			ids.push(id.value);
+		}
+	}
+	
+	// generate url
+	var url = window.location.origin+"/admin/broadcastEmail";
+	
+	if(ids.length > 0){
+		url = url + "?";
+		for(var j = 0; j < ids.length; j++){
+			url = url + "userId=" + ids[j] + "&";
+		}
+	}
+
+	window.open(url,"_self");
+}
+
+// parent
+var parent = null;
+
+// target
+var target = null;
+
+// drop flag
+var drop = false;
+
+function handleDragStart(e) {
+  // save parent
+  parent = this.parentNode;
+	
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/html', this.outerHTML);
+  
+  this.style.opacity = '0.4'; 
+}
+
+function handleDragOver(e) {
+  if (e.preventDefault) {
+    e.preventDefault(); // Necessary. Allows us to drop.
+  }
+
+  e.dataTransfer.dropEffect = 'move';  // See the section on the DataTransfer object.
+  
+  this.classList.add('over');
+  
+  return false;
+}
+
+function handleDragEnter(e) {
+  // this / e.target is the current hover target.
+  this.classList.add('over');
+}
+
+function handleDragLeave(e) {
+  this.classList.remove('over');  // this / e.target is previous target element.
+}
+
+function handleDrop(e) {
+  // this/e.target is current target element.
+
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+
+  // if the same container, do nothing
+  if(parent != this){
+	// check if this is a container, if not do nothing
+	for(var i in container){
+		if(container[i] == this){
+		  // Set the source column's HTML to the HTML of the column we dropped on.
+		  this.innerHTML = this.innerHTML + e.dataTransfer.getData('text/html');
+			
+		  //the entry that can be drag
+		  var cols = document.querySelectorAll('.well');
+		  [].forEach.call(cols, function(col) {
+			col.addEventListener('dragstart', handleDragStart, false);
+			col.addEventListener('dragend', handleDragEnd, false);
+			col.addEventListener('drop', handleWrongDrop, false);
+		  });
+			
+		  // drop flag true
+		  drop = true;
+		  
+		  break;
+		}
+	}
+	
+  }
+
+  // remove border
+  this.classList.remove('over');
+  
+  // record target container
+  target = this;
+  
+  return false;
+}
+
+function handleDragEnd(e) {
+  
+  // prevent droping outside the container
+  if(drop == true){
+	parent.removeChild(this);
+	
+	// reset drop flag
+	drop = false;
+	
+	return false;
+  }
+  
+  // set back the opacity
+  this.style.opacity = "1";
+  
+  // reset drop flag
+  drop = false;
+}
+
+// sometimes the the wrong place to drop, for example between the 
+// container and the drag exyties
+function handleWrongDrop(e){
+  if (e.stopPropagation) {
+    e.stopPropagation(); // Stops some browsers from redirecting.
+  }
+  
+  //remove border
+  this.parentNode.classList.remove('over');
+  
+  //if the same container, do nothing
+  if(parent != this.parentNode){
+	// check if this is a container, if not do nothing
+	for(var i in container){
+		if(container[i] == this.parentNode){
+		  //Set the source column's HTML to the HTML of the column we dropped on.
+		  this.parentNode.innerHTML = this.parentNode.innerHTML + e.dataTransfer.getData('text/html');
+		
+		  //the entry that can be drag
+		  var cols = document.querySelectorAll('.well');
+		  [].forEach.call(cols, function(col) {
+		    col.addEventListener('dragstart', handleDragStart, false);
+		    col.addEventListener('dragend', handleDragEnd, false);
+		    col.addEventListener('drop', handleWrongDrop, false);
+		  });
+		
+	      // drop flag true
+		  drop = true;
+	      
+	      break;
+		}
+	}
+  }
+  
+  // record target container
+  target = this.parentNode;
+  
+  return false;
+}
+
+// the entry that can be drag
+var cols = document.querySelectorAll('.well');
+[].forEach.call(cols, function(col) {
+  col.addEventListener('dragstart', handleDragStart, false);
+  col.addEventListener('dragend', handleDragEnd, false);
+  col.addEventListener('drop', handleWrongDrop, false);
+});
+
+// the container of the drag
+var container = document.querySelectorAll('.panel-body');
+[].forEach.call(container, function(col) {
+  col.addEventListener('dragenter', handleDragEnter, false);
+  col.addEventListener('dragover', handleDragOver, false);
+  col.addEventListener('dragleave', handleDragLeave, false);
+  col.addEventListener('drop', handleDrop, false);
+});
+</script>
+
+</div>
+</br>
+</br>
+<!--生成报名确认名单-->
+<div class="table-responsive">
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>CSSAID</th>
+				<th>邮箱</th>
+				<th>姓名</th>
+				<th>性别</th>
+				<th>联系电话</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{list items:event.confirmedUsers, as:"entry"}
+	        <tr>
+	        	<td>${entry.id}</td>
+				<td>${entry.email}</td>
+				<td>${entry.fullname}</td>
+				<td>${entry.gender}</td>
+				<td>${entry.mobileNo}</td>
+				<td>
+				</td>
+			</tr>
+	    #{/list}
+		</tbody>
+	</table>
+</div>
+

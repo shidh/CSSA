@@ -1,0 +1,62 @@
+#{extends 'Admin/index.html' /}
+<div class="container">
+
+  <div class="row row-offcanvas row-offcanvas-right">
+
+    <div class="col-xs-12 col-sm-9">
+      <p class="pull-right visible-xs">
+        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+      </p>
+      <div class="jumbotron">
+        <h1>CSSAMunich后台管理</h1>
+        <p>学联网站的后台管理包括发布帖子，发布活动，活动报名管理，用户管理等功能。还有统计，数据分析等扩展功能</p>
+      </div>
+      <div class="row">
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>新建帖子</h2>
+          <p>丰富的编辑器，新建帖子，新建活动支持上传图片，支持从Word粘贴。</p>
+          <p><a class="btn btn-default" href="/admin/newPost" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>所有帖子</h2>
+          <p>查看所有帖子，删除或修改帖子，支持模糊查询</p>
+          <p><a class="btn btn-default" href="/admin/allPosts?size=15&page=1" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>用户管理</h2>
+          <p>查看所有用户，管理权限，支持过滤器查找，模糊查找</p>
+          <p><a class="btn btn-default" href="/admin/users?size=10000&page=1" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>活动管理</h2>
+          <p>活动管理，报名管理，删除／修改活动</p>
+          <p><a class="btn btn-default" href="/admin/events?size=15&page=1" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>文件上传</h2>
+          <p>本地上传可供用户下载的文件</p>
+          <p><a class="btn btn-default" href="/admin/newDownloadFile" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>文件管理</h2>
+          <p>管理可供用户下载的文件</p>
+          <p><a class="btn btn-default" href="/admin/allFiles?size=10&page=1" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+        <div class="col-6 col-sm-6 col-lg-4">
+          <h2>群发邮件</h2>
+          <p>群发邮件给指定用户</p>
+          <p><a class="btn btn-default" href="/admin/broadcastEmail" role="button">点击查看 »</a></p>
+        </div><!--/span-->
+      </div><!--/row-->
+    </div><!--/span-->
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+      <div class="list-group">
+        <a href="/admin/help" class="list-group-item active">使用帮助</a>
+      </div>
+    </div><!--/span-->
+
+  </div><!--/row-->
+
+  <hr>
+
+</div>

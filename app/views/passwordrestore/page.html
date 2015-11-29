@@ -1,0 +1,107 @@
+#{extends 'main.html'/}
+#{set title:'Login'/}
+
+  <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Login</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-3">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="/Anmelden"><i class="fa fa-angle-right"></i> Login</a></li>
+              <li class="list-group-item clearfix"><a href="/Registieren"><i class="fa fa-angle-right"></i> Register</a></li>
+              <li class="list-group-item clearfix"><a href="/passwordrestore"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+
+                    <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-9">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h1>Forgot Your Password?</h1>
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <form class="form-horizontal form-without-legend" role="form"> 
+                    <div class="form-group">
+                      <div id="ok" class="alert alert-success" style="display:none;">
+                        &{'funktion.status.password.test2'} <!--邮箱发送成功，请去邮箱设置新密码。-->
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      </div>
+                      
+                      <div id="danger" class="alert alert-danger " style="display:none;">
+                        &{'funktion.status.password.test3'} <!--Oh! 好像邮箱不对哦！-->
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                      </div>
+                    </div>                   
+                    <div class="form-group">
+                      <label for="email" class="col-lg-4 control-label">Email</label>
+                      <div class="col-lg-8">
+                        <input name="resetEmail" type="text" class="form-control" id="resetEmail" placeholder="email">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-5">
+                        <button type="button" class="btn btn-primary" id="resetPassButton" onclick="resetPassOnclick();">&{'funktion.status.password.test4'}</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>如何找回？</em></h2>
+                    <p>重设密码会发到您的邮箱，请确保此邮箱是CSSA注册邮箱</p>
+                    <p>Enter the e-mail address associated with your account. Click submit to have your password e-mailed to you.</p>
+
+                    <button type="button" class="btn btn-default">More details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+    
+  <script type="text/javascript">
+  // #resetPass onclick
+  function resetPassOnclick(){
+    if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+      xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+    var email = document.getElementById("resetEmail").value
+
+    xmlhttp.open("GET","passwordrestore/resetPass?email="+email, false);
+    xmlhttp.send();
+    var result=JSON.parse(xmlhttp.responseText);
+    //document.getElementById("numberInput").value=map.K;
+    //邮件发送成功
+    if (result == true){
+      if ($("div#danger").css("display") === "block"){
+        $("div#danger").attr("style","display: none;");
+      }
+      $("div#ok").attr("style","display: inline;");
+      $("div#ok").attr("style","float: left;");
+      $("div#ok").attr("style","margin-bottom: 15px");
+      $("div#ok").attr("style","text-align: left");
+    } else{
+      $("div#danger").attr("style","display: inline;");
+      $("div#danger").attr("style","float: left;");
+      $("div#danger").attr("style","margin-bottom: 15px");
+      $("div#danger").attr("style","text-align: left");
+    }
+  }
+  </script>

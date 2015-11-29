@@ -1,0 +1,38 @@
+#{extends 'main.html'/}
+#{set title:'下载'/}
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/download.css'}">
+#{/set}
+
+<h1>&{'views.download.helloword'}</h1>
+
+<div id="content">
+	<hr>
+	#{if flag_login}
+		#{list items:downloadFiles, as:'oneFile'}
+			<a class="contentCell" href="${oneFile.url}">
+				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} (${oneFile.uploadDate})</span>
+			</a>
+			<br>
+			<br>
+		#{/list}
+	#{/if}
+	#{else}
+		#{list items:downloadFiles, as:'oneFile'}
+			#{if oneFile.fileType == "anyone"}
+				<a class="contentCell" href="${oneFile.url}">
+				<span class="glyphicon glyphicon-download-alt"> ${oneFile.fileName} (${oneFile.uploadDate})</span>
+			</a>
+			<br>
+			<br>
+			#{/if}
+			#{else}
+				<span class="glyphicon glyphicon-download-alt contentCell"> ${oneFile.fileName} (${oneFile.uploadDate}) (只对会员提供下载！)</span>
+				<br>
+				<br>
+			#{/else}
+		#{/list}
+	#{/else}
+</div>
+	

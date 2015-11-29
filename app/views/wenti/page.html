@@ -1,0 +1,322 @@
+#{extends 'main.html'/}
+#{set title:'文体活动'/}
+
+#{set 'moreStyles'}
+  <link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/about.css'}">
+#{/set}
+
+
+<div id="content">
+  <div class='container-fluid'>
+    <h3 class='page-header'>丰富的文体活动</h3>
+        <div class='accordion' id='accordion1'>
+          <p>身在异乡，远离亲人，你会感到生活千篇一律，缺乏激情吗？初来乍到，缺少朋友，你会因为找不到志同道合的知己而困惑吗？没关系，在这个版块，我们帮你打开视野，找到你需要的，和你想要的。 </p>
+          <p>慕尼黑学联在定期组织各项文艺，体育类活动之外，还向大家推荐本地的各个文体类团体，以及当地的活动信息。你可以根据下面的分类信息，查看，寻找，加入各种社团。希望身在慕尼黑的大家都能找到小伙伴，丰富自己的业余生活。当然，我们的信息也并不能概括所有团体，如果有补充建议，我们愿意为社团进行宣传，搭建桥梁，连接你我！除此之外，如果你有举办文体类活动的想法，学联一定会给予大力支持，欢迎邮件联系我们。 </p>
+          <p>声明：以下大部分团体为个人创建的非盈利，非专业性团体，按照当事人的意愿公布联系方式。没有联系方式的请通过学联联系方式进行咨询。另外，所有团体都有自己举行的活动，学联会以协办，推送的形式支持，推荐部分活动，但不对活动本身负责。 </p><br>
+            <div class='accordion-group'>
+                <div class='accordion-heading'>
+                    <!--
+                        .accordion-toggle类：使a标签变成块级元素，方便用户点击
+                        data-parent:同属这个id的所有的折叠内容在同一时间只显示一个折叠内容
+                    -->
+                    <a href='#collapse1' class='btn btn-primary accordion-toggle' data-parent='#accordion1' data-toggle='collapse'>体育类</a>
+                </div>
+                <div class='collapse in' id='collapse1'>
+                    <!--.accordion-inner为内容添加合适的内边距-->
+                    <div class='accordion-inner'>
+                        <p><br />
+                          体育方面首要推荐的是慕尼黑Zentralhochschulsport (ZHS)，位于Olympia  Park。这个主要针对大学生的体育机构为大家提供基本上可以想到的所有体育活动项目，每个项目有 固定的活动时间，另外还有五花八门的课程和训练，体育爱好者们绝对不要错过！学生卡的价格低廉也是ZHS一大特点。但如果你已经不是学生，就会收取相对高一些的价格。 <br />
+                          官网：<a href="http://www.zhs-muenchen.de/">http://www.zhs-muenchen.de/</a></p>
+
+                        <p>学生参与方式：（确切的信息一概按照官网为标准） </p>
+                        <ul>
+                        <li>在官网的项目列表中查找活动项目信息<strong> </strong></li>
+                        <li>根据项目选择要购买的Marke（篮球，足球，羽毛球等均用一张H的Marke即可，游泳还需单独一张S的Marke）在官网上填写付款信息，付款后保存，打印付款证明。每一张Marke适用一整个学期。<strong> </strong></li>
+                        <li>第一次办卡时在指定时间，一般开学的头几周会比较多，去ZHS办理参与证（Teilnahmeausweis），办理地点关键词：Markenausgabe。请记得带上学生证，一张证件照，Immatrikulationsbescheinigung，和付款证明。<strong> </strong></li>
+                        <li>有了Teilnahmeausweis以后每个学期便可用同样的方式到ZHS贴新的Marke。<strong> </strong></li>
+                        </ul>
+
+                        <!--伸缩块
+                        <div align="center">
+                            <table border="0" width="1024" cellpadding="0" style="border-collapse: collapse" id="table1" bgcolor="#F3F3F3" cellspacing="10">
+                                <tr>
+                                    <td valign="top" style="line-height: 150%"><div class="block" id="smallContent" style="display:block">
+                                        <span style="font-size: 9pt">    <b>奥林篮球群</b>欢迎加入在ZHS活动的奥林篮球群。通过微信群的形式互相交流，以球会友。目前奥林篮球群参与者众多，活动项目也已扩展到篮球，滑雪，美食等项目...[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >详细介绍</a>]</span></div>
+                                            <div class="block" id="fullContent" style="display:none;">
+                                                <span style="font-size: 9pt">   
+                                                    <b>奥林篮球群：</b>欢迎加入在ZHS活动的奥林篮球群。通过微信群的形式互相交流，以球会友。目前奥林篮球群参与者众多，活动项目也已扩展到篮球，滑雪，美食等项目。<br />
+                                                    微信群二维码： <br />
+                                                     <img src="/public/images/wenti/1.jpg" alt="1" width="221" height="221" border="0" /></p>
+                                                     r[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >隐藏介绍</a>]</span></div></td>
+                                </tr>
+                            </table>
+                        </div>
+                        伸缩块ende-->    
+
+                        <div class="dd" id="d1" onclick="go(1)"><span id=sup1>+</span><strong>奥林篮球群</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s1">
+                                <p><br />
+                                    欢迎加入在ZHS活动的奥林篮球群。通过微信群的形式互相交流，以球会友。目前奥林篮球群参与者众多，活动项目也已扩展到篮球，滑雪，美食等项目。
+                                </p>
+                                <img src="/public/images/wenti/aolin1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                <img src="/public/images/wenti/aolin2.jpg" alt="1" width="600" border="0" /><br /><br />
+                                <p>微信群二维码： <br />
+                                    <img src="/public/images/wenti/1.jpg" alt="1" width="221" height="221" border="0" />
+                                </p>
+                                Zentraler Hochschulsport der Technischen Universität München<br />
+                                TUM Campus im Olympiapark<br />
+                                Connollystraße 32，80809 München<br />
+                                U3 Olympia-Zentrum<br />
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d2" onclick="go(2)"><span id=sup2>+</span><strong>学生城</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s2">
+                                <p><br />
+                                    Studentenstadt学生宿舍拥有自己的体育馆，每周也有固定的篮球时间。对于住在附近的同学们来说想必是非常的方便。除了篮球以外，学生城体育馆还有足球，羽毛球，手球等各类体育活动，详情请看体育馆门外的信息栏。<br />
+                                    地址：Christoph-Probst-Straße 10, 80805 München (U6 Studentenstadt)<br />
+                                    <img src="/public/images/wenti/stusta1.jpg" alt="1" width="600" border="0" />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d3" onclick="go(3)"><span id=sup3>+</span><strong>探索者篮球俱乐部</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s3">
+                                <p><br />
+                                    慕尼黑华人自己的篮球俱乐部，参加慕尼黑地区联赛，每周五在Münchner Freiheit进行训练。针对有一定篮球实力，并有兴趣参与专业比赛的朋友。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d4" onclick="go(4)"><span id=sup4>+</span><strong>足球</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s4">
+                                <p><br />
+                                     慕尼黑老虎队
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="dd" id="d5" onclick="go(5)"><span id=sup5>+</span><strong>登山，户外</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s5">
+                                <p><br />
+                                     对于在慕尼黑的同学来说，地理优势得天独厚。南德登山，徒步路线星罗棋布，并且景色美不胜收。每逢好天气，就会有无数人聚集在各个户外活动路线。不论是追求极限的攀岩爱好者，热爱锻炼的登山爱好者，还是享受自然的徒步爱好者，亦或只是想沐浴阳光，郊游野餐，在慕尼黑及周边，你都能找到快乐。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d6" onclick="go(6)"><span id=sup6>+</span><strong>Servus </strong><strong>München</strong><br />
+                            <div class="hi"style="display: none" id="s6">
+                                <p><br />
+                                    户外运动达人Servus München定期组织户外活动。通过关注微博，微信加入。注意，活动前请确认运动强度，路线难度，危险性等信息，并做好充分准备。 <br />
+                                    微博：<strong>Servus München</strong></p>
+                                </p>
+                            </div>
+                        </div>
+
+                         <div class="dd" id="d7" onclick="go(7)"><span id=sup7>+</span><strong>滑雪</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s7">
+                                <p><br />
+                                    <strong>Servus </strong><strong>户外</strong><br />
+                                    冬天滑雪季，户外运动达人Servus München定期组织滑雪活动。通过关注微博，微信加入。注意，请根据个人情况选择适合自己的滑雪方式，切记安全第一！ <br />
+                                    微博：<strong>Servus 户外</strong><br />
+                                    户外运动摄影群号：288546527<br />
+                                    <img src="/public/images/wenti/servus1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    <img src="/public/images/wenti/servus2.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    <img src="/public/images/wenti/servus3.jpg" alt="1" width="600" border="0" />
+                                    <p><strong>奥林篮球群 </strong><br />
+                                    没错你没有看错，此群体已将业务拓展到了冬季运动-滑雪!并具备专业，耐心的滑雪教练，非常适合初学者。</p>
+                                    <img src="/public/images/wenti/aolin3.jpg" alt="1" width="600" border="0" />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d8" onclick="go(8)"><span id=sup8>+</span><strong>慕尼黑学联羽毛球群</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s8">
+                                <p><br />
+                                    作为第一届慕尼黑中德羽毛球公开赛学联代表队，我们取得了第二名的好成绩！感谢大家的努力！欢迎羽毛球爱好者加入微信群。羽毛球活动地点主要在学生城Studentenstadt以及奥林ZHS。 <br />
+                                    <img src="/public/images/wenti/badminton1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    微信群二维码： <br />
+                                    <img src="/public/images/wenti/2.jpg" alt="2" width="193" height="193" border="0" /></p>
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            
+            <div class='accordion-group'>
+                <div class='accordion-heading'>
+                    <!--
+                        .accordion-toggle类：使a标签变成块级元素，方便用户点击
+                        data-parent:同属这个id的所有的折叠内容在同一时间只显示一个折叠内容
+                    -->
+                    <a href='#collapse2' class='btn btn-primary accordion-toggle' data-parent='#accordion1' data-toggle='collapse'>音乐类</a>
+                </div>
+                <div class='collapse' id='collapse2'>
+                    <!--.accordion-inner为内容添加合适的内边距-->
+                    <div class='accordion-inner'>
+                        <br>
+                        慕尼黑本地音乐团体五花八门，需要大家自己发掘。以下介绍几个华人团体。除了加入其中之外，学联还可以为大家提供各音乐方面的信息，帮助你找到相同爱好的朋友，组建自己的乐队！详情请邮件联系我们。 </p>
+
+                        <div class="dd" id="d9" onclick="go(9)"><span id=sup9>+</span><strong>伎乐天弹拨乐团</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s9">
+                                <p><br />
+                                    慕尼黑伎乐天弹拨乐团聚集了众多中华民乐演奏家，定期举办高大上的演出。<br />
+                                    <img src="/public/images/wenti/jiyuetian1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    网站：<a href="http://www.jiyuetian.com/">http://www.jiyuetian.com/</a><br />
+                                    微博：慕尼黑伎乐天弹拨乐团 <br />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d10" onclick="go(10)"><span id=sup10>+</span><strong>慕声合唱团</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s10">
+                                <p><br />
+                                    每个周末在奥林进行排练的慕声合唱团给大家带来了无数次精彩的演出，如果你对合唱感兴趣，欢迎加入！<br />
+                                    <img src="/public/images/wenti/munichor1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    微博：MuniChor慕声合唱团<br />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d11" onclick="go(11)"><span id=sup11>+</span><strong>Page5 乐队</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s11">
+                                <p><br />
+                                    慕尼黑新兴流行摇滚乐队，主要成员为5位年轻的帅哥。期待与其他音乐爱好者的交流。另外欢迎大家参加即将举办的演唱会，详情请关注学联活动。<br />
+                                    <img src="/public/images/wenti/page51.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    <img src="/public/images/wenti/page52.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    联系邮件：<p><a href="mailto:sep8box@gmail.com">sep8box@gmail.com</a></p><br />
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            
+            <div class='accordion-group'>
+                <div class='accordion-heading'>
+                    <!--
+                        .accordion-toggle类：使a标签变成块级元素，方便用户点击
+                        data-parent:同属这个id的所有的折叠内容在同一时间只显示一个折叠内容
+                    -->
+                    <a href='#collapse3' class='btn btn-primary accordion-toggle' data-parent='#accordion1' data-toggle='collapse'>舞蹈类</a>
+                </div>
+                <div class='collapse' id='collapse3'>
+                    <!--.accordion-inner为内容添加合适的内边距-->
+                    <div class='accordion-inner'>
+                        <br />
+                        <div class="dd" id="d13" onclick="go(13)"><span id=sup13>+</span><strong>慕敏舞蹈团</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s13">
+                                <p><br />
+                                    民族舞蹈团体，参加德国各地的文艺演出，并提供民族舞课程。欢迎广大爱好者加入。<br />
+                                    <img src="/public/images/wenti/mumin1.jpg" alt="1" width="600" border="0" /><br /><br />
+                                    网站：<a href="http://min-tanzgruppe.de/home/index_d.html ">点击查看主页</a><br />
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="dd" id="d14" onclick="go(14)"><span id=sup14>+</span><strong>Five Oder Six 街舞团体</strong><strong> </strong><br />
+                            <div class="hi"style="display: none" id="s14">
+                                <p><br />
+                                    帅气，靓丽的年轻街舞团体，春节晚会的一段表演让大家赞不绝口。此团体为私人团体，有兴趣交流的朋友可通过学联间接取得联系。<br />
+                                    <img src="/public/images/wenti/5oder61.jpg" alt="1" width="600" border="0" />
+                                </p>
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+            
+            <div class='accordion-group'>
+                <div class='accordion-heading'>
+                    <!--
+                        .accordion-toggle类：使a标签变成块级元素，方便用户点击
+                        data-parent:同属这个id的所有的折叠内容在同一时间只显示一个折叠内容
+                    -->
+                    <a href='#collapse4' class='btn btn-primary accordion-toggle' data-parent='#accordion1' data-toggle='collapse'>
+                    摄影类
+                    </a>
+                </div>
+                <div class='collapse' id='collapse4'>
+                    <!--.accordion-inner为内容添加合适的内边距-->
+                    <div class='accordion-inner'>
+                    <br />慕尼黑有很多摄影达人：（微博号）梓叶先生，不二旅行，Servus户外，Baersquare等等。。他们用镜头记录下身边的风景，人文。摄影爱好者们可以互相关注微博，交流作品。在不久的将来，学联也会举办摄影作品展，给大家提供一个展现美的平台。<br />
+                    <img src="/public/images/wenti/foto1.jpg" alt="1" width="600" border="0" /><br /><br />
+                    <img src="/public/images/wenti/foto2.jpg" alt="1" width="600" border="0" /><br /><br />
+                    <img src="/public/images/wenti/foto3.jpg" alt="1" width="600" border="0" /><br /><br />
+                    <img src="/public/images/wenti/foto4.jpg" alt="1" width="600" border="0" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>     
+     
+</div>
+
+
+
+</style>
+<script language="JavaScript" type="text/javascript">
+var thisdiv
+function go(i){
+ var thisdiv2=document.getElementById("s"+i);
+ var sup=document.getElementById("sup"+i);
+ if(thisdiv!=undefined && thisdiv!=thisdiv2)thisdiv.style.display = "none";
+ if(thisdiv2.style.display == "none"){
+  thisdiv2.style.display = "block";
+  sup.innerHTML="-";
+  thisdiv=thisdiv2;
+ }
+ else{
+  thisdiv2.style.display = "none";
+ sup.innerHTML="+";
+ }
+}
+</script>
+
+<!--
+<div class="dd" id="d2" onclick="go(2)"><span id=sup2>+</span>菜单2<br />
+<div class="hi"style="display: none" id="s2">2222<br />22222<br />22<br />22</div>
+</div>
+<div class="dd" id="d3" onclick="go(3)"><span id=sup3>+</span>菜单3<br />
+<div class="hi"style="display: none" id="s3">3333<br />33<br />333333</div>
+</div>
+<div class="dd" id="d4" onclick="go(4)"><span id=sup4>+</span>菜单4<br />
+<div class="hi"style="display: none" id="s4">4444444<br />44444</div>
+</div>
+<div class="dd" id="d5" onclick="go(5)"><span id=sup5>+</span>菜单5<br />
+<div class="hi"style="display: none" id="s5">5<br />55555<br />55<br />555</div>
+</div>
+
+
+<div align="center">
+    <table border="0" width="1024" cellpadding="0" style="border-collapse: collapse" id="table1" bgcolor="#F3F3F3" cellspacing="10">
+        <tr>
+            <td valign="top" style="line-height: 150%"><div class="block" id="smallContent" style="display:block">
+                <span style="font-size: 9pt">    <b>专辑介绍：</b>青春光影是由中国80后影像精英共同组建的新媒体影视摄制机构。机构成立于2006年1月1日，主要从事高清数字...[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >详细介绍</a>]</span></div>
+                            <div class="block" id="fullContent" style="display:none;">
+                                <span style="font-size: 9pt">   
+                                <b>专辑介绍：</b>青春光影是由中国80后影像精英共同组建的新媒体影视摄制机构。机构成立于2006年1月1日，主要从事高清数字电影、电视剧、新媒体系列剧、３G流媒体视频、创意广告片、MV的拍摄与制作。机构先后与中国电影电视（韩国）公司株式会社、韩国电影振兴委员会、中国网通、中国艺人网等单位结成战略合作伙伴关系，致力于创作新生代的数字影视作品及新媒体影视作品，打造中国80后新生代影视文化产业链。机构先后拍摄了大量青春喜剧风格的影视作品，受到国内外青年观众的热捧。其中公益校园电影《释放的百合心》荣获年度中国最佳DV电影奖、最佳导演奖、最佳表演奖三项大奖，中央电视台等近百家媒体先后做过专题报道，近千家网站转载。同时由青春光影联合武汉大学共同摄制的大型校园喜剧电影《大话三国之校园大战》更是突破传统电影的拍摄运作模式，向世人展示了一种全新的大众影像。机构将在明后两年陆续推出100部新媒体系列剧、5部高清数字电影、3部青春偶像电视剧及500部3G流媒体短片。[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >隐藏介绍</a>]</span></div></td>
+        </tr>
+    </table>
+</div>
+
+
+<div align="center">
+    <table border="0" width="300" cellpadding="0" style="border-collapse: collapse" id="table1" bgcolor="#F3F3F3" cellspacing="10">
+        <tr>
+            <td valign="top" style="line-height: 150%"><div class="block" id="smallContent" style="display:block">
+                <span style="font-size: 9pt">    <b>专辑介绍：</b>青春光影是由中国80后影像精英共同组建的新媒体影视摄制机构。机构成立于2006年1月1日，主要从事高清数字...[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >详细介绍</a>]</span></div>
+                            <div class="block" id="fullContent" style="display:none;">
+                                <span style="font-size: 9pt">   
+                                <b>专辑介绍：</b>青春光影是由中国80后影像精英共同组建的新媒体影视摄制机构。机构成立于2006年1月1日，主要从事高清数字电影、电视剧、新媒体系列剧、３G流媒体视频、创意广告片、MV的拍摄与制作。机构先后与中国电影电视（韩国）公司株式会社、韩国电影振兴委员会、中国网通、中国艺人网等单位结成战略合作伙伴关系，致力于创作新生代的数字影视作品及新媒体影视作品，打造中国80后新生代影视文化产业链。机构先后拍摄了大量青春喜剧风格的影视作品，受到国内外青年观众的热捧。其中公益校园电影《释放的百合心》荣获年度中国最佳DV电影奖、最佳导演奖、最佳表演奖三项大奖，中央电视台等近百家媒体先后做过专题报道，近千家网站转载。同时由青春光影联合武汉大学共同摄制的大型校园喜剧电影《大话三国之校园大战》更是突破传统电影的拍摄运作模式，向世人展示了一种全新的大众影像。机构将在明后两年陆续推出100部新媒体系列剧、5部高清数字电影、3部青春偶像电视剧及500部3G流媒体短片。[<a href="javascript:" onclick="document.all.fullContent.style.display=(document.all.fullContent.style.display=='none')?'':'none';document.all.smallContent.style.display=(document.all.smallContent.style.display=='none')?'':'none'" >隐藏介绍</a>]</span></div></td>
+        </tr>
+    </table>
+</div>
+-->

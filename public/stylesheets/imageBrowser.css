@@ -1,0 +1,9 @@
+.imgGalleryWrapper{
+	float:left;
+	margin:20px;
+	border:1px solid #bebebe;	
+}
+
+.imgGalleryWrapper:hover{
+	border:1px solid #428bca;	
+}

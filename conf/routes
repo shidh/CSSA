@@ -1,0 +1,90 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Import Secure routes
+*      /                                        module:secure
+
+# Administration
+GET     /admin/                                 Admin.index
+
+# Home page
+GET     /                                       Application.index
+
+# My Profle page
+GET     /myProfile                            	MyProfile.page
+
+# View Profle page
+GET     /viewProfile                            ViewProfile.page
+
+# Edit Post page
+GET     /editPost                            	EditPost.page
+
+# View Post page
+GET     /viewPost                            	ViewPost.page
+
+# View Event page
+GET     /viewEvent                            	ViewEvent.page
+
+# All Posts page
+GET     /postStream                            	PostStream.page
+
+# All Events page
+GET     /events                            	    EventStream.page
+
+# Download Page
+GET     /downloads                            	Application.index
+
+
+# Freshman welcome page
+GET     /freshman                            	Application.index
+
+# About page
+GET     /about                            	    About.page
+
+# Admin homepage
+GET    /admin									Admin.index
+
+
+# wenti page
+GET     /wenti                            	    wenti.page
+
+# fluginfo
+GET     /fluginfo                            	staticFile:/public/fluginfo.html
+
+# testpage
+GET     /test                            	    test.page
+
+# cssa
+GET     /cssa                            		cssa.page
+
+# Login
+GET     /Registieren                            Registieren.page
+
+# Anmelden
+GET     /Anmelden                            	Anmelden.page
+
+# Page
+GET     /Page                            		Page.page
+
+# passwordrestore
+GET     /passwordrestore                        passwordrestore.page
+
+# Flug
+GET     /Flug                        			Flug.page
+
+
+
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}
+
+
+

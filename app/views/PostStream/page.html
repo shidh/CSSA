@@ -1,0 +1,52 @@
+#{extends 'templates/genericPost.html'/}
+#{set mode:'post'/}
+#{set title:'学联新闻'/}
+
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/postStream.css'}">
+#{/set}
+
+<div id="my_post">
+	<div class="center" >
+	        <h3 class="activities">活动列表</h3>
+        	
+
+            #{list items:posts, as:'onePost'}
+                <div class="post" >                
+                    <h2 class="post-title" >
+                        <a href="@{ViewPost.page(onePost.id)}">${onePost.title}</a>
+                    </h2>                    
+                    <div class="postTime">
+						<span class="post-date"> Posted at: ${onePost.postingDate} </span>
+					</div>
+
+                    #{if onePost.content} 
+					#{list items:onePost.content.picturesTitles, as:'picture'}
+					<div class="postImage">
+						<span>
+							pic
+						</span>
+					</div>
+					#{/list}
+					#{/if}
+                    
+                    <div class="post-metadata">
+                        <span class="post-desc">
+                            ${onePost.postContent.raw()}
+                        </span>
+                   
+                        <span class="post-date">
+
+                        </span>
+                    </div>
+                </div>
+            #{/list}
+            #{else}
+			    <div class="empty">
+			        No posts were published .
+			    </div>
+			#{/else}
+        </div>
+</div>
+

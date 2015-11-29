@@ -1,0 +1,150 @@
+#{extends 'main.html'/}
+#{set title:'Login'/}
+
+ <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Pages</a></li>
+            <li class="active">Create new account</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN SIDEBAR -->
+          <div class="sidebar col-md-3 col-sm-3">
+            <ul class="list-group margin-bottom-25 sidebar-menu">
+              <li class="list-group-item clearfix"><a href="/Anmelden"><i class="fa fa-angle-right"></i> Login</a></li>
+              <li class="list-group-item clearfix"><a href="/Registieren"><i class="fa fa-angle-right"></i> Register</a></li>
+              <li class="list-group-item clearfix"><a href="/passwordrestore"><i class="fa fa-angle-right"></i> Restore Password</a></li>
+            </ul>
+          </div>
+          <!-- END SIDEBAR -->
+
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-9 col-sm-9">
+            <h1>Create an account</h1>
+            <div class="content-form-page">
+              <div class="row">
+                <div class="col-md-7 col-sm-7">
+                  <form action="@{Register.register()}" class="form-horizontal" method="post" role="form" id="navigation_bar_register_form">
+                    <fieldset>
+                      <legend>Your personal details</legend>
+                      <div class="form-group">
+                        <label for="firstname" class="col-lg-4 control-label">E-mail <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="email" type="email" class="form-control" id="firstname" required="required">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="lastname" class="col-lg-4 control-label">姓名 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="fullname" type="text" class="form-control" id="lastname" required="required">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail3" class="col-lg-4 control-label">性别<span class="require">*</span></label>
+                        </label>
+                        <label class="radio-inline">
+                          &nbsp;&nbsp;&nbsp;<input type="radio" name="gender" id="inlineRadio1" value="男" checked>男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <input type="radio" name="gender" id="inlineRadio1" value="女">女
+                        </label>
+                      </div>
+                      <div class="form-group">
+                        <label for="email" class="col-lg-4 control-label">学校/工作单位 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="organization" type="text" class="form-control" id="email" required="required">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="major" class="col-lg-4 control-label">专业 <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="major" type="text" class="form-control" id="major" required="required">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="mobileNo" class="col-lg-4 control-label">联系电话</label>
+                        <div class="col-lg-8">
+                          <input name="mobileNo" type="text" class="form-control" id="mobileNo">
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Your password</legend>
+                      <div class="form-group">
+                        <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="password" type="password" class="form-control" id="password" required="required">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="confirm-password" class="col-lg-4 control-label">Confirm password <span class="require">*</span></label>
+                        <div class="col-lg-8">
+                          <input name="password2" type="password" class="form-control" id="confirm-password" required="required">
+                        </div>
+                      </div>
+                    </fieldset>
+                    <fieldset>
+                      <legend>Mailing List</legend>
+                      <div class="checkbox form-group">
+                        <label for="confirm-password" class="col-lg-4 control-label"></label>
+                         
+                          <div class="col-lg-8">
+                            <input type="checkbox">我已经阅读并同意《CSSAM用户注册协议》并加入Mailing List。学联将通过Email不定期推送最新活动和新闻。
+                          </div>
+                        
+                      </div>
+                    </fieldset>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">                        
+                        <button type="submit" class="btn btn-primary">Create an account</button>
+                        <button type="button" class="btn btn-default">Cancel</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="col-md-4 col-sm-4 pull-right">
+                  <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>请在注册前再次确认注册邮箱是否正确，一旦注册成功后，密码找回、活动报名、回执确认等功能都将基于此邮箱来完成。如果邮箱错误，我们将无法联系您。</p>
+
+
+                    <button type="button" class="btn btn-default">More details</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>
+
+ #{if register}
+  #{if flag_register}
+  <div class="Alert">
+    <div class="alertMessage">&nbsp;&nbsp;&{'funktion.status.anmelden.erfolg'}</div>
+    <button type="button" class="btn btn-primary returnAlert">&{'funktion.status.ok'}</button>
+  </div>
+  #{/if}
+  #{else}
+  <div class="Alert">
+    <div class="alertMessage">&{'funktion.status.email.error'}</div>
+    <button type="button" class="btn btn-primary returnAlert">&{'funktion.status.ok'}</button>
+  </div>
+  #{/else}
+#{/if}
+
+#{if flag_twice}
+  <div class="Alert">
+    <div class="alertMessage">&{'funktion.status.password.error'}</div>
+    <button type="button" class="btn btn-primary returnAlert">&{'funktion.status.ok'}</button>
+  </div>
+#{/if}
+
+#{if wrongPW}
+<div class="Alert">
+  <div class="alertMessage">&nbsp;&nbsp;&{'funktion.status.password.wrong'}</div>
+  <button type="button" class="btn btn-primary returnAlert">&{'funktion.status.ok'}</button>
+</div>
+#{/if}

@@ -1,0 +1,344 @@
+#{extends 'main.html'/}
+
+#{set 'moreStyles'}
+#{/set}
+
+
+
+<script>
+	var newPostAddTagCounter = 0;
+	var newPostScope = {};
+	newPostScope.tags = {};
+	
+	//initlaize map
+    function initialize() {
+		  console.error('here');
+    	  newPostScope.mapOptions = {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 1,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        newPostScope.map = new google.maps.Map(document.getElementById("newpost-map-canvas"),
+        		newPostScope.mapOptions);
+        
+        newPostScope.geocoder = new google.maps.Geocoder();
+        
+        newPostScope.address = "";
+        
+        getlatlng();
+        #{if post.mapLocation}
+        	newPostScope.address = "${post.mapLocation.address.raw()}";
+	        #{if post.mapLocation.latitude}
+	        	setMarkerAt(new google.maps.LatLng(${post.mapLocation.latitude.raw()}, ${post.mapLocation.longitude.raw()}));
+        	#{/if}
+       	#{/if}
+        
+        //map click callback
+        google.maps.event.addListener(newPostScope.map, 'click', function(event) {
+        	
+        	newPostScope.map.panTo(event.latLng);
+        	setMarkerAt(event.latLng);
+        });
+        
+        function setMarkerAt(location){
+   	    	newPostScope.map.setCenter(location);
+   	    	if(newPostScope.marker){
+   	    		newPostScope.marker.setPosition(location);
+   	    	}
+   	    	else{
+	   	        newPostScope.marker = new google.maps.Marker({
+	   	            map: newPostScope.map,
+	   	            position: location
+	   	        });
+   	    	}
+
+   	     	newPostScope.map.setZoom(16);
+   	     	$("#location_latitude_hidden_input").val(newPostScope.map.getCenter().lat());
+   	     	$("#location_longitude_hidden_input").val(newPostScope.map.getCenter().lng());
+        }
+        
+        
+		function getlatlng(){
+			var address = $("#address_input").val();
+			
+			//if(address){
+				address = $.trim(address);
+				if(address != newPostScope.address){
+					newPostScope.address = address;
+				
+					newPostScope.geocoder.geocode( { 'address': address}, function(results, status) {
+				   	      if (status == google.maps.GeocoderStatus.OK) {
+				   	    		setMarkerAt(results[0].geometry.location);
+				   	      } else {
+				   	      }
+				   	    });
+				}
+			//}
+		}
+      }
+    </script>
+
+
+<!-- render(post, user, flag_login, email);-->
+    <div class="main">
+      <div class="container">
+        <ul class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            #{if mode == "event"}
+            <li><a href="/eventStream/page?size=4&page=1">Events</a></li>
+            #{/if}
+            #{else}
+            <li><a href="/postStream/page?size=4&page=1">News</a></li>
+            #{/else}  
+            <li class="active"> ${post?.title}</li>
+        </ul>
+        <!-- BEGIN SIDEBAR & CONTENT -->
+        <div class="row margin-bottom-40">
+          <!-- BEGIN CONTENT -->
+          <div class="col-md-12 col-sm-12">
+            <h1>${post?.title}</h1>
+            <div class="content-page">
+              <div class="row">
+                <!-- BEGIN LEFT SIDEBAR -->            
+                <div class="col-md-9 col-sm-9 blog-item">
+                  #{if mode == "event"}
+                  #{if post.isClosed}  <!-- 问题在于isClosed无法从数据库里读取数据，此处判断没有用。调用event.java里的isclosed判断-->
+                  <div class="alert alert-warning" role="alert">
+                      <div class="row">
+                          <div class="col-sm-10">报名尚未开始/已经关闭，或者此活动不支持网站系统报名</div>
+                      </div>
+                  </div>
+                  #{/if}
+                  #{else}
+
+                  <!-- login == true -->
+                  #{if user != null}
+                    #{if post.isConfirmed(user.id)}
+                      <div class="alert alert-success" role="alert">${user?.fullname} 你已成功在学联系统报名此活动</div>  <!--直接显示名字信息-->
+                      #{/if}
+                      #{elseif  post.isOnWaiting(user.id)}
+                      <div class="alert alert-info" role="alert">${user?.fullname}  你已经在waiting list上</div>
+                      #{/elseif }
+                    #{elseif post.isFull()}
+                      <div class="alert alert-danger" role="alert">
+                          <div class="row">
+                            <div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
+                              <div class="col-sm-2">
+                      #{form @ViewEvent.signUp(post.id)}
+                            <input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+                            #{/form}
+                      </div>
+                          </div>
+                        </div>
+                    #{/elseif}
+                      #{else}
+                        <div class="alert alert-info" role="alert">
+                          <div class="row">
+                            <div class="col-sm-10">我要参加</div>
+                            <div class="col-sm-2">
+                      #{form @ViewEvent.signUp(post.id)}
+                            <input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+                        #{/form}
+                      </div>
+                          </div>
+                        </div>
+                    #{/else}  
+                  #{/if}
+                  <!-- login == false -->
+                  #{else}
+                  <div class="alert alert-danger" role="alert">
+                      <div class="row">
+                          <div class="col-sm-10">请先登录才能报名活动</div>
+                      </div>
+                  </div>
+                  #{/else}
+            #{/else}      
+              #{/if}  
+
+      #{if mode == "event"}
+      <form role="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">时间</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="${post.time.format('yyyy-MM-dd HH:mm')}" readonly>
+      </div>
+    </form>
+      <form role="form">
+      <div class="form-group">
+        <label for="exampleInputEmail1">地点</label>
+        <input type="email" class="form-control" id="address_input" value="${post?.mapLocation?.address}" placeholder="${post?.mapLocation?.address}" readonly>
+      </div>
+    </form>
+      <div class="panel panel-default">
+        	<div id="new_post_right_div" >
+          		<div id="newpost-map-canvas" style="height:150px;width:100%"></div>
+      		</div>
+      </div>
+      <script type="text/javascript">
+      google.maps.event.addDomListener(window, "load", initialize);
+    </script>
+      <hr>
+      #{/if}
+      
+      <div class="info">
+        <div>${post?.postContent.raw()}</div>
+      </div>
+      
+        #{if post.content} 
+        #{if post}
+            #{if post.content.video}
+            ${post.content.video.raw()}
+        #{/if}
+        #{/if}
+      #{/if}
+      <input type="text" name="locationLongitude" id="location_longitude_hidden_input" class="hidden_input" hidden/>
+      <input type="text" name="locationLatitude" id="location_latitude_hidden_input" class="hidden_input"hidden/>
+      <input type="text" name="tags" id="tags_hidden_input" class="hidden_input"hidden/>
+      <input type="text" name="postId" id="post_hidden_input" class="hidden_input" value="${post?.id}" hidden/>
+      <input type="text" name="deleteImages" id="delete_images_hidden_input" class="hidden_input" hidden/>
+      <hr>
+      
+                  
+                  <ul class="blog-info">
+                    <li><i class="fa fa-user"></i> By ${post?.sender.fullname}</li>
+                    #{if post.postcreatDate != null}
+                    <li><i class="fa fa-calendar"></i> ${post?.postcreatDate}</li>
+                    #{/if}
+                    #{else}
+                    <li><i class="fa fa-calendar"></i> ${post?.postingDate}</li>
+                    #{/else}
+                    <li><i class="fa fa-comments"></i> -</li>
+                    <li><i class="fa fa-tags"></i> 标签</li>
+                  </ul>
+      <!-- JiaThis Button BEGIN -->
+      <div class="jiathis_style">
+        <span class="jiathis_txt">分享到：</span>
+        <a class="jiathis_button_tools_2"></a>
+        <a class="jiathis_button_tools_3"></a>
+        <a class="jiathis_button_tools_4"></a>
+        <a href="http://www.jiathis.com/share?uid=2049112" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+        <a class="jiathis_counter_style"></a>
+      </div>
+      <script type="text/javascript">
+      var jiathis_config = {data_track_clickback:'true'};
+      </script>
+      <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2049112" charset="utf-8"></script>
+      <!-- JiaThis Button END -->
+
+      <!-- UY BEGIN -->
+      <div id="uyan_frame"></div>
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2049112"></script>
+      <!-- UY END -->
+
+                  
+     </div>  
+              
+                <!-- END LEFT SIDEBAR -->
+
+                <!-- BEGIN RIGHT SIDEBAR -->            
+                <div class="col-md-3 col-sm-3 blog-sidebar">
+                  <!-- CATEGORIES START -->
+                  <h2 class="no-top-space">Categories</h2>
+                  <ul class="nav sidebar-categories margin-bottom-40">
+                    <li><a href="#">招聘&宣讲会 (18)</a></li>
+                    <li><a href="#">高端讲座学联活动 (5)</a></li>
+                    <li><a href="#">体育赛事 (12)</a></li>
+                    <li><a href="#">Party (7)</a></li>
+                    <li><a href="#">其他 (3)</a></li>
+                  </ul>
+                  <!-- CATEGORIES END -->
+
+                   <!-- BEGIN RECENT NEWS -->                            
+                  <h2>置顶活动</h2>
+                  <div class="recent-news margin-bottom-10">
+                    <div class="row margin-bottom-10">
+                      <div class="col-md-3">
+                        <img class="img-responsive" alt="" src="/public/images/upload/20102326.jpg">                        
+                      </div>
+                      <div class="col-md-9 recent-news-inner">
+                        <h3><a href="http://www.cssa-munich.de/viewEvent?eventId=317">高层次讲座系列之"创业在德国"</a></h3>
+                        <p>丰伟是一家拥有130余名法律工作...</p>
+                      </div>                        
+                    </div>
+                    <div class="row margin-bottom-10">
+                      <div class="col-md-3">
+                        <img class="img-responsive" alt="" src="/public/images/upload/test3.jpg">                        
+                      </div>
+                      <div class="col-md-9 recent-news-inner">
+                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=315">“慕尼黑新生攻略“修订工程志愿者招募公告</a></h3>
+                        <p>还记得当初你拖着行囊、带着全部家当来到这...</p>
+                      </div>                        
+                    </div>
+                    <div class="row margin-bottom-10">
+                      <div class="col-md-3">
+                        <img class="img-responsive" alt="" src="/public/images/upload/logosmall.jpg">                        
+                      </div>
+                      <div class="col-md-9 recent-news-inner">
+                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=316">执委会执行委员变更公告</a></h3>
+                        <p>本次会议上讨论和审议了执委会原执行委员...</p>
+                      </div>                        
+                    </div>
+                  </div>
+                  <!-- END RECENT NEWS -->                     
+
+                  <!-- BEGIN BLOG TALKS -->
+                  <div class="blog-talks margin-bottom-30">
+                    <h2>活动规则阅读</h2>
+                    <div class="tab-style-1">
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1">活动报名</a></li>
+                        <li><a data-toggle="tab" href="#tab-2">Documented</a></li>
+                      </ul>
+                      <div class="tab-content">
+                        <div id="tab-1" class="tab-pane row-fluid fade in active">
+                          <p class="margin-bottom-10">说明位置1</p>
+                          <p><a class="more" href="#">Read more</a></p>
+                        </div>
+                        <div id="tab-2" class="tab-pane fade">
+                          <p>说明位置2..</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                            
+                  <!-- END BLOG TALKS -->
+
+                  <!-- BEGIN BLOG PHOTOS STREAM -->
+                  <div class="blog-photo-stream margin-bottom-20">
+                    <h2>活动精彩瞬间</h2>
+                    <ul class="list-unstyled">
+                      <li><a href="#"><img alt="" src="/public/images/upload/1508201.png"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/18_2.jpg"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/4.jpg"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/4806534324850524222.jpg"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/1505304.jpg"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/IMG_9002.JPG"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/1507242.jpg"></a></li>
+                      <li><a href="#"><img alt="" src="/public/images/upload/1508122.PNG"></a></li>
+                    </ul>                    
+                  </div>
+                  <!-- END BLOG PHOTOS STREAM -->
+
+                  <!-- BEGIN BLOG TAGS 
+                  <div class="blog-tags margin-bottom-20">
+                    <h2>Tags</h2>
+                    <ul>
+                      <li><a href="#"><i class="fa fa-tags"></i>OS</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Metronic</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Dell</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Conquer</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>MS</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Google</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Keenthemes</a></li>
+                      <li><a href="#"><i class="fa fa-tags"></i>Twitter</a></li>
+                    </ul>
+                  </div>
+                   END BLOG TAGS -->
+                </div>
+                <!-- END RIGHT SIDEBAR -->            
+              </div>
+            </div>
+          </div>
+          <!-- END CONTENT -->
+        </div>
+        <!-- END SIDEBAR & CONTENT -->
+      </div>
+    </div>

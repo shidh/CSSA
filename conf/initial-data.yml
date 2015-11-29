@@ -1,0 +1,197 @@
+# you describe your data using the YAML notation here
+# and then load them using Fixtures.load("data.yml")
+
+User(linda):
+    fullname: "Linda"
+    username: "linda"
+    email: linda@gmail.com
+    password: 123
+    posts: [p1, p3]
+    events: [e2]
+
+User(petter):
+    fullname: "Petter Lin"
+    email: petter@gmail.com
+    password: 123
+    isAdmin: true
+    posts: [p1, p3]
+    events: [e2]
+    
+User(ALin):
+    fullname: "ALin"
+    email: alin@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
+User(Bob):
+    fullname: "Bob"
+    email: bob@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+
+User(Allen):
+    fullname: "Allen"
+    email: allen@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
+User(Gogo):
+    fullname: "Gogo"
+    email: gogo@gmail.com
+    password: 123
+    isAdmin: false
+    events: [e2]
+    
+MapLocation(address):
+    address: "Christ-Probst-Str 8109, 80805 Munich"
+    latitude: 48.220498
+    longitude: 11.666125
+
+MapLocation(address1):
+    address: "Breivikveien, Stavanger, Norway"
+    latitude: 58.96507
+    longitude: 5.7639551
+    
+PostContent(P1content):    
+    #video: "here is video name from initial-data.yml"
+    #pictures: [p1image]
+    picturesTitles: ["pic name here"]
+    
+    
+Post(p1):
+    title: "first post"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+    
+Post(p2):
+    title: "2nd post"
+    postContent: "非常感谢您对中国北京汽车集团有限公司（简称“北汽集团”）的关注，特邀请您参加中国北汽集团的海外高层次人才招聘会，届时用人企业方将与您面对面沟通。 中国北汽集团将在2014年7月份赴德举办招聘活动，本次招聘涉及汽车高级管理人才、汽车研发、市场和财务岗位等。欢迎资深汽车人才和留学生投递简历并前来参加汽车行业研讨会暨招聘活动。 本次赴德招聘的有集团领导及各子公司领导，包括：北京汽车研究总院有限公司、北京通用航空有限公司、北京汽车国际发展有限公司、北京海纳川汽车部件股份有限公司、北京福田汽车股份有限公司、北京汽车股份有限公司、北京奔驰汽车有限公司、北京汽车集团有限公司整车事业本部以及北京北汽鹏龙汽车服务贸易股份有限公司。大家可以借此机会畅抒自己的抱负和能力，把握报效祖国的契机。 "
+    postingDate: 2014-08-05
+    mapLocation: address
+    rating: 2.0
+    content: P1content
+    sender: linda
+    postType: "news"
+    
+Post(p3):
+    title: "3rd post"
+    postContent: "谢拉格山虽然没有布道石出名，但在登山爱好者的心中仍是徒步圣地。它笔直地竖立在吕瑟峡湾深处，最高海拔1020米。从山腰的停从山腰的停车场(Øygardstøl，意为鹰巢） 出发，登山径单程全长6公里，从起点开始有600米的落差。登山径和布道石一样，沿途都有红色T字标志。前半段需要借助铁锁攀爬，强度比较大，来回大概5-6小时。谢拉格伯顿石(Kjeragbolten)也被称为奇迹石，是悬空于峡湾1000米，夹在两块巨岩裂缝中的一块直径约2米的石头。勇于挑战自己的人们可以站在石头上，很是刺激。详情到达方式：大巴：从6月23日至9月2日，从斯塔万格码头(Fiskepiren)坐7:30的大巴，爬完山后，大巴会在16:45从起点停车场出发回斯塔万格，19:15 到达。大巴由Tide Reiser营运www.tidereiser.com，来回票价为500克朗。自驾+渡轮：从6月23号至9月2号期间可以从斯塔万格出发先开到劳维克 (Lauvvik) 再坐汽车渡轮10:00出发，11:30到吕瑟伯顿 (Lysebotn)，再开到山腰的停车场。预计5-6小时爬完后赶18:00的渡轮，20:30到劳维克，再回斯塔万格。船票最好提前预定，以防船上没有车位，预订网站：www.norled.no。如果想多储备点体力，也可以在吕瑟伯顿住下(如Kjerag Lysebotn Camping Resort, +47994 995 99), 第二天再爬谢拉格山。"
+    postingDate: 2014-08-22
+    mapLocation: address1
+    rating: 2.7
+    content: P1content
+    sender: linda
+    postType: "news"
+
+Event(e1):
+    title: "1st event"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-07-16T6:59:43+02:00
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    confirmedUsers: [linda, petter]
+    onWaitingListUsers: []
+    capacity: 10
+    members: [linda, petter]
+    postType: "event"
+    time: 2014-07-16T6:59:43+02:00
+    location: Alzeyer Str. 16. 80993 München
+
+Event(e2):
+    title: "2nd event"
+    postContent: "非常感谢您对中国北京汽车集团有限公司（简称“北汽集团”）的关注，特邀请您参加中国北汽集团的海外高层次人才招聘会，届时用人企业方将与您面对面沟通。 中国北汽集团将在2014年7月份赴德举办招聘活动，本次招聘涉及汽车高级管理人才、汽车研发、市场和财务岗位等。欢迎资深汽车人才和留学生投递简历并前来参加汽车行业研讨会暨招聘活动。 本次赴德招聘的有集团领导及各子公司领导，包括：北京汽车研究总院有限公司、北京通用航空有限公司、北京汽车国际发展有限公司、北京海纳川汽车部件股份有限公司、北京福田汽车股份有限公司、北京汽车股份有限公司、北京奔驰汽车有限公司、北京汽车集团有限公司整车事业本部以及北京北汽鹏龙汽车服务贸易股份有限公司。大家可以借此机会畅抒自己的抱负和能力，把握报效祖国的契机。 "
+    postingDate: 2014-07-17T6:59:43+02:00
+    mapLocation: address1
+    rating: 2.0
+    content: P1content
+    confirmedUsers: [linda,ALin,petter]
+    onWaitingListUsers: [Gogo,Bob,Allen]
+    capacity: 30
+    members: [linda, petter]
+    postType: "event"
+    time: 2014-07-16T6:59:43+02:00
+    location: Pocci Str. 27. 89223 München
+
+
+Post(t1):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t2):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t3):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t4):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t5):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t6):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t7):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+Post(t8):
+    title: "测试"
+    postContent: "你知道慕尼黑München这个名字的德文含义吗？  说起慕尼黑，除了臭名昭著的“慕尼黑协议”之外，你还会联想到什么？  慕尼黑有许多别名，诸如“德国秘密的首都”、“笔记本电脑和皮裤”、“伊萨河畔的雅典”……你知道其原委吗？  慕尼黑的当地人约会常常约在鱼井，你知道从中世纪直到19世纪这儿一直是鱼市吗？ 玛丽亚广场乃是今日慕尼黑市的政治和集会中心，是“慕尼黑的心脏”，它过去是古老的农贸产品和食盐外贸集市。广场之名取自广场中心矗立的玛利亚柱，感恩纪念柱。它又是为了纪念什么历史事件而建？你注意到柱子基座的四角有四个小天使了吗？他们正分别与狮子、巨龙、蜥蜴（四脚蛇）与蟒蛇搏斗着。这四种动物寓意着中世纪哪四种最令人生畏的邪恶势力？"
+    postingDate: 2014-08-04
+    mapLocation: address
+    rating: 2.3
+    content: P1content
+    sender: linda
+    postType: "news"
+    

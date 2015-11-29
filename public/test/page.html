@@ -1,0 +1,90 @@
+#{extends 'main.html'/}
+#{set title:'关于学联'/}
+
+#{set 'moreStyles'}
+	<link rel="stylesheet" type="text/css" href="@{'/public/stylesheets/about.css'}">
+#{/set}
+
+<script>
+			$(document).ready(function() {
+				$('.popup-with-zoom-anim').magnificPopup({
+					type: 'inline',
+					fixedContentPos: false,
+					fixedBgPos: true,
+					overflowY: 'auto',
+					closeBtnInside: true,
+					preloader: false,
+					midClick: true,
+					removalDelay: 300,
+					mainClass: 'my-mfp-zoom-in'
+			});
+		});
+		</script>
+
+
+    <div class="main">
+	  <div class="wrap">
+	  	<div class="single-top">
+	  		<h4 class="m_2">About</h4>
+	  		<div class="about-desc">
+			   <h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+			   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Duis aute irure dolor in reprehenderit</p>
+			   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Duis aute irure dolor in reprehenderit Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Duis aute irure dolor in reprehenderit</p>
+			   <a href="#" title="read more" class="button">read more</a>				    
+		    </div>
+				<h4 class="m_2">Our Team</h4>
+			<div class="about-top">
+			   <div class="col_1_of_4 span_1_of_4">
+					<a class="popup-with-zoom-anim" href="#small-dialog3"><img src="images/a-img2.jpg" title="continue" alt=""/></a>
+				    <div id="small-dialog3" class="mfp-hide">
+					   <div class="pop_up2">
+					   	 <h2>Lorem ipsum </h2>
+						 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.</p>
+						 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie.</p>
+						</div>
+					</div>
+					<h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+				</div>
+				<div class="col_1_of_4 span_1_of_4">
+					<a class="popup-with-zoom-anim" href="#small-dialog3"><img src="images/a-img3.jpg" title="continue" alt=""/></a>
+					<h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+				</div>
+				<div class="col_1_of_4 span_1_of_4">
+					<a class="popup-with-zoom-anim" href="#small-dialog3"><img src="images/a-img4.jpg" title="continue" alt=""/></a>
+					<h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+				</div>
+				<div class="col_1_of_4 span_1_of_4">
+					<a class="popup-with-zoom-anim" href="#small-dialog3"><img src="images/a-img5.jpg" title="continue" alt=""/></a>
+					<h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod.</p>
+				</div>
+				<div class="clear"></div>	
+			</div>
+			<div class="about">
+				<div class="lsidebar span_1_of_about">
+				  <ul class="about-list">
+					<h4 class="m_2">Advantages</h4>
+		            <li><a href="#">Always free from repetition</a><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt</p></li>
+		            <li><a href="#">Always free from repetition</a><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt</p></li>
+		            <li><a href="#">Always free from repetition</a><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt</p></li>
+		         </ul>
+				</div>
+				<div class="cont span_2_of_about">
+					<h4 class="m_2">Testimonials</h4>
+				    <div class="lsidebar span_1_of_about">
+					<a class="popup-with-zoom-anim" href="#small-dialog3"><img src="images/a-img1.jpg" title="continue" alt=""/></a>
+				</div>
+				<div class="cont span_2_of_about">
+					<h3><a href="#">Lorem Ipsum is simply dummy text</a></h3>
+				    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				</div>
+				<div class="clear"></div>	
+			   </div>
+				<div class="clear"></div>	
+			</div>					
+		</div>
+	  </div>
+   </div>

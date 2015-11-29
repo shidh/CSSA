@@ -1,0 +1,129 @@
+# You can specialize this file for each language.
+# For example, for French create a messages.fr file
+#
+views.tool.home = Home
+views.tool.news = Nachrichten
+views.tool.activity = Aktivitäten
+views.tool.download = Downloads
+views.tool.wiki = Wiki
+views.tool.wenti = Kultur und Sport
+views.tool.about = Über uns
+views.tool.map = Map
+views.tool.flug = Flug.Info
+
+views.main.cssanews = CSSAM Neuigkeiten
+views.main.cssaactivity = CSSAM Events
+views.main.cssaabout = Über CSSAM
+
+views.down.partner = Partner
+views.down.partner1 = Generalkonsulat der V.R.China Munich
+views.down.partner2 = TUMinternational 
+views.down.partner3 = Erich-Paulun-Institut
+views.down.partner4 = Kaiyuan
+views.down.partner5 = Gerig Wealth Management
+views.down.partner6 = Konfuzius-Institut München
+views.down.partner7 = Union zur Förderung Chinesischer Unternehmen Bayern e.V.
+views.down.contact = Kontakt
+views.down.support = Support
+views.down.follow = Folge uns
+views.down.follow1 = Mailing list
+views.down.follow2 = CSSAM Wechat
+views.down.follow3 = CSSAM Weibo
+views.down.follow4 = CSSAM Facebook
+views.down.follow5 = CSSAM Google Apps
+
+views.download.helloword = Willkommen zum Download der von der CSSAM bereitgestellten Dokumente! 
+views.about.helloword = Willkommen im Verein der chinesischen Studenten und Wissenschaftler e.V.!
+
+views.about.test1 = &nbsp&nbspVerein der chinesischen Studenten und Wissenschaftler in München e.V.
+views.about.test2 = &nbsp&nbspDie Geschichte des Vereins geht bis in die siebziger Jahre zurück. Im Jahr 1978 versammelte sich eine Gruppe von in München studierenden oder arbeitenden chinesischen Studenten und Wissenschaftlern. Mit der Vision, die Landsmänner in München zu versammeln und näher zu bringen, entstand der Verein in seiner anfänglichen Form. Aufgrund der begrenzten Größe und der Position des Vereins in seiner anfänglichen Zeit, war es noch nicht bei den relevanten Institutionen offiziell eingetragen.
+views.about.test3 = Durch den ständigen Anstieg der chinesischen Gemeinschaft in der Region, befindet sich der Verein in einem ständigen Wachstum. In 2005 hat sich der Verein als Verein der chinesischen Studenten und Wissenschaftler in München e.V. offiziell im Vereinsregister als ein Gemeinwohltätigkeitsverein eingetragen. Die Vorstandsmitglieder aus den bisherigen 8  Mitgliederversammlungen bemühten sich seitdem gemeinsam  um die Einheit und Solidarität aller chinesischen Studenten und Wissenschaftler in München. Die Gemeinschaft unterstützt sich gegenseitig und fördert gemeinsam die Lehre, Forschung und Arbeit. Auch das Leben in der Freizeit wird durch Hilfe und Unterstützung in allen möglichen Bereichen laufend bereichert und vervielfältigt.
+
+views.about.team = Unser Team
+views.about.teamklick = (Bild anklicken für weitere Infos)
+views.about.team.all = All
+views.about.team.vorstand = CSSAM Vorstand
+views.about.team.jura = Juristische Beratung
+views.about.team.foto = CSSAM Fotograf
+views.about.team.beratung = Psychologische Beratung
+views.about.document = CSSAM Dokumente
+views.about.flyer = Flyer des Vereins der chinesischen Studenten und Wissenschaftler e.V.
+views.about.flyer.text = CSSAM Flyer
+views.about.satzungch = Satzung des CSSAM (chinesisch)
+views.about.satzungch.text = Vereinsregistereintrag des CSSAM (chinesisch)
+
+views.about.satzungde = Satzung des CSSAM (deutsch)
+views.about.satzungde.text = Vereinsregistereintrag des CSSAM (deutsch)
+
+views.about.munichinfo = München kompakt v.2013
+views.about.munichinfo.text = Die kompletten Informationen über München „München kompakt“
+
+views.about.follow = Folge uns!
+views.about.media = Social Media
+views.about.media.test =  Sie können durch die Google Mailing List, WeChat PublicNumber, Facebook, YouTube, und andere Social Media Kanäle unsere Benachrichtigungen über Neuigkeiten und Events erhalten.
+
+funktion.status.welcome = 欢迎
+funktion.status.logout = 登出
+funktion.status.anmelden = 注册
+funktion.status.logen = 登陆
+funktion.status.email = 邮&nbsp;&nbsp;&nbsp;&nbsp;箱
+funktion.status.password = 密&nbsp;&nbsp;&nbsp;&nbsp;码
+funktion.status.remember = 记住我
+funktion.status.forget = 忘记密码?
+funktion.status.cancel = 返回
+funktion.status.password.test1 = 重设密码会发到您的邮箱，请确保此邮箱是CSSA注册邮箱
+funktion.status.password.test2 = 邮箱发送成功，请去邮箱设置新密码。
+funktion.status.password.test3 = Oh! 好像邮箱不对哦！
+funktion.status.password.test4 = 重设密码
+funktion.status.password.confirm = 确认密码
+funktion.status.ok = 确认
+funktion.status.anmelden.erfolg = 注册成功！
+funktion.status.email.error = 邮箱已存在！
+funktion.status.password.error = 密码不一致！
+funktion.status.password.wrong = 密码错误！
+
+index.news = CSSAM Neuigkeiten
+index.news.text = Neuigkeiten des CSSAM: unter anderem Stellenangebote, Arbeitsberichte des CSSAM und Benachrichtigungen vom Konsulat.
+index.event = CSSAM Events
+index.event.text = Events des CSSAM: Messen, Vorträge, Stammtische, Sportwettkämpfe und vieles mehr. Wir freuen uns auf Ihre Teilnahme!
+index.cssam = Über CSSAM
+index.cssam.text = Wir sind ein im Münchner Vereinsregister eingetragener Verein. Zweck des Vereins ist es, die chinesischen Studenten und Wissenschaftler in Verbindung zu halten.
+
+views.cssa.history = Gründung und Geschichte
+views.cssa.history.text1 = Die Geschichte des Vereins geht bis in die siebziger Jahre zurück. Im Jahr 1978 versammelte sich eine Gruppe von in München studierenden oder arbeitenden chinesischen Studenten und Wissenschaftlern. Mit der Vision, die Landsmänner in München zu versammeln und näher zu bringen, entstand der Verein in seiner anfänglichen Form. Aufgrund der begrenzten Größe und der Position des Vereins in seiner anfänglichen Zeit, war es noch nicht bei den relevanten Institutionen offiziell eingetragen.
+views.cssa.history.text2 = Durch den ständigen Anstieg der chinesischen Gemeinschaft in der Region, befindet sich der Verein in einem ständigen Wachstum. In 2005 hat sich der Verein als Verein der chinesischen Studenten und Wissenschaftler in München e.V. offiziell im Vereinsregister als ein Gemeinwohltätigkeitsverein eingetragen. Die Vorstandsmitglieder aus den bisherigen 8  Mitgliederversammlungen bemühten sich seitdem gemeinsam  um die Einheit und Solidarität aller chinesischen Studenten und Wissenschaftler in München. Die Gemeinschaft unterstützt sich gegenseitig und fördert gemeinsam die Lehre, Forschung und Arbeit. Auch das Leben in der Freizeit wird durch Hilfe und Unterstützung in allen möglichen Bereichen laufend bereichert und vervielfältigt.
+views.cssa.name = Offizielle Bezeichnung
+views.cssa.name.ch = •	Chinesisch: 慕尼黑中国学生学者联合会
+views.cssa.name.de = •	Deutsch: Verein der chinesischen Studenten und Wissenschaftler in München e.V.
+views.cssa.name.en = •	Englisch: Chinese Students and Scholars Association Munich e.V.
+views.cssa.shortname = Offizielle Abkürzung
+views.cssa.shortname.ch = •	Chinesisch: “慕尼黑中国学联”、”慕尼黑学联”以及“学联”
+views.cssa.shortname.de = •	Deutsch: VCSWM，VCSW (evtl. e.V. am Schluss)
+views.cssa.shortname.en = •	Englisch: CSSAM，CSSA Munich
+views.cssa.ziel = Zweck
+views.cssa.ziel.text = Zweck des Vereins ist es, die chinesischen Studenten und Wissenschaftler in Verbindung zu halten, die gegenseitige Verständigung, Gesinnung, Toleranz und Hilfsbereitschaft unter Angehörigen des chinesischen Volkes und die menschliche, kulturelle und wissenschaftliche Kommunikation zwischen den Chinesen und anderen Völkern insbesondere in München und Umgebung zu fördern.
+views.cssa.struktur = Struktur
+views.cssa.struktur.text1 = •	Mitgliederversammlung
+views.cssa.struktur.text2 = •	Abteilungen der Vorstandsmitglieder
+views.cssa.struktur.text3 = •	Abteilung für Öffentlichkeitsarbeit
+views.cssa.struktur.text4 = •	Abteilung für Kunst, Kultur und Sport
+views.cssa.struktur.text5 = •	Abteilung für Studenten und Wissenschaftler
+views.cssa.struktur.text6 = •	Abteilung für Karriere und Alumni
+views.cssa.struktur.text7 = •	Abteilung für Planung, Organisation und Logistik
+views.cssa.struktur.text8 = •	Abteilung für Arbeits des Innen
+views.cssa.struktur.text9 = •	Abteilung für IT und technische Unterstützung
+views.cssa.struktur.text10 = •	Beratendes Gremium
+views.cssa.struktur.text11 = •	Freiwillige Helfer
+
+views.about.vorstand1 = Vorstandvorsitzender
+views.about.vorstand2 = Schatzmeister des Vorstands und Vereins
+views.about.vorstand3 = Vorstandsmitglied für Karriere und Alumni
+views.about.vorstand4 = Vorstandsmitglied für Wissen und Wissenschaftler
+views.about.vorstand5 = Vorstandsmitglied für Öffentlichkeitsarbeit
+views.about.vorstand6 = Vorstandsmitglied für Kultur, Kunst und Sport
+views.about.vorstand7 = Vorstandsmitglied für Veranstaltungsorganisation
+views.about.vorstand8 = Assistent des Präsidenten
+views.about.vorstand9 = Vorstandsmitglied für IT und technische Unterstützung
+
+
+

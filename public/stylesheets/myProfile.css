@@ -1,0 +1,112 @@
+/*left part*/
+.otherProfile
+{
+	margin-top:10px;
+	width: 33%;
+	border-right: 1px solid #dddddd;
+	float:left
+}
+
+/*middle part*/
+.middle
+{
+	width: 33%;
+	float: left;
+}
+
+.layoutContainer
+{
+	height: 0px;
+	width: 0px;
+	left: 50%;
+	top: 0px;
+	position: absolute;
+}
+
+#profileIcon
+{
+	border: 5px solid #428bca;
+	border-radius: 80px;
+	top: 100px;
+	left: -80px;
+	height: 160px;
+	width: 160px;
+	position: absolute;
+	overflow: hidden;
+}
+
+#eventsMap
+{
+	margin-top: 180px;
+	width: 100%;
+	height: 350px;
+}
+
+#tagCloud {
+    height: 300px;
+    width: 100px;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+}
+#tagCloud a {
+    position: absolute;
+    text-decoration: none;
+    color: #0B61A4;
+    text-shadow: #66A3D2 1px -1px 1px;
+}
+
+
+/*right part*/
+.keyProfile{
+	margin-left: 66%;
+	margin-top: 30px;
+	width: 33%;
+	border-left: 1px solid #dddddd;
+}
+
+
+.changePasswordButton{
+	margin-left: 130px;;
+	margin-top: 40px;
+	padding: 5px 5px 5px 5px;
+	color: black;
+	font-size: 14px;
+	font-weight:bold;
+}
+
+#changePasswordBox{
+	margin-top: 50px;
+	visibility: hidden;
+}
+
+.newPasswordSubmit
+{
+	margin-left: 42%;
+	margin-top: 30px;
+}
+
+/* others */
+input[type="text"]:disabled {
+    background-color: #f2f2f2;
+	background-image: url('/public/images/noise.jpg');
+	border:0 solid #ffffff;
+}
+
+#updateFile
+{
+	padding-top: 180px;
+	visibility : hidden;
+}
+
+.profileData
+{
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+.footer{
+	margin-top: 50px !important;
+}
+
+
