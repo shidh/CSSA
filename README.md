@@ -38,9 +38,4 @@ III. Relevant Docs
  - Activity有confirmedList和WaitingList
   
  
- TODO：
- - 【前/后台】报名confirm list, waiting list, Event和User的多对多映射  --Allen
- - 【后台】新建Post图片，地址（google）获取（存数据库）
- - 【后台】User管理
- -   Wiki
- -   
+
