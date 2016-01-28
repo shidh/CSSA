@@ -113,13 +113,13 @@ views.cssa.struktur.text11 = •	 学联执行委员会下属志愿者团
 
 views.about.vorstand1 = 学联和执委会主席
 views.about.vorstand2 = 学联和执委会财长，执委会秘书长，分管内务
-views.about.vorstand3 = 执委会执委，分管职业和校友事务
-views.about.vorstand4 = 执委会执委，分管学术，学者事务
-views.about.vorstand5 = 执委会执委，分管公共关系
-views.about.vorstand6 = 执委会执委，分管文化，艺术， 体育事务
-views.about.vorstand7 = 执委会执委，分管活动组织和统筹
-views.about.vorstand8 = 学联和执委会主席助理
-views.about.vorstand9 = 执委会执委，分管网络和技术支持
+views.about.vorstand3 = 执委会执委
+views.about.vorstand4 = 执委会执委
+views.about.vorstand5 = 执委会执委
+views.about.vorstand6 = 执委会执委
+views.about.vorstand7 = 执委会执委
+views.about.vorstand8 = 执委会执委
+views.about.vorstand9 = 执委会执委
 
 
 
@@ -235,13 +235,13 @@ views.cssa.struktur.text11 = •	 学联执行委员会下属志愿者团
 
 views.about.vorstand1 = 学联和执委会主席
 views.about.vorstand2 = 学联和执委会财长，执委会秘书长，分管内务
-views.about.vorstand3 = 执委会执委，分管职业和校友事务
-views.about.vorstand4 = 执委会执委，分管学术，学者事务
-views.about.vorstand5 = 执委会执委，分管公共关系
-views.about.vorstand6 = 执委会执委，分管文化，艺术， 体育事务
-views.about.vorstand7 = 执委会执委，分管活动组织和统筹
-views.about.vorstand8 = 学联和执委会主席助理
-views.about.vorstand9 = 执委会执委，分管网络和技术支持
+views.about.vorstand3 = 执委会执委
+views.about.vorstand4 = 执委会执委
+views.about.vorstand5 = 执委会执委
+views.about.vorstand6 = 执委会执委
+views.about.vorstand7 = 执委会执委
+views.about.vorstand8 = 执委会执委
+views.about.vorstand9 = 执委会执委
 
 
 
