@@ -122,12 +122,12 @@
                     #{elseif post.isFull()}
                       <div class="alert alert-danger" role="alert">
                           <div class="row">
-                            <div class="col-sm-10">活动已经爆满，只能加入Waiting List</div>
-                              <div class="col-sm-2">
-                      #{form @ViewEvent.signUp(post.id)}
-                            <input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
-                            #{/form}
-                      </div>
+                            <div class="col-sm-10">本轮春晚门票已经被全部预订，请期待下次放票阶段，谢谢。</div>
+                              <!--<div class="col-sm-2">
+                              #{form @ViewEvent.signUp(post.id)}
+                                <input type="submit" class="btn btn-default btn-sm" id="comment_button_input" name="join" value="报名"/>
+                              #{/form}
+                              </div>-->
                           </div>
                         </div>
                     #{/elseif}
@@ -252,10 +252,19 @@
                   <div class="recent-news margin-bottom-10">
                     <div class="row margin-bottom-10">
                       <div class="col-md-3">
+                        <img class="img-responsive" alt="" src="http://www.cssa-munich.de/public/images/upload/201602032.jpg">                        
+                      </div>
+                      <div class="col-md-9 recent-news-inner">
+                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=401">慕城之春2016猴年春节联欢晚会预告</a></h3>
+                        <p>年年岁岁总相似，岁岁年年同相思。又是一年冬雪尽，又到一岁春草生。...</p>
+                      </div>                        
+                    </div>
+                    <div class="row margin-bottom-10">
+                      <div class="col-md-3">
                         <img class="img-responsive" alt="" src="http://www.cssa-munich.de/public/images/upload/2016011303.gif">                        
                       </div>
                       <div class="col-md-9 recent-news-inner">
-                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=394">慕城之春 2016猴年春节联欢晚会</a></h3>
+                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=394">慕城之春2016猴年春节联欢晚会招贤纳士</a></h3>
                         <p>在欢乐甜蜜的圣诞气氛中，我们告别收获满满的2015。2016，又是...</p>
                       </div>                        
                     </div>
@@ -268,15 +277,7 @@
                         <p>跨过新年的钟声，看过绚烂的烟火。慕城的学...</p>
                       </div>                        
                     </div>
-                    <div class="row margin-bottom-10">
-                      <div class="col-md-3">
-                        <img class="img-responsive" alt="" src="http://www.cssa-munich.de/public/images/upload/2016010702.jpg">                        
-                      </div>
-                      <div class="col-md-9 recent-news-inner">
-                        <h3><a href="http://www.cssa-munich.de/viewPost?postId=392">首届中国深圳海外创新人才大赛-慕尼黑欧洲分站赛启动报名 —— 1亿美金，等你来拿！</a></h3>
-                        <p>首届中国深圳海外创新人才大赛，由国家科学技术...</p>
-                      </div>                        
-                    </div>
+                    
                   </div>
                   <!-- END RECENT NEWS -->   
 
